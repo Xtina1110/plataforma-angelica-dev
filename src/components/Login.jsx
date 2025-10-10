@@ -132,7 +132,7 @@ const Login = () => {
       <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-radial from-yellow-200/20 via-purple-200/10 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
 
       {/* Botones de idioma y audio */}
-      <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
+      <div className="fixed top-4 right-4 z-[9999] flex items-center gap-3">
         <LanguageSelector inline variant="loading" />
         <AudioButton variant="loading" />
       </div>
@@ -158,25 +158,16 @@ const Login = () => {
         icon={LogIn}
       >
       {/* Contenido de login con TODAS las mejoras */}
-      <div className="max-w-sm mx-auto relative">
-        {/* Ángel decorativo igual al de inicio */}
-        <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 pointer-events-none">
-          <img 
-            src={angelSinFondo}
-            alt="Angel guardian"
-            className="w-40 h-40 object-contain animate-float drop-shadow-lg"
-          />
-        </div>
-
-        {/* Header mejorado con mensaje angelical igual a inicio */}
-        <div className="text-center mb-8 mt-20 animate-fade-in">
-          <p className="text-yellow-600 text-xl md:text-2xl font-bold italic mb-3 whitespace-nowrap">
+      <div className="max-w-3xl mx-auto relative">
+        {/* Header mejorado con mensaje angelical dentro del recuadro */}
+        <div className="text-center mb-6 animate-fade-in">
+          <p className="text-yellow-600 text-xl md:text-2xl font-bold italic mb-2">
             ✨ {translation.loginPage.subtitle} ✨
           </p>
-          <p className="text-purple-600 text-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
-            <Sparkles size={20} className="text-yellow-500" />
+          <p className="text-purple-600 text-base font-semibold flex items-center justify-center gap-2">
+            <Sparkles size={18} className="text-yellow-500" />
             Los ángeles te dan la bienvenida
-            <Sparkles size={20} className="text-yellow-500" />
+            <Sparkles size={18} className="text-yellow-500" />
           </p>
         </div>
 
@@ -342,18 +333,21 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Footer mejorado con borde dorado y mejor contraste */}
-        <div className="text-center mt-6 p-5 bg-gradient-to-br from-purple-50 via-white to-yellow-50 rounded-2xl border-2 border-yellow-400/70 shadow-md">
-          <p className="text-gray-800 text-base font-medium">
-            {translation.loginPage.noAccount}{' '}
-            <button 
-              onClick={() => navigate('/registro')}
-              className="text-purple-700 hover:text-purple-800 font-bold underline hover:no-underline transition-all focus:outline-2 focus:outline-purple-500"
-              aria-label="Ir a la página de registro"
-            >
-              {translation.loginPage.registerHere}
-            </button>
+        {/* Footer con botón de registro igual al de inicio */}
+        <div className="text-center mt-4">
+          <p className="text-gray-700 text-base mb-3">
+            {translation.loginPage.noAccount}
           </p>
+          <button 
+            onClick={() => navigate('/registro')}
+            className="w-full bg-white hover:bg-purple-50 text-purple-700 font-bold py-3 px-6 rounded-2xl border-3 border-purple-600 hover:border-purple-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+            aria-label="Ir a la página de registro"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            </svg>
+            <span>{translation.loginPage.registerHere}</span>
+          </button>
         </div>
 
         {/* Modal de recuperación mejorado con mejor accesibilidad */}
