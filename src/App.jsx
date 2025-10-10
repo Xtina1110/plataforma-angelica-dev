@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { supabase } from './supabase';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { AudioProvider } from './contexts/AudioContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 // Componentes principales
 import PantallaCarga from './components/PantallaCarga';
 import PantallaInicio from './components/PantallaInicio';
 import Login from './components/Login';
 import LoginOptimized from './components/LoginOptimized';
+import LoginEnhanced from './components/LoginEnhanced';
 import DashboardRedirect from './components/DashboardRedirect';
 import Registro from './components/Registro';
 import Dashboard from './components/Dashboard';
@@ -113,17 +115,18 @@ function App() {
   };
 
   return (
-    <LanguageProvider>
-      <AudioProvider>
-        <Router>
-          <div className="App">
-            <ScrollIndicator />
-            <Routes>
-            {/* Rutas públicas sin sidebar */}
-            <Route path="/" element={<PantallaCarga />} />
-            <Route path="/inicio" element={<PantallaInicio />} />
-            <Route path="/login" element={<LoginOptimized onLogin={handleLogin} />} />
-            <Route path="/registro" element={<Registro />} />
+    <ThemeProvider>
+      <LanguageProvider>
+        <AudioProvider>
+          <Router>
+            <div className="App">
+              <ScrollIndicator />
+              <Routes>
+              {/* Rutas públicas sin sidebar */}
+              <Route path="/" element={<PantallaCarga />} />
+              <Route path="/inicio" element={<PantallaInicio />} />
+              <Route path="/login" element={<LoginEnhanced onLogin={handleLogin} />} />
+              <Route path="/registro" element={<Registro />} />
 
             {/* Rutas con sidebar */}
             <Route path="/dashboard-redirect" element={<DashboardRedirect />} />
@@ -159,8 +162,9 @@ function App() {
           </Routes>
         </div>
       </Router>
-      </AudioProvider>
-    </LanguageProvider>
+        </AudioProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 
