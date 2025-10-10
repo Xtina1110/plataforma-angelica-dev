@@ -1,16 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useAuth } from '../contexts/AuthContext';
 import LogoAngelico from './LogoAngelico';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
 import SkipButton from './SkipButton';
+import UserStatsDisplay from './UserStatsDisplay';
 import FooterLegal from './FooterLegal';
 import loadingMessagesService from '../services/loadingMessagesService';
+import ambientMusicService from '../services/ambientMusicService';
+import userStatsService from '../services/userStatsService';
 import fondo from '../assets/FondoPantalladeCargavf.png';
 
 const PantallaCarga = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [progress, setProgress] = useState(0);
   const [currentMessage, setCurrentMessage] = useState(0);
   const [shuffledIndices, setShuffledIndices] = useState([]);
@@ -234,6 +239,18 @@ const PantallaCarga = () => {
 
     loadAIMessages();
 
+    // Inicializar música ambiente
+    ambientMusicService.init('loading').catch(err => {
+      console.error('Error al iniciar música ambiente:', err);
+    });
+
+    // Actualizar racha diaria si hay usuario
+    if (user) {
+      userStatsService.updateDailyStreak(user.id).catch(err => {
+        console.error('Error al actualizar racha:', err);
+      });
+    }
+
     return () => {
       console.log('🧹 DESMONTANDO COMPONENTE - LIMPIANDO');
       isCancelledRef.current = true;
@@ -242,6 +259,9 @@ const PantallaCarga = () => {
         intervalRef.current = null;
       }
       progressRef.current = 0;
+      
+      // Detener música ambiente
+      ambientMusicService.stop();
     };
   }, [selectedLanguage]);
 
@@ -379,6 +399,13 @@ const PantallaCarga = () => {
           </div>
         )}
       </div>
+
+      {/* Estadísticas del Usuario */}
+      {user && (
+        <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 w-full max-w-md px-4 z-20">
+          <UserStatsDisplay variant="loading" />
+        </div>
+      )}
 
       {/* Footer consistente */}
       <div className="absolute bottom-0 left-0 right-0 z-30">
