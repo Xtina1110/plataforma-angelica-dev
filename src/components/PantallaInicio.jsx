@@ -10,21 +10,14 @@ import sanMiguel from '../assets/FondoPantallaIniciovf.png';
 
 const PantallaInicio = () => {
   const navigate = useNavigate();
-  // Eliminado: selector de idioma local (usamos LanguageSelector global)
-
-  // Usar el contexto global de idiomas
-  const { selectedLanguage, changeLanguage, availableLanguages, getCurrentTranslation } = useLanguage();
-
-// Eliminado: handleLanguageChange (usamos LanguageSelector global)
-
+  const { getCurrentTranslation } = useLanguage();
   const currentTranslation = getCurrentTranslation();
 
   return (
-    <div className="min-h-screen max-h-screen flex relative bg-cover bg-center overflow-hidden"
-         style={{ overflow: 'hidden' }}>
-      {/* Fondo responsivo */}
+    <div className="min-h-screen max-h-screen flex relative bg-cover bg-center overflow-hidden">
+      {/* Fondo con efecto parallax */}
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center transition-transform duration-700"
         style={{
           backgroundImage: `url(${fondoMarmol})`,
           backgroundSize: 'cover',
@@ -32,23 +25,23 @@ const PantallaInicio = () => {
         }}
       />
       
-      {/* Capa de transparencia */}
-      <div className="absolute inset-0 bg-white/60 z-0" />
+      {/* Capa de transparencia con gradiente sutil */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/70 via-white/60 to-purple-50/40 z-0" />
 
-      {/* Logo - responsive */}
-      <div className="absolute top-4 left-4 z-30">
+      {/* Logo con animación de entrada */}
+      <div className="absolute top-4 left-4 z-30 animate-fade-in">
         <LogoAngelico />
       </div>
 
       {/* Controles superiores: idioma + audio - Consistente con pantalla de carga */}
-      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-40 flex items-center gap-1.5 sm:gap-2">
+      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-40 flex items-center gap-2 animate-fade-in-down">
         <LanguageSelector inline variant="loading" />
         <AudioButton variant="loading" />
       </div>
 
-      {/* Imagen San Miguel - responsive */}
+      {/* Imagen San Miguel - mejorada con mejor opacidad */}
       <div
-        className="absolute top-0 left-8 sm:left-16 md:left-20 lg:left-24 w-2/3 sm:w-3/5 md:w-1/2 h-full bg-contain bg-center bg-no-repeat opacity-25 sm:opacity-30 md:opacity-40 z-10"
+        className="absolute top-0 left-0 sm:left-8 md:left-16 lg:left-20 w-full sm:w-3/5 md:w-1/2 h-full bg-contain bg-center bg-no-repeat opacity-20 sm:opacity-25 md:opacity-35 z-10 transition-opacity duration-700"
         style={{
           backgroundImage: `url(${sanMiguel})`,
           backgroundSize: 'contain',
@@ -56,71 +49,97 @@ const PantallaInicio = () => {
         }}
       />
 
-      {/* Contenido del panel derecho - completamente responsive y centrado en pantalla */}
-      <div className="flex-1 flex items-center justify-center sm:justify-end px-3 sm:px-4 md:pr-8 lg:pr-12 relative z-20 h-screen py-20 sm:py-16">
-        <div className="bg-white/95 glass-effect rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl p-3 sm:p-4 md:p-6 lg:p-8 w-full max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-xl backdrop-blur-sm hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out hover:bg-white/98 animate-fade-in-up">
+      {/* Contenido del panel derecho - diseño premium */}
+      <div className="flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:pr-12 lg:pr-16 relative z-20 h-screen py-20 sm:py-16">
+        <div className="bg-white/98 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 w-full max-w-[320px] sm:max-w-md md:max-w-lg backdrop-blur-md border border-purple-100/50 hover:shadow-purple-200/50 hover:shadow-3xl hover:scale-[1.01] transition-all duration-500 ease-out animate-fade-in-up relative overflow-hidden">
           
-          {/* Contenedor flex para ángel y mensaje */}
-          <div className="flex flex-col lg:flex-row items-center gap-2 sm:gap-3 lg:gap-4 mb-3 sm:mb-4">
-            {/* Imagen del ángel */}
-            <div className="flex-shrink-0 w-24 sm:w-32 md:w-36 lg:w-40">
+          {/* Efecto de brillo sutil en el fondo */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-3xl -z-10" />
+          
+          {/* Contenedor principal */}
+          <div className="flex flex-col items-center gap-4 sm:gap-5 mb-6 sm:mb-8">
+            {/* Imagen del ángel - más grande y centrada */}
+            <div className="flex-shrink-0 w-32 sm:w-40 md:w-44 lg:w-48 animate-float">
               <img
                 src="/image.png"
                 alt="Ángel Guardián"
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain drop-shadow-xl"
               />
             </div>
 
-            {/* Contenido del mensaje - Todo centrado */}
-            <div className="flex-1">
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-yellow-700 font-semibold mb-2 sm:mb-3 text-center italic text-shadow">
+            {/* Contenido del mensaje - Todo centrado con mejor espaciado */}
+            <div className="w-full space-y-3 sm:space-y-4">
+              {/* Bendición */}
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-yellow-600 font-bold text-center italic leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 {currentTranslation.blessing}
               </p>
 
+              {/* Título principal */}
               <h1
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-1.5 sm:mb-2 text-center tracking-wide drop-shadow-md text-shadow"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-wide drop-shadow-lg leading-tight animate-fade-in"
                 style={{
                   color: '#6a0dad',
-                  fontFamily: "'Playfair Display', serif"
+                  fontFamily: "'Playfair Display', serif",
+                  animationDelay: '0.3s'
                 }}
               >
                 {currentTranslation.title}
               </h1>
 
-              <div className="text-center mb-2 sm:mb-3">
-                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-tight">
+              {/* Subtítulos */}
+              <div className="text-center space-y-1 sm:space-y-2 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <p className="text-gray-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                   {currentTranslation.subtitle}
                 </p>
-                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-tight">
+                <p className="text-gray-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
                   {currentTranslation.subtitle2}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-2 sm:gap-2.5 md:gap-3">
+          {/* Botones de acción - mejorados */}
+          <div className="flex flex-col gap-3 sm:gap-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            {/* Botón Iniciar Sesión */}
             <button
               onClick={() => navigate('/login')}
-              className="bg-gradient-to-r from-yellow-400 to-yellow-300 text-white text-xs sm:text-sm md:text-base font-semibold py-2 sm:py-2.5 md:py-3 rounded-full shadow-md hover:scale-105 hover:shadow-lg hover:from-yellow-500 hover:to-yellow-400 transition-all duration-300 ease-in-out transform active:scale-95 relative overflow-hidden group"
+              className="relative bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 text-white text-sm sm:text-base md:text-lg font-bold py-3 sm:py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-yellow-300/50 hover:scale-[1.03] transition-all duration-300 ease-out transform active:scale-95 overflow-hidden group"
             >
-              <span className="relative z-10">{currentTranslation.login}</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                {currentTranslation.login}
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12"></div>
             </button>
 
+            {/* Botón Registrarse */}
             <button
               onClick={() => navigate('/registro')}
-              className="border-2 border-purple-600 text-purple-700 text-xs sm:text-sm md:text-base font-semibold py-2 sm:py-2.5 md:py-3 rounded-full hover:bg-purple-50 hover:scale-105 hover:shadow-lg hover:border-purple-700 hover:text-purple-800 transition-all duration-300 ease-in-out transform active:scale-95 relative overflow-hidden group"
+              className="relative bg-white border-2 border-purple-600 text-purple-700 text-sm sm:text-base md:text-lg font-bold py-3 sm:py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-300/50 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-700 hover:text-white hover:border-purple-700 hover:scale-[1.03] transition-all duration-300 ease-out transform active:scale-95 overflow-hidden group"
             >
-              <span className="relative z-10">{currentTranslation.register}</span>
-              <div className="absolute inset-0 bg-purple-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                </svg>
+                {currentTranslation.register}
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
 
-{/* Eliminado: indicadores decorativos (3 puntos) para cumplir con requerimiento */}
+          {/* Indicador decorativo sutil */}
+          <div className="flex justify-center gap-2 mt-6 sm:mt-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></div>
+            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+          </div>
         </div>
       </div>
 
-      {/* Footer legal - responsive */}
+      {/* Footer legal */}
       <div className="absolute bottom-0 left-0 right-0 z-30">
         <FooterLegal />
       </div>
@@ -129,3 +148,4 @@ const PantallaInicio = () => {
 };
 
 export default PantallaInicio;
+
