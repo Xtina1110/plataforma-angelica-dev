@@ -388,7 +388,7 @@ const PantallaCarga = () => {
         </div>
 
         {/* Tip angelical - Diseño elegante y angelical */}
-        <div className="mt-6 relative inline-block animate-fade-in">
+        <div className="mt-12 relative inline-block animate-fade-in">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 rounded-full blur-md opacity-40 animate-pulse"></div>
           <div className="relative bg-gradient-to-r from-purple-600/80 to-purple-700/80 backdrop-blur-sm border border-purple-300/30 rounded-full px-8 py-3 shadow-lg">
             <p className="text-white text-base font-medium text-center whitespace-nowrap">
