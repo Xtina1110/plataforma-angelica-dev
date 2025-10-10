@@ -14,6 +14,10 @@ import LoginOptimized from './components/LoginOptimized';
 import LoginEnhanced from './components/LoginEnhanced';
 import DashboardRedirect from './components/DashboardRedirect';
 import Registro from './components/Registro';
+import RegistroMultiStep from './components/RegistroMultiStep';
+import RegistroExitoso from './components/RegistroExitoso';
+import ConfigurarPago from './components/ConfigurarPago';
+import EmailVerified from './components/EmailVerified';
 import Dashboard from './components/Dashboard';
 import DashboardAdmin from './components/DashboardAdmin';
 import DashboardTecnico from './components/DashboardTecnico';
@@ -126,7 +130,10 @@ function App() {
               <Route path="/" element={<PantallaCarga />} />
               <Route path="/inicio" element={<PantallaInicio />} />
               <Route path="/login" element={<LoginEnhanced onLogin={handleLogin} />} />
-              <Route path="/registro" element={<Registro />} />
+              <Route path="/registro" element={<RegistroMultiStep />} />
+              <Route path="/registro-exitoso" element={<RegistroExitoso />} />
+              <Route path="/configurar-pago" element={<ConfigurarPago />} />
+              <Route path="/email-verified" element={<EmailVerified />} />
 
             {/* Rutas con sidebar */}
             <Route path="/dashboard-redirect" element={<DashboardRedirect />} />
