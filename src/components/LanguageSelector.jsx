@@ -79,7 +79,7 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
           />
           
           {/* Dropdown with scroll - más compacto */}
-          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[60] min-w-[160px] max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100">
+          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[9999] min-w-[160px] max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100">
             {availableLanguages.map((language) => (
               <button
                 key={language}

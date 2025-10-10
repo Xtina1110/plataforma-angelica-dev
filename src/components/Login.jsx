@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
+import angelSinFondo from '../assets/AngelEleganteSinFondo.png';
 
 // Imagen temática para login
 const loginHeaderImage = 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop';
@@ -127,23 +128,7 @@ const Login = () => {
 
   return (
     <>
-      {/* Partículas doradas flotantes */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-yellow-400/30 rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${5 + Math.random() * 10}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Efecto de luz divina desde arriba */}
+      {/* Efecto de luz divina desde arriba (sin partículas ni nubes) */}
       <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-radial from-yellow-200/20 via-purple-200/10 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
 
       {/* Botones de idioma y audio */}
@@ -174,28 +159,28 @@ const Login = () => {
       >
       {/* Contenido de login con TODAS las mejoras */}
       <div className="max-w-sm mx-auto relative">
-        {/* Ángel flotante decorativo */}
-        <div className="absolute -right-20 top-0 hidden lg:block animate-float pointer-events-none">
+        {/* Ángel decorativo igual al de inicio */}
+        <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 pointer-events-none">
           <img 
-            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&h=200&fit=crop&crop=faces"
+            src={angelSinFondo}
             alt="Angel guardian"
-            className="w-32 h-32 rounded-full opacity-40 blur-sm"
+            className="w-40 h-40 object-contain animate-float drop-shadow-lg"
           />
         </div>
 
-        {/* Header mejorado con mensaje angelical y tipografía elegante */}
-        <div className="text-center mb-6 animate-fade-in">
-          <p className="text-gray-800 text-lg font-semibold leading-relaxed" style={{ fontFamily: "'Playfair Display', serif" }}>
+        {/* Header mejorado con mensaje angelical igual a inicio */}
+        <div className="text-center mb-8 mt-20 animate-fade-in">
+          <p className="text-yellow-600 text-xl md:text-2xl font-bold italic mb-3 whitespace-nowrap">
             ✨ {translation.loginPage.subtitle} ✨
           </p>
-          <p className="text-purple-600 text-base mt-3 italic font-medium flex items-center justify-center gap-2">
-            <Sparkles size={18} className="text-yellow-500" />
+          <p className="text-purple-600 text-lg font-semibold flex items-center justify-center gap-2 whitespace-nowrap">
+            <Sparkles size={20} className="text-yellow-500" />
             Los ángeles te dan la bienvenida
-            <Sparkles size={18} className="text-yellow-500" />
+            <Sparkles size={20} className="text-yellow-500" />
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5" role="form" aria-label="Formulario de inicio de sesión">
+        <form onSubmit={handleSubmit} className="space-y-3" role="form" aria-label="Formulario de inicio de sesión">
           {/* Email con validación visual mejorada */}
           <div className="relative group">
             <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -214,7 +199,7 @@ const Login = () => {
               aria-required="true"
               aria-invalid={email && !emailValid}
               aria-describedby={email && !emailValid ? "email-error" : undefined}
-              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md"
+              className="w-full pl-12 pr-12 py-2.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md"
               required
             />
             {email && (
@@ -250,7 +235,7 @@ const Login = () => {
               aria-label="Contraseña"
               aria-required="true"
               aria-describedby="password-strength"
-              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
+              className="w-full pl-12 pr-12 py-2.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
               style={{
                 WebkitTextSecurity: showPassword ? 'none' : 'disc'
               }}
@@ -336,7 +321,7 @@ const Login = () => {
           <button 
             type="submit" 
             aria-label="Iniciar sesión de forma segura"
-            className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-4 px-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base overflow-hidden group"
+            className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-3 px-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base overflow-hidden group"
             disabled={loading}
           >
             {/* Efecto de brillo deslizante */}
