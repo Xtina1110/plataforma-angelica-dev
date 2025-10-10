@@ -8,7 +8,7 @@ import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
 import ThemeToggle from './ThemeToggle';
-import SocialLogin from './SocialLogin';
+import SocialLoginCompact from './SocialLoginCompact';
 import LazyImage from './LazyImage';
 import AngelicParticles from './AngelicParticles';
 import { preloadImages, debounce, getOptimizedImageUrl } from '../utils/performanceUtils';
@@ -216,19 +216,20 @@ const LoginEnhanced = () => {
       {/* Pantalla de Acceso Seguro con fondo del dashboard */}
       {loginSuccess && imagesPreloaded && (
         <div className="fixed inset-0 flex items-center justify-center z-[100] animate-fade-in">
-          {/* Fondo con imagen angélica del dashboard */}
-          <div
-            className="absolute inset-0"
+                    {/* Fondo de nubes moradas del dashboard */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-br from-purple-700 via-purple-600 to-violet-600"
+          />
+          
+          {/* Overlay de nubes sutiles */}
+          <div className="absolute inset-0 opacity-30" 
             style={{
               backgroundImage: `url(${fondoAngelico})`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundPosition: 'center',
+              mixBlendMode: 'soft-light'
             }}
           />
-          
-          {/* Capas de gradiente morado como en el dashboard */}
-          <div className="absolute inset-0 bg-purple-600/40" />
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-800/30 via-purple-600/25 to-violet-500/20" />
           
           {/* Contenido centrado */}
           <div className="relative z-10 text-center animate-scale-in max-w-2xl mx-auto px-6">
@@ -487,8 +488,8 @@ const LoginEnhanced = () => {
           </button>
         </form>
 
-        {/* Social Login */}
-        <SocialLogin onError={setError} />
+        {/* Social Login Compacto */}
+        <SocialLoginCompact onError={setError} />
 
         {/* Footer compacto */}
         <div className="text-center mt-2">

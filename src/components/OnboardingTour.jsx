@@ -77,7 +77,10 @@ const OnboardingTour = ({ onComplete, onSkip }) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center animate-fade-in">
+      {/* Fondo de nubes moradas del dashboard */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-purple-600 to-violet-600" />
+      <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1920&h=1080&fit=crop')] bg-cover bg-center" style={{ mixBlendMode: 'soft-light' }} />
       {/* Modal principal */}
       <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden animate-scale-in">
         {/* Header con gradiente dinámico */}
