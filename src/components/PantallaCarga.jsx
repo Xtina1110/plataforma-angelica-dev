@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -16,9 +15,13 @@ const PantallaCarga = () => {
   const [shuffledIndices, setShuffledIndices] = useState([]);
   const [aiGeneratedMessages, setAiGeneratedMessages] = useState([]);
   const [isLoadingMessages, setIsLoadingMessages] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+  const [canSkip, setCanSkip] = useState(false);
+  const [currentTip, setCurrentTip] = useState(0);
   const intervalRef = useRef(null);
   const progressRef = useRef(0);
   const shuffledRef = useRef([]);
+  const isCancelledRef = useRef(false);
 
   const { selectedLanguage, getCurrentTranslation } = useLanguage();
 
@@ -54,7 +57,50 @@ const PantallaCarga = () => {
     ]
   };
 
+  // Tips angelicales aleatorios
+  const angelicTips = {
+    ES: [
+      "💡 Tip: Respira profundo antes de tu lectura",
+      "✨ Sabías que: Los ángeles responden a tu intención",
+      "🌟 Consejo: Mantén una mente abierta y receptiva",
+      "💜 Recuerda: Tu intuición es tu mejor guía",
+      "🕊️ Tip: Crea un espacio tranquilo para tu sesión"
+    ],
+    EN: [
+      "💡 Tip: Take a deep breath before your reading",
+      "✨ Did you know: Angels respond to your intention",
+      "🌟 Advice: Keep an open and receptive mind",
+      "💜 Remember: Your intuition is your best guide",
+      "🕊️ Tip: Create a quiet space for your session"
+    ],
+    FR: [
+      "💡 Astuce: Respirez profondément avant votre lecture",
+      "✨ Le saviez-vous: Les anges répondent à votre intention",
+      "🌟 Conseil: Gardez un esprit ouvert et réceptif",
+      "💜 Rappelez-vous: Votre intuition est votre meilleur guide",
+      "🕊️ Astuce: Créez un espace calme pour votre session"
+    ],
+    IT: [
+      "💡 Suggerimento: Respira profondamente prima della lettura",
+      "✨ Lo sapevi: Gli angeli rispondono alla tua intenzione",
+      "🌟 Consiglio: Mantieni una mente aperta e ricettiva",
+      "💜 Ricorda: La tua intuizione è la tua migliore guida",
+      "🕊️ Suggerimento: Crea uno spazio tranquillo per la sessione"
+    ]
+  };
+
   const [currentInspirationalText, setCurrentInspirationalText] = useState(0);
+
+  // Fade in al montar
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 100);
+  }, []);
+
+  // Habilitar skip después de 2 segundos
+  useEffect(() => {
+    const timer = setTimeout(() => setCanSkip(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const incrementProgress = () => {
     if (progressRef.current >= 100) {
@@ -81,6 +127,10 @@ const PantallaCarga = () => {
     const currentTexts = inspirationalTexts[selectedLanguage] || inspirationalTexts.ES;
     setCurrentInspirationalText(inspirationalStep % currentTexts.length);
 
+    // Cambiar tip cada 25%
+    const tipStep = Math.floor(progressRef.current / 25);
+    setCurrentTip(tipStep % 5);
+
     if (progressRef.current >= 100) {
       console.log('✅ COMPLETADO - LIMPIANDO INTERVAL Y NAVEGANDO');
       if (intervalRef.current) {
@@ -97,6 +147,7 @@ const PantallaCarga = () => {
 
   useEffect(() => {
     console.log('🚀 MONTANDO COMPONENTE - CARGANDO MENSAJES IA');
+    isCancelledRef.current = false;
 
     const loadAIMessages = async () => {
       try {
@@ -106,7 +157,26 @@ const PantallaCarga = () => {
                             selectedLanguage === 'Français' ? 'FR' :
                             selectedLanguage === 'Italiano' ? 'IT' : 'ES';
 
-        const messages = await loadingMessagesService.getLoadingMessages(languageCode, 10);
+        // Intentar cargar desde sessionStorage primero (preload)
+        const cached = sessionStorage.getItem(`messages_${languageCode}`);
+        let messages;
+
+        if (cached) {
+          console.log('✨ Usando mensajes precargados');
+          messages = JSON.parse(cached);
+        } else {
+          console.log('📥 Cargando mensajes desde API');
+          messages = await loadingMessagesService.getLoadingMessages(languageCode, 10);
+          // Guardar en cache para próxima vez
+          sessionStorage.setItem(`messages_${languageCode}`, JSON.stringify(messages));
+        }
+
+        // Verificar si el componente sigue montado
+        if (isCancelledRef.current) {
+          console.log('⚠️ Componente desmontado, cancelando carga');
+          return;
+        }
+
         setAiGeneratedMessages(messages);
         console.log('✨ Mensajes IA cargados:', messages);
 
@@ -124,9 +194,14 @@ const PantallaCarga = () => {
 
         progressRef.current = 0;
         setProgress(0);
-        intervalRef.current = setInterval(incrementProgress, 100);
+        
+        // MEJORA: Reducido a 4 segundos (40ms x 100 = 4000ms)
+        intervalRef.current = setInterval(incrementProgress, 40);
       } catch (error) {
         console.error('❌ Error cargando mensajes IA:', error);
+        
+        if (isCancelledRef.current) return;
+
         setAiGeneratedMessages(getCurrentTranslation().loadingMessages);
         setIsLoadingMessages(false);
 
@@ -138,7 +213,7 @@ const PantallaCarga = () => {
 
         progressRef.current = 0;
         setProgress(0);
-        intervalRef.current = setInterval(incrementProgress, 100);
+        intervalRef.current = setInterval(incrementProgress, 40);
       }
     };
 
@@ -146,14 +221,22 @@ const PantallaCarga = () => {
 
     return () => {
       console.log('🧹 DESMONTANDO COMPONENTE - LIMPIANDO');
+      isCancelledRef.current = true;
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
       }
+      progressRef.current = 0;
     };
   }, [selectedLanguage]);
 
-// Eliminado: handleLanguageChange (usamos LanguageSelector global)
+  const handleSkip = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    navigate('/inicio');
+  };
 
   const currentTranslation = getCurrentTranslation();
   const displayMessages = aiGeneratedMessages.length > 0 ? aiGeneratedMessages : currentTranslation.loadingMessages;
@@ -166,6 +249,10 @@ const PantallaCarga = () => {
   const currentTexts = inspirationalTexts[selectedLanguage] || inspirationalTexts.ES;
   const currentInspirationText = currentTexts[currentInspirationalText];
 
+  // Obtener tip actual
+  const currentTips = angelicTips[selectedLanguage] || angelicTips.ES;
+  const currentTipText = currentTips[currentTip];
+
   // Etiquetas para "Mensaje X de N"
   const messageCountLabels = {
     ES: { label: "Mensaje", of: "de" },
@@ -176,7 +263,7 @@ const PantallaCarga = () => {
   const countLabel = messageCountLabels[selectedLanguage] || messageCountLabels.ES;
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-cover bg-center relative overflow-hidden">
+    <div className={`min-h-screen w-full flex flex-col items-center justify-center bg-cover bg-center relative overflow-hidden transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       {/* Fondo responsivo */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -189,6 +276,24 @@ const PantallaCarga = () => {
       
       {/* Capa de transparencia */}
       <div className="absolute inset-0 bg-white/70 pointer-events-none" />
+
+      {/* Partículas angelicales flotantes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${5 + Math.random() * 5}s`
+            }}
+          >
+            <div className="w-2 h-2 bg-yellow-300/30 rounded-full blur-sm" />
+          </div>
+        ))}
+      </div>
 
       {/* Logo institucional - responsive */}
       <div className="absolute top-4 left-4 z-30">
@@ -204,7 +309,7 @@ const PantallaCarga = () => {
       {/* Contenido central - completamente responsive */}
       <div className="z-10 text-center px-4 sm:px-6 lg:px-8 w-full max-w-4xl mx-auto">
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-wide drop-shadow-md"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-wide drop-shadow-md animate-fade-in"
           style={{
             fontFamily: "'Playfair Display', serif",
             color: '#6a0dad'
@@ -217,8 +322,8 @@ const PantallaCarga = () => {
           {isLoadingMessages ? 'Conectando con los ángeles...' : (displayMessages[currentMessage] || displayMessages[0])}
         </p>
 
-        {/* Barra de progreso responsive con shimmer */}
-        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-4 sm:h-5 md:h-6 rounded-full bg-white/90 border-2 border-yellow-300 shadow-inner overflow-hidden mx-auto">
+        {/* Barra de progreso responsive con shimmer y glow */}
+        <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-4 sm:h-5 md:h-6 rounded-full bg-white/90 border-2 border-yellow-300 shadow-inner overflow-hidden mx-auto progress-bar-glow">
           <div
             className="h-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-200 transition-all duration-500 ease-out relative"
             style={{ width: `${progress}%` }}
@@ -246,14 +351,73 @@ const PantallaCarga = () => {
             ))}
           </div>
         </div>
+
+        {/* Tip angelical */}
+        <p className="text-purple-600 text-sm mt-6 italic animate-fade-in">
+          {currentTipText}
+        </p>
+
+        {/* Skip button */}
+        {canSkip && (
+          <button
+            onClick={handleSkip}
+            className="mt-8 text-purple-600 hover:text-purple-800 text-sm underline transition-all duration-300 hover:scale-105 animate-fade-in"
+          >
+            Saltar ⏭️
+          </button>
+        )}
       </div>
 
       {/* Footer consistente */}
       <div className="absolute bottom-0 left-0 right-0 z-30">
         <FooterLegal />
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px);
+          }
+          50% {
+            transform: translateY(-20px) translateX(10px);
+          }
+        }
+
+        .animate-float {
+          animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes progress-glow {
+          0%, 100% {
+            box-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.8), 0 0 30px rgba(250, 204, 21, 0.4);
+          }
+        }
+
+        .progress-bar-glow {
+          animation: progress-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+      `}</style>
     </div>
   );
 };
 
 export default PantallaCarga;
+
