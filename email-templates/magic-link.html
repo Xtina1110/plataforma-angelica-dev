@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Rápido - Plataforma Angélica</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .header-title {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        .info-box p {
+            margin: 0;
+            color: #0d47a1;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer-text {
+            color: #999;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e9ecef, transparent);
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">✨</div>
+            <h1 class="header-title">Acceso Rápido</h1>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2 class="greeting">¡Hola de nuevo! 👋</h2>
+            
+            <p class="message">
+                Hemos recibido una solicitud de acceso a tu cuenta en Plataforma Angélica. 
+                Haz clic en el botón de abajo para iniciar sesión de forma rápida y segura, sin necesidad de contraseña.
+            </p>
+
+            <div class="button-container">
+                <a href="{{ .ConfirmationURL }}" class="button">
+                    🚀 Acceder Ahora
+                </a>
+            </div>
+
+            <div class="info-box">
+                <p>
+                    <strong>ℹ️ Acceso sin contraseña:</strong><br>
+                    Este enlace mágico te permite iniciar sesión de forma segura sin recordar tu contraseña. 
+                    Expirará en 15 minutos por seguridad.
+                </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="message" style="font-size: 14px; color: #999;">
+                Si el botón no funciona, copia y pega este enlace en tu navegador:<br>
+                <a href="{{ .ConfirmationURL }}" style="color: #667eea; word-break: break-all;">{{ .ConfirmationURL }}</a>
+            </p>
+
+            <p class="message" style="font-size: 14px; color: #999;">
+                Si no solicitaste este acceso, puedes ignorar este email de forma segura.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text" style="font-weight: bold; color: #667eea; font-size: 16px;">
+                Bienvenido de vuelta 💜
+            </p>
+            <p class="footer-text">
+                Equipo Plataforma Angélica
+            </p>
+
+            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+                © 2025 Plataforma Angélica. Todos los derechos reservados.<br>
+                Este email fue enviado a {{ .Email }}
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

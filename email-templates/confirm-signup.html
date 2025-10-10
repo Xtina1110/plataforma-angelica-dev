@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica tu Email - Plataforma Angélica</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .header-title {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .header-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            margin: 10px 0 0 0;
+        }
+        .content {
+            padding: 40px 30px;
+        }
+        .greeting {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .button-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        .info-box p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+        }
+        .footer-text {
+            color: #999;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e9ecef, transparent);
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">🕊️</div>
+            <h1 class="header-title">Plataforma Angélica</h1>
+            <p class="header-subtitle">Tu camino espiritual comienza aquí</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2 class="greeting">✨ ¡Bienvenido a la Familia Angélica!</h2>
+            
+            <p class="message">
+                Estamos emocionados de tenerte con nosotros. Para completar tu registro y comenzar tu viaje espiritual, 
+                necesitamos verificar tu dirección de correo electrónico.
+            </p>
+
+            <div class="button-container">
+                <a href="{{ .ConfirmationURL }}" class="button">
+                    🔓 Verificar mi Email
+                </a>
+            </div>
+
+            <div class="info-box">
+                <p>
+                    <strong>⏰ Este enlace expirará en 24 horas.</strong><br>
+                    Si no solicitaste este registro, puedes ignorar este email de forma segura.
+                </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="message">
+                Una vez verificado tu email, podrás:
+            </p>
+
+            <ul style="color: #666; line-height: 1.8; margin-left: 20px;">
+                <li>🎴 Acceder a tu Tirada Angélica personalizada</li>
+                <li>🎵 Disfrutar de Canalizaciones y Sonoterapia</li>
+                <li>💜 Reservar consultas con terapeutas certificados</li>
+                <li>📚 Explorar la Academia Angélica</li>
+                <li>🌟 Conectar con nuestra comunidad espiritual</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <p class="message" style="font-size: 14px; color: #999;">
+                Si el botón no funciona, copia y pega este enlace en tu navegador:<br>
+                <a href="{{ .ConfirmationURL }}" style="color: #667eea; word-break: break-all;">{{ .ConfirmationURL }}</a>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text" style="font-weight: bold; color: #667eea; font-size: 16px;">
+                Con amor y luz 💜
+            </p>
+            <p class="footer-text">
+                Equipo Plataforma Angélica
+            </p>
+
+            <div class="social-links">
+                <a href="https://plataforma-angelica.com">🌐 Web</a>
+                <a href="mailto:soporte@plataforma-angelica.com">📧 Soporte</a>
+            </div>
+
+            <p class="footer-text" style="font-size: 12px; margin-top: 20px;">
+                © 2025 Plataforma Angélica. Todos los derechos reservados.<br>
+                Este email fue enviado a {{ .Email }}
+            </p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
 import { useTheme } from '../contexts/ThemeContext';
-import AuthPageLayout from './AuthPageLayout';
+import { Globe, Volume2 } from 'lucide-react';
 import AngelicParticles from './AngelicParticles';
 
 // Import steps
@@ -224,97 +224,98 @@ const RegistroMultiStep = () => {
   };
 
   return (
-    <AuthPageLayout>
+    <div className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat relative overflow-hidden"
+         style={{ backgroundImage: `url('/images/arcangel-miguel.jpg')` }}>
+      
+      {/* Overlay oscuro */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/70 via-violet-900/70 to-indigo-900/70" />
+      
       {/* Partículas de fondo */}
       <AngelicParticles />
 
-      {/* Contenido */}
-      <div className="relative z-10 w-full max-w-2xl mx-auto">
-        {/* Progress Bar */}
-        <div className="mb-6">
-          {/* Steps Indicator */}
-          <div className="flex items-center justify-between mb-3">
-            {[1, 2, 3, 4, 5, 6].map((step) => (
-              <React.Fragment key={step}>
-                <div className="flex flex-col items-center">
+      {/* Header con iconos de idioma y audio */}
+      <div className="relative z-20 flex justify-end items-center p-4 gap-3">
+        <button className={`p-3 rounded-xl backdrop-blur-md transition-all ${
+          isDark ? 'bg-gray-900/90 hover:bg-gray-800/90' : 'bg-white/90 hover:bg-white'
+        } shadow-lg`}>
+          <Globe className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-700'}`} />
+        </button>
+        <button className={`p-3 rounded-xl backdrop-blur-md transition-all ${
+          isDark ? 'bg-gray-900/90 hover:bg-gray-800/90' : 'bg-white/90 hover:bg-white'
+        } shadow-lg`}>
+          <Volume2 className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-700'}`} />
+        </button>
+      </div>
+
+      {/* Contenido principal - Flex grow para ocupar espacio disponible */}
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-2">
+        <div className="w-full max-w-4xl">
+          {/* Progress Bar Compacto */}
+          <div className="mb-3">
+            {/* Steps Indicator */}
+            <div className="flex items-center justify-center gap-2 mb-2">
+              {[1, 2, 3, 4, 5, 6].map((step) => (
+                <React.Fragment key={step}>
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-all ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-xs transition-all ${
                       step < currentStep
                         ? 'bg-green-500 text-white'
                         : step === currentStep
-                        ? 'bg-purple-600 text-white ring-4 ring-purple-600/30'
-                        : isDark
-                        ? 'bg-gray-700 text-gray-400'
-                        : 'bg-gray-200 text-gray-500'
+                        ? 'bg-purple-600 text-white ring-2 ring-purple-600/30'
+                        : 'bg-white/20 text-white/50'
                     }`}
                   >
                     {step < currentStep ? '✓' : step}
                   </div>
-                  <span className={`text-xs mt-1 hidden md:block ${
-                    step === currentStep
-                      ? isDark ? 'text-white font-semibold' : 'text-gray-900 font-semibold'
-                      : isDark ? 'text-gray-500' : 'text-gray-600'
-                  }`}>
-                    {getStepTitle()}
-                  </span>
-                </div>
-                {step < 6 && (
-                  <div className={`flex-1 h-1 mx-2 rounded-full transition-all ${
-                    step < currentStep
-                      ? 'bg-green-500'
-                      : isDark
-                      ? 'bg-gray-700'
-                      : 'bg-gray-200'
-                  }`} />
-                )}
-              </React.Fragment>
-            ))}
+                  {step < 6 && (
+                    <div className={`w-8 h-0.5 rounded-full transition-all ${
+                      step < currentStep ? 'bg-green-500' : 'bg-white/20'
+                    }`} />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+
+            {/* Progress Text */}
+            <div className="text-center">
+              <p className="text-xs text-white/90">
+                Paso {currentStep} de {totalSteps}: <span className="font-semibold">{getStepTitle()}</span>
+              </p>
+            </div>
           </div>
 
-          {/* Progress Text */}
-          <div className="text-center">
-            <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              Paso {currentStep} de {totalSteps}: <span className="font-semibold">{getStepTitle()}</span>
-            </p>
+          {/* Error Message */}
+          {error && (
+            <div className="mb-2 p-2 bg-red-500/20 border border-red-500 rounded-lg">
+              <p className="text-red-200 text-xs flex items-center gap-2">
+                <span>⚠️</span>
+                {error}
+              </p>
+            </div>
+          )}
+
+          {/* Step Content - Compacto */}
+          <div className={`p-4 rounded-2xl backdrop-blur-md ${
+            isDark ? 'bg-gray-900/95' : 'bg-white/95'
+          } shadow-2xl max-h-[calc(100vh-280px)] overflow-y-auto`}>
+            {renderStep()}
           </div>
-
-          {/* Progress Bar */}
-          <div className={`mt-3 h-2 rounded-full overflow-hidden ${isDark ? 'bg-gray-700' : 'bg-gray-200'}`}>
-            <div
-              className="h-full bg-gradient-to-r from-purple-600 to-violet-600 transition-all duration-500"
-              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        {/* Error Message */}
-        {error && (
-          <div className="mb-4 p-4 bg-red-500/10 border-2 border-red-500 rounded-xl">
-            <p className="text-red-500 text-sm flex items-center gap-2">
-              <span>⚠️</span>
-              {error}
-            </p>
-          </div>
-        )}
-
-        {/* Step Content */}
-        <div className={`p-6 rounded-2xl backdrop-blur-md ${
-          isDark ? 'bg-gray-900/95' : 'bg-white/95'
-        } shadow-2xl`}>
-          {renderStep()}
-        </div>
-
-        {/* Help Text */}
-        <div className="mt-4 text-center">
-          <p className={`text-xs ${isDark ? 'text-gray-500' : 'text-gray-600'}`}>
-            ¿Necesitas ayuda? Escríbenos a{' '}
-            <a href="mailto:soporte@plataforma-angelica.com" className="text-purple-600 hover:text-purple-700 underline">
-              soporte@plataforma-angelica.com
-            </a>
-          </p>
         </div>
       </div>
-    </AuthPageLayout>
+
+      {/* Footer */}
+      <div className="relative z-10 py-3 text-center">
+        <p className="text-xs text-white/70">
+          ¿Necesitas ayuda?{' '}
+          <a href="mailto:soporte@plataforma-angelica.com" className="text-purple-300 hover:text-purple-200 underline">
+            soporte@plataforma-angelica.com
+          </a>
+        </p>
+        <p className="text-xs text-white/50 mt-1">
+          © 2025 Plataforma Angélica. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
   );
 };
 
