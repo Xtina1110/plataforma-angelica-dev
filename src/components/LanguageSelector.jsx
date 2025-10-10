@@ -11,13 +11,21 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
     setShowLanguageSelector(false);
   };
 
-  // Iconos de banderas
+  // Iconos de banderas y códigos
   const flags = {
     'Español': '🇪🇸',
     'English': '🇬🇧',
     'Deutsch': '🇩🇪',
     'Italiano': '🇮🇹',
     'Français': '🇫🇷'
+  };
+
+  const languageCodes = {
+    'Español': 'ES',
+    'English': 'EN',
+    'Deutsch': 'DE',
+    'Italiano': 'IT',
+    'Français': 'FR'
   };
 
   const isHeader = variant === 'header';
@@ -35,12 +43,12 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
         className={btnClass}
         aria-label="Cambiar idioma"
       >
-        <Globe size={20} />
-        <span className="text-base font-semibold">
-          {flags[selectedLanguage]} {selectedLanguage}
+        <Globe size={18} />
+        <span className="text-sm font-semibold">
+          {flags[selectedLanguage]} {languageCodes[selectedLanguage]}
         </span>
         <ChevronDown 
-          size={18} 
+          size={16} 
           className={`transition-transform duration-300 ${showLanguageSelector ? 'rotate-180' : ''}`}
         />
       </button>
@@ -53,20 +61,21 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
             onClick={() => setShowLanguageSelector(false)}
           />
           
-          {/* Dropdown with scroll */}
-          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[60] min-w-[180px] max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100">
+          {/* Dropdown with scroll - más compacto */}
+          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[60] min-w-[160px] max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100">
             {availableLanguages.map((language) => (
               <button
                 key={language}
                 onClick={() => handleLanguageChange(language)}
-                className={`w-full px-4 py-3 text-left hover:bg-purple-50 transition-colors duration-200 flex items-center space-x-2 ${
+                className={`w-full px-3 py-2 text-left hover:bg-purple-50 transition-colors duration-200 flex items-center space-x-2 ${
                   selectedLanguage === language ? 'bg-purple-100 text-purple-700 font-medium' : 'text-gray-700'
                 }`}
               >
-                <span className="text-xl">{flags[language]}</span>
-                <span className="text-sm">{language}</span>
+                <span className="text-base">{flags[language]}</span>
+                <span className="text-xs font-medium">{languageCodes[language]}</span>
+                <span className="text-xs text-gray-500 flex-1">{language}</span>
                 {selectedLanguage === language && (
-                  <span className="ml-auto text-purple-600 font-bold">✓</span>
+                  <span className="text-purple-600 font-bold text-sm">✓</span>
                 )}
               </button>
             ))}
