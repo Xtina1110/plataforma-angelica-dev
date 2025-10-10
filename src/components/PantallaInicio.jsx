@@ -7,6 +7,7 @@ import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
 import fondoMarmol from '../assets/Fondomarmoleado.jpg';
 import sanMiguel from '../assets/FondoPantallaIniciovf.png';
+import angelSinFondo from '../assets/AngelEleganteSinFondo.png';
 
 const PantallaInicio = () => {
   const navigate = useNavigate();
@@ -51,8 +52,8 @@ const PantallaInicio = () => {
       />
 
       {/* Contenido del panel derecho - diseño premium con borde dorado */}
-      <div className="flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:pr-12 lg:pr-16 relative z-20 h-screen pt-24 pb-32 sm:pt-20 sm:pb-28 md:pb-32">
-        <div className="bg-white/98 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-sm md:max-w-md backdrop-blur-md border-2 border-yellow-500/60 hover:border-yellow-500/80 hover:shadow-purple-200/50 hover:shadow-3xl hover:scale-[1.01] transition-all duration-500 ease-out animate-fade-in-up relative overflow-hidden">
+      <div className="flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:pr-12 lg:pr-16 relative z-20 h-screen pt-32 pb-24 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+        <div className="bg-white/98 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-sm md:max-w-md backdrop-blur-md border-2 border-yellow-500/60 hover:border-yellow-500/80 hover:shadow-purple-200/50 hover:shadow-3xl hover:scale-[1.01] transition-all duration-500 ease-out animate-fade-in-up relative overflow-hidden z-[70]">
           
           {/* Efecto de brillo sutil en el fondo */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-3xl -z-10" />
@@ -62,7 +63,7 @@ const PantallaInicio = () => {
             {/* Imagen del ángel - sin fondo, totalmente transparente */}
             <div className="flex-shrink-0 w-28 sm:w-32 md:w-36 animate-float">
               <img
-                src="/src/assets/AngelEleganteSinFondo.png"
+                src={angelSinFondo}
                 alt="Ángel Guardián"
                 className="w-full h-auto object-contain drop-shadow-lg"
                 style={{ 
@@ -133,12 +134,7 @@ const PantallaInicio = () => {
             </button>
           </div>
 
-          {/* Indicador decorativo sutil */}
-          <div className="flex justify-center gap-2 mt-6 sm:mt-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></div>
-            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-            <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-          </div>
+
         </div>
       </div>
 
