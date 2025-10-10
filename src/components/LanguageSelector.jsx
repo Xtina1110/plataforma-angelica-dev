@@ -53,8 +53,8 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
             onClick={() => setShowLanguageSelector(false)}
           />
           
-          {/* Dropdown */}
-          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[9999] min-w-[180px] overflow-hidden">
+          {/* Dropdown with scroll */}
+          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[9999] min-w-[180px] max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100">
             {availableLanguages.map((language) => (
               <button
                 key={language}

@@ -40,10 +40,10 @@ const PantallaInicio = () => {
         <LogoAngelico />
       </div>
 
-      {/* Controles superiores: idioma + audio */}
-      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-40 flex items-center gap-1.5 sm:gap-2 bg-white/80 backdrop-blur-sm rounded-full p-1.5 sm:p-2 shadow-lg">
-        <LanguageSelector inline />
-        <AudioButton variant="header" />
+      {/* Controles superiores: idioma + audio - Consistente con pantalla de carga */}
+      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-40 flex items-center gap-1.5 sm:gap-2">
+        <LanguageSelector inline variant="loading" />
+        <AudioButton variant="loading" />
       </div>
 
       {/* Imagen San Miguel - responsive */}
@@ -71,14 +71,14 @@ const PantallaInicio = () => {
               />
             </div>
 
-            {/* Contenido del mensaje */}
+            {/* Contenido del mensaje - Todo centrado */}
             <div className="flex-1">
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-yellow-700 font-semibold mb-2 sm:mb-3 text-center lg:text-left italic text-shadow">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-yellow-700 font-semibold mb-2 sm:mb-3 text-center italic text-shadow">
                 {currentTranslation.blessing}
               </p>
 
               <h1
-                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-1.5 sm:mb-2 text-center lg:text-left tracking-wide drop-shadow-md text-shadow"
+                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-1.5 sm:mb-2 text-center tracking-wide drop-shadow-md text-shadow"
                 style={{
                   color: '#6a0dad',
                   fontFamily: "'Playfair Display', serif"
@@ -87,7 +87,7 @@ const PantallaInicio = () => {
                 {currentTranslation.title}
               </h1>
 
-              <div className="text-center lg:text-left mb-2 sm:mb-3">
+              <div className="text-center mb-2 sm:mb-3">
                 <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-tight">
                   {currentTranslation.subtitle}
                 </p>
