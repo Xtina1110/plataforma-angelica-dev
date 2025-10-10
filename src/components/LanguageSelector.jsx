@@ -25,7 +25,7 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
 
   // Estilo estándar de headers (como Sonoterapia)
   const btnClass = isHeader || isLoading
-    ? 'flex items-center space-x-2 bg-purple-600/80 hover:bg-purple-500/90 border-2 border-purple-400/50 hover:border-purple-300/70 text-white px-5 py-3 rounded-xl transition-all duration-300 backdrop-filter backdrop-blur-md font-semibold shadow-lg hover:shadow-purple-500/50 hover:scale-105'
+    ? 'flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105'
     : 'bg-white/95 backdrop-blur-sm border border-purple-300 rounded-lg px-3 py-2 sm:px-4 sm:py-2 flex items-center gap-2 hover:bg-white transition-all duration-300 shadow-lg text-sm sm:text-base';
 
   const SelectorContent = (

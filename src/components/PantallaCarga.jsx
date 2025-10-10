@@ -388,16 +388,44 @@ const PantallaCarga = () => {
         </div>
 
         {/* Tip angelical */}
-        <p className="text-purple-600 text-sm mt-6 italic animate-fade-in">
-          {currentTipText}
-        </p>
+        <div className="mt-6 bg-purple-700/90 backdrop-blur-md border-2 border-purple-500 rounded-xl px-6 py-4 shadow-2xl animate-fade-in">
+          <p className="text-white text-lg font-semibold text-center">
+            💡 {currentTipText}
+          </p>
+        </div>
 
-        {/* Skip button */}
-        {canSkip && (
-          <div className="mt-8 animate-fade-in">
-            <SkipButton onClick={handleSkip} />
-          </div>
-        )}
+        {/* Skip button - Siempre visible, deshabilitado primeros 2 segundos */}
+        <div className="mt-8">
+          <button
+            onClick={handleSkip}
+            disabled={!canSkip}
+            className={`flex items-center space-x-2 px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl ${
+              canSkip
+                ? 'bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white hover:scale-105 cursor-pointer'
+                : 'bg-gray-400 border-2 border-gray-300 text-gray-200 cursor-not-allowed opacity-60'
+            }`}
+            aria-label={canSkip ? 'Saltar' : 'Espera 2 segundos'}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+            </svg>
+            <span className="text-base">
+              {canSkip ? (
+                selectedLanguage === 'Español' ? 'Saltar' :
+                selectedLanguage === 'English' ? 'Skip' :
+                selectedLanguage === 'Deutsch' ? 'Überspringen' :
+                selectedLanguage === 'Italiano' ? 'Salta' :
+                'Passer'
+              ) : (
+                selectedLanguage === 'Español' ? 'Espera...' :
+                selectedLanguage === 'English' ? 'Wait...' :
+                selectedLanguage === 'Deutsch' ? 'Warten...' :
+                selectedLanguage === 'Italiano' ? 'Aspetta...' :
+                'Attendre...'
+              )}
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Estadísticas del Usuario */}
