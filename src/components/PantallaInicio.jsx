@@ -33,19 +33,20 @@ const PantallaInicio = () => {
         <LogoAngelico />
       </div>
 
-      {/* Controles superiores: idioma + audio - Consistente con pantalla de carga */}
-      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-50 flex items-center gap-2 animate-fade-in-down">
+      {/* Controles superiores: idioma + audio - Con más margen para evitar overlap */}
+      <div className="absolute top-4 sm:top-5 md:top-6 right-3 sm:right-4 z-50 flex items-center gap-2 animate-fade-in-down">
         <LanguageSelector inline variant="loading" />
         <AudioButton variant="loading" />
       </div>
 
-      {/* Imagen San Miguel - extendida hasta los bordes sin cortes */}
+      {/* Imagen San Miguel - ajustada para ver la cara completa */}
       <div
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-20 sm:opacity-25 md:opacity-30 z-10 transition-opacity duration-700"
+        className="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat opacity-20 sm:opacity-25 md:opacity-30 z-10 transition-opacity duration-700"
         style={{
           backgroundImage: `url(${sanMiguel})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundSize: 'contain',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
         }}
       />
 
@@ -58,15 +59,14 @@ const PantallaInicio = () => {
           
           {/* Contenedor principal */}
           <div className="flex flex-col items-center gap-4 sm:gap-5 mb-6 sm:mb-8">
-            {/* Imagen del ángel - sin fondo blanco, transparente */}
+            {/* Imagen del ángel - sin fondo, totalmente transparente */}
             <div className="flex-shrink-0 w-28 sm:w-32 md:w-36 animate-float">
               <img
-                src="/image.png"
+                src="/src/assets/AngelEleganteSinFondo.png"
                 alt="Ángel Guardián"
                 className="w-full h-auto object-contain drop-shadow-lg"
                 style={{ 
-                  filter: 'drop-shadow(0 10px 20px rgba(106, 13, 173, 0.2))',
-                  mixBlendMode: 'multiply'
+                  filter: 'drop-shadow(0 10px 20px rgba(106, 13, 173, 0.2))'
                 }}
               />
             </div>

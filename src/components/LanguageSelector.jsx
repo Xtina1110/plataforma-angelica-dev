@@ -11,13 +11,13 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
     setShowLanguageSelector(false);
   };
 
-  // Iconos de banderas y códigos
+  // Iconos de banderas y códigos - usando Unicode explícito
   const flags = {
-    'Español': '🇪🇸',
-    'English': '🇺🇸',
-    'Deutsch': '🇩🇪',
-    'Italiano': '🇮🇹',
-    'Français': '🇫🇷'
+    'Español': '\uD83C\uDDEA\uD83C\uDDF8',  // 🇪🇸
+    'English': '\uD83C\uDDFA\uD83C\uDDF8',  // 🇺🇸
+    'Deutsch': '\uD83C\uDDE9\uD83C\uDDEA',  // 🇩🇪
+    'Italiano': '\uD83C\uDDEE\uD83C\uDDF9',  // 🇮🇹
+    'Français': '\uD83C\uDDEB\uD83C\uDDF7'  // 🇫🇷
   };
 
   const languageCodes = {
@@ -44,7 +44,7 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
         aria-label="Cambiar idioma"
       >
         <Globe size={18} />
-        <span className="text-sm font-semibold">
+        <span className="text-sm font-semibold" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif' }}>
           {flags[selectedLanguage]} {languageCodes[selectedLanguage]}
         </span>
         <ChevronDown 
@@ -71,7 +71,7 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
                   selectedLanguage === language ? 'bg-purple-100 text-purple-700 font-medium' : 'text-gray-700'
                 }`}
               >
-                <span className="text-lg">{flags[language]}</span>
+                <span className="text-lg" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif' }}>{flags[language]}</span>
                 <span className="text-xs font-medium">{languageCodes[language]}</span>
                 <span className="text-xs text-gray-500 flex-1">{language}</span>
                 {selectedLanguage === language && (
