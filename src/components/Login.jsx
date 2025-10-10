@@ -157,18 +157,13 @@ const Login = () => {
         headerImage={loginHeaderImage}
         icon={LogIn}
       >
-      {/* Contenido de login con TODAS las mejoras */}
-      <div className="max-w-3xl mx-auto relative">
-        {/* Header mejorado con mensaje angelical dentro del recuadro */}
+      {/* Contenido de login */}
+      <div className="max-w-md mx-auto relative">
+        {/* Header con tipografía mejorada */}
         <div className="text-center mb-6 animate-fade-in">
-          <p className="text-yellow-600 text-xl md:text-2xl font-bold italic mb-2">
-            ✨ {translation.loginPage.subtitle} ✨
-          </p>
-          <p className="text-purple-600 text-base font-semibold flex items-center justify-center gap-2">
-            <Sparkles size={18} className="text-yellow-500" />
-            Los ángeles te dan la bienvenida
-            <Sparkles size={18} className="text-yellow-500" />
-          </p>
+          <h2 className="text-gray-700 text-lg font-serif mb-1" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
+            {translation.loginPage.subtitle}
+          </h2>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-3" role="form" aria-label="Formulario de inicio de sesión">
@@ -333,21 +328,18 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Footer con botón de registro igual al de inicio */}
-        <div className="text-center mt-4">
-          <p className="text-gray-700 text-base mb-3">
-            {translation.loginPage.noAccount}
+        {/* Footer con link de registro */}
+        <div className="text-center mt-6">
+          <p className="text-gray-600">
+            {translation.loginPage.noAccount}{' '}
+            <button 
+              onClick={() => navigate('/registro')}
+              className="text-purple-600 hover:text-purple-700 font-semibold underline"
+              aria-label="Ir a la página de registro"
+            >
+              {translation.loginPage.registerHere}
+            </button>
           </p>
-          <button 
-            onClick={() => navigate('/registro')}
-            className="w-full bg-white hover:bg-purple-50 text-purple-700 font-bold py-3 px-6 rounded-2xl border-3 border-purple-600 hover:border-purple-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-            aria-label="Ir a la página de registro"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-            </svg>
-            <span>{translation.loginPage.registerHere}</span>
-          </button>
         </div>
 
         {/* Modal de recuperación mejorado con mejor accesibilidad */}

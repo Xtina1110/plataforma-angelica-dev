@@ -45,9 +45,9 @@ const AuthPageLayout = ({
       {/* Logo */}
       <LogoAngelico />
 
-      {/* Ventana modal centrada - más ancha para evitar scroll */}
-      <div className="relative z-30 flex-1 flex items-center justify-center px-4 lg:px-12 py-4">
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl w-full max-w-2xl mx-auto border-2 border-yellow-400/70">
+      {/* Ventana modal centrada */}
+      <div className="relative z-30 flex-1 flex items-center justify-center px-4 lg:px-12 py-6">
+        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl w-full max-w-lg mx-auto border border-white/20">
           
           {/* Barra superior de la ventana con imagen temática */}
           <div className="relative h-20 overflow-hidden rounded-t-3xl">
@@ -95,7 +95,7 @@ const AuthPageLayout = ({
           </div>
 
           {/* Contenido principal */}
-          <div className="p-6 pt-4">
+          <div className="p-8">
             {children}
           </div>
         </div>
