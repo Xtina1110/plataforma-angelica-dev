@@ -249,7 +249,7 @@ const RegistroMultiStep = () => {
 
       {/* Contenido principal - Flex grow para ocupar espacio disponible */}
       <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-2">
-        <div className="w-full max-w-4xl">
+        <div className="w-full max-w-6xl">
           {/* Progress Bar Compacto */}
           <div className="mb-3">
             {/* Steps Indicator */}

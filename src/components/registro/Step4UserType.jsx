@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User, Heart, Building, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { User, Heart, Building, Shield, Wrench, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { userTypes } from '../../data/subscriptionPlans';
 
@@ -23,6 +23,32 @@ const Step4UserType = ({ data, onUpdate, onNext, onBack }) => {
       ...userTypes.centro,
       icon: Building,
       gradient: 'from-yellow-500 to-amber-600'
+    },
+    {
+      id: 'administrador',
+      name: 'Administrador',
+      description: 'Gestión completa de la plataforma',
+      features: [
+        'Acceso total al sistema',
+        'Gestión de usuarios',
+        'Configuración de plataforma',
+        'Reportes y analytics'
+      ],
+      icon: Shield,
+      gradient: 'from-red-500 to-rose-600'
+    },
+    {
+      id: 'servicio_tecnico',
+      name: 'Servicio Técnico',
+      description: 'Soporte técnico y mantenimiento',
+      features: [
+        'Soporte a usuarios',
+        'Resolución de incidencias',
+        'Mantenimiento del sistema',
+        'Monitoreo de plataforma'
+      ],
+      icon: Wrench,
+      gradient: 'from-green-500 to-emerald-600'
     }
   ];
 
