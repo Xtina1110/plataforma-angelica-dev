@@ -7,6 +7,7 @@ import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
 import angelSinFondo from '../assets/AngelEleganteSinFondo.png';
+import fondoAngelico from '../assets/FondoAngelicoDashboard.png';
 
 // Imagen temática para login
 const loginHeaderImage = 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop';
@@ -137,17 +138,56 @@ const Login = () => {
         <AudioButton variant="loading" />
       </div>
 
-      {/* Animación de éxito con escudo */}
+      {/* Pantalla de Acceso Seguro con fondo del dashboard */}
       {loginSuccess && (
-        <div className="fixed inset-0 bg-purple-900/80 backdrop-blur-md flex items-center justify-center z-[100] animate-fade-in">
-          <div className="text-center animate-scale-in">
-            <div className="relative">
-              <Shield size={120} className="text-yellow-400 mx-auto mb-6 animate-pulse" />
-              <Sparkles size={40} className="absolute top-0 right-1/4 text-yellow-300 animate-ping" />
-              <Sparkles size={30} className="absolute bottom-0 left-1/4 text-yellow-300 animate-ping" style={{ animationDelay: '0.3s' }} />
+        <div className="fixed inset-0 flex items-center justify-center z-[100] animate-fade-in">
+          {/* Fondo con imagen angélica del dashboard */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${fondoAngelico})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          />
+          
+          {/* Capas de gradiente morado como en el dashboard */}
+          <div className="absolute inset-0 bg-purple-600/40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-800/30 via-purple-600/25 to-violet-500/20" />
+          
+          {/* Contenido centrado */}
+          <div className="relative z-10 text-center animate-scale-in max-w-2xl mx-auto px-6">
+            {/* Ángel de la guarda flotando */}
+            <div className="mb-8">
+              <img 
+                src={angelSinFondo}
+                alt="Ángel de la guarda"
+                className="w-48 h-48 mx-auto object-contain animate-float drop-shadow-2xl"
+              />
             </div>
-            <h2 className="text-4xl font-bold text-white mb-4">✨ Acceso Seguro ✨</h2>
-            <p className="text-xl text-yellow-200">Los ángeles te dan la bienvenida...</p>
+            
+            {/* Mensaje angelical */}
+            <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border-2 border-white/30 shadow-2xl">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Shield size={48} className="text-yellow-300 animate-pulse" />
+                <h2 className="text-5xl font-bold text-white drop-shadow-lg" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  Acceso Seguro
+                </h2>
+                <Shield size={48} className="text-yellow-300 animate-pulse" style={{ animationDelay: '0.3s' }} />
+              </div>
+              
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Sparkles size={24} className="text-yellow-200 animate-pulse" />
+                <p className="text-2xl text-yellow-100 font-semibold">
+                  Los ángeles te dan la bienvenida
+                </p>
+                <Sparkles size={24} className="text-yellow-200 animate-pulse" style={{ animationDelay: '0.2s' }} />
+              </div>
+              
+              <p className="text-lg text-white/90 italic">
+                Tu conexión espiritual está protegida ✨
+              </p>
+            </div>
           </div>
         </div>
       )}
