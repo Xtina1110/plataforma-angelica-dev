@@ -199,21 +199,21 @@ const Login = () => {
       >
       {/* Contenido de login */}
       <div className="max-w-md mx-auto relative">
-        {/* Header con tipografía mejorada */}
-        <div className="text-center mb-6 animate-fade-in">
-          <h2 className="text-gray-700 text-lg font-serif mb-1" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
+        {/* Header con tipografía mejorada en dorado */}
+        <div className="text-center mb-4 animate-fade-in">
+          <h2 className="text-yellow-600 text-base font-serif" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
             {translation.loginPage.subtitle}
           </h2>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3" role="form" aria-label="Formulario de inicio de sesión">
+        <form onSubmit={handleSubmit} className="space-y-2" role="form" aria-label="Formulario de inicio de sesión">
           {/* Email con validación visual mejorada */}
           <div className="relative group">
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-xs font-semibold text-gray-700 mb-1">
               Correo Electrónico *
             </label>
-            <div className="absolute left-4 top-[42px] transform text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
-              <Mail size={20} />
+            <div className="absolute left-3 top-[30px] transform text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
+              <Mail size={18} />
             </div>
             <input
               id="email"
@@ -225,11 +225,11 @@ const Login = () => {
               aria-required="true"
               aria-invalid={email && !emailValid}
               aria-describedby={email && !emailValid ? "email-error" : undefined}
-              className="w-full pl-12 pr-12 py-2.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md"
+              className="w-full pl-10 pr-10 py-2 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-sm transition-all duration-300 hover:border-purple-300 hover:shadow-md"
               required
             />
             {email && (
-              <div className="absolute right-4 top-[42px] transform" role="status" aria-live="polite">
+              <div className="absolute right-3 top-[30px] transform" role="status" aria-live="polite">
                 {emailValid ? (
                   <CheckCircle size={20} className="text-green-500 animate-scale-in" aria-label="Email válido" />
                 ) : (
@@ -246,10 +246,10 @@ const Login = () => {
 
           {/* Password con indicador de fortaleza */}
           <div className="relative group">
-            <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-xs font-semibold text-gray-700 mb-1">
               Contraseña *
             </label>
-            <div className="absolute left-4 top-[42px] transform text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
+            <div className="absolute left-3 top-[30px] transform text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
               <Lock size={20} />
             </div>
             <input
@@ -261,7 +261,7 @@ const Login = () => {
               aria-label="Contraseña"
               aria-required="true"
               aria-describedby="password-strength"
-              className="w-full pl-12 pr-12 py-2.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
+              className="w-full pl-10 pr-10 py-2 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
               style={{
                 WebkitTextSecurity: showPassword ? 'none' : 'disc'
               }}
@@ -271,7 +271,7 @@ const Login = () => {
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
-              className="absolute right-4 top-[42px] transform text-gray-400 hover:text-purple-600 transition-all duration-300 hover:scale-110"
+              className="absolute right-3 top-[30px] transform text-gray-400 hover:text-purple-600 transition-all duration-300 hover:scale-110"
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
@@ -326,7 +326,7 @@ const Login = () => {
           {/* Error message mejorado con iconos y mejor contraste */}
           {error && (
             <div 
-              className={`p-4 rounded-2xl text-center font-semibold flex items-center justify-center gap-2 animate-shake ${
+              className={`p-4 rounded-xl text-center font-semibold flex items-center justify-center gap-2 animate-shake ${
                 error.includes('enviado') 
                   ? 'bg-green-50 text-green-800 border-2 border-green-400' 
                   : 'bg-red-50 text-red-800 border-2 border-red-400'
@@ -347,7 +347,7 @@ const Login = () => {
           <button 
             type="submit" 
             aria-label="Iniciar sesión de forma segura"
-            className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-3 px-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base overflow-hidden group"
+            className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-3 px-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base overflow-hidden group"
             disabled={loading}
           >
             {/* Efecto de brillo deslizante */}
@@ -369,8 +369,8 @@ const Login = () => {
         </form>
 
         {/* Footer con link de registro */}
-        <div className="text-center mt-6">
-          <p className="text-gray-600">
+        <div className="text-center mt-3">
+          <p className="text-gray-600 text-sm">
             {translation.loginPage.noAccount}{' '}
             <button 
               onClick={() => navigate('/registro')}

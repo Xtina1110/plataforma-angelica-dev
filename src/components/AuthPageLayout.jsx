@@ -95,7 +95,7 @@ const AuthPageLayout = ({
           </div>
 
           {/* Contenido principal */}
-          <div className="p-8">
+          <div className="p-5">
             {children}
           </div>
         </div>
