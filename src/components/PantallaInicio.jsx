@@ -39,32 +39,35 @@ const PantallaInicio = () => {
         <AudioButton variant="loading" />
       </div>
 
-      {/* Imagen San Miguel - mejorada con mejor opacidad */}
+      {/* Imagen San Miguel - extendida hasta los bordes sin cortes */}
       <div
-        className="absolute top-0 left-0 sm:left-8 md:left-16 lg:left-20 w-full sm:w-3/5 md:w-1/2 h-full bg-contain bg-center bg-no-repeat opacity-20 sm:opacity-25 md:opacity-35 z-10 transition-opacity duration-700"
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-20 sm:opacity-25 md:opacity-30 z-10 transition-opacity duration-700"
         style={{
           backgroundImage: `url(${sanMiguel})`,
-          backgroundSize: 'contain',
-          backgroundPosition: 'center left'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }}
       />
 
-      {/* Contenido del panel derecho - diseño premium */}
-      <div className="flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:pr-12 lg:pr-16 relative z-20 h-screen pt-24 pb-20 sm:pt-20 sm:pb-16">
-        <div className="bg-white/98 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-sm md:max-w-md backdrop-blur-md border border-purple-100/50 hover:shadow-purple-200/50 hover:shadow-3xl hover:scale-[1.01] transition-all duration-500 ease-out animate-fade-in-up relative overflow-hidden">
+      {/* Contenido del panel derecho - diseño premium con borde dorado */}
+      <div className="flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:pr-12 lg:pr-16 relative z-20 h-screen pt-24 pb-32 sm:pt-20 sm:pb-28 md:pb-32">
+        <div className="bg-white/98 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-sm md:max-w-md backdrop-blur-md border-2 border-yellow-500/60 hover:border-yellow-500/80 hover:shadow-purple-200/50 hover:shadow-3xl hover:scale-[1.01] transition-all duration-500 ease-out animate-fade-in-up relative overflow-hidden">
           
           {/* Efecto de brillo sutil en el fondo */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-3xl -z-10" />
           
           {/* Contenedor principal */}
           <div className="flex flex-col items-center gap-4 sm:gap-5 mb-6 sm:mb-8">
-            {/* Imagen del ángel - tamaño optimizado sin fondo blanco */}
+            {/* Imagen del ángel - sin fondo blanco, transparente */}
             <div className="flex-shrink-0 w-28 sm:w-32 md:w-36 animate-float">
               <img
                 src="/image.png"
                 alt="Ángel Guardián"
                 className="w-full h-auto object-contain drop-shadow-lg"
-                style={{ filter: 'drop-shadow(0 10px 20px rgba(106, 13, 173, 0.2))' }}
+                style={{ 
+                  filter: 'drop-shadow(0 10px 20px rgba(106, 13, 173, 0.2))',
+                  mixBlendMode: 'multiply'
+                }}
               />
             </div>
 
