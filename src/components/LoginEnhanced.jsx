@@ -273,18 +273,18 @@ const LoginEnhanced = () => {
         headerImage={loginHeaderImage}
         icon={LogIn}
       >
-      {/* Contenido de login con espaciado optimizado */}
+      {/* Contenido de login con espaciado ultra-compacto */}
       <div className="max-w-md mx-auto relative">
         {/* Header con tipografía mejorada en dorado */}
-        <div className="text-center mb-3 animate-fade-in">
-          <h2 className={`text-base font-serif ${
+        <div className="text-center mb-2 animate-fade-in">
+          <h2 className={`text-sm font-serif ${
             isDark ? 'text-yellow-400' : 'text-yellow-600'
           }`} style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
             {translation.loginPage.subtitle}
           </h2>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-2" role="form" aria-label="Formulario de inicio de sesión">
+        <form onSubmit={handleSubmit} className="space-y-1.5" role="form" aria-label="Formulario de inicio de sesión">
           {/* Email con validación visual mejorada */}
           <div className="relative group">
             <label htmlFor="email" className={`block text-xs font-semibold mb-1 ${
@@ -376,12 +376,12 @@ const LoginEnhanced = () => {
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
             
-            {/* Indicador de fortaleza de contraseña con altura fija */}
-            <div id="password-strength" className="mt-1.5 h-10" role="status" aria-live="polite">
+            {/* Indicador de fortaleza de contraseña compacto */}
+            <div id="password-strength" className="mt-1 h-6" role="status" aria-live="polite">
               {password && (
                 <>
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <div className={`flex-1 h-1.5 rounded-full overflow-hidden ${
+                  <div className="flex items-center gap-1.5">
+                    <div className={`flex-1 h-1 rounded-full overflow-hidden ${
                       isDark ? 'bg-gray-700' : 'bg-gray-200'
                     }`}>
                       <div 
@@ -389,26 +389,19 @@ const LoginEnhanced = () => {
                         style={{ width: `${(passwordStrength / 4) * 100}%` }}
                       />
                     </div>
-                    <span className={`text-xs font-semibold w-20 text-right ${
+                    <span className={`text-[10px] font-semibold w-16 text-right ${
                       isDark ? 'text-gray-300' : 'text-gray-600'
                     }`}>
                       {getPasswordStrengthLabel(passwordStrength)}
                     </span>
                   </div>
-                  {passwordStrength < 3 && (
-                    <p className={`text-xs ml-1 leading-tight ${
-                      isDark ? 'text-gray-400' : 'text-gray-500'
-                    }`}>
-                      Usa mayúsculas, números y símbolos
-                    </p>
-                  )}
                 </>
               )}
             </div>
           </div>
 
-          {/* Remember me mejorado con mejor accesibilidad */}
-          <div className="flex items-center justify-between pt-1">
+          {/* Remember me compacto */}
+          <div className="flex items-center justify-between pt-0.5">
             <label className="flex items-center cursor-pointer group" htmlFor="remember-me">
               <input
                 id="remember-me"
@@ -445,10 +438,10 @@ const LoginEnhanced = () => {
             </button>
           </div>
 
-          {/* Error message mejorado con iconos y mejor contraste */}
+          {/* Error message compacto */}
           {error && (
             <div 
-              className={`p-3 rounded-xl text-center font-semibold flex items-center justify-center gap-2 animate-shake text-sm ${
+              className={`p-2 rounded-xl text-center font-semibold flex items-center justify-center gap-2 animate-shake text-xs ${
                 error.includes('enviado') 
                   ? isDark 
                     ? 'bg-green-900/50 text-green-200 border-2 border-green-500'
@@ -469,26 +462,26 @@ const LoginEnhanced = () => {
             </div>
           )}
 
-          {/* Submit button premium con efecto de brillo y escudo */}
+          {/* Submit button compacto */}
           <button 
             type="submit" 
             aria-label="Iniciar sesión de forma segura"
-            className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-2.5 px-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base overflow-hidden group"
+            className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-2 px-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-sm overflow-hidden group"
             disabled={loading}
           >
             {/* Efecto de brillo deslizante */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
             
             {loading ? (
-              <div className="flex items-center justify-center gap-3 relative z-10">
-                <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+              <div className="flex items-center justify-center gap-2 relative z-10">
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                 <span>{translation.loginPage.loading}</span>
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-3 relative z-10">
-                <Shield size={20} className="animate-pulse" /> 
+              <div className="flex items-center justify-center gap-2 relative z-10">
+                <Shield size={16} className="animate-pulse" /> 
                 <span>{translation.loginPage.loginButton}</span>
-                <LogIn size={20} />
+                <LogIn size={16} />
               </div>
             )}
           </button>
@@ -497,9 +490,9 @@ const LoginEnhanced = () => {
         {/* Social Login */}
         <SocialLogin onError={setError} />
 
-        {/* Footer con link de registro */}
-        <div className="text-center mt-3">
-          <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+        {/* Footer compacto */}
+        <div className="text-center mt-2">
+          <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
             {translation.loginPage.noAccount}{' '}
             <button 
               onClick={() => navigate('/registro')}

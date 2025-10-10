@@ -45,12 +45,12 @@ const AuthPageLayout = ({
       {/* Logo */}
       <LogoAngelico />
 
-      {/* Ventana modal centrada con espaciado optimizado */}
-      <div className="relative z-30 flex-1 flex items-center justify-center px-4 lg:px-12 py-3">
+      {/* Ventana modal centrada ultra-compacta */}
+      <div className="relative z-30 flex-1 flex items-center justify-center px-4 lg:px-12 py-2">
         <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl w-full max-w-lg mx-auto border border-white/20">
           
-          {/* Barra superior de la ventana con imagen temática - altura reducida */}
-          <div className="relative h-16 overflow-hidden rounded-t-3xl">
+          {/* Barra superior compacta */}
+          <div className="relative h-12 overflow-hidden rounded-t-3xl">
             {/* Imagen de fondo de la barra */}
             {headerImage && (
               <div 
@@ -60,42 +60,42 @@ const AuthPageLayout = ({
             )}
             <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-blue-900/80" />
             
-            {/* Contenido de la barra */}
-            <div className="relative z-10 h-full flex items-center justify-between px-5">
-              {/* Título con icono - lado izquierdo */}
-              <div className="flex items-center space-x-2.5">
+            {/* Contenido compacto */}
+            <div className="relative z-10 h-full flex items-center justify-between px-4">
+              {/* Título con icono */}
+              <div className="flex items-center space-x-2">
                 {IconComponent && (
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <IconComponent size={22} className="text-white" />
+                  <div className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <IconComponent size={16} className="text-white" />
                   </div>
                 )}
-                <h1 className="text-xl font-bold text-white drop-shadow-lg">
+                <h1 className="text-base font-bold text-white drop-shadow-lg">
                   {title}
                 </h1>
               </div>
 
-              {/* Botones volver y cerrar - lado derecho */}
-              <div className="flex items-center space-x-2.5">
+              {/* Botones compactos */}
+              <div className="flex items-center space-x-2">
                 <button
                   onClick={() => navigate(-1)}
-                  className="inline-flex items-center px-3 py-1.5 text-white hover:text-purple-200 transition-colors duration-200 bg-white/10 rounded-lg backdrop-blur-sm text-sm"
+                  className="inline-flex items-center px-2 py-1 text-white hover:text-purple-200 transition-colors duration-200 bg-white/10 rounded-lg backdrop-blur-sm text-xs"
                 >
-                  <ArrowLeft size={16} className="mr-1.5" />
+                  <ArrowLeft size={14} className="mr-1" />
                   <span className="font-medium">Volver</span>
                 </button>
 
                 <button
                   onClick={() => navigate('/inicio')}
-                  className="inline-flex items-center justify-center w-9 h-9 text-white hover:text-red-300 hover:bg-red-500/20 rounded-full transition-all duration-200"
+                  className="inline-flex items-center justify-center w-7 h-7 text-white hover:text-red-300 hover:bg-red-500/20 rounded-full transition-all duration-200"
                 >
-                  <X size={18} />
+                  <X size={16} />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Contenido principal con padding reducido */}
-          <div className="p-4">
+          {/* Contenido ultra-compacto */}
+          <div className="p-3">
             {children}
           </div>
         </div>
