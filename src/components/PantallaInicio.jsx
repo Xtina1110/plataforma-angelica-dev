@@ -34,7 +34,7 @@ const PantallaInicio = () => {
       </div>
 
       {/* Controles superiores: idioma + audio - Consistente con pantalla de carga */}
-      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-40 flex items-center gap-2 animate-fade-in-down">
+      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 z-50 flex items-center gap-2 animate-fade-in-down">
         <LanguageSelector inline variant="loading" />
         <AudioButton variant="loading" />
       </div>
@@ -50,33 +50,34 @@ const PantallaInicio = () => {
       />
 
       {/* Contenido del panel derecho - diseño premium */}
-      <div className="flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:pr-12 lg:pr-16 relative z-20 h-screen py-20 sm:py-16">
-        <div className="bg-white/98 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 w-full max-w-[320px] sm:max-w-md md:max-w-lg backdrop-blur-md border border-purple-100/50 hover:shadow-purple-200/50 hover:shadow-3xl hover:scale-[1.01] transition-all duration-500 ease-out animate-fade-in-up relative overflow-hidden">
+      <div className="flex-1 flex items-center justify-center sm:justify-end px-4 sm:px-6 md:pr-12 lg:pr-16 relative z-20 h-screen pt-24 pb-20 sm:pt-20 sm:pb-16">
+        <div className="bg-white/98 rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8 w-full max-w-[300px] sm:max-w-sm md:max-w-md backdrop-blur-md border border-purple-100/50 hover:shadow-purple-200/50 hover:shadow-3xl hover:scale-[1.01] transition-all duration-500 ease-out animate-fade-in-up relative overflow-hidden">
           
           {/* Efecto de brillo sutil en el fondo */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-100/30 to-transparent rounded-full blur-3xl -z-10" />
           
           {/* Contenedor principal */}
           <div className="flex flex-col items-center gap-4 sm:gap-5 mb-6 sm:mb-8">
-            {/* Imagen del ángel - más grande y centrada */}
-            <div className="flex-shrink-0 w-32 sm:w-40 md:w-44 lg:w-48 animate-float">
+            {/* Imagen del ángel - tamaño optimizado sin fondo blanco */}
+            <div className="flex-shrink-0 w-28 sm:w-32 md:w-36 animate-float">
               <img
                 src="/image.png"
                 alt="Ángel Guardián"
-                className="w-full h-auto object-contain drop-shadow-xl"
+                className="w-full h-auto object-contain drop-shadow-lg"
+                style={{ filter: 'drop-shadow(0 10px 20px rgba(106, 13, 173, 0.2))' }}
               />
             </div>
 
             {/* Contenido del mensaje - Todo centrado con mejor espaciado */}
-            <div className="w-full space-y-3 sm:space-y-4">
+            <div className="w-full space-y-2 sm:space-y-3">
               {/* Bendición */}
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-yellow-600 font-bold text-center italic leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <p className="text-xs sm:text-sm md:text-base text-yellow-600 font-bold text-center italic leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 {currentTranslation.blessing}
               </p>
 
               {/* Título principal */}
               <h1
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center tracking-wide drop-shadow-lg leading-tight animate-fade-in"
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-center tracking-wide drop-shadow-lg leading-tight animate-fade-in"
                 style={{
                   color: '#6a0dad',
                   fontFamily: "'Playfair Display', serif",
@@ -87,11 +88,11 @@ const PantallaInicio = () => {
               </h1>
 
               {/* Subtítulos */}
-              <div className="text-center space-y-1 sm:space-y-2 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <p className="text-gray-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
+              <div className="text-center space-y-1 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base font-medium leading-relaxed">
                   {currentTranslation.subtitle}
                 </p>
-                <p className="text-gray-700 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base font-medium leading-relaxed">
                   {currentTranslation.subtitle2}
                 </p>
               </div>
@@ -99,11 +100,10 @@ const PantallaInicio = () => {
           </div>
 
           {/* Botones de acción - mejorados */}
-          <div className="flex flex-col gap-3 sm:gap-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-            {/* Botón Iniciar Sesión */}
+          <div className="flex flex-col gap-2.5 sm:gap-3 animate-fade-in" style={{ animationDelay: '0.5s' }}>            {/* Botón Iniciar Sesión */}
             <button
               onClick={() => navigate('/login')}
-              className="relative bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 text-white text-sm sm:text-base md:text-lg font-bold py-3 sm:py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-yellow-300/50 hover:scale-[1.03] transition-all duration-300 ease-out transform active:scale-95 overflow-hidden group"
+              className="relative bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 text-white text-xs sm:text-sm md:text-base font-bold py-2.5 sm:py-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-yellow-300/50 hover:scale-[1.03] transition-all duration-300 ease-out transform active:scale-95 overflow-hidden group"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,7 +118,7 @@ const PantallaInicio = () => {
             {/* Botón Registrarse */}
             <button
               onClick={() => navigate('/registro')}
-              className="relative bg-white border-2 border-purple-600 text-purple-700 text-sm sm:text-base md:text-lg font-bold py-3 sm:py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-300/50 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-700 hover:text-white hover:border-purple-700 hover:scale-[1.03] transition-all duration-300 ease-out transform active:scale-95 overflow-hidden group"
+              className="relative bg-white border-2 border-purple-600 text-purple-700 text-xs sm:text-sm md:text-base font-bold py-2.5 sm:py-3 rounded-full shadow-lg hover:shadow-xl hover:shadow-purple-300/50 hover:bg-gradient-to-r hover:from-purple-600 hover:to-purple-700 hover:text-white hover:border-purple-700 hover:scale-[1.03] transition-all duration-300 ease-out transform active:scale-95 overflow-hidden group"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

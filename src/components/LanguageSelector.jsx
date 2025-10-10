@@ -49,12 +49,12 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
         <>
           {/* Overlay para cerrar al hacer click fuera */}
           <div 
-            className="fixed inset-0 z-[9998]" 
+            className="fixed inset-0 z-[48]" 
             onClick={() => setShowLanguageSelector(false)}
           />
           
           {/* Dropdown with scroll */}
-          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[9999] min-w-[180px] max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100">
+          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[60] min-w-[180px] max-h-[300px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-purple-100">
             {availableLanguages.map((language) => (
               <button
                 key={language}
