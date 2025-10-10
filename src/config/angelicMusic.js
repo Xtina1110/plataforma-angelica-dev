@@ -1,14 +1,14 @@
-import jazzLoungeMusic from '../assets/angel-music-background.mp3';
+import angelicMeditationMusic from '../assets/angelic-meditation.mp3';
 
 export const angelicMusicConfig = {
   home: {
-    name: 'Jazz Lounge Angelical',
-    url: jazzLoungeMusic,
-    description: 'Jazz instrumental suave y relajante sin voces, perfecto para ambiente angelical',
-    frequency: '432Hz',
-    volume: 0.25,
-    fadeIn: 3,
-    fadeOut: 2
+    name: 'Angelic Meditation',
+    url: angelicMeditationMusic,
+    description: 'Música de meditación angelical atmosférica y relajante, perfecta para conexión espiritual',
+    frequency: '528Hz',
+    volume: 0.22,
+    fadeIn: 4,
+    fadeOut: 3
   },
   tirada: {
     name: 'Apertura Angelical',
