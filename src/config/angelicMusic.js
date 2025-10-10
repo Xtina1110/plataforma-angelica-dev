@@ -1,8 +1,8 @@
 export const angelicMusicConfig = {
   home: {
-    name: 'Bienvenida Celestial',
-    url: 'https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3',
-    description: 'Melodía celestial de bienvenida con coros suaves y brisa luminosa',
+    name: 'Jazz Lounge Angelical',
+    url: '/src/assets/angel-music-background.mp3',
+    description: 'Jazz instrumental suave y relajante sin voces, perfecto para ambiente angelical',
     frequency: '432Hz',
     volume: 0.25,
     fadeIn: 3,

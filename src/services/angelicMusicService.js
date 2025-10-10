@@ -180,26 +180,54 @@ class AngelicMusicService {
   async stop() {
     console.log('⏹️ Deteniendo música angelical...');
 
-    this.isTransitioning = true;
+    // Marcar inmediatamente como no reproduciendo
     this.isPlaying = false;
+    this.isTransitioning = true;
 
     try {
       if (this.currentAudio) {
-        await this.fadeOut(this.currentAudio, 1000);
+        // Guardar referencia al audio actual
+        const audioToStop = this.currentAudio;
+        
+        // Limpiar la referencia inmediatamente para evitar que se reproduzca de nuevo
+        this.currentAudio = null;
+        this.currentSection = null;
 
-        if (this.currentAudio) {
-          this.currentAudio.pause();
-          this.currentAudio.currentTime = 0;
-          this.currentAudio.src = '';
-          this.currentAudio = null;
+        // Fade out suave
+        await this.fadeOut(audioToStop, 1000);
+
+        // Asegurar que el audio está completamente detenido
+        try {
+          audioToStop.pause();
+          audioToStop.currentTime = 0;
+          audioToStop.volume = 0;
+          audioToStop.src = '';
+          
+          // Remover event listeners si existen
+          audioToStop.onended = null;
+          audioToStop.onerror = null;
+        } catch (e) {
+          console.warn('Error al limpiar audio:', e);
         }
       }
+      
+      console.log('✅ Música detenida completamente');
     } catch (error) {
       console.error('Error al detener música:', error);
+      // Asegurar limpieza incluso si hay error
+      if (this.currentAudio) {
+        try {
+          this.currentAudio.pause();
+          this.currentAudio = null;
+        } catch (e) {
+          console.warn('Error en limpieza de emergencia:', e);
+        }
+      }
     } finally {
-      this.currentSection = null;
       this.isTransitioning = false;
-      console.log('✅ Música detenida completamente');
+      this.isPlaying = false;
+      this.currentSection = null;
+      this.currentAudio = null;
     }
   }
 
