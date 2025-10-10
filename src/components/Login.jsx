@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
-import { Mail, Lock, LogIn, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react';
+import { Mail, Lock, LogIn, Eye, EyeOff, CheckCircle, AlertCircle, Shield, Sparkles } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
@@ -22,6 +22,8 @@ const Login = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState(0);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   // Validación de email en tiempo real
   const validateEmail = (email) => {
@@ -29,10 +31,37 @@ const Login = () => {
     return re.test(email);
   };
 
+  // Calcular fortaleza de contraseña
+  const calculatePasswordStrength = (pwd) => {
+    let strength = 0;
+    if (pwd.length >= 8) strength++;
+    if (pwd.length >= 12) strength++;
+    if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) strength++;
+    if (/\d/.test(pwd)) strength++;
+    if (/[^a-zA-Z0-9]/.test(pwd)) strength++;
+    return Math.min(strength, 4);
+  };
+
+  const getPasswordStrengthLabel = (strength) => {
+    const labels = ['Muy débil', 'Débil', 'Media', 'Fuerte', 'Muy fuerte'];
+    return labels[strength] || '';
+  };
+
+  const getPasswordStrengthColor = (strength) => {
+    const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500', 'bg-emerald-600'];
+    return colors[strength] || 'bg-gray-300';
+  };
+
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
     setEmailValid(validateEmail(newEmail));
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    setPasswordStrength(calculatePasswordStrength(newPassword));
   };
 
   const handleSubmit = async (e) => {
@@ -49,13 +78,20 @@ const Login = () => {
       setError(translation.loginPage.invalidCredentials);
       setLoading(false);
     } else {
+      // Animación de éxito
+      setLoginSuccess(true);
+      
       // Si "Recordarme" está activado, guardar email
       if (rememberMe) {
         localStorage.setItem('rememberedEmail', email);
       } else {
         localStorage.removeItem('rememberedEmail');
       }
-      navigate('/dashboard-redirect');
+      
+      // Esperar animación antes de navegar
+      setTimeout(() => {
+        navigate('/dashboard-redirect');
+      }, 1500);
     }
   };
 
@@ -91,63 +127,130 @@ const Login = () => {
 
   return (
     <>
+      {/* Partículas doradas flotantes */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-yellow-400/30 rounded-full animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${5 + Math.random() * 10}s`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Efecto de luz divina desde arriba */}
+      <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-radial from-yellow-200/20 via-purple-200/10 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
+
+      {/* Botones de idioma y audio */}
       <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
         <LanguageSelector inline variant="loading" />
         <AudioButton variant="loading" />
       </div>
+
+      {/* Animación de éxito con escudo */}
+      {loginSuccess && (
+        <div className="fixed inset-0 bg-purple-900/80 backdrop-blur-md flex items-center justify-center z-[100] animate-fade-in">
+          <div className="text-center animate-scale-in">
+            <div className="relative">
+              <Shield size={120} className="text-yellow-400 mx-auto mb-6 animate-pulse" />
+              <Sparkles size={40} className="absolute top-0 right-1/4 text-yellow-300 animate-ping" />
+              <Sparkles size={30} className="absolute bottom-0 left-1/4 text-yellow-300 animate-ping" style={{ animationDelay: '0.3s' }} />
+            </div>
+            <h2 className="text-4xl font-bold text-white mb-4">✨ Acceso Seguro ✨</h2>
+            <p className="text-xl text-yellow-200">Los ángeles te dan la bienvenida...</p>
+          </div>
+        </div>
+      )}
+
       <AuthPageLayout
         title={translation.loginPage.title}
         headerImage={loginHeaderImage}
         icon={LogIn}
       >
-      {/* Contenido de login con mejoras TOP 3 */}
-      <div className="max-w-sm mx-auto">
-        {/* Header mejorado con mensaje angelical */}
+      {/* Contenido de login con TODAS las mejoras */}
+      <div className="max-w-sm mx-auto relative">
+        {/* Ángel flotante decorativo */}
+        <div className="absolute -right-20 top-0 hidden lg:block animate-float pointer-events-none">
+          <img 
+            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&h=200&fit=crop&crop=faces"
+            alt="Angel guardian"
+            className="w-32 h-32 rounded-full opacity-40 blur-sm"
+          />
+        </div>
+
+        {/* Header mejorado con mensaje angelical y tipografía elegante */}
         <div className="text-center mb-6 animate-fade-in">
-          <p className="text-gray-700 text-base font-medium leading-relaxed">
+          <p className="text-gray-800 text-lg font-semibold leading-relaxed" style={{ fontFamily: "'Playfair Display', serif" }}>
             ✨ {translation.loginPage.subtitle} ✨
           </p>
-          <p className="text-purple-600 text-sm mt-2 italic">
+          <p className="text-purple-600 text-base mt-3 italic font-medium flex items-center justify-center gap-2">
+            <Sparkles size={18} className="text-yellow-500" />
             Los ángeles te dan la bienvenida
+            <Sparkles size={18} className="text-yellow-500" />
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email con validación visual */}
+        <form onSubmit={handleSubmit} className="space-y-5" role="form" aria-label="Formulario de inicio de sesión">
+          {/* Email con validación visual mejorada */}
           <div className="relative group">
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
+            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+              Correo Electrónico *
+            </label>
+            <div className="absolute left-4 top-[42px] transform text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
               <Mail size={20} />
             </div>
             <input
+              id="email"
               type="email"
               placeholder={translation.loginPage.email}
               value={email}
               onChange={handleEmailChange}
-              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/80 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md"
+              aria-label="Correo electrónico"
+              aria-required="true"
+              aria-invalid={email && !emailValid}
+              aria-describedby={email && !emailValid ? "email-error" : undefined}
+              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md"
               required
             />
             {email && (
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+              <div className="absolute right-4 top-[42px] transform" role="status" aria-live="polite">
                 {emailValid ? (
-                  <CheckCircle size={20} className="text-green-500 animate-scale-in" />
+                  <CheckCircle size={20} className="text-green-500 animate-scale-in" aria-label="Email válido" />
                 ) : (
-                  <AlertCircle size={20} className="text-red-400 animate-scale-in" />
+                  <AlertCircle size={20} className="text-red-400 animate-scale-in" aria-label="Email inválido" />
                 )}
               </div>
             )}
+            {email && !emailValid && (
+              <p id="email-error" className="text-red-500 text-xs mt-1 ml-1" role="alert">
+                Por favor ingresa un email válido
+              </p>
+            )}
           </div>
 
-          {/* Password con toggle mejorado */}
+          {/* Password con indicador de fortaleza */}
           <div className="relative group">
-            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
+            <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
+              Contraseña *
+            </label>
+            <div className="absolute left-4 top-[42px] transform text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
               <Lock size={20} />
             </div>
             <input
+              id="password"
               type={showPassword ? "text" : "password"}
               placeholder={translation.loginPage.password}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/80 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
+              onChange={handlePasswordChange}
+              aria-label="Contraseña"
+              aria-required="true"
+              aria-describedby="password-strength"
+              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
               style={{
                 WebkitTextSecurity: showPassword ? 'none' : 'disc'
               }}
@@ -156,19 +259,42 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-purple-600 transition-all duration-300 hover:scale-110"
+              aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+              className="absolute right-4 top-[42px] transform text-gray-400 hover:text-purple-600 transition-all duration-300 hover:scale-110"
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
+            
+            {/* Indicador de fortaleza de contraseña */}
+            {password && (
+              <div id="password-strength" className="mt-2" role="status" aria-live="polite">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full transition-all duration-300 ${getPasswordStrengthColor(passwordStrength)}`}
+                      style={{ width: `${(passwordStrength / 4) * 100}%` }}
+                    />
+                  </div>
+                  <span className="text-xs font-semibold text-gray-600">
+                    {getPasswordStrengthLabel(passwordStrength)}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 ml-1">
+                  {passwordStrength < 3 && "Usa mayúsculas, números y símbolos para mayor seguridad"}
+                </p>
+              </div>
+            )}
           </div>
 
-          {/* Remember me mejorado */}
+          {/* Remember me mejorado con mejor accesibilidad */}
           <div className="flex items-center justify-between pt-2">
-            <label className="flex items-center cursor-pointer group">
+            <label className="flex items-center cursor-pointer group" htmlFor="remember-me">
               <input
+                id="remember-me"
                 type="checkbox"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
+                aria-label="Recordar mi sesión"
                 className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-2 cursor-pointer"
               />
               <span className="ml-2.5 text-gray-700 font-medium text-sm group-hover:text-purple-600 transition-colors">
@@ -178,32 +304,38 @@ const Login = () => {
             <button 
               type="button"
               onClick={() => setShowForgotPassword(true)}
-              className="text-purple-600 hover:text-purple-700 font-medium text-sm hover:underline transition-all"
+              className="text-purple-600 hover:text-purple-700 font-medium text-sm hover:underline transition-all focus:outline-2 focus:outline-purple-500"
               disabled={!email}
+              aria-label="¿Olvidaste tu contraseña?"
             >
               {translation.loginPage.forgotPassword}
             </button>
           </div>
 
-          {/* Error message mejorado con iconos */}
+          {/* Error message mejorado con iconos y mejor contraste */}
           {error && (
-            <div className={`p-4 rounded-2xl text-center font-medium flex items-center justify-center gap-2 animate-shake ${
-              error.includes('enviado') 
-                ? 'bg-green-50 text-green-700 border-2 border-green-300' 
-                : 'bg-red-50 text-red-700 border-2 border-red-300'
-            }`}>
+            <div 
+              className={`p-4 rounded-2xl text-center font-semibold flex items-center justify-center gap-2 animate-shake ${
+                error.includes('enviado') 
+                  ? 'bg-green-50 text-green-800 border-2 border-green-400' 
+                  : 'bg-red-50 text-red-800 border-2 border-red-400'
+              }`}
+              role="alert"
+              aria-live="assertive"
+            >
               {error.includes('enviado') ? (
-                <CheckCircle size={20} className="flex-shrink-0" />
+                <CheckCircle size={22} className="flex-shrink-0" />
               ) : (
-                <AlertCircle size={20} className="flex-shrink-0" />
+                <AlertCircle size={22} className="flex-shrink-0" />
               )}
               <span>{error}</span>
             </div>
           )}
 
-          {/* Submit button premium con efecto de brillo */}
+          {/* Submit button premium con efecto de brillo y escudo */}
           <button 
             type="submit" 
+            aria-label="Iniciar sesión de forma segura"
             className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-4 px-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base overflow-hidden group"
             disabled={loading}
           >
@@ -217,49 +349,58 @@ const Login = () => {
               </div>
             ) : (
               <div className="flex items-center justify-center gap-3 relative z-10">
-                <LogIn size={20} /> 
+                <Shield size={20} className="animate-pulse" /> 
                 <span>{translation.loginPage.loginButton}</span>
+                <LogIn size={20} />
               </div>
             )}
           </button>
         </form>
 
-        {/* Footer mejorado con borde dorado */}
-        <div className="text-center mt-6 p-4 bg-gradient-to-br from-purple-50 to-white rounded-2xl border-2 border-yellow-400/60 shadow-sm">
-          <p className="text-gray-700 text-sm">
+        {/* Footer mejorado con borde dorado y mejor contraste */}
+        <div className="text-center mt-6 p-5 bg-gradient-to-br from-purple-50 via-white to-yellow-50 rounded-2xl border-2 border-yellow-400/70 shadow-md">
+          <p className="text-gray-800 text-base font-medium">
             {translation.loginPage.noAccount}{' '}
             <button 
               onClick={() => navigate('/registro')}
-              className="text-purple-600 hover:text-purple-700 font-bold underline hover:no-underline transition-all"
+              className="text-purple-700 hover:text-purple-800 font-bold underline hover:no-underline transition-all focus:outline-2 focus:outline-purple-500"
+              aria-label="Ir a la página de registro"
             >
               {translation.loginPage.registerHere}
             </button>
           </p>
         </div>
 
-        {/* Modal de recuperación mejorado */}
+        {/* Modal de recuperación mejorado con mejor accesibilidad */}
         {showForgotPassword && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
-            <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full mx-4 border-2 border-yellow-400/60 animate-scale-in">
-              <h3 className="text-2xl font-bold mb-4 text-center text-gray-800 flex items-center justify-center gap-2">
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="forgot-password-title"
+          >
+            <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full mx-4 border-2 border-yellow-400/70 animate-scale-in">
+              <h3 id="forgot-password-title" className="text-2xl font-bold mb-4 text-center text-gray-800 flex items-center justify-center gap-2">
                 <Lock size={24} className="text-purple-600" />
                 Recuperar Contraseña
               </h3>
-              <p className="text-gray-600 mb-6 text-center leading-relaxed">
+              <p className="text-gray-700 mb-6 text-center leading-relaxed">
                 Se enviará un enlace de recuperación a: <br />
-                <strong className="text-purple-600 text-lg">{email}</strong>
+                <strong className="text-purple-700 text-lg">{email}</strong>
               </p>
               <div className="flex gap-4">
                 <button
                   onClick={() => setShowForgotPassword(false)}
-                  className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-medium"
+                  className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-medium focus:outline-2 focus:outline-gray-500"
+                  aria-label="Cancelar recuperación de contraseña"
                 >
                   Cancelar
                 </button>
                 <button
                   onClick={handleForgotPassword}
-                  className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all font-medium shadow-lg hover:shadow-xl"
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all font-medium shadow-lg hover:shadow-xl focus:outline-2 focus:outline-purple-500"
                   disabled={loading}
+                  aria-label="Enviar email de recuperación"
                 >
                   {loading ? 'Enviando...' : 'Enviar'}
                 </button>
