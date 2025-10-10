@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Globe } from 'lucide-react';
+import { Globe, ChevronDown } from 'lucide-react';
 
 const LanguageSelector = ({ inline = false, variant = 'default' }) => {
   const [showLanguageSelector, setShowLanguageSelector] = useState(false);
@@ -11,15 +11,22 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
     setShowLanguageSelector(false);
   };
 
+  // Iconos de banderas
+  const flags = {
+    'Español': '🇪🇸',
+    'English': '🇬🇧',
+    'Deutsch': '🇩🇪',
+    'Italiano': '🇮🇹',
+    'Français': '🇫🇷'
+  };
+
   const isHeader = variant === 'header';
+  const isLoading = variant === 'loading';
 
-  const btnClass = isHeader
-    ? 'flex items-center gap-2 p-2 text-white/90 hover:text-white hover:bg-white/20 rounded-lg transition-all duration-200 border border-white/20'
+  // Estilo estándar de headers (como Sonoterapia)
+  const btnClass = isHeader || isLoading
+    ? 'flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg'
     : 'bg-white/95 backdrop-blur-sm border border-purple-300 rounded-lg px-3 py-2 sm:px-4 sm:py-2 flex items-center gap-2 hover:bg-white transition-all duration-300 shadow-lg text-sm sm:text-base';
-
-  const iconCls = isHeader ? 'text-white' : 'text-purple-700';
-  const textCls = isHeader ? 'text-white font-medium' : 'text-purple-700 font-medium';
-  const caretCls = isHeader ? 'text-white' : 'text-purple-700';
 
   const SelectorContent = (
     <div className="relative">
@@ -28,31 +35,43 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
         className={btnClass}
         aria-label="Cambiar idioma"
       >
-        <Globe size={16} className={iconCls} />
-        <span className={textCls}>{selectedLanguage}</span>
-        <svg 
-          className={`w-4 h-4 ${caretCls} transition-transform duration-300 ${showLanguageSelector ? 'rotate-180' : ''}`} 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <Globe size={18} />
+        <span className="text-sm font-medium">
+          {flags[selectedLanguage]} {selectedLanguage}
+        </span>
+        <ChevronDown 
+          size={16} 
+          className={`transition-transform duration-300 ${showLanguageSelector ? 'rotate-180' : ''}`}
+        />
       </button>
+      
       {showLanguageSelector && (
-        <div className="absolute top-full mt-2 right-0 transform translate-x-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[9999] min-w-[160px]" style={{right: 0}}>
-          {availableLanguages.map((language) => (
-            <button
-              key={language}
-              onClick={() => handleLanguageChange(language)}
-              className={`w-full px-4 py-3 text-left hover:bg-purple-50 transition-colors duration-200 text-sm sm:text-base ${
-                selectedLanguage === language ? 'bg-purple-100 text-purple-700 font-medium' : 'text-gray-700'
-              }`}
-            >
-              {language}
-            </button>
-          ))}
-        </div>
+        <>
+          {/* Overlay para cerrar al hacer click fuera */}
+          <div 
+            className="fixed inset-0 z-[9998]" 
+            onClick={() => setShowLanguageSelector(false)}
+          />
+          
+          {/* Dropdown */}
+          <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-purple-200 z-[9999] min-w-[180px] overflow-hidden">
+            {availableLanguages.map((language) => (
+              <button
+                key={language}
+                onClick={() => handleLanguageChange(language)}
+                className={`w-full px-4 py-3 text-left hover:bg-purple-50 transition-colors duration-200 flex items-center space-x-2 ${
+                  selectedLanguage === language ? 'bg-purple-100 text-purple-700 font-medium' : 'text-gray-700'
+                }`}
+              >
+                <span className="text-xl">{flags[language]}</span>
+                <span className="text-sm">{language}</span>
+                {selectedLanguage === language && (
+                  <span className="ml-auto text-purple-600 font-bold">✓</span>
+                )}
+              </button>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
@@ -69,3 +88,4 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
 };
 
 export default LanguageSelector;
+

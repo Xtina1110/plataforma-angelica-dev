@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import LogoAngelico from './LogoAngelico';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
+import SkipButton from './SkipButton';
 import FooterLegal from './FooterLegal';
 import loadingMessagesService from '../services/loadingMessagesService';
 import fondo from '../assets/FondoPantalladeCargavf.png';
@@ -54,6 +55,13 @@ const PantallaCarga = () => {
       "Gli angeli sono vicini...",
       "Apertura dei canali di comunicazione...",
       "Sincronizzazione delle energie divine..."
+    ],
+    DE: [
+      "Verbindung mit engelischem Licht...",
+      "Vorbereitung deines heiligen Raumes...",
+      "Engel sind nah...",
+      "Öffnung der Kommunikationskanäle...",
+      "Synchronisierung göttlicher Energien..."
     ]
   };
 
@@ -86,6 +94,13 @@ const PantallaCarga = () => {
       "🌟 Consiglio: Mantieni una mente aperta e ricettiva",
       "💜 Ricorda: La tua intuizione è la tua migliore guida",
       "🕊️ Suggerimento: Crea uno spazio tranquillo per la sessione"
+    ],
+    DE: [
+      "💡 Tipp: Atme tief vor deiner Lesung",
+      "✨ Wusstest du: Engel reagieren auf deine Absicht",
+      "🌟 Rat: Halte einen offenen und empfänglichen Geist",
+      "💜 Denk daran: Deine Intuition ist dein bester Führer",
+      "🕊️ Tipp: Schaffe einen ruhigen Raum für deine Sitzung"
     ]
   };
 
@@ -302,8 +317,8 @@ const PantallaCarga = () => {
 
       {/* Controles superiores: idioma + audio */}
       <div className="absolute top-4 right-4 z-50 flex items-center gap-2">
-        <LanguageSelector inline />
-        <AudioButton variant="header" />
+        <LanguageSelector inline variant="loading" />
+        <AudioButton variant="loading" />
       </div>
 
       {/* Contenido central - completamente responsive */}
@@ -359,12 +374,9 @@ const PantallaCarga = () => {
 
         {/* Skip button */}
         {canSkip && (
-          <button
-            onClick={handleSkip}
-            className="mt-8 text-purple-600 hover:text-purple-800 text-sm underline transition-all duration-300 hover:scale-105 animate-fade-in"
-          >
-            Saltar ⏭️
-          </button>
+          <div className="mt-8 animate-fade-in">
+            <SkipButton onClick={handleSkip} />
+          </div>
         )}
       </div>
 
