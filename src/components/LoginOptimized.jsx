@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
 import { Mail, Lock, LogIn, Eye, EyeOff, CheckCircle, AlertCircle, Shield, Sparkles } from 'lucide-react';
@@ -7,13 +7,18 @@ import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
 import SocialLogin from './SocialLogin';
+import LazyImage from './LazyImage';
+import { preloadImages, debounce, getOptimizedImageUrl } from '../utils/performanceUtils';
 import angelSinFondo from '../assets/AngelEleganteSinFondo.png';
 import fondoAngelico from '../assets/FondoAngelicoDashboard.png';
 
-// Imagen temática para login
-const loginHeaderImage = 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop';
+// Imagen temática para login con optimización
+const loginHeaderImage = getOptimizedImageUrl(
+  'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&h=400&fit=crop',
+  { width: 800, quality: 85, format: 'webp' }
+);
 
-const Login = () => {
+const LoginOptimized = () => {
   const navigate = useNavigate();
   const { getCurrentTranslation } = useLanguage();
   const translation = getCurrentTranslation();
@@ -27,23 +32,36 @@ const Login = () => {
   const [emailValid, setEmailValid] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [imagesPreloaded, setImagesPreloaded] = useState(false);
+
+  // Precargar imágenes críticas al montar
+  useEffect(() => {
+    const criticalImages = [angelSinFondo, fondoAngelico];
+    preloadImages(criticalImages)
+      .then(() => setImagesPreloaded(true))
+      .catch(err => console.error('Error preloading images:', err));
+  }, []);
 
   // Validación de email en tiempo real
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
+  const validateEmail = useMemo(() => {
+    return (email) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    };
+  }, []);
 
-  // Calcular fortaleza de contraseña
-  const calculatePasswordStrength = (pwd) => {
-    let strength = 0;
-    if (pwd.length >= 8) strength++;
-    if (pwd.length >= 12) strength++;
-    if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) strength++;
-    if (/\d/.test(pwd)) strength++;
-    if (/[^a-zA-Z0-9]/.test(pwd)) strength++;
-    return Math.min(strength, 4);
-  };
+  // Calcular fortaleza de contraseña (memoizado)
+  const calculatePasswordStrength = useMemo(() => {
+    return (pwd) => {
+      let strength = 0;
+      if (pwd.length >= 8) strength++;
+      if (pwd.length >= 12) strength++;
+      if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) strength++;
+      if (/\d/.test(pwd)) strength++;
+      if (/[^a-zA-Z0-9]/.test(pwd)) strength++;
+      return Math.min(strength, 4);
+    };
+  }, []);
 
   const getPasswordStrengthLabel = (strength) => {
     const labels = ['Muy débil', 'Débil', 'Media', 'Fuerte', 'Muy fuerte'];
@@ -55,10 +73,18 @@ const Login = () => {
     return colors[strength] || 'bg-gray-300';
   };
 
+  // Debounced email validation
+  const debouncedEmailValidation = useMemo(
+    () => debounce((email) => {
+      setEmailValid(validateEmail(email));
+    }, 300),
+    [validateEmail]
+  );
+
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
     setEmail(newEmail);
-    setEmailValid(validateEmail(newEmail));
+    debouncedEmailValidation(newEmail);
   };
 
   const handlePasswordChange = (e) => {
@@ -119,14 +145,14 @@ const Login = () => {
   };
 
   // Cargar email recordado al montar el componente
-  React.useEffect(() => {
+  useEffect(() => {
     const rememberedEmail = localStorage.getItem('rememberedEmail');
     if (rememberedEmail) {
       setEmail(rememberedEmail);
       setEmailValid(validateEmail(rememberedEmail));
       setRememberMe(true);
     }
-  }, []);
+  }, [validateEmail]);
 
   return (
     <>
@@ -140,7 +166,7 @@ const Login = () => {
       </div>
 
       {/* Pantalla de Acceso Seguro con fondo del dashboard */}
-      {loginSuccess && (
+      {loginSuccess && imagesPreloaded && (
         <div className="fixed inset-0 flex items-center justify-center z-[100] animate-fade-in">
           {/* Fondo con imagen angélica del dashboard */}
           <div
@@ -160,10 +186,11 @@ const Login = () => {
           <div className="relative z-10 text-center animate-scale-in max-w-2xl mx-auto px-6">
             {/* Ángel de la guarda flotando */}
             <div className="mb-8">
-              <img 
+              <LazyImage 
                 src={angelSinFondo}
                 alt="Ángel de la guarda"
                 className="w-48 h-48 mx-auto object-contain animate-float drop-shadow-2xl"
+                priority={true}
               />
             </div>
             
@@ -228,6 +255,7 @@ const Login = () => {
               aria-describedby={email && !emailValid ? "email-error" : undefined}
               className="w-full pl-10 pr-10 py-2 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/90 backdrop-blur-sm text-sm transition-all duration-300 hover:border-purple-300 hover:shadow-md"
               required
+              autoComplete="email"
             />
             {email && (
               <div className="absolute right-3 top-[30px] transform" role="status" aria-live="polite">
@@ -267,6 +295,7 @@ const Login = () => {
                 WebkitTextSecurity: showPassword ? 'none' : 'disc'
               }}
               required
+              autoComplete="current-password"
             />
             <button
               type="button"
@@ -397,6 +426,9 @@ const Login = () => {
             role="dialog"
             aria-modal="true"
             aria-labelledby="forgot-password-title"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setShowForgotPassword(false);
+            }}
           >
             <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full mx-4 border-2 border-yellow-400/70 animate-scale-in">
               <h3 id="forgot-password-title" className="text-2xl font-bold mb-4 text-center text-gray-800 flex items-center justify-center gap-2">
@@ -433,5 +465,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginOptimized;
 

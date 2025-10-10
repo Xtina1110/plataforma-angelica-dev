@@ -9,6 +9,8 @@ import { AudioProvider } from './contexts/AudioContext';
 import PantallaCarga from './components/PantallaCarga';
 import PantallaInicio from './components/PantallaInicio';
 import Login from './components/Login';
+import LoginOptimized from './components/LoginOptimized';
+import DashboardRedirect from './components/DashboardRedirect';
 import Registro from './components/Registro';
 import Dashboard from './components/Dashboard';
 import DashboardAdmin from './components/DashboardAdmin';
@@ -120,11 +122,11 @@ function App() {
             {/* Rutas públicas sin sidebar */}
             <Route path="/" element={<PantallaCarga />} />
             <Route path="/inicio" element={<PantallaInicio />} />
-            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+            <Route path="/login" element={<LoginOptimized onLogin={handleLogin} />} />
             <Route path="/registro" element={<Registro />} />
 
             {/* Rutas con sidebar */}
-            <Route path="/dashboard-redirect" element={<MainLayout><RedireccionDashboard /></MainLayout>} />
+            <Route path="/dashboard-redirect" element={<DashboardRedirect />} />
             <Route path="/dashboard" element={<MainLayout><Dashboard user={user} onLogout={handleLogout} /></MainLayout>} />
             <Route path="/dashboard-admin" element={<MainLayout><DashboardAdmin /></MainLayout>} />
             <Route path="/dashboard-tecnico" element={<MainLayout><DashboardTecnico /></MainLayout>} />
