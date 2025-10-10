@@ -78,8 +78,8 @@ const Login = () => {
   return (
     <>
       <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
-        <LanguageSelector inline />
-        <AudioButton variant="header" />
+        <LanguageSelector inline variant="loading" />
+        <AudioButton variant="loading" />
       </div>
       <AuthPageLayout
         title={translation.loginPage.title}

@@ -1,7 +1,9 @@
+import jazzLoungeMusic from '../assets/angel-music-background.mp3';
+
 export const angelicMusicConfig = {
   home: {
     name: 'Jazz Lounge Angelical',
-    url: '/src/assets/angel-music-background.mp3',
+    url: jazzLoungeMusic,
     description: 'Jazz instrumental suave y relajante sin voces, perfecto para ambiente angelical',
     frequency: '432Hz',
     volume: 0.25,
