@@ -387,11 +387,14 @@ const PantallaCarga = () => {
           </div>
         </div>
 
-        {/* Tip angelical */}
-        <div className="mt-6 bg-purple-700/90 backdrop-blur-md border-2 border-purple-500 rounded-xl px-6 py-4 shadow-2xl animate-fade-in">
-          <p className="text-white text-lg font-semibold text-center">
-            💡 {currentTipText}
-          </p>
+        {/* Tip angelical - Diseño elegante y angelical */}
+        <div className="mt-6 relative inline-block animate-fade-in">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-300 to-purple-400 rounded-full blur-md opacity-40 animate-pulse"></div>
+          <div className="relative bg-gradient-to-r from-purple-600/80 to-purple-700/80 backdrop-blur-sm border border-purple-300/30 rounded-full px-8 py-3 shadow-lg">
+            <p className="text-white text-base font-medium text-center whitespace-nowrap">
+              {currentTipText}
+            </p>
+          </div>
         </div>
 
         {/* Skip button - Siempre visible, deshabilitado primeros 2 segundos */}
