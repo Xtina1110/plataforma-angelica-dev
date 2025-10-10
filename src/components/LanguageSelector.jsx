@@ -14,7 +14,7 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
   // Iconos de banderas y códigos
   const flags = {
     'Español': '🇪🇸',
-    'English': '🇬🇧',
+    'English': '🇺🇸',
     'Deutsch': '🇩🇪',
     'Italiano': '🇮🇹',
     'Français': '🇫🇷'
@@ -71,7 +71,7 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
                   selectedLanguage === language ? 'bg-purple-100 text-purple-700 font-medium' : 'text-gray-700'
                 }`}
               >
-                <span className="text-base">{flags[language]}</span>
+                <span className="text-lg">{flags[language]}</span>
                 <span className="text-xs font-medium">{languageCodes[language]}</span>
                 <span className="text-xs text-gray-500 flex-1">{language}</span>
                 {selectedLanguage === language && (
