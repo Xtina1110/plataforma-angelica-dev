@@ -11,13 +11,33 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
     setShowLanguageSelector(false);
   };
 
-  // Mapeo de banderas e idiomas
+  // Mapeo de banderas e idiomas con URLs de banderas SVG
   const languageData = {
-    'Español': { code: 'ES', flag: '🇪🇸' },
-    'English': { code: 'EN', flag: '🇺🇸' },
-    'Deutsch': { code: 'DE', flag: '🇩🇪' },
-    'Italiano': { code: 'IT', flag: '🇮🇹' },
-    'Français': { code: 'FR', flag: '🇫🇷' }
+    'Español': { 
+      code: 'ES', 
+      flag: 'https://flagcdn.com/es.svg',
+      flagEmoji: '🇪🇸'
+    },
+    'English': { 
+      code: 'EN', 
+      flag: 'https://flagcdn.com/us.svg',
+      flagEmoji: '🇺🇸'
+    },
+    'Deutsch': { 
+      code: 'DE', 
+      flag: 'https://flagcdn.com/de.svg',
+      flagEmoji: '🇩🇪'
+    },
+    'Italiano': { 
+      code: 'IT', 
+      flag: 'https://flagcdn.com/it.svg',
+      flagEmoji: '🇮🇹'
+    },
+    'Français': { 
+      code: 'FR', 
+      flag: 'https://flagcdn.com/fr.svg',
+      flagEmoji: '🇫🇷'
+    }
   };
 
   const isHeader = variant === 'header';
@@ -37,9 +57,11 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
       >
         <Globe size={18} />
         <span className="text-sm font-semibold flex items-center gap-1.5">
-          <span role="img" aria-label="flag" className="text-base leading-none">
-            {languageData[selectedLanguage]?.flag}
-          </span>
+          <img 
+            src={languageData[selectedLanguage]?.flag} 
+            alt={languageData[selectedLanguage]?.code}
+            className="w-5 h-4 object-cover rounded-sm"
+          />
           <span>{languageData[selectedLanguage]?.code}</span>
         </span>
         <ChevronDown 
@@ -66,9 +88,11 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
                   selectedLanguage === language ? 'bg-purple-100 text-purple-700 font-medium' : 'text-gray-700'
                 }`}
               >
-                <span role="img" aria-label="flag" className="text-lg leading-none flex-shrink-0">
-                  {languageData[language]?.flag}
-                </span>
+                <img 
+                  src={languageData[language]?.flag} 
+                  alt={languageData[language]?.code}
+                  className="w-6 h-5 object-cover rounded-sm flex-shrink-0"
+                />
                 <span className="text-sm font-medium">{languageData[language]?.code}</span>
                 <span className="text-sm text-gray-600 flex-1">{language}</span>
                 {selectedLanguage === language && (

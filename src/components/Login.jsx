@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
-import { Mail, Lock, LogIn, Eye, EyeOff } from 'lucide-react';
+import { Mail, Lock, LogIn, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
@@ -21,6 +21,19 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [emailValid, setEmailValid] = useState(false);
+
+  // Validación de email en tiempo real
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+    setEmailValid(validateEmail(newEmail));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,6 +84,7 @@ const Login = () => {
     const rememberedEmail = localStorage.getItem('rememberedEmail');
     if (rememberedEmail) {
       setEmail(rememberedEmail);
+      setEmailValid(validateEmail(rememberedEmail));
       setRememberMe(true);
     }
   }, []);
@@ -86,40 +100,54 @@ const Login = () => {
         headerImage={loginHeaderImage}
         icon={LogIn}
       >
-      {/* Contenido de login */}
+      {/* Contenido de login con mejoras TOP 3 */}
       <div className="max-w-sm mx-auto">
-        {/* Header compacto */}
-        <div className="text-center mb-3">
-          <p className="text-gray-600 text-sm font-medium">{translation.loginPage.subtitle}</p>
+        {/* Header mejorado con mensaje angelical */}
+        <div className="text-center mb-6 animate-fade-in">
+          <p className="text-gray-700 text-base font-medium leading-relaxed">
+            ✨ {translation.loginPage.subtitle} ✨
+          </p>
+          <p className="text-purple-600 text-sm mt-2 italic">
+            Los ángeles te dan la bienvenida
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-2.5">
-          {/* Email */}
-          <div className="relative">
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              <Mail size={18} />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Email con validación visual */}
+          <div className="relative group">
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
+              <Mail size={20} />
             </div>
             <input
               type="email"
               placeholder={translation.loginPage.email}
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white/50 backdrop-blur-sm text-sm"
+              onChange={handleEmailChange}
+              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/80 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md"
               required
             />
+            {email && (
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                {emailValid ? (
+                  <CheckCircle size={20} className="text-green-500 animate-scale-in" />
+                ) : (
+                  <AlertCircle size={20} className="text-red-400 animate-scale-in" />
+                )}
+              </div>
+            )}
           </div>
 
-          {/* Password */}
-          <div className="relative">
-            <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-              <Lock size={18} />
+          {/* Password con toggle mejorado */}
+          <div className="relative group">
+            <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-purple-500 transition-colors duration-300">
+              <Lock size={20} />
             </div>
             <input
               type={showPassword ? "text" : "password"}
               placeholder={translation.loginPage.password}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-white/50 backdrop-blur-sm text-sm [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
+              className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-400 focus:border-yellow-400 bg-white/80 backdrop-blur-sm text-base transition-all duration-300 hover:border-purple-300 hover:shadow-md [&::-ms-reveal]:hidden [&::-webkit-textfield-decoration-container]:hidden"
               style={{
                 WebkitTextSecurity: showPassword ? 'none' : 'disc'
               }}
@@ -128,96 +156,109 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-purple-600 transition-all duration-300 hover:scale-110"
             >
-              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
 
-          {/* Remember me compacto */}
-          <div className="flex items-center justify-between">
-            <label className="flex items-center cursor-pointer">
+          {/* Remember me mejorado */}
+          <div className="flex items-center justify-between pt-2">
+            <label className="flex items-center cursor-pointer group">
               <input
                 type="checkbox"
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-3 h-3 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-2"
+                className="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 rounded focus:ring-purple-500 focus:ring-2 cursor-pointer"
               />
-              <span className="ml-2 text-gray-700 font-medium text-sm">Recordarme</span>
+              <span className="ml-2.5 text-gray-700 font-medium text-sm group-hover:text-purple-600 transition-colors">
+                Recordarme
+              </span>
             </label>
             <button 
               type="button"
               onClick={() => setShowForgotPassword(true)}
-              className="text-purple-600 hover:text-purple-700 font-medium text-sm"
+              className="text-purple-600 hover:text-purple-700 font-medium text-sm hover:underline transition-all"
               disabled={!email}
             >
               {translation.loginPage.forgotPassword}
             </button>
           </div>
 
-          {/* Error message */}
+          {/* Error message mejorado con iconos */}
           {error && (
-            <div className={`p-4 rounded-xl text-center font-medium ${
+            <div className={`p-4 rounded-2xl text-center font-medium flex items-center justify-center gap-2 animate-shake ${
               error.includes('enviado') 
-                ? 'bg-green-100 text-green-700 border border-green-300' 
-                : 'bg-red-100 text-red-700 border border-red-300'
+                ? 'bg-green-50 text-green-700 border-2 border-green-300' 
+                : 'bg-red-50 text-red-700 border-2 border-red-300'
             }`}>
-              {error}
+              {error.includes('enviado') ? (
+                <CheckCircle size={20} className="flex-shrink-0" />
+              ) : (
+                <AlertCircle size={20} className="flex-shrink-0" />
+              )}
+              <span>{error}</span>
             </div>
           )}
 
-          {/* Submit button compacto */}
+          {/* Submit button premium con efecto de brillo */}
           <button 
             type="submit" 
-            className="w-full bg-gradient-to-r from-yellow-400 to-yellow-300 hover:from-yellow-500 hover:to-yellow-400 text-white font-bold py-2.5 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+            className="relative w-full bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 hover:from-yellow-500 hover:via-yellow-400 hover:to-yellow-500 text-white font-bold py-4 px-6 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed text-base overflow-hidden group"
             disabled={loading}
           >
+            {/* Efecto de brillo deslizante */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+            
             {loading ? (
-              <div className="flex items-center justify-center gap-2">
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                {translation.loginPage.loading}
+              <div className="flex items-center justify-center gap-3 relative z-10">
+                <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>{translation.loginPage.loading}</span>
               </div>
             ) : (
-              <div className="flex items-center justify-center gap-2">
-                <LogIn size={18} /> 
-                {translation.loginPage.loginButton}
+              <div className="flex items-center justify-center gap-3 relative z-10">
+                <LogIn size={20} /> 
+                <span>{translation.loginPage.loginButton}</span>
               </div>
             )}
           </button>
         </form>
 
-        {/* Footer SIEMPRE VISIBLE con enlaces */}
-        <div className="text-center mt-4 p-3 bg-gray-50 rounded-xl border border-gray-200">
-          <p className="text-gray-600 text-xs mb-2">
+        {/* Footer mejorado con borde dorado */}
+        <div className="text-center mt-6 p-4 bg-gradient-to-br from-purple-50 to-white rounded-2xl border-2 border-yellow-400/60 shadow-sm">
+          <p className="text-gray-700 text-sm">
             {translation.loginPage.noAccount}{' '}
             <button 
               onClick={() => navigate('/registro')}
-              className="text-purple-600 hover:text-purple-700 font-bold underline"
+              className="text-purple-600 hover:text-purple-700 font-bold underline hover:no-underline transition-all"
             >
               {translation.loginPage.registerHere}
             </button>
           </p>
         </div>
 
-        {/* Modal de recuperación de contraseña */}
+        {/* Modal de recuperación mejorado */}
         {showForgotPassword && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full mx-4">
-              <h3 className="text-xl font-bold mb-4 text-center text-gray-800">Recuperar Contraseña</h3>
-              <p className="text-gray-600 mb-6 text-center">
-                Se enviará un enlace de recuperación al email: <br />
-                <strong className="text-purple-600">{email}</strong>
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
+            <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full mx-4 border-2 border-yellow-400/60 animate-scale-in">
+              <h3 className="text-2xl font-bold mb-4 text-center text-gray-800 flex items-center justify-center gap-2">
+                <Lock size={24} className="text-purple-600" />
+                Recuperar Contraseña
+              </h3>
+              <p className="text-gray-600 mb-6 text-center leading-relaxed">
+                Se enviará un enlace de recuperación a: <br />
+                <strong className="text-purple-600 text-lg">{email}</strong>
               </p>
               <div className="flex gap-4">
                 <button
                   onClick={() => setShowForgotPassword(false)}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors font-medium"
+                  className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-medium"
                 >
                   Cancelar
                 </button>
                 <button
                   onClick={handleForgotPassword}
-                  className="flex-1 px-4 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-colors font-medium"
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all font-medium shadow-lg hover:shadow-xl"
                   disabled={loading}
                 >
                   {loading ? 'Enviando...' : 'Enviar'}
@@ -233,3 +274,4 @@ const Login = () => {
 };
 
 export default Login;
+
