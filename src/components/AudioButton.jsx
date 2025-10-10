@@ -18,8 +18,8 @@ const AudioButton = ({ className = "", showText = true, variant = "header" }) =>
 
   // Estilo estándar de headers (como Sonoterapia)
   const variants = {
-    header: "flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg",
-    loading: "flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg",
+    header: "flex items-center space-x-2 bg-purple-600/80 hover:bg-purple-500/90 border-2 border-purple-400/50 hover:border-purple-300/70 text-white px-5 py-3 rounded-xl transition-all duration-300 backdrop-filter backdrop-blur-md font-semibold shadow-lg hover:shadow-purple-500/50 hover:scale-105",
+    loading: "flex items-center space-x-2 bg-purple-600/80 hover:bg-purple-500/90 border-2 border-purple-400/50 hover:border-purple-300/70 text-white px-5 py-3 rounded-xl transition-all duration-300 backdrop-filter backdrop-blur-md font-semibold shadow-lg hover:shadow-purple-500/50 hover:scale-105",
     sidebar: "w-full justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center"
   };
 
@@ -29,9 +29,9 @@ const AudioButton = ({ className = "", showText = true, variant = "header" }) =>
       className={`${variants[variant]} ${className}`}
       aria-label={isPlaying ? L.ariaOff : L.ariaOn}
     >
-      {isPlaying ? <VolumeX size={18} /> : <Volume2 size={18} />}
+      {isPlaying ? <VolumeX size={20} /> : <Volume2 size={20} />}
       {showText && (
-        <span className="text-sm">{isPlaying ? L.mute : L.audio}</span>
+        <span className="text-base font-semibold">{isPlaying ? L.mute : L.audio}</span>
       )}
     </button>
   );

@@ -25,7 +25,7 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
 
   // Estilo estándar de headers (como Sonoterapia)
   const btnClass = isHeader || isLoading
-    ? 'flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg'
+    ? 'flex items-center space-x-2 bg-purple-600/80 hover:bg-purple-500/90 border-2 border-purple-400/50 hover:border-purple-300/70 text-white px-5 py-3 rounded-xl transition-all duration-300 backdrop-filter backdrop-blur-md font-semibold shadow-lg hover:shadow-purple-500/50 hover:scale-105'
     : 'bg-white/95 backdrop-blur-sm border border-purple-300 rounded-lg px-3 py-2 sm:px-4 sm:py-2 flex items-center gap-2 hover:bg-white transition-all duration-300 shadow-lg text-sm sm:text-base';
 
   const SelectorContent = (
@@ -35,12 +35,12 @@ const LanguageSelector = ({ inline = false, variant = 'default' }) => {
         className={btnClass}
         aria-label="Cambiar idioma"
       >
-        <Globe size={18} />
-        <span className="text-sm font-medium">
+        <Globe size={20} />
+        <span className="text-base font-semibold">
           {flags[selectedLanguage]} {selectedLanguage}
         </span>
         <ChevronDown 
-          size={16} 
+          size={18} 
           className={`transition-transform duration-300 ${showLanguageSelector ? 'rotate-180' : ''}`}
         />
       </button>
