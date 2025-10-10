@@ -46,6 +46,7 @@ const Step3Preferences = ({ data, onUpdate, onNext, onBack }) => {
   const contactMethods = [
     { value: 'email', label: 'Email', icon: Mail, description: 'Prefiero comunicación por correo' },
     { value: 'phone', label: 'Teléfono', icon: Phone, description: 'Prefiero llamadas o SMS' },
+    { value: 'whatsapp', label: 'WhatsApp', icon: Phone, description: 'Prefiero mensajes por WhatsApp', emoji: '💬' },
     { value: 'both', label: 'Ambos', icon: Globe, description: 'Cualquier método está bien' }
   ];
 
@@ -242,7 +243,7 @@ const Step3Preferences = ({ data, onUpdate, onNext, onBack }) => {
                       ? 'bg-gray-700 text-gray-300'
                       : 'bg-gray-100 text-gray-600'
                   }`}>
-                    <Icon size={20} />
+                    {method.emoji ? <span className="text-xl">{method.emoji}</span> : <Icon size={20} />}
                   </div>
                   <div className="flex-1">
                     <div className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
