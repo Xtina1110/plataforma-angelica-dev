@@ -1,0 +1,662 @@
+/* ========================================
+   CANALIZACIONES Y SONOTERAPIA - CSS PRINCIPAL
+   Siguiendo el estilo de la Academia Angélica
+   ======================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.canalizaciones-sonoterapia-principal {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #fafafa 0%, #f0f0ff 25%, #fff8e1 50%, #f3e5f5 75%, #e8f5e8 100%);
+  min-height: 100vh;
+  padding-top: 0; /* Removido padding superior ya que no hay header interno */
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+   ======================================== */
+.contenido-principal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px 20px;
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero-section {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 0 20px 40px 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-icono {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 30px;
+  background: linear-gradient(135deg, #6a0dad 0%, #d4af37 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(106, 13, 173, 0.3);
+}
+
+.hero-titulo {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #6a0dad 0%, #d4af37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-descripcion {
+  font-size: 1.2rem;
+  color: #666;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   OPCIONES PRINCIPALES
+   ======================================== */
+.opciones-principales {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.opcion-card {
+  background: white;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 3px solid transparent;
+  position: relative;
+}
+
+.opcion-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.opcion-card.sonoterapia:hover {
+  border-color: #6a0dad;
+  box-shadow: 0 20px 50px rgba(106, 13, 173, 0.2);
+}
+
+.opcion-card.canalizaciones:hover {
+  border-color: #d4af37;
+  box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+}
+
+/* ========================================
+   CARD HEADER
+   ======================================== */
+.card-header {
+  position: relative;
+  padding: 40px 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-icono {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.sonoterapia-icono {
+  background: linear-gradient(135deg, #6a0dad 0%, #8a2be2 100%);
+}
+
+.canalizaciones-icono {
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+}
+
+.card-badge {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-badge:not(.popular) {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+}
+
+.card-badge.popular {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  color: white;
+}
+
+/* ========================================
+   CARD CONTENT
+   ======================================== */
+.card-content {
+  padding: 0 30px 40px;
+}
+
+.card-titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card-descripcion {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.card-beneficios {
+  margin-bottom: 25px;
+}
+
+.beneficio {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 8px 0;
+}
+
+.beneficio-icono {
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+}
+
+.beneficio span:last-child {
+  color: #555;
+  font-weight: 500;
+}
+
+.card-stats {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.btn-acceder {
+  width: 100%;
+  padding: 18px 24px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sonoterapia-btn {
+  background: linear-gradient(135deg, #6a0dad 0%, #8a2be2 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
+}
+
+.sonoterapia-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(106, 13, 173, 0.4);
+}
+
+.canalizaciones-btn {
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+  color: #333;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+.canalizaciones-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+}
+
+/* ========================================
+   SECCIÓN INFORMATIVA
+   ======================================== */
+.seccion-info {
+  margin-bottom: 80px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.info-item {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.info-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border-color: #e0e0e0;
+}
+
+.info-icono {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #6a0dad 0%, #d4af37 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.info-item h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.info-item p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ========================================
+   CALL TO ACTION
+   ======================================== */
+.cta-section {
+  background: linear-gradient(135deg, #f8f9ff 0%, #fff8e1 100%);
+  padding: 60px 40px;
+  border-radius: 25px;
+  text-align: center;
+  border: 2px solid rgba(106, 13, 173, 0.1);
+}
+
+.cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-content h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 18px 30px;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  min-width: 250px;
+  justify-content: center;
+}
+
+.cta-btn.sonoterapia {
+  background: linear-gradient(135deg, #6a0dad 0%, #8a2be2 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(106, 13, 173, 0.3);
+}
+
+.cta-btn.sonoterapia:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(106, 13, 173, 0.4);
+}
+
+.cta-btn.canalizaciones {
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+  color: #333;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+.cta-btn.canalizaciones:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 1024px) {
+  .header-content {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .header-spacer {
+    display: none;
+  }
+  
+  .header-title-principal h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-titulo {
+    font-size: 2.5rem;
+  }
+  
+  .opciones-principales {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contenido-principal {
+    padding: 30px 15px;
+  }
+  
+  .hero-section {
+    padding: 30px 15px;
+    margin-bottom: 40px;
+  }
+  
+  .hero-icono {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-titulo {
+    font-size: 2rem;
+  }
+  
+  .hero-descripcion {
+    font-size: 1.1rem;
+  }
+  
+  .opciones-principales {
+    margin-bottom: 60px;
+  }
+  
+  .card-header {
+    padding: 30px 25px 15px;
+  }
+  
+  .card-icono {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .card-content {
+    padding: 0 25px 30px;
+  }
+  
+  .card-titulo {
+    font-size: 1.6rem;
+  }
+  
+  .card-stats {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .info-item {
+    padding: 25px;
+  }
+  
+  .cta-section {
+    padding: 40px 25px;
+  }
+  
+  .cta-content h3 {
+    font-size: 1.8rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title-principal h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-titulo {
+    font-size: 1.8rem;
+  }
+  
+  .hero-descripcion {
+    font-size: 1rem;
+  }
+  
+  .card-header {
+    padding: 25px 20px 15px;
+  }
+  
+  .card-content {
+    padding: 0 20px 25px;
+  }
+  
+  .card-titulo {
+    font-size: 1.4rem;
+  }
+  
+  .card-descripcion {
+    font-size: 1rem;
+  }
+  
+  .beneficio {
+    margin-bottom: 10px;
+  }
+  
+  .btn-acceder {
+    padding: 15px 20px;
+    font-size: 1rem;
+  }
+  
+  .info-item {
+    padding: 20px;
+  }
+  
+  .info-icono {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cta-section {
+    padding: 30px 20px;
+  }
+  
+  .cta-content h3 {
+    font-size: 1.5rem;
+  }
+  
+  .cta-content p {
+    font-size: 1rem;
+  }
+  
+  .cta-btn {
+    padding: 15px 25px;
+    font-size: 1rem;
+    min-width: auto;
+  }
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.hero-icono {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.opcion-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.opcion-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.info-item {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.info-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.info-item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/* ========================================
+   UTILIDADES
+   ======================================== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-10 { margin-bottom: 10px; }
+.mb-15 { margin-bottom: 15px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+.p-10 { padding: 10px; }
+.p-15 { padding: 15px; }
+.p-20 { padding: 20px; }
+.p-30 { padding: 30px; }
+
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.flex-center { align-items: center; justify-content: center; }
+.flex-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+.cursor-pointer { cursor: pointer; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+
+.transition { transition: all 0.3s ease; }
+
+/* ========================================
+   SCROLLBAR PERSONALIZADA
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6a0dad, #d4af37);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a009d, #c19b26);
+}
+

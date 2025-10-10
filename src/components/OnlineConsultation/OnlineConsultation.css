@@ -1,0 +1,366 @@
+/* ==============================================
+   CONSULTAS ANGELICALES EN VIVO - ESTILOS
+   Mismo look & feel que Apertura Angelical
+   ============================================== */
+
+.consulta-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg,
+    rgba(212, 175, 55, 0.03) 0%,
+    rgba(245, 158, 11, 0.05) 50%,
+    rgba(212, 175, 55, 0.03) 100%);
+  padding: 2rem 1rem;
+}
+
+.consulta-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header y título */
+.consulta-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.consulta-back-button {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.consulta-back-button:hover {
+  border-color: #f59e0b;
+  background: linear-gradient(to right, #f59e0b, #d97706);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.consulta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #d4af37, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Progress steps */
+.consulta-steps {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.consulta-step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  background: white;
+  color: #6b7280;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.consulta-step.active {
+  border-color: #f59e0b;
+  background: linear-gradient(to right, #f59e0b, #d97706);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.consulta-step.completed {
+  border-color: #10b981;
+  background: linear-gradient(to right, #10b981, #059669);
+  color: white;
+  font-weight: 600;
+}
+
+/* Tema cards */
+.tema-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.tema-card-consulta {
+  padding: 2rem;
+  border: 2px solid #d4af37;
+  border-radius: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+  min-height: 220px;
+}
+
+.tema-card-consulta:hover {
+  border-color: #f59e0b;
+  background: linear-gradient(to bottom right, #f59e0b, #d97706);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(245, 158, 11, 0.4);
+}
+
+.tema-card-consulta:hover .tema-nombre {
+  color: white;
+}
+
+.tema-card-consulta:hover .tema-descripcion {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tema-icono {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.tema-nombre {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.tema-descripcion {
+  color: #6b7280;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+/* Reader cards */
+.reader-card {
+  padding: 1.5rem;
+  border: 2px solid #d4af37;
+  border-radius: 16px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.reader-card:hover {
+  border-color: #f59e0b;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.reader-card.selected {
+  border: 3px solid #f59e0b;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(217, 119, 6, 0.1));
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.reader-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #f59e0b);
+  border: 3px solid #d4af37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.reader-specialty-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+/* Booking calendar */
+.booking-date-button {
+  padding: 0.75rem;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.booking-date-button:hover {
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.booking-date-button.selected {
+  border: 2px solid #f59e0b;
+  background: linear-gradient(to bottom right, #f59e0b, #d97706);
+  color: white;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.booking-time-button {
+  padding: 0.75rem;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.booking-time-button:hover {
+  border-color: #f59e0b;
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.booking-time-button.selected {
+  border: 2px solid #f59e0b;
+  background: linear-gradient(to bottom right, #f59e0b, #d97706);
+  color: white;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.card-spread-button {
+  padding: 1rem;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.card-spread-button:hover {
+  border-color: #f59e0b;
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.card-spread-button.selected {
+  border: 2px solid #f59e0b;
+  background: linear-gradient(to bottom right, #f59e0b, #d97706);
+  color: white;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+/* Summary box */
+.booking-summary {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(245, 158, 11, 0.1));
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #d4af37;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+/* Confirm button */
+.consulta-confirm-button {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to right, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+}
+
+.consulta-confirm-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.5);
+}
+
+.consulta-confirm-button:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Live session room */
+.session-room {
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(245, 158, 11, 0.1));
+  padding: 1rem;
+}
+
+.session-control-button {
+  padding: 1rem;
+  border-radius: 50%;
+  border: 2px solid #d4af37;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+.session-control-button:hover {
+  border-color: #f59e0b;
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+}
+
+.session-control-button.active {
+  background: linear-gradient(to right, #f59e0b, #d97706);
+  color: white;
+  border-color: #f59e0b;
+}
+
+.session-control-button.danger {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.session-control-button.danger:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .consulta-title {
+    font-size: 1.75rem;
+  }
+
+  .consulta-steps {
+    gap: 0.5rem;
+  }
+
+  .consulta-step {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .tema-grid {
+    grid-template-columns: 1fr;
+  }
+}

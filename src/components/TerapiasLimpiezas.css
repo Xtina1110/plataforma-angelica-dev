@@ -1,0 +1,282 @@
+.terapias-limpiezas-container {
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.terapias-limpiezas-container h2 {
+  font-size: 2.5rem;
+  color: #6a0dad;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.terapias-limpiezas-container .subtitle {
+  font-size: 1.1rem;
+  color: #777;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.terapias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.terapia-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.terapia-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.terapia-icon {
+  color: #6a0dad;
+  margin-bottom: 20px;
+}
+
+.terapia-card h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.terapia-descripcion {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1; /* Permite que la descripción ocupe el espacio disponible */
+}
+
+.terapia-meta {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.terapia-meta strong {
+  color: #333;
+}
+
+.btn-ver-detalle {
+  background: linear-gradient(45deg, #6a0dad, #8a2be2);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 15px;
+}
+
+.btn-ver-detalle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+  width: 90%;
+  position: relative;
+  animation: slideInUp 0.4s ease-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  color: #6a0dad;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.icono-terapia-modal {
+  color: #6a0dad;
+  margin-bottom: 15px;
+}
+
+.modal-header h2 {
+  font-size: 2.2rem;
+  color: #6a0dad;
+  text-align: center;
+}
+
+.descripcion-larga {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.beneficios-seccion {
+  background-color: #f0f8ff; /* Azul muy claro */
+  border-left: 5px solid #6a0dad;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.beneficios-seccion h4 {
+  color: #6a0dad;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.beneficios-seccion ul {
+  list-style: none;
+  padding: 0;
+}
+
+.beneficios-seccion li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #444;
+  font-size: 1rem;
+}
+
+.beneficios-seccion li svg {
+  color: #28a745; /* Verde para el check */
+}
+
+.info-adicional {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.info-adicional p {
+  margin: 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.info-adicional strong {
+  color: #333;
+}
+
+.btn-agendar {
+  background: linear-gradient(45deg, #28a745, #218838); /* Verde para agendar */
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.btn-agendar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .terapias-grid {
+    grid-template-columns: 1fr;
+  }
+  .terapia-card {
+    padding: 25px;
+  }
+  .modal-content {
+    padding: 30px;
+  }
+  .modal-header h2 {
+    font-size: 1.8rem;
+  }
+  .descripcion-larga {
+    font-size: 1rem;
+  }
+  .beneficios-seccion h4 {
+    font-size: 1.2rem;
+  }
+  .info-adicional {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .terapias-limpiezas-container h2 {
+    font-size: 2rem;
+  }
+  .terapia-card h3 {
+    font-size: 1.5rem;
+  }
+}

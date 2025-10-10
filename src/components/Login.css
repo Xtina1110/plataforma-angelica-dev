@@ -1,0 +1,259 @@
+/* Login Card y Animación mejorada */
+.login-card {
+  background: var(--background-translucent);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-elegant);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeInUp 0.6s ease-out;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition-smooth);
+}
+
+.login-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px rgba(106, 13, 173, 0.4);
+}
+
+.login-title {
+  font-size: 0.875rem;
+  color: var(--primary-purple);
+  margin-bottom: 8px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  color: #a0a0a0;
+  z-index: 1;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 12px 12px 50px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: var(--transition-smooth);
+}
+
+.input-group input:focus {
+  border-color: var(--primary-purple);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.15);
+}
+
+/* Botón amarillo consistente con variables CSS */
+.login-button {
+  background: var(--gradient-gold);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: scale(1);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.login-button:hover::before {
+  left: 100%;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:active {
+  transform: scale(0.95);
+}
+
+.login-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: scale(1);
+  box-shadow: none;
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.login-footer {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.register-link {
+  cursor: pointer;
+  color: var(--primary-purple);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.register-link:hover {
+  text-decoration: underline;
+  color: #5a009d;
+  transform: translateY(-1px);
+}
+
+.forgot-password-link {
+  cursor: pointer;
+  color: var(--primary-purple);
+  margin-top: 10px;
+  display: block;
+  transition: var(--transition-smooth);
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+  color: #5a009d;
+  transform: translateY(-1px);
+}
+
+
+/* ========================================
+   RESPONSIVE DESIGN - LOGIN
+   ======================================== */
+
+/* Tablets (hasta 1024px) */
+@media (max-width: 1024px) {
+  .login-container {
+    padding: 20px;
+  }
+
+  .login-form {
+    max-width: 500px;
+  }
+}
+
+/* Móviles (hasta 768px) */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 16px;
+  }
+
+  .login-header h1 {
+    font-size: 28px;
+  }
+
+  .login-header p {
+    font-size: 14px;
+  }
+
+  .login-form {
+    padding: 24px;
+  }
+
+  .form-input {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .submit-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .forgot-password-link,
+  .register-link {
+    font-size: 13px;
+  }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 12px;
+  }
+
+  .login-header h1 {
+    font-size: 24px;
+  }
+
+  .login-header p {
+    font-size: 13px;
+  }
+
+  .login-form {
+    padding: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  .form-input {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .submit-button {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .checkbox-label {
+    font-size: 12px;
+  }
+}
+
+/* Modo paisaje móvil */
+@media (max-width: 768px) and (orientation: landscape) {
+  .login-container {
+    padding: 12px;
+  }
+
+  .login-form {
+    max-width: 600px;
+  }
+}

@@ -1,0 +1,452 @@
+/* ========================================
+   BARRA DE FILTROS UNIVERSAL
+   ======================================== */
+.filter-bar {
+  background: linear-gradient(135deg, #6b46c1 0%, #553c9a 100%);
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(107, 70, 193, 0.3);
+}
+
+.filter-bar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ========================================
+   BUSCADOR
+   ======================================== */
+.filter-search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.filter-search svg {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  z-index: 1;
+}
+
+.filter-search input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 14px;
+  color: #374151;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-search input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.filter-search input::placeholder {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* ========================================
+   FILTROS DROPDOWN
+   ======================================== */
+.filter-dropdown {
+  position: relative;
+  min-width: 180px;
+}
+
+.filter-dropdown select {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  appearance: none;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.filter-dropdown select:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+.filter-dropdown::after {
+  content: '';
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid #6b7280;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.filter-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ========================================
+   SELECTOR DE FECHA
+   ======================================== */
+.filter-date {
+  position: relative;
+  min-width: 180px;
+}
+
+.filter-date input {
+  width: 100%;
+  padding: 12px 45px 12px 15px;
+  border: none;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-date input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.filter-date input:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+.date-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+}
+
+/* Personalizar el calendario nativo */
+.filter-date input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ========================================
+   BOTÓN DE ACCIÓN
+   ======================================== */
+.filter-action-btn {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #1a1a2e;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+  white-space: nowrap;
+  min-width: 140px;
+}
+
+.filter-action-btn:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(251, 191, 36, 0.6);
+}
+
+/* ========================================
+   TEMAS ESPECÍFICOS POR APLICACIÓN
+   ======================================== */
+
+/* Tirada Angélica (Cian) */
+.filter-bar.tirada-theme {
+  background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+  box-shadow: 0 4px 20px rgba(0, 188, 212, 0.4);
+}
+
+.filter-bar.tirada-theme .filter-action-btn {
+  background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.5);
+  color: #fff;
+  font-weight: 800;
+}
+
+.filter-bar.tirada-theme .filter-action-btn:hover {
+  background: linear-gradient(135deg, #0097a7 0%, #00838f 100%);
+  box-shadow: 0 6px 25px rgba(0, 188, 212, 0.7);
+}
+
+/* Canalizaciones (Morado) */
+.filter-bar.canalizaciones-theme {
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+  box-shadow: 0 4px 20px rgba(156, 39, 176, 0.4);
+}
+
+.filter-bar.canalizaciones-theme .filter-action-btn {
+  background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+  box-shadow: 0 4px 15px rgba(156, 39, 176, 0.5);
+  color: #fff;
+  font-weight: 800;
+}
+
+.filter-bar.canalizaciones-theme .filter-action-btn:hover {
+  background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
+  box-shadow: 0 6px 25px rgba(156, 39, 176, 0.7);
+}
+
+/* Terapias (Rosa) */
+.filter-bar.terapias-theme {
+  background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+  box-shadow: 0 4px 20px rgba(233, 30, 99, 0.4);
+}
+
+.filter-bar.terapias-theme .filter-action-btn {
+  background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%);
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.5);
+  color: #fff;
+  font-weight: 800;
+}
+
+.filter-bar.terapias-theme .filter-action-btn:hover {
+  background: linear-gradient(135deg, #c2185b 0%, #ad1457 100%);
+  box-shadow: 0 6px 25px rgba(233, 30, 99, 0.7);
+}
+
+/* Academia (Verde) */
+.filter-bar.academia-theme {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+}
+
+.filter-bar.academia-theme .filter-action-btn {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.5);
+  color: #fff;
+  font-weight: 800;
+}
+
+.filter-bar.academia-theme .filter-action-btn:hover {
+  background: linear-gradient(135deg, #388e3c 0%, #2e7d32 100%);
+  box-shadow: 0 6px 25px rgba(76, 175, 80, 0.7);
+}
+
+/* Blog & Podcast (Dorado) */
+.filter-bar.blog-theme {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.filter-bar.blog-theme .filter-action-btn {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+  color: #1a1a2e;
+  font-weight: 800;
+}
+
+.filter-bar.blog-theme .filter-action-btn:hover {
+  background: linear-gradient(135deg, #ffed4e 0%, #ffeb3b 100%);
+  box-shadow: 0 6px 25px rgba(255, 215, 0, 0.7);
+}
+
+/* Tienda (Naranja) */
+.filter-bar.tienda-theme {
+  background: linear-gradient(135deg, #ff5722 0%, #d84315 100%);
+  box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
+}
+
+.filter-bar.tienda-theme .filter-action-btn {
+  background: linear-gradient(135deg, #ff5722 0%, #d84315 100%);
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.5);
+  color: #fff;
+  font-weight: 800;
+}
+
+.filter-bar.tienda-theme .filter-action-btn:hover {
+  background: linear-gradient(135deg, #d84315 0%, #bf360c 100%);
+  box-shadow: 0 6px 25px rgba(255, 87, 34, 0.7);
+}
+
+.filter-action-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(251, 191, 36, 0.4);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 1200px) {
+  .filter-bar-container {
+    gap: 12px;
+  }
+  
+  .filter-search {
+    max-width: 250px;
+    min-width: 180px;
+  }
+  
+  .filter-dropdown {
+    min-width: 130px;
+  }
+  
+  .filter-date {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-bar {
+    padding: 15px 0;
+  }
+  
+  .filter-bar-container {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .filter-search,
+  .filter-dropdown,
+  .filter-date {
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+  }
+  
+  .filter-action-btn {
+    width: 100%;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar-container {
+    padding: 0 15px;
+  }
+  
+  .filter-search input,
+  .filter-dropdown select,
+  .filter-date input,
+  .filter-action-btn {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  
+  .filter-search input {
+    padding-left: 40px;
+  }
+  
+  .filter-dropdown select {
+    padding-left: 35px;
+    padding-right: 15px;
+  }
+  
+  .filter-date input {
+    padding-right: 40px;
+  }
+}
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filter-bar {
+  animation: slideInDown 0.5s ease-out;
+}
+
+/* Efecto de enfoque suave */
+.filter-search input:focus,
+.filter-dropdown select:focus,
+.filter-date input:focus {
+  animation: focusGlow 0.3s ease-out;
+}
+
+@keyframes focusGlow {
+  0% {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(107, 70, 193, 0.3);
+  }
+  100% {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Tema oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  .filter-search input,
+  .filter-dropdown select,
+  .filter-date input {
+    background: rgba(31, 41, 55, 0.95);
+    color: #f3f4f6;
+  }
+  
+  .filter-search input::placeholder {
+    color: #9ca3af;
+  }
+  
+  .filter-icon,
+  .date-icon {
+    color: #9ca3af;
+  }
+  
+  .filter-dropdown::after {
+    border-top-color: #9ca3af;
+  }
+}

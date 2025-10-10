@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   VARIABLES ANGELICALES
+   ======================================== */
+
+:root {
+  /* Variables angelicales */
+  --angelical-purple: #9c27b0;
+  --angelical-blue: #2196f3;
+  --angelical-gradient: linear-gradient(135deg, #9c27b0, #2196f3);
+  --angelical-light: #f3e5f5;
+  --angelical-shadow: 0 8px 32px rgba(156, 39, 176, 0.15);
+}
+
+/* ========================================
+   ESTILOS BASE ANGELICALES
+   ======================================== */
+
+@layer base {
+  body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .academia-angelical {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fafafa 0%, #f8f9ff 100%);
+  }
+}
+
+/* ========================================
+   COMPONENTES ANGELICALES
+   ======================================== */
+
+@layer components {
+  /* Header Angelical */
+  .rbt-header-angelical {
+    @apply relative z-50;
+  }
+
+  .rbt-header-campaign-angelical {
+    background: linear-gradient(135deg, #9c27b0 0%, #673ab7 25%, #3f51b5 50%, #2196f3 75%, #03a9f4 100%);
+    @apply py-2 relative overflow-hidden;
+  }
+
+  .rbt-header-campaign-angelical::before {
+    content: '';
+    @apply absolute top-0 w-full h-full;
+    left: -100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  /* Botones Angelicales */
+  .btn-angelical {
+    background: linear-gradient(135deg, #9c27b0, #2196f3);
+    @apply border-0 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 relative overflow-hidden;
+    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+  }
+
+  .btn-angelical::before {
+    content: '';
+    @apply absolute top-0 w-full h-full;
+    left: -100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-angelical:hover::before {
+    left: 100%;
+  }
+
+  .btn-angelical:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
+  }
+
+  /* Tarjetas Angelicales */
+  .card-angelical {
+    @apply bg-white rounded-2xl transition-all duration-300 relative overflow-hidden;
+    box-shadow: 0 8px 32px rgba(156, 39, 176, 0.1);
+    border: 1px solid rgba(156, 39, 176, 0.1);
+  }
+
+  .card-angelical::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-1;
+    background: linear-gradient(135deg, #9c27b0, #2196f3);
+  }
+
+  .card-angelical:hover {
+    @apply -translate-y-1;
+    box-shadow: 0 16px 48px rgba(156, 39, 176, 0.2);
+  }
+
+  /* Categorías Angelicales */
+  .rbt-cat-box-angelical {
+    @apply transition-all duration-300 relative overflow-hidden;
+    border: 1px solid rgba(156, 39, 176, 0.1);
+  }
+
+  .rbt-cat-box-angelical::before {
+    content: '';
+    @apply absolute top-0 w-full h-full;
+    left: -100%;
+    background: linear-gradient(90deg, transparent, rgba(156, 39, 176, 0.05), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .rbt-cat-box-angelical:hover::before {
+    left: 100%;
+  }
+
+  .rbt-cat-box-angelical:hover {
+    @apply -translate-y-2;
+    box-shadow: 0 20px 40px rgba(156, 39, 176, 0.15);
+    border-color: rgba(156, 39, 176, 0.2);
+  }
+
+  .category-header {
+    @apply relative overflow-hidden;
+  }
+
+  .category-header::after {
+    content: '';
+    @apply absolute inset-0 opacity-30;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%);
+    background-size: 20px 20px;
+  }
+
+  /* Banner Angelical */
+  .rbt-banner-angelical {
+    @apply relative overflow-hidden;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f3e5f5 25%, #e8f4fd 50%, #f0f8ff 75%, #fafafa 100%);
+  }
+
+  .rbt-banner-angelical::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: radial-gradient(circle at 20% 80%, rgba(156, 39, 176, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+  }
+
+  .rbt-new-badge-angelical {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* ========================================
+   UTILIDADES ANGELICALES
+   ======================================== */
+
+@layer utilities {
+  /* Gradientes */
+  .gradient-angelical-primary {
+    background: linear-gradient(135deg, #9c27b0, #2196f3);
+  }
+
+  .gradient-angelical-secondary {
+    background: linear-gradient(135deg, #673ab7, #3f51b5);
+  }
+
+  .gradient-angelical-tertiary {
+    background: linear-gradient(135deg, #e91e63, #9c27b0);
+  }
+
+  .gradient-angelical-light {
+    background: linear-gradient(135deg, #f3e5f5, #e8f4fd);
+  }
+
+  /* Texto con gradiente */
+  .text-angelical-gradient {
+    background: linear-gradient(135deg, #9c27b0, #2196f3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Sombras */
+  .shadow-angelical {
+    box-shadow: 0 8px 32px rgba(156, 39, 176, 0.15);
+  }
+
+  .shadow-angelical-lg {
+    box-shadow: 0 16px 48px rgba(156, 39, 176, 0.2);
+  }
+
+  /* Bordes */
+  .border-angelical {
+    border: 1px solid rgba(156, 39, 176, 0.2);
+  }
+
+  /* Fondos */
+  .bg-angelical-light {
+    background: rgba(156, 39, 176, 0.05);
+  }
+
+  /* Colores de texto */
+  .text-angelical {
+    color: #9c27b0;
+  }
+
+  .text-angelical-blue {
+    color: #2196f3;
+  }
+
+  /* Animaciones */
+  .angelical-pulse {
+    animation: angelical-pulse 2s ease-in-out infinite;
+  }
+
+  .angelical-glow {
+    animation: angelical-glow 3s ease-in-out infinite;
+  }
+
+  /* Hover effects */
+  .hover-angelical {
+    @apply transition-all duration-300 relative;
+  }
+
+  .hover-angelical::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(33, 150, 243, 0.1));
+    border-radius: inherit;
+  }
+
+  .hover-angelical:hover::after {
+    @apply opacity-100;
+  }
+}
+
+/* ========================================
+   ANIMACIONES ANGELICALES
+   ======================================== */
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes angelical-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes angelical-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(156, 39, 176, 0.5);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================
+   SCROLLBAR ANGELICAL
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #9c27b0, #2196f3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #7b1fa2, #1976d2);
+}
+
+/* ========================================
+   RESPONSIVE ANGELICAL
+   ======================================== */
+
+@media (max-width: 768px) {
+  .rbt-banner-angelical {
+    @apply py-16;
+  }
+  
+  .rbt-categories-area {
+    @apply py-16;
+  }
+  
+  .card-angelical {
+    @apply mb-5;
+  }
+}
+

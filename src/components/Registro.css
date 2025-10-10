@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Tipografías */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ✅ Estilo para inputs */
+.input {
+  @apply w-full p-3 border border-gray-300 rounded-md bg-white text-sm text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition;
+}
+
+/* ✅ Botón morado igual al Login */
+.btn-registrarse {
+  background-color: #6a0dad;
+  color: white;
+  padding: 12px;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+.btn-registrarse:hover {
+  background-color: #5a009d;
+}
+
+/* ✅ Título morado Playfair Display */
+.titulo-registro {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #6a0dad;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* ✅ Mensajes */
+.text-error {
+  @apply text-red-600 mt-2 text-sm font-semibold;
+}
+.text-success {
+  @apply text-green-600 mt-2 text-sm font-semibold;
+}
+
+/* ✅ Checkbox legal */
+.terminos-container {
+  @apply mt-4 flex items-start;
+}
+.terminos-container input[type="checkbox"] {
+  @apply mr-2 mt-1;
+}
+.terminos-texto {
+  @apply text-sm;
+}
+.terminos-link {
+  @apply text-blue-600 underline;
+}
+
+/* ✅ Botones de navegación */
+.boton-cerrar {
+  @apply absolute top-4 right-4 text-purple-700 hover:text-purple-900 text-2xl font-bold;
+}
+.boton-volver {
+  @apply text-gray-600 hover:text-purple-600 font-medium flex items-center;
+}
+
+/* ✅ Tarjeta de formulario */
+.formulario-card {
+  @apply z-20 bg-white/95 p-6 rounded-3xl shadow-lg w-full max-w-3xl overflow-auto max-h-screen relative mx-auto mt-10;
+}
+
+/* ✅ Footer fijo */
+.footer-fijo {
+  @apply absolute bottom-0 left-0 right-0 z-30;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - REGISTRO
+   ======================================== */
+
+/* Tablets (hasta 1024px) */
+@media (max-width: 1024px) {
+  .registro-container {
+    padding: 20px;
+  }
+
+  .registro-form {
+    max-width: 600px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Móviles (hasta 768px) */
+@media (max-width: 768px) {
+  .registro-container {
+    padding: 16px;
+  }
+
+  .registro-header h1 {
+    font-size: 28px;
+  }
+
+  .registro-header p {
+    font-size: 14px;
+  }
+
+  .registro-form {
+    padding: 24px;
+  }
+
+  .form-section h3 {
+    font-size: 18px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .submit-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .login-link {
+    font-size: 13px;
+  }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .registro-container {
+    padding: 12px;
+  }
+
+  .registro-header h1 {
+    font-size: 24px;
+  }
+
+  .registro-header p {
+    font-size: 13px;
+  }
+
+  .registro-form {
+    padding: 20px;
+  }
+
+  .form-section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .form-section h3 {
+    font-size: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-input,
+  .form-select {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .submit-button {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .checkbox-label {
+    font-size: 11px;
+  }
+
+  .terms-link {
+    font-size: 11px;
+  }
+}
+
+/* Modo paisaje móvil */
+@media (max-width: 768px) and (orientation: landscape) {
+  .registro-container {
+    padding: 12px;
+  }
+
+  .registro-form {
+    max-width: 700px;
+  }
+
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

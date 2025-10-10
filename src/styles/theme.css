@@ -1,0 +1,9 @@
+:root {
+  --color-morado-espiritual: #6a0dad;
+  --color-dorado-celestial: #d4af37;
+  --color-lavanda-suave: #e6e6fa;
+  --color-blanco-opaco: rgba(255, 255, 255, 0.85);
+
+  --fuente-titulos: 'Playfair Display', serif;
+  --fuente-texto: 'Inter', sans-serif;
+}
