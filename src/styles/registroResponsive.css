@@ -1,0 +1,206 @@
+/* Responsive styles for registration flow */
+
+/* Mobile First - Base styles (320px+) */
+@media (max-width: 767px) {
+  /* Progress bar compact */
+  .registro-progress-step {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .registro-progress-line {
+    width: 12px !important;
+  }
+
+  /* Form fields full width */
+  .registro-form-field {
+    width: 100% !important;
+  }
+
+  /* Buttons full width on mobile */
+  .registro-button {
+    width: 100% !important;
+    padding: 14px !important;
+  }
+
+  /* Stack plan cards vertically */
+  .registro-plan-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Stack user type cards vertically */
+  .registro-usertype-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce padding in cards */
+  .registro-card {
+    padding: 16px !important;
+  }
+
+  /* Smaller icons on mobile */
+  .registro-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  /* Compact header */
+  .registro-header {
+    padding: 12px !important;
+  }
+
+  /* Smaller text on mobile */
+  .registro-title {
+    font-size: 1.25rem !important;
+  }
+
+  .registro-subtitle {
+    font-size: 0.875rem !important;
+  }
+
+  /* Touch targets minimum 44px */
+  .registro-touch-target {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+
+  /* Hide less important elements on mobile */
+  .registro-hide-mobile {
+    display: none !important;
+  }
+
+  /* Reduce spacing */
+  .registro-spacing {
+    margin-bottom: 12px !important;
+  }
+
+  /* Footer compact */
+  .registro-footer {
+    padding: 12px !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Progress bar medium */
+  .registro-progress-step {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* 2 columns for plans on tablet */
+  .registro-plan-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  /* 2 columns for user types on tablet */
+  .registro-usertype-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Buttons side by side */
+  .registro-button-group {
+    display: flex !important;
+    gap: 12px !important;
+  }
+
+  .registro-button {
+    flex: 1 !important;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  /* Full size progress bar */
+  .registro-progress-step {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  /* 4 columns for plans on desktop */
+  .registro-plan-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 20px !important;
+  }
+
+  /* Hover effects on desktop */
+  .registro-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Show additional info on desktop */
+  .registro-show-desktop {
+    display: block !important;
+  }
+}
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+  /* More spacing on large screens */
+  .registro-container {
+    max-width: 1280px !important;
+  }
+
+  /* Larger text on big screens */
+  .registro-title {
+    font-size: 2rem !important;
+  }
+}
+
+/* Landscape mobile (orientation) */
+@media (max-width: 767px) and (orientation: landscape) {
+  /* Reduce vertical spacing in landscape */
+  .registro-spacing {
+    margin-bottom: 8px !important;
+  }
+
+  /* Smaller header in landscape */
+  .registro-header {
+    padding: 8px !important;
+  }
+
+  /* Compact footer in landscape */
+  .registro-footer {
+    padding: 8px !important;
+  }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Sharper borders */
+  .registro-card {
+    border-width: 1.5px !important;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .registro-animated {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .registro-card {
+    background-color: rgba(17, 24, 39, 0.8) !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .registro-no-print {
+    display: none !important;
+  }
+
+  .registro-card {
+    break-inside: avoid !important;
+  }
+}
+
