@@ -15,7 +15,8 @@ const AuthPageLayout = ({
   showLanguageSelector = false,
   availableLanguages = [],
   language = "",
-  changeLanguage = () => {}
+  changeLanguage = () => {},
+  maxWidth = "max-w-lg" // Permite personalizar el ancho máximo
 }) => {
   const navigate = useNavigate();
 
@@ -47,7 +48,7 @@ const AuthPageLayout = ({
 
       {/* Ventana modal centrada ultra-compacta */}
       <div className="relative z-30 flex-1 flex items-center justify-center px-4 lg:px-12 py-2">
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl w-full max-w-lg mx-auto border border-white/20">
+        <div className={`bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl w-full ${maxWidth} mx-auto border border-white/20`}>
           
           {/* Barra superior compacta */}
           <div className="relative h-12 overflow-hidden rounded-t-3xl">

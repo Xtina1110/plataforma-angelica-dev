@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../supabase';
-import { useTheme } from '../contexts/ThemeContext';
-import { Globe, Volume2 } from 'lucide-react';
-import AngelicParticles from './AngelicParticles';
-import sanMiguel from '../assets/FondoPantallaIniciovf.png';
+import { UserPlus } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import AuthPageLayout from './AuthPageLayout';
+import LanguageSelector from './LanguageSelector';
+import AudioButton from './AudioButton';
 
 // Import steps
 import Step1BasicInfo from './registro/Step1BasicInfo';
@@ -14,9 +15,13 @@ import Step4UserType from './registro/Step4UserType';
 import Step5Subscription from './registro/Step5Subscription';
 import Step6Confirmation from './registro/Step6Confirmation';
 
+// Imagen temática para registro
+const registroHeaderImage = 'https://images.unsplash.com/photo-1557683316-973673baf926?w=800&h=400&fit=crop';
+
 const RegistroMultiStep = () => {
-  const { isDark } = useTheme();
   const navigate = useNavigate();
+  const { getCurrentTranslation } = useLanguage();
+  const translation = getCurrentTranslation();
   
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
@@ -225,32 +230,24 @@ const RegistroMultiStep = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat relative overflow-hidden"
-         style={{ backgroundImage: `url(${sanMiguel})` }}>
-      
-      {/* Overlay oscuro */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/70 via-violet-900/70 to-indigo-900/70" />
-      
-      {/* Partículas de fondo */}
-      <AngelicParticles />
+    <>
+      {/* Efecto de luz divina desde arriba - igual que login */}
+      <div className="fixed top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-radial from-yellow-200/20 via-purple-200/10 to-transparent rounded-full blur-3xl pointer-events-none z-0" />
 
-      {/* Header con iconos de idioma y audio */}
-      <div className="relative z-20 flex justify-end items-center p-4 gap-3">
-        <button className={`p-3 rounded-xl backdrop-blur-md transition-all ${
-          isDark ? 'bg-gray-900/90 hover:bg-gray-800/90' : 'bg-white/90 hover:bg-white'
-        } shadow-lg`}>
-          <Globe className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-700'}`} />
-        </button>
-        <button className={`p-3 rounded-xl backdrop-blur-md transition-all ${
-          isDark ? 'bg-gray-900/90 hover:bg-gray-800/90' : 'bg-white/90 hover:bg-white'
-        } shadow-lg`}>
-          <Volume2 className={`w-5 h-5 ${isDark ? 'text-white' : 'text-gray-700'}`} />
-        </button>
+      {/* Botones de idioma y audio - igual que login */}
+      <div className="fixed top-4 right-4 z-[9999] flex items-center gap-3">
+        <LanguageSelector inline variant="loading" />
+        <AudioButton variant="loading" />
       </div>
 
-      {/* Contenido principal - Flex grow para ocupar espacio disponible */}
-      <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-2">
-        <div className="w-full max-w-6xl">
+      <AuthPageLayout
+        title={translation.registerPage?.title || "Registro"}
+        headerImage={registroHeaderImage}
+        icon={UserPlus}
+        maxWidth="max-w-6xl"
+      >
+        {/* Contenido del registro con ancho ampliado */}
+        <div className="max-w-6xl mx-auto relative">
           {/* Progress Bar Compacto */}
           <div className="mb-3">
             {/* Steps Indicator */}
@@ -263,14 +260,14 @@ const RegistroMultiStep = () => {
                         ? 'bg-green-500 text-white'
                         : step === currentStep
                         ? 'bg-purple-600 text-white ring-2 ring-purple-600/30'
-                        : 'bg-white/20 text-white/50'
+                        : 'bg-gray-300 text-gray-600'
                     }`}
                   >
                     {step < currentStep ? '✓' : step}
                   </div>
                   {step < 6 && (
                     <div className={`w-8 h-0.5 rounded-full transition-all ${
-                      step < currentStep ? 'bg-green-500' : 'bg-white/20'
+                      step < currentStep ? 'bg-green-500' : 'bg-gray-300'
                     }`} />
                   )}
                 </React.Fragment>
@@ -279,7 +276,7 @@ const RegistroMultiStep = () => {
 
             {/* Progress Text */}
             <div className="text-center">
-              <p className="text-xs text-white/90">
+              <p className="text-xs text-gray-700">
                 Paso {currentStep} de {totalSteps}: <span className="font-semibold">{getStepTitle()}</span>
               </p>
             </div>
@@ -287,36 +284,21 @@ const RegistroMultiStep = () => {
 
           {/* Error Message */}
           {error && (
-            <div className="mb-2 p-2 bg-red-500/20 border border-red-500 rounded-lg">
-              <p className="text-red-200 text-xs flex items-center gap-2">
+            <div className="mb-3 p-3 bg-red-50 border-2 border-red-400 rounded-xl">
+              <p className="text-red-800 text-sm flex items-center gap-2 font-semibold">
                 <span>⚠️</span>
                 {error}
               </p>
             </div>
           )}
 
-          {/* Step Content - Compacto */}
-          <div className={`p-4 rounded-2xl backdrop-blur-md ${
-            isDark ? 'bg-gray-900/95' : 'bg-white/95'
-          } shadow-2xl max-h-[calc(100vh-280px)] overflow-y-auto`}>
+          {/* Step Content */}
+          <div className="bg-white/50 rounded-xl p-4 max-h-[calc(100vh-400px)] overflow-y-auto">
             {renderStep()}
           </div>
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="relative z-10 py-3 text-center">
-        <p className="text-xs text-white/70">
-          ¿Necesitas ayuda?{' '}
-          <a href="mailto:soporte@plataforma-angelica.com" className="text-purple-300 hover:text-purple-200 underline">
-            soporte@plataforma-angelica.com
-          </a>
-        </p>
-        <p className="text-xs text-white/50 mt-1">
-          © 2025 Plataforma Angélica. Todos los derechos reservados.
-        </p>
-      </div>
-    </div>
+      </AuthPageLayout>
+    </>
   );
 };
 
