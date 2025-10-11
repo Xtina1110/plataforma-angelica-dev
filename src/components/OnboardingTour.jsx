@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, Sparkles, Heart, Calendar, MessageCircle, Shield, Check } from 'lucide-react';
 import angelSinFondo from '../assets/AngelEleganteSinFondo.png';
+import fondoAngelico from '../assets/FondoAngelicoDashboard.png';
 
 const OnboardingTour = ({ onComplete, onSkip }) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -78,9 +79,32 @@ const OnboardingTour = ({ onComplete, onSkip }) => {
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center animate-fade-in">
-      {/* Fondo de nubes moradas del dashboard */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-700 via-purple-600 to-violet-600" />
-      <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1920&h=1080&fit=crop')] bg-cover bg-center" style={{ mixBlendMode: 'soft-light' }} />
+      {/* Fondo idéntico al header del dashboard */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${fondoAngelico})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
+      
+      {/* Capa morada transparente directa sobre la imagen */}
+      <div className="absolute inset-0 bg-purple-600/40" />
+      
+      {/* Degradación morada adicional */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-800/30 via-purple-600/25 to-violet-500/20" />
+      
+      {/* Overlay adicional muy sutil para mejorar legibilidad */}
+      <div className="absolute inset-0 bg-purple-900/10" />
+      
+      {/* Efectos de fondo decorativos */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-xl" />
+        <div className="absolute bottom-10 right-20 w-48 h-48 bg-purple-400/30 rounded-full blur-2xl" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-violet-400/20 rounded-full blur-3xl" />
+      </div>
+      
       {/* Modal principal */}
       <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full mx-4 overflow-hidden animate-scale-in">
         {/* Header con gradiente dinámico */}
