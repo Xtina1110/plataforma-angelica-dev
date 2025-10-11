@@ -4,6 +4,7 @@ import { supabase } from '../supabase';
 import { useTheme } from '../contexts/ThemeContext';
 import { Globe, Volume2 } from 'lucide-react';
 import AngelicParticles from './AngelicParticles';
+import fondoAngelico from '../assets/FondoAngelicoDashboard.png';
 
 // Import steps
 import Step1BasicInfo from './registro/Step1BasicInfo';
@@ -225,7 +226,7 @@ const RegistroMultiStep = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-cover bg-center bg-no-repeat relative overflow-hidden"
-         style={{ backgroundImage: `url('/images/arcangel-miguel.jpg')` }}>
+         style={{ backgroundImage: `url(${fondoAngelico})` }}>
       
       {/* Overlay oscuro */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/70 via-violet-900/70 to-indigo-900/70" />
