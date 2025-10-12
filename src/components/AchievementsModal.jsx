@@ -86,7 +86,7 @@ const AchievementsModal = ({ isOpen, onClose, userId }) => {
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden animate-scale-in">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-[95vw] max-w-4xl max-h-[90vh] mx-4 overflow-hidden animate-scale-in">
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-600 via-purple-500 to-violet-500 p-6 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>

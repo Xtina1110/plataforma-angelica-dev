@@ -238,13 +238,16 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         if (profileResult.success && profileResult.data) {
           setUserData(profileResult.data);
         } else {
-          // Fallback a datos básicos
+          // Fallback a datos básicos - usar nombre del email si no hay datos
+          const emailName = user.email ? user.email.split('@')[0] : 'Usuario';
+          const displayName = emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[^a-zA-Z]/g, '');
+          
           setUserData({
             id: user.id,
             email: user.email,
-            first_name: user.user_metadata?.first_name || 'Usuario',
+            first_name: user.user_metadata?.first_name || displayName,
             last_name: user.user_metadata?.last_name || '',
-            full_name: user.user_metadata?.full_name || 'Usuario',
+            full_name: user.user_metadata?.full_name || displayName,
             spiritual_level: 'Iniciado',
             light_points: 0,
             total_sessions: 0
