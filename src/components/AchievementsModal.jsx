@@ -187,7 +187,7 @@ const AchievementsModal = ({ isOpen, onClose, userId }) => {
                     className={`relative rounded-xl p-4 border-2 transition-all ${
                       unlocked
                         ? 'bg-gradient-to-br from-purple-50 to-violet-50 border-purple-300 shadow-md'
-                        : 'bg-gray-50 border-gray-200 opacity-75'
+                        : 'bg-gray-100 border-gray-300'
                     }`}
                   >
                     {/* Unlocked Badge */}
@@ -215,17 +215,17 @@ const AchievementsModal = ({ isOpen, onClose, userId }) => {
 
                       {/* Info */}
                       <div className="flex-1">
-                        <h3 className={`font-bold text-lg ${unlocked ? 'text-gray-800' : 'text-gray-500'}`}>
+                        <h3 className={`font-bold text-lg ${unlocked ? 'text-gray-800' : 'text-gray-700'}`}>
                           {achievement.name}
                         </h3>
-                        <p className={`text-sm mt-1 ${unlocked ? 'text-gray-600' : 'text-gray-400'}`}>
+                        <p className={`text-sm mt-1 ${unlocked ? 'text-gray-600' : 'text-gray-600'}`}>
                           {achievement.description}
                         </p>
 
                         {/* Points */}
                         <div className="flex items-center gap-2 mt-3">
-                          <Star className={`w-4 h-4 ${unlocked ? 'text-yellow-500' : 'text-gray-400'}`} />
-                          <span className={`text-sm font-medium ${unlocked ? 'text-purple-600' : 'text-gray-500'}`}>
+                          <Star className={`w-4 h-4 ${unlocked ? 'text-yellow-500' : 'text-gray-500'}`} />
+                          <span className={`text-sm font-medium ${unlocked ? 'text-purple-600' : 'text-gray-700'}`}>
                             {achievement.points_reward} puntos
                           </span>
                         </div>
