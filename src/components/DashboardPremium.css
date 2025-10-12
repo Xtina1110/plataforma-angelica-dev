@@ -1,0 +1,249 @@
+/* Dashboard Premium Container */
+.dashboard-premium {
+  display: flex;
+  min-height: 100vh;
+  background: #F5F5F5;
+  position: relative;
+}
+
+.dashboard-premium.dark {
+  background: #1A1A2E;
+}
+
+/* Main Content */
+.dashboard-main-content {
+  flex: 1;
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-main-content.sidebar-collapsed {
+  margin-left: 80px;
+}
+
+/* Dashboard Home */
+.dashboard-home {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Dashboard Tools */
+.dashboard-tools {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+
+/* Section Container */
+.section-container {
+  padding: 40px;
+  background: white;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2C1654;
+  margin: 0 0 24px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #6E3CBC 0%, #B388FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blog Section */
+.blog-section {
+  padding: 60px 40px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.blog-section h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2C1654;
+  margin-bottom: 16px;
+}
+
+.blog-section p {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Shopping Cart Modal */
+.cart-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.cart-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart-modal h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2C1654;
+  margin: 0 0 24px 0;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.cart-item {
+  padding: 16px;
+  background: rgba(110, 60, 188, 0.05);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-item h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C1654;
+  margin: 0;
+}
+
+.cart-item p {
+  font-size: 18px;
+  font-weight: 700;
+  color: #6E3CBC;
+  margin: 0;
+}
+
+.cart-modal button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #6E3CBC 0%, #B388FF 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cart-modal button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(110, 60, 188, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboard-main-content {
+    margin-left: 80px;
+  }
+
+  .dashboard-main-content.sidebar-collapsed {
+    margin-left: 0;
+  }
+
+  .dashboard-tools {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+  }
+
+  .section-container {
+    padding: 24px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-main-content {
+    margin-left: 0;
+  }
+
+  .dashboard-tools {
+    position: relative;
+    top: auto;
+    right: auto;
+    padding: 16px;
+    justify-content: flex-end;
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .section-container {
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .blog-section {
+    padding: 40px 20px;
+  }
+
+  .blog-section h2 {
+    font-size: 28px;
+  }
+
+  .blog-section p {
+    font-size: 16px;
+  }
+}
+
