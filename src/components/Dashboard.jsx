@@ -62,6 +62,7 @@ import {
 
 // Importar componente de eventos
 import EventosModernos from './EventosModernos';
+import EventCarouselIndicators from './EventCarouselIndicators';
 
 import logo from '../assets/Logosinfondo.png';
 import fondoMarmoleado from '../assets/Fondomarmoleado.jpg';
@@ -136,6 +137,9 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   const plugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false })
   );
+  
+  // Ref para el carrusel de eventos
+  const eventCarouselRef = useRef(null);
 
   // Estados para los filtros de cada aplicación
   const [filters, setFilters] = useState({});
@@ -830,8 +834,34 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         }}></div>
       </div>
       
+      {/* Calendario de eventos del mes */}
+      <div className="mb-6">
+        <EventCalendar 
+          events={eventos}
+          onDateSelect={(date) => {
+            // Buscar evento en esa fecha
+            const eventoIndex = eventos.findIndex(e => {
+              const eventDate = new Date(e.fecha);
+              return eventDate.toDateString() === date.toDateString();
+            });
+            
+            if (eventoIndex !== -1 && eventCarouselRef.current) {
+              // Scroll al evento correspondiente
+              const carouselContent = eventCarouselRef.current.querySelector('.eventos-content');
+              if (carouselContent) {
+                const slideWidth = eventCarouselRef.current.offsetWidth;
+                carouselContent.scrollTo({
+                  left: slideWidth * eventoIndex,
+                  behavior: 'smooth'
+                });
+              }
+            }
+          }}
+        />
+      </div>
+      
       {/* Carrusel horizontal de eventos con navegación manual */}
-      <div className="eventos-carousel-horizontal">
+      <div ref={eventCarouselRef} className="eventos-carousel-horizontal">
         <Carousel 
           className="carousel-eventos-manual"
           opts={{
@@ -961,13 +991,15 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           </CarouselNext>
         </Carousel>
         
-        {/* Indicadores de puntos opcional */}
-        <div className="carousel-indicators">
-          {Array.from({ length: Math.ceil(eventos.length / 3) }).map((_, index) => (
-            <div key={index} className="indicator-dot"></div>
-          ))}
-        </div>
       </div>
+      
+      {/* Indicadores dinámicos con auto-scroll */}
+      <EventCarouselIndicators 
+        totalSlides={eventos.length}
+        containerRef={eventCarouselRef}
+        autoScrollInterval={5000}
+        enableAutoScroll={true}
+      />
       
       {/* Espacio adicional antes del botón "Ver todos" */}
       <div style={{ height: '40px' }}></div>

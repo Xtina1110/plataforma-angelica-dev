@@ -385,7 +385,7 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-stretch" style={{ gridAutoRows: '1fr' }}>
                   <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 h-full">
                     <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
                       <IconoAmbienteSagrado className="w-10 h-10 text-blue-600" />

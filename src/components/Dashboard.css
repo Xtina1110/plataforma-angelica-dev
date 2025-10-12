@@ -3694,11 +3694,13 @@ body {
 
 .hover-content {
   background: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   max-width: 400px;
   width: 95%;
+  max-height: 90%;
+  overflow-y: auto;
   text-align: left;
   transform: translateY(20px);
   transition: transform 0.3s ease;
@@ -3713,10 +3715,10 @@ body {
 .hover-instructor {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 15px;
+  gap: 8px;
+  margin-bottom: 10px;
   color: #555;
-  font-size: 1rem;
+  font-size: 0.875rem;
   text-align: left;
 }
 
@@ -3728,11 +3730,16 @@ body {
 
 .hover-description {
   color: #333;
-  font-size: 1.1rem;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  text-align: justify;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  text-align: left;
   text-indent: 0;
+  max-height: 80px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .hover-footer {
