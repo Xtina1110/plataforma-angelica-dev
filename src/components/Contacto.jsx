@@ -90,8 +90,8 @@ const Contacto = () => {
       title: 'Email',
       value: 'contacto@plataformaangelica.com',
       color: 'from-purple-500 to-purple-600',
-      bgColor: 'from-white to-white',
-      borderColor: 'border-gray-200',
+      bgColor: 'from-purple-50 to-purple-100',
+      borderColor: 'border-purple-200',
       link: 'mailto:contacto@plataformaangelica.com'
     },
     {
@@ -99,8 +99,8 @@ const Contacto = () => {
       title: 'WhatsApp',
       value: '+123 456 789',
       color: 'from-green-500 to-green-600',
-      bgColor: 'from-white to-white',
-      borderColor: 'border-gray-200',
+      bgColor: 'from-green-50 to-green-100',
+      borderColor: 'border-green-200',
       link: 'https://wa.me/123456789?text=Hola%2C%20me%20gustaría%20obtener%20más%20información%20sobre%20Plataforma%20Angélica'
     },
     {
@@ -108,8 +108,8 @@ const Contacto = () => {
       title: 'Instagram',
       value: '@elangeologo',
       color: 'from-pink-500 to-pink-600',
-      bgColor: 'from-white to-white',
-      borderColor: 'border-gray-200',
+      bgColor: 'from-pink-50 to-pink-100',
+      borderColor: 'border-pink-200',
       link: 'https://www.instagram.com/elangeologo/'
     },
     {
@@ -117,8 +117,8 @@ const Contacto = () => {
       title: 'Facebook',
       value: 'El Angeólogo',
       color: 'from-blue-500 to-blue-600',
-      bgColor: 'from-white to-white',
-      borderColor: 'border-gray-200',
+      bgColor: 'from-blue-50 to-blue-100',
+      borderColor: 'border-blue-200',
       link: 'https://www.facebook.com/elangeologo'
     },
     {
@@ -126,8 +126,8 @@ const Contacto = () => {
       title: 'YouTube',
       value: '@JuanCarlosAvilaElangeologo',
       color: 'from-red-500 to-red-600',
-      bgColor: 'from-white to-white',
-      borderColor: 'border-gray-200',
+      bgColor: 'from-red-50 to-red-100',
+      borderColor: 'border-red-200',
       link: 'https://www.youtube.com/@JuanCarlosAvilaElangeologo'
     },
     {
@@ -135,7 +135,7 @@ const Contacto = () => {
       title: 'X (Twitter)',
       value: 'Próximamente',
       color: 'from-gray-800 to-black',
-      bgColor: 'from-white to-white',
+      bgColor: 'from-gray-50 to-gray-100',
       borderColor: 'border-gray-200',
       link: null
     }
@@ -190,7 +190,7 @@ const Contacto = () => {
             </div>
             <div className="flex items-center gap-2 text-gray-600">
               <MapPin size={18} className="text-purple-600" />
-              <span><strong>Ubicación:</strong> Madrid, España</span>
+              <span><strong>Ubicación:</strong> Miami, USA</span>
             </div>
           </div>
 
