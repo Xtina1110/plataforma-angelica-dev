@@ -1455,12 +1455,12 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
             
             <div className={`aplicaciones-grid-correcto ${isMobile ? 'mobile-grid' : ''}`}> {/* Force refresh colors fix */}
               {[
-                 { id: 'tirada', icon: <Heart />, titulo: t.angelicReading, desc: 'Conecta con la sabiduría de los ángeles', disponible: true, color: '#008080' },
+                 { id: 'tirada', icon: <Heart />, titulo: t.angelicReading, desc: 'Conecta con la sabiduría de los ángeles', disponible: true, color: '#00BFFF' },
                 { id: 'canalizaciones', icon: <Headphones />, titulo: t.soundTherapy, desc: 'Frecuencias sagradas de sanación', disponible: true, color: '#9900CC' },
-                { id: 'terapias', icon: <Zap />, titulo: t.therapies, desc: 'Sanación angelica profunda', disponible: true, color: '#FF0066' },
+                { id: 'terapias', icon: <Zap />, titulo: t.therapies, desc: 'Sanación angelica profunda', disponible: true, color: '#FF1493' },
                 { id: 'academia', icon: <GraduationCap />, titulo: t.academy, desc: 'Formación espiritual completa', disponible: true, color: '#00CC00' },
                 { id: 'reservas', icon: <Calendar />, titulo: 'Sistema de Reservas', desc: 'Agenda tu sesión de sanación angelical', disponible: true, color: '#8B5CF6' },
-                { id: 'videollamada', icon: <Video />, titulo: 'Consulta en Vivo', desc: 'Videollamadas angelicales personalizadas', disponible: true, color: '#E11D48' },
+                { id: 'videollamada', icon: <Video />, titulo: 'Consulta en Vivo', desc: 'Videollamadas angelicales personalizadas', disponible: true, color: '#DC143C' },
                 { id: 'mensaje', icon: <MessageSquare />, titulo: t.dailyMessage, desc: 'Recibe una canalización espiritual', disponible: true, color: '#C489FF' },
                 { id: 'eventos', icon: <Calendar />, titulo: 'Eventos Angelicales', desc: 'Ceremonias y encuentros espirituales', disponible: true, color: '#0000FF' },
                 { id: 'blog', icon: <Mic />, titulo: t.blogPodcast, desc: 'Contenido espiritual diario', disponible: true, color: '#FFCC00' },
