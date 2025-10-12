@@ -30,7 +30,10 @@ import AudioButton from './AudioButton';
 // Importar componentes premium
 import GlobalSearchModal from './GlobalSearchModal';
 import EventCalendar from './EventCalendar';
+import ProgressCharts from './ProgressCharts';
 import NotificationsCenter from './NotificationsCenter';
+import AchievementsModal from './AchievementsModal';
+import ProfileSettings from './ProfileSettings';
 
 // Importar servicios
 import { 
@@ -207,6 +210,8 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   // Estados para componentes premium
   const [searchOpen, setSearchOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [achievementsOpen, setAchievementsOpen] = useState(false);
+  const [profileSettingsOpen, setProfileSettingsOpen] = useState(false);
   const [selectedEventDate, setSelectedEventDate] = useState(new Date());
 
   // Debug: Log user cuando cambie
@@ -1194,9 +1199,19 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               onActionClick={() => console.log('Crear evento')}
               actionLabel="Crear Evento"
             />
+            {/* Calendario mensual de eventos */}
+            <div className="mb-8">
+              <EventCalendar
+                selectedDate={selectedEventDate}
+                onDateSelect={setSelectedEventDate}
+                events={eventos}
+                userId={user?.id}
+              />
+            </div>
+            
             <EventosModernos 
-              eventos={[]} 
-              eventosInscritos={[]} 
+              eventos={eventos} 
+              eventosInscritos={eventosInscritos} 
               onEventoClick={() => {}} 
               onToggleInscripcion={() => {}}
             />
@@ -1223,8 +1238,9 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
             <DashboardHeader 
               cartCount={cartItems.length}
               user={user}
+              userData={userData}
               onCartClick={() => setShowCart(true)}
-              onProfileClick={() => setShowSettings(true)}
+              onProfileClick={() => setProfileSettingsOpen(true)}
               onLogout={async () => { await onLogout(); navigate('/inicio'); }}
             />
 
@@ -1330,6 +1346,25 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                   </>
                 )}
               </div>
+            </div>
+
+            {/* Gráficos de Progreso */}
+            {!loadingUserData && (
+              <ProgressCharts userData={userData} userActivity={userActivity} />
+            )}
+
+            {/* Botón de Logros */}
+            <div className="flex justify-center mb-8">
+              <button
+                onClick={() => setAchievementsOpen(true)}
+                className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-3"
+              >
+                <Award className="w-6 h-6" />
+                <span className="font-bold text-lg">Ver Mis Logros</span>
+                <div className="absolute -top-2 -right-2 bg-yellow-400 text-purple-900 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shadow-lg">
+                  {userActivity?.consecutive_days || 0}
+                </div>
+              </button>
             </div>
 
             {/* Título Mensaje del Día */}
@@ -1490,6 +1525,18 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         notifications={notifications}
         onMarkAsRead={markNotificationAsRead}
         onMarkAllAsRead={() => markAllNotificationsAsRead(user?.id)}
+      />
+
+      <AchievementsModal
+        isOpen={achievementsOpen}
+        onClose={() => setAchievementsOpen(false)}
+        userId={user?.id}
+      />
+
+      <ProfileSettings
+        isOpen={profileSettingsOpen}
+        onClose={() => setProfileSettingsOpen(false)}
+        user={user}
       />
       
       <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile-sidebar' : ''}`}>
