@@ -158,7 +158,7 @@ const DashboardHeader = ({
                 {/* Carrito - ESTILO IGUAL AL DE IDIOMA */}
                 <button 
                   onClick={onCartClick}
-                  className="relative px-3 py-2 bg-purple-600/50 hover:bg-purple-600/70 rounded-lg transition-all duration-200 text-white border border-white/20 backdrop-blur-sm"
+                  className="relative px-3 py-2 bg-purple-700 hover:bg-purple-600 rounded-lg transition-all duration-200 text-white border-2 border-purple-500 hover:border-purple-400 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Carrito de compras"
                 >
                   <div className="flex items-center gap-2">
@@ -174,7 +174,7 @@ const DashboardHeader = ({
                 {/* Gestión de Usuario - ESTILO IGUAL AL DE IDIOMA */}
                 <button 
                   onClick={onProfileClick}
-                  className="flex items-center gap-2 px-3 py-2 bg-purple-600/50 hover:bg-purple-600/70 rounded-lg transition-all duration-200 text-white border border-white/20 backdrop-blur-sm"
+                  className="flex items-center gap-2 px-3 py-2 bg-purple-700 hover:bg-purple-600 rounded-lg transition-all duration-200 text-white border-2 border-purple-500 hover:border-purple-400 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Gestión de usuario"
                 >
                   <User size={18} />
@@ -184,7 +184,7 @@ const DashboardHeader = ({
                 {/* Logout - ESTILO IGUAL AL DE IDIOMA */}
                 <button 
                   onClick={onLogout}
-                  className="px-3 py-2 bg-purple-600/50 hover:bg-red-600/70 rounded-lg transition-all duration-200 text-white border border-white/20 backdrop-blur-sm"
+                  className="px-3 py-2 bg-purple-700 hover:bg-red-600 rounded-lg transition-all duration-200 text-white border-2 border-purple-500 hover:border-red-400 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Cerrar sesión"
                 >
                   <LogOut size={18} />
