@@ -14,9 +14,13 @@ export default defineConfig(({ mode }) => {
         name: 'html-transform',
         transformIndexHtml(html) {
           // Replace environment variables in HTML
+          // Use placeholder if not defined to prevent errors
+          const gaId = env.VITE_GA_MEASUREMENT_ID || '%VITE_GA_MEASUREMENT_ID%'
+          const mixpanelToken = env.VITE_MIXPANEL_TOKEN || '%VITE_MIXPANEL_TOKEN%'
+          
           return html
-            .replace(/%VITE_GA_MEASUREMENT_ID%/g, env.VITE_GA_MEASUREMENT_ID || '')
-            .replace(/%VITE_MIXPANEL_TOKEN%/g, env.VITE_MIXPANEL_TOKEN || '')
+            .replace(/%VITE_GA_MEASUREMENT_ID%/g, gaId)
+            .replace(/%VITE_MIXPANEL_TOKEN%/g, mixpanelToken)
         }
       }
     ],
@@ -25,11 +29,6 @@ export default defineConfig(({ mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
-    define: {
-      // Make env variables available in the app
-      'import.meta.env.VITE_GA_MEASUREMENT_ID': JSON.stringify(env.VITE_GA_MEASUREMENT_ID),
-      'import.meta.env.VITE_MIXPANEL_TOKEN': JSON.stringify(env.VITE_MIXPANEL_TOKEN),
-    }
   }
 })
 
