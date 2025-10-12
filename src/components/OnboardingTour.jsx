@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Sparkles, Heart, Calendar, MessageCircle, Shield, Check } from 'lucide-react';
+import { supabase } from '../integrations/supabase/client';
 import angelSinFondo from '../assets/AngelEleganteSinFondo.png';
 import fondoAngelico from '../assets/FondoAngelicoDashboard.png';
 
@@ -55,17 +56,52 @@ const OnboardingTour = ({ onComplete, onSkip }) => {
     }
   };
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     setIsVisible(false);
     localStorage.setItem('onboardingCompleted', 'true');
+    
+    // Guardar en Supabase si hay usuario
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        await supabase
+          .from('profiles')
+          .update({ 
+            onboarding_completed: true,
+            onboarding_completed_at: new Date().toISOString()
+          })
+          .eq('id', user.id);
+      }
+    } catch (error) {
+      console.error('Error saving onboarding status:', error);
+    }
+    
     setTimeout(() => {
       onComplete();
     }, 300);
   };
 
-  const handleSkipTour = () => {
+  const handleSkipTour = async () => {
     setIsVisible(false);
     localStorage.setItem('onboardingCompleted', 'true');
+    
+    // Guardar en Supabase que se saltó el onboarding
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        await supabase
+          .from('profiles')
+          .update({ 
+            onboarding_completed: true,
+            onboarding_skipped: true,
+            onboarding_completed_at: new Date().toISOString()
+          })
+          .eq('id', user.id);
+      }
+    } catch (error) {
+      console.error('Error saving onboarding skip status:', error);
+    }
+    
     setTimeout(() => {
       onSkip();
     }, 300);

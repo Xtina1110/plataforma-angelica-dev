@@ -47,7 +47,7 @@ const Contacto = () => {
         throw new Error('Por favor introduce un email válido');
       }
 
-      // Insertar en Supabase
+      // Insertar en Supabase (tabla contact_messages con nombres en español)
       const { error } = await supabase
         .from('contact_messages')
         .insert([
@@ -56,12 +56,14 @@ const Contacto = () => {
             email: formData.email,
             asunto: formData.asunto || 'Consulta general',
             mensaje: formData.mensaje,
-            fecha: new Date().toISOString(),
             estado: 'pendiente'
           }
         ]);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error:', error);
+        throw error;
+      }
 
       // Éxito
       setFormStatus({ loading: false, success: true, error: null });

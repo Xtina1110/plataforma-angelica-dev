@@ -4,7 +4,8 @@ import { supabase } from '../integrations/supabase/client';
 import {
   Home, Heart, Headphones, Zap, BookOpen, GraduationCap,
   MessageSquare, Mic, ShoppingCart, LogOut, User, Menu, X,
-  Calendar, Clock, MapPin, Users, Star, ChevronRight, Volume2, VolumeX, Video
+  Calendar, Clock, MapPin, Users, Star, ChevronRight, Volume2, VolumeX, Video,
+  Search, Bell, Loader2
 } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
@@ -25,6 +26,24 @@ import FooterLegal from './FooterLegal';
 import FilterBar from './FilterBar';
 import MensajeDelDia from './MensajeDelDia';
 import AudioButton from './AudioButton';
+
+// Importar componentes premium
+import GlobalSearchModal from './GlobalSearchModal';
+import EventCalendar from './EventCalendar';
+import NotificationsCenter from './NotificationsCenter';
+
+// Importar servicios
+import { 
+  loadUserData, 
+  loadUserActivity, 
+  updateLastLogin,
+  loadCartCount,
+  loadUnreadNotifications,
+  loadNotifications,
+  markNotificationAsRead,
+  markAllNotificationsAsRead
+} from '../services/userDataService';
+import { getDailyMessage, getArchangelInfo } from '../services/aiMessageService';
 
 // Importar headers
 import { 
@@ -176,27 +195,19 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     updateCartTotal();
   }, [cartItems]);
 
-  const [userData, setUserData] = useState({
-    nombre: '',
-    apellido: '',
-    email: 'usuario@email.com',
-    username: 'usuario@email.com',
-    rol: 'Premium',
-    telefono: '+34 600 123 456',
-    fechaNacimiento: '1985-03-15',
-    pais: 'España',
-    ciudad: 'Madrid',
-    nivelEspiritual: 'Iluminado',
-    puntosDeLuz: 1500,
-    diasConsecutivos: 7,
-    sonoterapiasCompletadas: 12,
-    canalizacionesEscuchadas: 25,
-    cursosFinalizados: 3,
-    notificaciones: true,
-    emailMarketing: false,
-    modoOscuro: false,
-    idioma: 'es'
-  });
+  // Estados para datos del usuario desde Supabase
+  const [userData, setUserData] = useState(null);
+  const [userActivity, setUserActivity] = useState(null);
+  const [dailyMessage, setDailyMessage] = useState(null);
+  const [cartCount, setCartCount] = useState(0);
+  const [unreadNotifications, setUnreadNotifications] = useState(0);
+  const [notifications, setNotifications] = useState([]);
+  const [loadingUserData, setLoadingUserData] = useState(true);
+  
+  // Estados para componentes premium
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [selectedEventDate, setSelectedEventDate] = useState(new Date());
 
   // Debug: Log user cuando cambie
   useEffect(() => {
@@ -205,58 +216,71 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     console.log('Dashboard - User metadata:', user?.user_metadata);
   }, [user]);
 
-  // Cargar datos del usuario desde Supabase
+  // Cargar todos los datos del usuario desde Supabase
   useEffect(() => {
-    const loadUserProfile = async () => {
-      if (user) {
-        console.log('Dashboard - Loading profile for user:', user.id);
-        try {
-          const { data: profileData, error: profileError } = await supabase
-            .from('usuarios')
-            .select('nombre, email')
-            .eq('id', user.id)
-            .maybeSingle();
+    const loadAllUserData = async () => {
+      if (!user) {
+        setLoadingUserData(false);
+        return;
+      }
 
-          console.log('Dashboard - Profile data:', profileData);
-          console.log('Dashboard - Profile error:', profileError);
+      setLoadingUserData(true);
+      console.log('Dashboard - Loading all data for user:', user.id);
 
-          if (profileData && !profileError) {
-            const updatedData = {
-              nombre: profileData.nombre || getUserDisplayName(),
-              email: profileData.email || user.email,
-              username: profileData.email || user.email
-            };
-            console.log('Dashboard - Setting userData to:', updatedData);
-            setUserData(prev => ({
-              ...prev,
-              ...updatedData
-            }));
-          } else {
-            // Si no existe en usuarios, usar datos básicos del usuario auth
-            const fallbackData = {
-              nombre: getUserDisplayName(),
-              email: user.email || 'usuario@email.com',
-              username: user.email || 'usuario@email.com'
-            };
-            console.log('Dashboard - Using fallback userData:', fallbackData);
-            setUserData(prev => ({
-              ...prev,
-              ...fallbackData
-            }));
-          }
-        } catch (error) {
-          console.error('Dashboard - Error cargando perfil:', error);
-          setUserData(prev => ({
-            ...prev,
-            nombre: getUserDisplayName(),
-            email: user.email || 'usuario@email.com',
-            username: user.email || 'usuario@email.com'
-          }));
+      try {
+        // Cargar datos del perfil
+        const profileResult = await loadUserData(user.id);
+        if (profileResult.success && profileResult.data) {
+          setUserData(profileResult.data);
+        } else {
+          // Fallback a datos básicos
+          setUserData({
+            id: user.id,
+            email: user.email,
+            first_name: user.user_metadata?.first_name || 'Usuario',
+            last_name: user.user_metadata?.last_name || '',
+            full_name: user.user_metadata?.full_name || 'Usuario',
+            spiritual_level: 'Iniciado',
+            light_points: 0,
+            total_sessions: 0
+          });
         }
+
+        // Cargar actividad del usuario (racha de días)
+        const activityResult = await loadUserActivity(user.id);
+        if (activityResult.success) {
+          setUserActivity(activityResult.data);
+        }
+
+        // Actualizar último login
+        await updateLastLogin(user.id);
+
+        // Cargar mensaje del día
+        const messageResult = await getDailyMessage(user.id, profileResult.data);
+        if (messageResult.success) {
+          setDailyMessage(messageResult.data);
+        }
+
+        // Cargar contador del carrito
+        const cartCountResult = await loadCartCount(user.id);
+        setCartCount(cartCountResult);
+
+        // Cargar notificaciones no leídas
+        const unreadCount = await loadUnreadNotifications(user.id);
+        setUnreadNotifications(unreadCount);
+
+        // Cargar notificaciones
+        const notificationsList = await loadNotifications(user.id, 10);
+        setNotifications(notificationsList);
+
+      } catch (error) {
+        console.error('Dashboard - Error loading user data:', error);
+      } finally {
+        setLoadingUserData(false);
       }
     };
 
-    loadUserProfile();
+    loadAllUserData();
   }, [user]);
 
   // Efecto para cargar datos del blog cuando sea necesario
@@ -1232,7 +1256,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                 textShadow: '0 4px 8px rgba(106, 13, 173, 0.2)',
                 position: 'relative'
               }}>
-                {t.welcome} {userData.nombre}
+                {t.welcome} {userData?.first_name || userData?.full_name || getUserDisplayName()}
               </h1>
               <div style={{
                 height: '3px',
@@ -1259,14 +1283,52 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                 <img src={iconoAngelDashboard} alt="Ángel" className="imagen-angel-dashboard" />
               </div>
 
-              {/* Tarjetas métricas */}
+              {/* Tarjetas métricas con datos reales */}
               <div className="bloque-metricas relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div className="metrica-card"><img src={iconNivel} /><span>{t.level}</span><strong>{userData.nivelEspiritual}</strong></div>
-                <div className="metrica-card"><img src={iconPuntos} /><span>{t.points}</span><strong>{userData.puntosDeLuz}</strong></div>
-                <div className="metrica-card"><img src={iconDias} /><span>{t.consecutiveDays}</span><strong>{userData.diasConsecutivos}</strong></div>
-                <div className="metrica-card"><img src={iconSonoterapia} /><span>{t.completedSessions}</span><strong>{userData.sonoterapiasCompletadas}</strong></div>
-                <div className="metrica-card"><img src={iconCanalizaciones} /><span>{t.channelingsListened}</span><strong>{userData.canalizacionesEscuchadas}</strong></div>
-                <div className="metrica-card"><img src={iconCursos} /><span>{t.coursesFinished}</span><strong>{userData.cursosFinalizados}</strong></div>
+                {loadingUserData ? (
+                  <>
+                    {[...Array(6)].map((_, i) => (
+                      <div key={i} className="metrica-card animate-pulse">
+                        <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
+                        <span className="text-gray-400">Cargando...</span>
+                        <strong className="text-gray-400">--</strong>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <div className="metrica-card">
+                      <img src={iconNivel} alt="Nivel" />
+                      <span>{t.level}</span>
+                      <strong>{userData?.spiritual_level || 'Iniciado'}</strong>
+                    </div>
+                    <div className="metrica-card">
+                      <img src={iconPuntos} alt="Puntos" />
+                      <span>{t.points}</span>
+                      <strong>{userData?.light_points || 0}</strong>
+                    </div>
+                    <div className="metrica-card">
+                      <img src={iconDias} alt="Días" />
+                      <span>{t.consecutiveDays}</span>
+                      <strong>{userActivity?.consecutive_days || 1}</strong>
+                    </div>
+                    <div className="metrica-card">
+                      <img src={iconSonoterapia} alt="Sesiones" />
+                      <span>{t.completedSessions}</span>
+                      <strong>{userData?.total_sessions || 0}</strong>
+                    </div>
+                    <div className="metrica-card">
+                      <img src={iconCanalizaciones} alt="Canalizaciones" />
+                      <span>{t.channelingsListened}</span>
+                      <strong>{userData?.total_channeling_sessions || 0}</strong>
+                    </div>
+                    <div className="metrica-card">
+                      <img src={iconCursos} alt="Cursos" />
+                      <span>{t.coursesFinished}</span>
+                      <strong>{userData?.courses_completed || 0}</strong>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -1400,8 +1462,35 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     }
   };
 
+  // Atajo de teclado Ctrl+K para búsqueda
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div className="dashboard-container">
+      {/* Componentes Premium */}
+      <GlobalSearchModal 
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        userId={user?.id}
+      />
+
+      <NotificationsCenter
+        isOpen={notificationsOpen}
+        onClose={() => setNotificationsOpen(false)}
+        notifications={notifications}
+        onMarkAsRead={markNotificationAsRead}
+        onMarkAllAsRead={() => markAllNotificationsAsRead(user?.id)}
+      />
       
       <aside className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile-sidebar' : ''}`}>
         <div className="sidebar-header">
@@ -1444,8 +1533,8 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
             </div>
             {!sidebarCollapsed && (
               <div className="user-details">
-                <span className="user-email">{userData.email}</span>
-                <span className="user-status">Premium</span>
+                <span className="user-email">{userData?.email || user?.email || 'usuario@email.com'}</span>
+                <span className="user-status">{userData?.subscription_plan || 'Free'}</span>
               </div>
             )}
           </div>
@@ -1464,9 +1553,28 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
             <button onClick={() => setShowCart(true)} className="cart-button">
               <ShoppingCart size={16} />
               {!sidebarCollapsed && <span>{t.cart}</span>}
-              {cartItems.length > 0 && (
-                <span className="cart-badge">{cartItems.length}</span>
+              {(cartCount > 0 || cartItems.length > 0) && (
+                <span className="cart-badge">{cartCount || cartItems.length}</span>
               )}
+            </button>
+          </div>
+          
+          {/* Botón de notificaciones */}
+          <div className="notifications-button-container">
+            <button onClick={() => setNotificationsOpen(true)} className="cart-button">
+              <Bell size={16} />
+              {!sidebarCollapsed && <span>Notificaciones</span>}
+              {unreadNotifications > 0 && (
+                <span className="cart-badge">{unreadNotifications}</span>
+              )}
+            </button>
+          </div>
+          
+          {/* Botón de búsqueda */}
+          <div className="search-button-container">
+            <button onClick={() => setSearchOpen(true)} className="cart-button" title="Buscar (Ctrl+K)">
+              <Search size={16} />
+              {!sidebarCollapsed && <span>Buscar</span>}
             </button>
           </div>
           

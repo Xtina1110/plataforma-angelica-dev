@@ -18,6 +18,7 @@ import RegistroMultiStep from './components/RegistroMultiStep';
 import RegistroExitoso from './components/RegistroExitoso';
 import ConfigurarPago from './components/ConfigurarPago';
 import EmailVerified from './components/EmailVerified';
+import ResetPassword from './components/ResetPassword';
 import Dashboard from './components/Dashboard';
 // import DashboardPremium from './components/DashboardPremium';
 import DashboardAdmin from './components/DashboardAdmin';
@@ -135,6 +136,7 @@ function App() {
               <Route path="/registro-exitoso" element={<RegistroExitoso />} />
               <Route path="/configurar-pago" element={<ConfigurarPago />} />
               <Route path="/email-verified" element={<EmailVerified />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
 
             {/* Rutas con sidebar */}
             <Route path="/dashboard-redirect" element={<DashboardRedirect />} />
