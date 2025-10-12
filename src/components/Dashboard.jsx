@@ -75,6 +75,7 @@ import iconCursos from '../assets/IconoCursos.png';
 
 import './Dashboard.css';
 import './EventosModernos.css';
+import './Dashboard-sidebar-colors.css';
 
 const Dashboard = ({ user, onLogout, initialSection }) => {
   const navigate = useNavigate();
@@ -1600,7 +1601,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón del carrito */}
           <div className="cart-button-container">
-            <button onClick={() => setShowCart(true)} className="cart-button">
+            <button onClick={() => setShowCart(true)} className="cart-button cart-button-orange">
               <ShoppingCart size={16} />
               {!sidebarCollapsed && <span>{t.cart}</span>}
               {(cartCount > 0 || cartItems.length > 0) && (
@@ -1611,7 +1612,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón de notificaciones */}
           <div className="notifications-button-container">
-            <button onClick={() => setNotificationsOpen(true)} className="cart-button">
+            <button onClick={() => setNotificationsOpen(true)} className="cart-button cart-button-blue">
               <Bell size={16} />
               {!sidebarCollapsed && <span>Notificaciones</span>}
               {unreadNotifications > 0 && (
@@ -1622,7 +1623,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón de búsqueda */}
           <div className="search-button-container">
-            <button onClick={() => setSearchOpen(true)} className="cart-button" title="Buscar (Ctrl+K)">
+            <button onClick={() => setSearchOpen(true)} className="cart-button cart-button-teal" title="Buscar (Ctrl+K)">
               <Search size={16} />
               {!sidebarCollapsed && <span>Buscar</span>}
             </button>

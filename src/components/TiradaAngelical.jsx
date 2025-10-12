@@ -385,33 +385,33 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
-                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-stretch">
+                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 h-full">
+                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
                       <IconoAmbienteSagrado className="w-10 h-10 text-blue-600" />
                     </div>
                     <h3 className="font-semibold text-gray-900 text-base">Ambiente Sagrado</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-gray-600 leading-relaxed flex-grow">
                       Crea un espacio tranquilo y luminoso. Enciende una vela o incienso para elevar la vibración.
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
-                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md">
+                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 h-full">
+                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
                       <img src="/lovable-uploads/9719b790-82ed-40af-a6f4-432b64d7785e.png" alt="Mente Abierta" className="w-10 h-10 object-contain" />
                     </div>
                     <h3 className="font-semibold text-gray-900 text-base">Mente Abierta</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-gray-600 leading-relaxed flex-grow">
                       Libera expectativas y permite que los mensajes angelicales fluyan naturalmente a tu corazón.
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
-                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md">
+                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 h-full">
+                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
                       <img src="/lovable-uploads/f91a46d2-e9aa-4206-8e01-a593fc026480.png" alt="Intención Pura" className="w-10 h-10 object-contain" />
                     </div>
                     <h3 className="font-semibold text-gray-900 text-base">Intención Pura</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-sm text-gray-600 leading-relaxed flex-grow">
                       Enfócate en tu pregunta con amor y sinceridad. Los ángeles responden a la pureza del corazón.
                     </p>
                   </div>
