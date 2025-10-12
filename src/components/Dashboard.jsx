@@ -30,6 +30,7 @@ import AudioButton from './AudioButton';
 // Importar componentes premium
 import GlobalSearchModal from './GlobalSearchModal';
 import EventCalendar from './EventCalendar';
+import EventCarouselIndicators from './EventCarouselIndicators';
 import ProgressCharts from './ProgressCharts';
 import NotificationsCenter from './NotificationsCenter';
 import AchievementsModal from './AchievementsModal';
@@ -829,6 +830,22 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         }}></div>
       </div>
       
+      {/* Calendario mensual con días de eventos marcados */}
+      <div style={{ marginBottom: '40px', maxWidth: '900px', margin: '0 auto 40px' }}>
+        <EventCalendar 
+          events={eventos}
+          onDateSelect={(date) => {
+            setSelectedEventDate(date);
+            // Scroll to the carousel
+            const carousel = document.querySelector('.eventos-carousel-horizontal');
+            if (carousel) {
+              carousel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          }}
+          selectedDate={selectedEventDate}
+        />
+      </div>
+      
       {/* Carrusel horizontal de eventos con navegación manual */}
       <div className="eventos-carousel-horizontal">
         <Carousel 
@@ -881,67 +898,60 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                         <h3>{evento.titulo}</h3>
                       </div>
 
-                      {/* Hover información completa */}
+                      {/* Hover información compacta */}
                       <div className="evento-hover-info">
-                        <div className="hover-content">
-                          <div className="hover-time">
-                            <Clock size={16} />
-                            <span>{evento.hora} - {evento.duracion}</span>
-                          </div>
-                          <div className="hover-location">
-                            <MapPin size={16} />
-                            <span>{evento.ubicacion}</span>
-                          </div>
-                          <p className="hover-description">{evento.descripcion}</p>
-                          <div className="hover-instructor">
-                            <User size={16} />
-                            <span>{evento.instructor}</span>
-                          </div>
-                            <div className="hover-footer-stacked">
-                              <div className="hover-precio-linea">
-                                <span className="hover-precio">Precio: {evento.precio}</span>
-                              </div>
-                              <div className="hover-boton-linea">
-                                {eventosInscritos.includes(evento.id) ? (
-                                  <button 
-                                    className="hover-btn-inscribir"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      toggleInscripcion(evento.id);
-                                    }}
-                                    style={{ background: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)' }}
-                                  >
-                                    ✓ Inscrito - Cancelar
-                                  </button>
-                                ) : (
-                                  <button 
-                                    className="hover-btn-inscribir"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      if (evento.inscritos < evento.cupos) {
-                                        toggleInscripcion(evento.id);
-                                      }
-                                    }}
-                                    disabled={evento.inscritos >= evento.cupos}
-                                    style={evento.inscritos >= evento.cupos ? { 
-                                      background: '#ccc', 
-                                      cursor: 'not-allowed' 
-                                    } : {}}
-                                  >
-                                    {evento.inscritos >= evento.cupos ? 'Evento Completo' : 'Inscribirse Ahora'}
-                                  </button>
-                                )}
-                                <button 
-                                  className="hover-btn-detalle"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setEventoSeleccionado(evento);
-                                  }}
-                                >
-                                  Ver detalles
-                                </button>
-                              </div>
+                        <div className="hover-content-compact">
+                          <div className="hover-info-grid">
+                            <div className="hover-info-item">
+                              <Clock size={14} />
+                              <span className="hover-info-text">{evento.hora}</span>
                             </div>
+                            <div className="hover-info-item">
+                              <MapPin size={14} />
+                              <span className="hover-info-text">{evento.modalidad}</span>
+                            </div>
+                            <div className="hover-info-item">
+                              <User size={14} />
+                              <span className="hover-info-text">{evento.instructor}</span>
+                            </div>
+                          </div>
+                          <p className="hover-description-compact">{evento.descripcion.substring(0, 80)}...</p>
+                          <div className="hover-actions-compact">
+                            <span className="hover-precio-compact">{evento.precio}</span>
+                            {eventosInscritos.includes(evento.id) ? (
+                              <button 
+                                className="hover-btn-compact inscrito"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleInscripcion(evento.id);
+                                }}
+                              >
+                                ✓ Inscrito
+                              </button>
+                            ) : (
+                              <button 
+                                className="hover-btn-compact"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (evento.inscritos < evento.cupos) {
+                                    toggleInscripcion(evento.id);
+                                  }
+                                }}
+                                disabled={evento.inscritos >= evento.cupos}
+                              >
+                                {evento.inscritos >= evento.cupos ? 'Completo' : 'Inscribirse'}
+                              </button>
+                            )}
+                            <button 
+                              className="hover-btn-compact details"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setEventoSeleccionado(evento);
+                              }}
+                            >
+                              Detalles
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -960,12 +970,11 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           </CarouselNext>
         </Carousel>
         
-        {/* Indicadores de puntos opcional */}
-        <div className="carousel-indicators">
-          {Array.from({ length: Math.ceil(eventos.length / 3) }).map((_, index) => (
-            <div key={index} className="indicator-dot"></div>
-          ))}
-        </div>
+        {/* Indicadores dinámicos de puntos */}
+        <EventCarouselIndicators 
+          totalEvents={eventos.length}
+          eventsPerSlide={1}
+        />
       </div>
       
       {/* Espacio adicional antes del botón "Ver todos" */}
@@ -1455,12 +1464,12 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
             
             <div className={`aplicaciones-grid-correcto ${isMobile ? 'mobile-grid' : ''}`}> {/* Force refresh colors fix */}
               {[
-                 { id: 'tirada', icon: <Heart />, titulo: t.angelicReading, desc: 'Conecta con la sabiduría de los ángeles', disponible: true, color: '#008080' },
+                 { id: 'tirada', icon: <Heart />, titulo: t.angelicReading, desc: 'Conecta con la sabiduría de los ángeles', disponible: true, color: '#00BFFF' },
                 { id: 'canalizaciones', icon: <Headphones />, titulo: t.soundTherapy, desc: 'Frecuencias sagradas de sanación', disponible: true, color: '#9900CC' },
-                { id: 'terapias', icon: <Zap />, titulo: t.therapies, desc: 'Sanación angelica profunda', disponible: true, color: '#FF0066' },
+                { id: 'terapias', icon: <Zap />, titulo: t.therapies, desc: 'Sanación angelica profunda', disponible: true, color: '#FF1493' },
                 { id: 'academia', icon: <GraduationCap />, titulo: t.academy, desc: 'Formación espiritual completa', disponible: true, color: '#00CC00' },
                 { id: 'reservas', icon: <Calendar />, titulo: 'Sistema de Reservas', desc: 'Agenda tu sesión de sanación angelical', disponible: true, color: '#8B5CF6' },
-                { id: 'videollamada', icon: <Video />, titulo: 'Consulta en Vivo', desc: 'Videollamadas angelicales personalizadas', disponible: true, color: '#E11D48' },
+                { id: 'videollamada', icon: <Video />, titulo: 'Consulta en Vivo', desc: 'Videollamadas angelicales personalizadas', disponible: true, color: '#DC143C' },
                 { id: 'mensaje', icon: <MessageSquare />, titulo: t.dailyMessage, desc: 'Recibe una canalización espiritual', disponible: true, color: '#C489FF' },
                 { id: 'eventos', icon: <Calendar />, titulo: 'Eventos Angelicales', desc: 'Ceremonias y encuentros espirituales', disponible: true, color: '#0000FF' },
                 { id: 'blog', icon: <Mic />, titulo: t.blogPodcast, desc: 'Contenido espiritual diario', disponible: true, color: '#FFCC00' },
@@ -1600,7 +1609,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón del carrito */}
           <div className="cart-button-container">
-            <button onClick={() => setShowCart(true)} className="cart-button">
+            <button onClick={() => setShowCart(true)} className="cart-button cart-button-orange">
               <ShoppingCart size={16} />
               {!sidebarCollapsed && <span>{t.cart}</span>}
               {(cartCount > 0 || cartItems.length > 0) && (
@@ -1611,7 +1620,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón de notificaciones */}
           <div className="notifications-button-container">
-            <button onClick={() => setNotificationsOpen(true)} className="cart-button">
+            <button onClick={() => setNotificationsOpen(true)} className="cart-button notifications-button-blue">
               <Bell size={16} />
               {!sidebarCollapsed && <span>Notificaciones</span>}
               {unreadNotifications > 0 && (
@@ -1622,7 +1631,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón de búsqueda */}
           <div className="search-button-container">
-            <button onClick={() => setSearchOpen(true)} className="cart-button" title="Buscar (Ctrl+K)">
+            <button onClick={() => setSearchOpen(true)} className="cart-button search-button-teal" title="Buscar (Ctrl+K)">
               <Search size={16} />
               {!sidebarCollapsed && <span>Buscar</span>}
             </button>

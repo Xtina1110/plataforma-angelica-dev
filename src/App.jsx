@@ -51,6 +51,10 @@ import BlogDetalle from './components/PodcastYBlog/BlogDetalle';
 
 import './App.css';
 
+// Analytics
+import analytics from './utils/analytics';
+import AnalyticsTracker from './components/AnalyticsTracker';
+
 function App() {
   const [user, setUser] = useState(null);
   const [rol, setRol] = useState('');
@@ -125,6 +129,7 @@ function App() {
       <LanguageProvider>
         <AudioProvider>
           <Router>
+            <AnalyticsTracker />
             <div className="App">
               <ScrollIndicator />
               <Routes>
