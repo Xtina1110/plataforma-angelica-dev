@@ -1347,8 +1347,10 @@ body {
 }
 
 /* Cart Button Container */
-.cart-button-container {
-  margin-bottom: 10px;
+.cart-button-container,
+.notifications-button-container,
+.search-button-container {
+  margin-bottom: 12px;
 }
 
 .cart-button {
