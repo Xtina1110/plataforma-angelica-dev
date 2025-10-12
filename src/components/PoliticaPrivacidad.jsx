@@ -31,7 +31,7 @@ const PoliticaPrivacidad = () => {
   const sections = [
     {
       title: "1. Información que Recopilamos",
-      icon: Eye,
+      iconName: "eye",
       color: "from-blue-500 to-blue-600",
       content: `En Plataforma Angélica recopilamos diferentes tipos de información para brindarte la mejor experiencia espiritual personalizada:
 
@@ -80,7 +80,7 @@ Toda esta información se recopila con tu consentimiento explícito y solo se ut
     },
     {
       title: "2. Cómo Usamos tu Información",
-      icon: Database,
+      iconName: "chart",
       color: "from-purple-500 to-purple-600",
       content: `Utilizamos la información recopilada para múltiples propósitos legítimos que mejoran tu experiencia en nuestra plataforma:
 
@@ -129,7 +129,7 @@ Siempre puedes optar por no recibir comunicaciones de marketing actualizando tus
     },
     {
       title: "3. Cookies y Tecnologías de Seguimiento",
-      icon: Globe,
+      iconName: "globe",
       color: "from-green-500 to-green-600",
       content: `Utilizamos cookies y tecnologías similares para mejorar tu experiencia en Plataforma Angélica:
 
@@ -184,7 +184,7 @@ Algunos de nuestros socios (como Google Analytics, Stripe) pueden establecer sus
     },
     {
       title: "4. Compartir Información con Terceros",
-      icon: UserCheck,
+      iconName: "checkmark",
       color: "from-yellow-500 to-amber-600",
       content: `Tu privacidad es nuestra prioridad. Solo compartimos tu información en circunstancias específicas y limitadas:
 
@@ -230,7 +230,7 @@ Algunos de nuestros proveedores pueden estar ubicados fuera del Espacio Económi
     },
     {
       title: "5. Seguridad de tus Datos",
-      icon: Lock,
+      iconName: "lock",
       color: "from-red-500 to-red-600",
       content: `Implementamos medidas de seguridad robustas para proteger tu información personal:
 
@@ -298,7 +298,7 @@ Conservamos tu información solo durante el tiempo necesario para cumplir con lo
     },
     {
       title: "6. Retención de Datos",
-      icon: Database,
+      iconName: "chart",
       color: "from-indigo-500 to-indigo-600",
       content: `Conservamos tu información personal solo durante el tiempo necesario para los fines establecidos en esta política:
 
@@ -366,7 +366,7 @@ Antes de eliminar tu cuenta, puedes solicitar una copia de tus datos en formato 
     },
     {
       title: "7. Tus Derechos (GDPR/LOPD)",
-      icon: Shield,
+      iconName: "shield",
       color: "from-pink-500 to-rose-600",
       content: `Bajo el Reglamento General de Protección de Datos (GDPR) y la Ley Orgánica de Protección de Datos (LOPD), tienes los siguientes derechos:
 
@@ -448,7 +448,7 @@ Si consideras que el tratamiento de tus datos personales infringe la normativa, 
     },
     {
       title: "8. Transferencias Internacionales de Datos",
-      icon: Globe,
+      iconName: "globe",
       color: "from-cyan-500 to-cyan-600",
       content: `Algunos de nuestros proveedores de servicios pueden estar ubicados fuera del Espacio Económico Europeo (EEE). Te explicamos cómo protegemos tus datos en estas transferencias:
 
@@ -532,7 +532,7 @@ Contacta con nuestro DPO en privacy@plataformaangelica.com para más informació
     },
     {
       title: "9. Privacidad de Menores",
-      icon: UserCheck,
+      iconName: "checkmark",
       color: "from-teal-500 to-teal-600",
       content: `La protección de la privacidad de los menores es especialmente importante para nosotros:
 
@@ -616,7 +616,7 @@ Cumplimos con:
     },
     {
       title: "10. Cambios en la Política de Privacidad",
-      icon: FileText,
+      iconName: "document",
       color: "from-orange-500 to-orange-600",
       content: `Podemos actualizar esta Política de Privacidad periódicamente para reflejar cambios en nuestras prácticas o por otros motivos operativos, legales o regulatorios.
 
@@ -704,7 +704,7 @@ Nos comprometemos a:
     },
     {
       title: "11. Contacto y Data Protection Officer (DPO)",
-      icon: AlertCircle,
+      iconName: "question",
       color: "from-gray-700 to-gray-800",
       content: `Si tienes preguntas, inquietudes o solicitudes relacionadas con esta Política de Privacidad o el tratamiento de tus datos personales, puedes contactarnos:
 
