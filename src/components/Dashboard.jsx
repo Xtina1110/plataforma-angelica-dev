@@ -551,15 +551,15 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   };
 
   const menuItems = [
-    { id: 'home', icon: '/iconos-apps/icono-3d-inicio.png', label: t.home, color: '#6E3CBC' },
-    { id: 'tirada', icon: '/iconos-apps/icono-3d-apertura.png', label: t.angelicReading, color: '#00BCD4' },
-    { id: 'canalizaciones', icon: '/iconos-apps/icono-3d-sonoterapia.png', label: t.soundTherapy, color: '#9C27B0' },
-    { id: 'terapias', icon: '/iconos-apps/icono-3d-terapias.png', label: t.therapies, color: '#E91E63' },
-    { id: 'academia', icon: '/iconos-apps/icono-3d-academia.png', label: t.academy, color: '#4CAF50' },
-    { id: 'mensaje', icon: '/iconos-apps/icono-3d-mensaje.png', label: t.dailyMessage, color: '#B388FF' },
-    { id: 'eventos', icon: '/iconos-apps/icono-3d-eventos.png', label: 'Eventos Angelicales', color: '#3F51B5' },
-    { id: 'blog', icon: '/iconos-apps/icono-3d-blog.png', label: t.blogPodcast, color: '#FFC107' },
-    { id: 'tienda', icon: '/iconos-apps/icono-3d-tienda.png', label: t.store, color: '#FF6F00' },
+    { id: 'home', icon: Home, label: t.home, color: '#6E3CBC' },
+    { id: 'tirada', icon: Heart, label: t.angelicReading, color: '#00BCD4' },
+    { id: 'canalizaciones', icon: Headphones, label: t.soundTherapy, color: '#9C27B0' },
+    { id: 'terapias', icon: Zap, label: t.therapies, color: '#E91E63' },
+    { id: 'academia', icon: GraduationCap, label: t.academy, color: '#4CAF50' },
+    { id: 'mensaje', icon: MessageSquare, label: t.dailyMessage, color: '#B388FF' },
+    { id: 'eventos', icon: Calendar, label: 'Eventos Angelicales', color: '#3F51B5' },
+    { id: 'blog', icon: Mic, label: t.blogPodcast, color: '#FFC107' },
+    { id: 'tienda', icon: ShoppingCart, label: t.store, color: '#FF9800' },
   ];
 
   const renderCart = () => (
@@ -1417,6 +1417,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         
         <ul className="sidebar-nav">
           {menuItems.map(item => {
+            const IconComponent = item.icon;
             return (
               <li
                 key={item.id}
@@ -1429,7 +1430,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                 }}
               >
                 <div className="nav-item-content">
-                  <img src={item.icon} alt={item.label} className="nav-item-icon-3d" />
+                  <IconComponent size={20} />
                   {!sidebarCollapsed && <span>{item.label}</span>}
                 </div>
               </li>
