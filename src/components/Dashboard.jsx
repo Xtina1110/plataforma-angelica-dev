@@ -5,7 +5,7 @@ import {
   Home, Heart, Headphones, Zap, BookOpen, GraduationCap,
   MessageSquare, Mic, ShoppingCart, LogOut, User, Menu, X,
   Calendar, Clock, MapPin, Users, Star, ChevronRight, Volume2, VolumeX, Video,
-  Search, Bell, Loader2
+  Search, Bell, Loader2, Award
 } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
