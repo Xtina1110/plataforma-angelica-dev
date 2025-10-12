@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Instagram, Facebook, MessageCircle, Youtube, X, Send, CheckCircle, AlertCircle, Clock, MapPin } from 'lucide-react';
+import { MessageCircle, Send, CheckCircle, AlertCircle, Clock, MapPin } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { supabase } from '../integrations/supabase/client';
 import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
+import GoldenIcon from './GoldenIcon';
 
 const Contacto = () => {
   const { getCurrentTranslation } = useLanguage();
@@ -83,7 +84,7 @@ const Contacto = () => {
 
   const contactMethods = [
     {
-      icon: Mail,
+      iconName: 'email',
       title: 'Email',
       value: 'contacto@plataformaangelica.com',
       color: 'from-purple-500 to-purple-600',
@@ -92,7 +93,7 @@ const Contacto = () => {
       link: 'mailto:contacto@plataformaangelica.com'
     },
     {
-      icon: Phone,
+      iconName: 'whatsapp',
       title: 'WhatsApp',
       value: '+123 456 789',
       color: 'from-green-500 to-green-600',
@@ -101,7 +102,7 @@ const Contacto = () => {
       link: 'https://wa.me/123456789?text=Hola%2C%20me%20gustaría%20obtener%20más%20información%20sobre%20Plataforma%20Angélica'
     },
     {
-      icon: Instagram,
+      iconName: 'camera',
       title: 'Instagram',
       value: '@elangeologo',
       color: 'from-pink-500 to-pink-600',
@@ -110,7 +111,7 @@ const Contacto = () => {
       link: 'https://www.instagram.com/elangeologo/'
     },
     {
-      icon: Facebook,
+      iconName: 'facebook',
       title: 'Facebook',
       value: 'El Angeólogo',
       color: 'from-blue-500 to-blue-600',
@@ -119,7 +120,7 @@ const Contacto = () => {
       link: 'https://www.facebook.com/elangeologo'
     },
     {
-      icon: Youtube,
+      iconName: 'youtube',
       title: 'YouTube',
       value: '@JuanCarlosAvilaElangeologo',
       color: 'from-red-500 to-red-600',
@@ -128,7 +129,7 @@ const Contacto = () => {
       link: 'https://www.youtube.com/@JuanCarlosAvilaElangeologo'
     },
     {
-      icon: X,
+      iconName: 'twitter',
       title: 'X (Twitter)',
       value: 'Próximamente',
       color: 'from-gray-800 to-black',
@@ -315,7 +316,6 @@ const Contacto = () => {
               
               <div className="grid gap-3">
                 {contactMethods.map((method, index) => {
-                  const IconComponent = method.icon;
                   return (
                     <a
                       key={index}
@@ -325,8 +325,8 @@ const Contacto = () => {
                       className={`bg-gradient-to-br ${method.bgColor} p-4 rounded-xl border ${method.borderColor} hover:shadow-lg transition-all duration-300 group ${!method.link ? 'pointer-events-none' : ''}`}
                     >
                       <div className="flex items-center space-x-3">
-                        <div className={`flex-shrink-0 w-12 h-12 bg-gradient-to-r ${method.color} rounded-xl flex items-center justify-center shadow-md group-hover:scale-105 transition-transform duration-300`}>
-                          <IconComponent size={24} className="text-white" />
+                        <div className="flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                          <GoldenIcon name={method.iconName} size="w-12 h-12" />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-base font-bold text-gray-900">{method.title}</h4>

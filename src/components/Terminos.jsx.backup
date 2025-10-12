@@ -4,7 +4,6 @@ import { useLanguage } from '../contexts/LanguageContext';
 import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
-import GoldenIcon from './GoldenIcon';
 
 // Imagen temática para términos
 const termsHeaderImage = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=400&fit=crop';
@@ -34,7 +33,7 @@ const Terminos = () => {
   const sections = [
     {
       title: "1. Aceptación de Términos",
-      iconName: "checkmark",
+      icon: "✅",
       color: "from-purple-500 to-purple-600",
       content: `Al acceder y utilizar la Plataforma Angélica, aceptas estar legalmente vinculado por estos Términos de Uso. Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar nuestros servicios.
 
@@ -44,7 +43,7 @@ La aceptación de estos términos también implica tu consentimiento para recibi
     },
     {
       title: "2. Descripción de Servicios",
-      iconName: "star",
+      icon: "🌟",
       color: "from-blue-500 to-blue-600",
       content: `Plataforma Angélica ofrece una variedad de servicios espirituales y de bienestar, incluyendo pero no limitándose a:
 
@@ -67,7 +66,7 @@ Todos nuestros servicios tienen fines espirituales, de crecimiento personal y bi
     },
     {
       title: "3. Cuentas de Usuario y Responsabilidades",
-      iconName: "user",
+      icon: "👤",
       color: "from-green-500 to-green-600",
       content: `**Creación de Cuenta:**
 Para utilizar nuestros servicios, debes crear una cuenta proporcionando información veraz, actual y completa. Eres responsable de mantener la confidencialidad de tus credenciales de acceso.
@@ -91,7 +90,7 @@ Nos reservamos el derecho de suspender o cancelar tu cuenta si violas estos tér
     },
     {
       title: "4. Contenido y Propiedad Intelectual",
-      iconName: "copyright",
+      icon: "©️",
       color: "from-yellow-500 to-amber-600",
       content: `**Propiedad del Contenido:**
 Todo el contenido disponible en Plataforma Angélica, incluyendo textos, gráficos, logos, iconos, imágenes, clips de audio, descargas digitales y compilaciones de datos, es propiedad de Plataforma Angélica o de sus proveedores de contenido y está protegido por leyes de propiedad intelectual.
@@ -112,7 +111,7 @@ Al publicar comentarios, reseñas o cualquier otro contenido en nuestra platafor
     },
     {
       title: "5. Pagos y Suscripciones",
-      iconName: "credit-card",
+      icon: "💳",
       color: "from-pink-500 to-rose-600",
       content: `**Precios:**
 Todos los precios están expresados en Euros (EUR) e incluyen los impuestos aplicables según la legislación vigente. Nos reservamos el derecho de modificar nuestros precios en cualquier momento, pero los cambios no afectarán a servicios ya contratados.
@@ -136,7 +135,7 @@ Eres responsable de pagar todos los impuestos aplicables en tu jurisdicción. Lo
     },
     {
       title: "6. Cancelaciones y Reembolsos",
-      iconName: "refresh",
+      icon: "🔄",
       color: "from-red-500 to-red-600",
       content: `**Política de Cancelación de Sesiones:**
 - Cancelaciones con más de 24 horas de anticipación: Reembolso completo o reprogramación sin cargo
@@ -157,7 +156,7 @@ Los reembolsos aprobados se procesarán dentro de 5-10 días hábiles y se acred
     },
     {
       title: "7. Limitación de Responsabilidad",
-      iconName: "balance",
+      icon: "⚖️",
       color: "from-indigo-500 to-indigo-600",
       content: `**Naturaleza de los Servicios:**
 Los servicios ofrecidos en Plataforma Angélica tienen fines espirituales, de orientación y crecimiento personal. No constituyen asesoramiento médico, psicológico, legal o financiero profesional.
@@ -182,7 +181,7 @@ Si experimentas problemas de salud física o mental, te recomendamos encarecidam
     },
     {
       title: "8. Privacidad y Protección de Datos",
-      iconName: "lock",
+      icon: "🔒",
       color: "from-purple-500 to-violet-600",
       content: `**Compromiso con la Privacidad:**
 Valoramos profundamente tu privacidad y nos comprometemos a proteger tu información personal de acuerdo con nuestra Política de Privacidad y el Reglamento General de Protección de Datos (GDPR) y la Ley Orgánica de Protección de Datos (LOPD).
@@ -214,7 +213,7 @@ Para más información, consulta nuestra Política de Privacidad completa.`
     },
     {
       title: "9. Modificaciones de los Términos",
-      iconName: "edit",
+      icon: "📝",
       color: "from-cyan-500 to-cyan-600",
       content: `**Derecho a Modificar:**
 Nos reservamos el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación en la plataforma.
@@ -239,7 +238,7 @@ Te recomendamos revisar periódicamente estos términos para estar informado de 
     },
     {
       title: "10. Ley Aplicable y Jurisdicción",
-      iconName: "balance",
+      icon: "⚖️",
       color: "from-gray-700 to-gray-800",
       content: `**Legislación Aplicable:**
 Estos Términos de Uso se regirán e interpretarán de acuerdo con las leyes de España, sin dar efecto a ningún principio de conflictos de leyes.
@@ -264,7 +263,7 @@ Estos términos, junto con nuestra Política de Privacidad, constituyen el acuer
     },
     {
       title: "11. Contacto y Soporte Legal",
-      iconName: "email",
+      icon: "📧",
       color: "from-teal-500 to-teal-600",
       content: `**Preguntas sobre estos Términos:**
 Si tienes preguntas, comentarios o inquietudes sobre estos Términos de Uso, puedes contactarnos a través de:
@@ -380,7 +379,7 @@ Agradecemos tu confianza en Plataforma Angélica. Estamos comprometidos con tu c
                     className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-all"
                   >
                     <div className="flex items-center gap-3">
-                      <GoldenIcon name={section.iconName} size="w-10 h-10" />
+                      <span className="text-2xl">{section.icon}</span>
                       <h3 className="text-lg font-bold text-gray-900 text-left">
                         {section.title}
                       </h3>

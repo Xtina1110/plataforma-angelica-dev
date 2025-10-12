@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Shield, ChevronDown, ChevronUp, Search, Calendar } from 'lucide-react';
+import { Shield, ChevronDown, ChevronUp, Search, Calendar, Lock, Eye, Database, Globe, UserCheck, FileText, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import AuthPageLayout from './AuthPageLayout';
 import LanguageSelector from './LanguageSelector';
 import AudioButton from './AudioButton';
-import GoldenIcon from './GoldenIcon';
 
 const PoliticaPrivacidad = () => {
   const { getCurrentTranslation } = useLanguage();
@@ -866,6 +865,7 @@ Gracias por confiar en Plataforma Angélica. Tu privacidad es nuestra prioridad.
           <div className="space-y-3">
             {filteredSections.map((section, index) => {
               const isExpanded = expandedSections.includes(index);
+              const IconComponent = section.icon;
               return (
                 <div
                   key={index}
@@ -876,7 +876,9 @@ Gracias por confiar en Plataforma Angélica. Tu privacidad es nuestra prioridad.
                     className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-all"
                   >
                     <div className="flex items-center gap-3">
-                      <GoldenIcon name={section.iconName} size="w-10 h-10" />
+                      <div className={`p-2 rounded-lg bg-gradient-to-r ${section.color}`}>
+                        <IconComponent size={20} className="text-white" />
+                      </div>
                       <h3 className="text-lg font-bold text-gray-900 text-left">
                         {section.title}
                       </h3>
