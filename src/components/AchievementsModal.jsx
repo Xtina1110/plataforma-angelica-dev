@@ -78,15 +78,16 @@ const AchievementsModal = ({ isOpen, onClose, userId }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[300] flex items-center justify-center animate-fade-in">
+    <div className="fixed inset-0 z-[300] flex items-center justify-center animate-fade-in" style={{ left: '280px' }}>
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
+        style={{ left: '-280px' }}
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-3xl shadow-2xl w-[95vw] max-w-4xl max-h-[90vh] mx-4 overflow-hidden animate-scale-in">
+      <div className="relative bg-white rounded-3xl shadow-2xl w-[calc(100vw-320px)] max-w-4xl max-h-[90vh] mx-4 overflow-hidden animate-scale-in">
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-600 via-purple-500 to-violet-500 p-6 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-white/10 backdrop-blur-sm"></div>
