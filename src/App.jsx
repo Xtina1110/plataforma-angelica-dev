@@ -19,7 +19,7 @@ import RegistroExitoso from './components/RegistroExitoso';
 import ConfigurarPago from './components/ConfigurarPago';
 import EmailVerified from './components/EmailVerified';
 import Dashboard from './components/Dashboard';
-import DashboardPremium from './components/DashboardPremium';
+// import DashboardPremium from './components/DashboardPremium';
 import DashboardAdmin from './components/DashboardAdmin';
 import DashboardTecnico from './components/DashboardTecnico';
 import Terminos from './components/Terminos';
@@ -138,7 +138,7 @@ function App() {
 
             {/* Rutas con sidebar */}
             <Route path="/dashboard-redirect" element={<DashboardRedirect />} />
-            <Route path="/dashboard" element={<DashboardPremium user={user} onLogout={handleLogout} />} />
+            <Route path="/dashboard" element={<Dashboard user={user} onLogout={handleLogout} />} />
             <Route path="/dashboard-admin" element={<MainLayout><DashboardAdmin /></MainLayout>} />
             <Route path="/dashboard-tecnico" element={<MainLayout><DashboardTecnico /></MainLayout>} />
             <Route path="/mensaje-del-dia" element={<MainLayout><Dashboard initialSection="mensaje" /></MainLayout>} />
