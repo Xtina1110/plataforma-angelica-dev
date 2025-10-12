@@ -152,9 +152,10 @@ function App() {
             <Route path="/eventos" element={<MainLayout><Dashboard initialSection="eventos" /></MainLayout>} />
             <Route path="/tienda" element={<MainLayout><TiendaAngelical /></MainLayout>} />
 
-            <Route path="/terminos" element={<MainLayout><Terminos /></MainLayout>} />
-            <Route path="/politica" element={<MainLayout><PoliticaPrivacidad /></MainLayout>} />
-            <Route path="/contacto" element={<MainLayout><Contacto /></MainLayout>} />
+            {/* Rutas legales públicas (sin MainLayout para acceso desde páginas públicas) */}
+            <Route path="/terminos" element={<Terminos />} />
+            <Route path="/politica" element={<PoliticaPrivacidad />} />
+            <Route path="/contacto" element={<Contacto />} />
             <Route path="/en-construccion" element={<MainLayout><EnConstruccion /></MainLayout>} />
 
             {/* Rutas PodcastYBlog */}
