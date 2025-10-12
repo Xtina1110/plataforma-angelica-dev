@@ -44,7 +44,7 @@ La aceptación de estos términos también implica tu consentimiento para recibi
     },
     {
       title: "2. Descripción de Servicios",
-      iconName: "star",
+      iconName: "services",
       color: "from-blue-500 to-blue-600",
       content: `Plataforma Angélica ofrece una variedad de servicios espirituales y de bienestar, incluyendo pero no limitándose a:
 

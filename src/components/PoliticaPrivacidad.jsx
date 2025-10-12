@@ -80,7 +80,7 @@ Toda esta información se recopila con tu consentimiento explícito y solo se ut
     },
     {
       title: "2. Cómo Usamos tu Información",
-      iconName: "chart",
+      iconName: "usage",
       color: "from-purple-500 to-purple-600",
       content: `Utilizamos la información recopilada para múltiples propósitos legítimos que mejoran tu experiencia en nuestra plataforma:
 
@@ -298,7 +298,7 @@ Conservamos tu información solo durante el tiempo necesario para cumplir con lo
     },
     {
       title: "6. Retención de Datos",
-      iconName: "chart",
+      iconName: "clock",
       color: "from-indigo-500 to-indigo-600",
       content: `Conservamos tu información personal solo durante el tiempo necesario para los fines establecidos en esta política:
 
@@ -616,7 +616,7 @@ Cumplimos con:
     },
     {
       title: "10. Cambios en la Política de Privacidad",
-      iconName: "document",
+      iconName: "edit",
       color: "from-orange-500 to-orange-600",
       content: `Podemos actualizar esta Política de Privacidad periódicamente para reflejar cambios en nuestras prácticas o por otros motivos operativos, legales o regulatorios.
 
