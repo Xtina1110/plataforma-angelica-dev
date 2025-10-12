@@ -5005,7 +5005,7 @@ body {
 
 
 /* ========================================
-   ICONOS 3D EN SIDEBAR - NUEVO
+   ICONOS 3D EN SIDEBAR - TRANSPARENTES
    ======================================== */
 .nav-item-content {
   display: flex;
@@ -5015,56 +5015,57 @@ body {
 }
 
 .nav-item-icon-3d {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   flex-shrink: 0;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .sidebar-nav li:hover .nav-item-icon-3d {
-  transform: scale(1.15);
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transform: scale(1.1) translateY(-2px);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
 }
 
 .sidebar-nav li.active .nav-item-icon-3d {
-  transform: scale(1.1);
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
 }
 
 .sidebar.collapsed .nav-item-icon-3d {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
 }
 
-/* Ajustar estilos de li para que funcionen con la nueva estructura */
+/* Ajustar estilos de li para que funcionen con iconos 3D transparentes */
 .sidebar-nav li {
   cursor: pointer;
   margin: 6px 12px;
   border-radius: 12px;
   padding: 12px 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   background: transparent;
 }
 
 .sidebar-nav li:hover {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
-  transform: translateX(6px) scale(1.02);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .sidebar-nav li.active {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
+  background: rgba(255, 255, 255, 0.9);
   border-left: 4px solid var(--active-color, #8b5cf6);
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   transform: translateX(4px);
 }
 
 .sidebar-nav li span {
   font-size: 14px;
-  color: #6b7280;
-  font-weight: 400;
+  color: #374151;
+  font-weight: 500;
   transition: all 0.3s ease;
   white-space: nowrap;
   overflow: hidden;
@@ -5073,12 +5074,12 @@ body {
 }
 
 .sidebar-nav li:hover span {
-  color: var(--hover-color, #8b5cf6);
+  color: #111827;
   font-weight: 600;
 }
 
 .sidebar-nav li.active span {
-  color: var(--active-color, #8b5cf6);
+  color: #111827;
   font-weight: 700;
 }
 
