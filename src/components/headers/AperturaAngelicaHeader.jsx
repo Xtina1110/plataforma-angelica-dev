@@ -6,46 +6,19 @@ import ScrollIndicator from '../ScrollIndicator';
 import LanguageSelector from '../LanguageSelector';
 import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 
-const AperturaAngelicaHeader = ({
-  cartCount = 0,
+const AperturaAngelicaHeader = ({ 
+  cartCount = 0, 
   user = null,
-  onSearchClick,
   onCartClick,
   onProfileClick,
   onLogout,
   onNavigateHome,
   audioActive = false,
-  onToggleAudio,
-  theme = 'blue'
+  onToggleAudio
 }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [audioReproduciendo, setAudioReproduciendo] = useState(audioActive);
   const { toast } = useToast();
-
-  const themeColors = {
-    blue: {
-      overlay: 'bg-blue-600/40',
-      effects: {
-        effect1: 'bg-white/20',
-        effect2: 'bg-blue-400/30',
-        effect3: 'bg-blue-400/20'
-      },
-      border: 'border-blue-400',
-      hoverText: 'hover:text-red-200'
-    },
-    purple: {
-      overlay: 'bg-purple-600/40',
-      effects: {
-        effect1: 'bg-white/20',
-        effect2: 'bg-purple-400/30',
-        effect3: 'bg-purple-400/20'
-      },
-      border: 'border-purple-400',
-      hoverText: 'hover:text-red-200'
-    }
-  };
-
-  const currentTheme = themeColors[theme] || themeColors.blue;
 
   // Cargar datos del usuario desde Supabase
   useEffect(() => {
@@ -71,19 +44,24 @@ const AperturaAngelicaHeader = ({
   }, [user]);
 
   const getUserName = () => {
+    // Prioridad 1: Nombre desde la base de datos
     if (userProfile?.nombre) {
       return userProfile.nombre;
     }
     
+    // Prioridad 2: Datos del user_metadata de Supabase Auth
     if (user?.user_metadata?.nombre || user?.user_metadata?.name || user?.user_metadata?.full_name) {
       return user.user_metadata.nombre || user.user_metadata.name || user.user_metadata.full_name;
     }
     
+    // Prioridad 3: Extraer nombre del email
     if (user?.email) {
       const emailName = user.email.split('@')[0];
+      // Capitalizar primera letra y limpiar caracteres especiales
       return emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[^a-zA-Z]/g, '');
     }
     
+    // Fallback final
     return 'Usuario';
   };
 
@@ -96,8 +74,8 @@ const AperturaAngelicaHeader = ({
 
   return (
     <div className="w-full">
-      {/* Header principal con gradiente azul */}
-      <div className="relative overflow-visible rounded-2xl mx-2 my-4 shadow-2xl">
+      {/* Header principal con gradiente azul angelical */}
+      <div className="relative overflow-hidden rounded-2xl mx-4 my-4 shadow-2xl">
         {/* Fondo con imagen angélica */}
         <div 
           className="absolute inset-0"
@@ -108,12 +86,12 @@ const AperturaAngelicaHeader = ({
           }}
         ></div>
         
-        {/* Overlay y efectos */}
-        <div className={`absolute inset-0 ${currentTheme.overlay}`}></div>
+        {/* Overlay azul sobre la imagen para mejor legibilidad */}
+        <div className="absolute inset-0 bg-blue-600/40"></div>
         <div className="absolute inset-0 opacity-30">
-          <div className={`absolute top-10 left-10 w-32 h-32 ${currentTheme.effects.effect1} rounded-full blur-xl`}></div>
-          <div className={`absolute bottom-10 right-20 w-48 h-48 ${currentTheme.effects.effect2} rounded-full blur-2xl`}></div>
-          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 ${currentTheme.effects.effect3} rounded-full blur-3xl`}></div>
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 right-20 w-48 h-48 bg-blue-400/30 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
         </div>
         
         {/* Contenido del header */}
@@ -132,7 +110,7 @@ const AperturaAngelicaHeader = ({
             {/* Información adicional del usuario */}
             <div className="flex flex-col items-end space-y-4">
               {/* Stats del usuario */}
-              <div className={`flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-4 rounded-xl border-l-4 ${currentTheme.border}`}>
+              <div className="flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-4 rounded-xl border-l-4 border-blue-400">
                 <div className="text-center">
                   <div className="text-sm opacity-80">Nivel Espiritual</div>
                   <div className="font-bold text-lg">Iluminado</div>
@@ -145,7 +123,7 @@ const AperturaAngelicaHeader = ({
               </div>
               
               {/* Navegación integrada */}
-              <div className={`flex items-center space-x-3 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border-l-4 ${currentTheme.border}`}>
+              <div className="flex items-center space-x-3 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border-l-4 border-blue-400">
                 {/* Idioma */}
                 <LanguageSelector inline variant="header" />
                 
@@ -179,7 +157,7 @@ const AperturaAngelicaHeader = ({
                 {/* Logout */}
                 <button 
                   onClick={onLogout}
-                  className={`p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/80 ${currentTheme.hoverText}`}
+                  className="p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-blue-200 hover:text-red-200"
                   aria-label="Cerrar sesión"
                 >
                   <LogOut size={20} />
