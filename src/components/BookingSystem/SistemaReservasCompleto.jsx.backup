@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Clock, Calendar, User, Check, ArrowRight, ArrowLeft,
   Video, Sparkles, Heart, Wind, ChevronRight, ChevronLeft, Star,
-  X, ShoppingCart, AlertCircle, FileText, DollarSign, CreditCard
+  X, ShoppingCart, AlertCircle, FileText, DollarSign
 } from 'lucide-react';
 import { format, startOfMonth, endOfMonth, startOfWeek, addDays, addMonths, isSameMonth, isToday, isBefore } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -12,14 +12,12 @@ import { useToast } from '../../hooks/use-toast';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useCart } from '../../contexts/CartContext';
 import AngelicalModal from '../AngelicalModal';
-import StripeCheckout from '../StripeCheckout';
-import { createPaymentIntent, confirmPayment } from '../../services/paymentService';
 
 const SistemaReservasCompleto = ({ mode = 'general' }) => {
   const { toast } = useToast();
+  const { addToCart } = useCart();
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const { addToCart } = useCart();
   const [currentStep, setCurrentStep] = useState(mode === 'apertura' ? 2 : 1);
   const [selectedType, setSelectedType] = useState(null);
   const [selectedDuration, setSelectedDuration] = useState(null);
@@ -29,13 +27,10 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
   const [confirmedBooking, setConfirmedBooking] = useState(null);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
   const [showCancellationModal, setShowCancellationModal] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [cancellationReason, setCancellationReason] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [paymentClientSecret, setPaymentClientSecret] = useState(null);
-  const [pendingBookingId, setPendingBookingId] = useState(null);
 
   // Cargar usuario actual
   useEffect(() => {
@@ -110,11 +105,12 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
   const getMonthDays = () => {
     const start = startOfMonth(currentMonth);
     const end = endOfMonth(currentMonth);
-    const startWeek = startOfWeek(start, { weekStartsOn: 0 });
+    const startWeek = startOfWeek(start, { weekStartsOn: 0 }); // Domingo como primer día
 
     const days = [];
     let day = startWeek;
 
+    // Generar exactamente 42 días (6 semanas) para mantener grid consistente
     for (let i = 0; i < 42; i++) {
       days.push(day);
       day = addDays(day, 1);
@@ -130,7 +126,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
     const firstOfNewMonth = startOfMonth(newMonth);
     
     if (direction < 0 && firstOfNewMonth < startOfMonth(today)) {
-      return;
+      return; // No permitir navegar a meses pasados
     }
     
     setCurrentMonth(newMonth);
@@ -145,7 +141,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
   };
 
   const isDateAvailable = (date) => {
-    if (date.getDay() === 0) return false;
+    if (date.getDay() === 0) return false; // Domingos no disponibles
     
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -166,6 +162,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       for (let minute of [0, 30]) {
         if (hour === 20 && minute === 30) break;
         
+        // Si es hoy, filtrar horas pasadas
         if (isSelectedDateToday) {
           const slotTime = new Date();
           slotTime.setHours(hour, minute, 0, 0);
@@ -179,28 +176,16 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
     return slots;
   };
 
-  const isStripeConfigured = () => {
-    const configured = !!import.meta.env.VITE_STRIPE_PUBLIC_KEY;
-    console.log('[DEBUG] Stripe configurado:', configured);
-    return configured;
-  };
-
-  const handleInitiatePayment = async () => {
-    alert("CLICK DETECTADO - Iniciando pago...");
-    console.log('[DEBUG] handleInitiatePayment iniciado');
-    console.log('[DEBUG] Usuario actual:', currentUser);
-    
+  const handleConfirmBooking = async () => {
     if (!currentUser) {
-      console.log('[DEBUG] No hay usuario logueado');
       toast({
         title: "Error",
-        description: "Debes iniciar sesión para continuar",
+        description: "Debes iniciar sesión para confirmar la reserva",
         variant: "destructive"
       });
       return;
     }
 
-    console.log('[DEBUG] Iniciando procesamiento...');
     setIsProcessing(true);
 
     try {
@@ -208,22 +193,14 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       const selectedReaderData = readers.find(r => r.id === selectedReader);
       const selectedTypeData = bookingTypes.find(t => t.id === selectedType);
 
-      console.log('[DEBUG] Datos seleccionados:', {
-        duration: selectedDurationData,
-        reader: selectedReaderData,
-        type: selectedTypeData,
-        date: selectedDate,
-        time: selectedTime
-      });
-
+      // Calcular end_time
       const [hours, minutes] = selectedTime.split(':').map(Number);
       const startDate = new Date();
       startDate.setHours(hours, minutes, 0);
       const endDate = new Date(startDate.getTime() + selectedDuration * 60000);
       const endTime = `${endDate.getHours().toString().padStart(2, '0')}:${endDate.getMinutes().toString().padStart(2, '0')}`;
 
-      console.log('[DEBUG] Creando reserva en Supabase...');
-      
+      // Guardar reserva en Supabase
       const { data, error } = await supabase
         .from('bookings')
         .insert({
@@ -233,132 +210,52 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
           end_time: endTime,
           duration: selectedDuration,
           total_price: selectedDurationData.price,
-          status: isStripeConfigured() ? 'pending_payment' : 'confirmed',
-          payment_status: isStripeConfigured() ? 'pending' : 'paid',
-          notes: `Tipo: ${selectedTypeData.name}, Terapeuta: ${selectedReaderData.name}`,
-          payment_intent_id: isStripeConfigured() ? null : 'mock_payment_' + Date.now()
+          status: 'confirmed',
+          notes: `Tipo: ${selectedTypeData.name}, Terapeuta: ${selectedReaderData.name}`
         })
         .select()
         .single();
 
-      if (error) {
-        console.error('[DEBUG] Error de Supabase:', error);
-        throw error;
-      }
+      if (error) throw error;
 
-      console.log('[DEBUG] Reserva creada:', data);
-      setPendingBookingId(data.id);
-
-      if (!isStripeConfigured()) {
-        console.log('[DEBUG] Modo Demo - Confirmacion directa');
-        
-        const booking = {
-          id: data.id,
-          type: selectedTypeData.name,
-          duration: selectedDurationData.label,
-          date: format(selectedDate, "EEEE, d 'de' MMMM yyyy", { locale: es }),
-          therapist: selectedReaderData.name,
-          time: selectedTime,
-          price: selectedDurationData.price,
-          status: 'confirmed',
-          bookingData: data
-        };
-
-        console.log('[DEBUG] Booking confirmado:', booking);
-        setConfirmedBooking(booking);
-        
-        console.log('[DEBUG] Mostrando modal');
-        setShowConfirmationModal(true);
-
-        toast({
-          title: "Reserva Confirmada!",
-          description: "Tu cita ha sido agendada exitosamente (Modo Demo)",
-          duration: 5000
-        });
-
-        setIsProcessing(false);
-        console.log('[DEBUG] Proceso completado');
-        return;
-      }
-
-      console.log('[DEBUG] Stripe configurado - flujo de pago');
-      const paymentData = await createPaymentIntent(selectedDurationData.price, {
+      // Crear objeto de reserva confirmada
+      const booking = {
         id: data.id,
         type: selectedTypeData.name,
-        userId: currentUser.id,
+        duration: selectedDurationData.label,
+        date: format(selectedDate, "EEEE, d 'de' MMMM yyyy", { locale: es }),
+        therapist: selectedReaderData.name,
+        time: selectedTime,
+        price: selectedDurationData.price,
+        status: 'confirmed',
+        bookingData: data
+      };
+
+      setConfirmedBooking(booking);
+      setShowConfirmationModal(true);
+
+      toast({
+        title: "¡Reserva Confirmada!",
+        description: "Tu cita ha sido agendada exitosamente. Revisa tu correo para más detalles.",
+        duration: 5000
       });
 
-      console.log('[DEBUG] PaymentIntent creado');
-      setPaymentClientSecret(paymentData.clientSecret);
-      setShowPaymentModal(true);
-
     } catch (error) {
-      console.error('[DEBUG] Error:', error);
+      console.error('Error al confirmar reserva:', error);
       toast({
         title: "Error",
-        description: "No se pudo procesar la reserva. Por favor, intenta de nuevo.",
+        description: "No se pudo confirmar la reserva. Por favor, intenta de nuevo.",
         variant: "destructive"
       });
     } finally {
       setIsProcessing(false);
-      console.log('[DEBUG] Finalizado');
     }
-  };
-
-  const handlePaymentSuccess = async (paymentIntent) => {
-    try {
-      // Confirmar el pago y actualizar la reserva
-      const result = await confirmPayment(paymentIntent.id, pendingBookingId);
-
-      if (result.success) {
-        const selectedDurationData = durations.find(d => d.minutes === selectedDuration);
-        const selectedReaderData = readers.find(r => r.id === selectedReader);
-        const selectedTypeData = bookingTypes.find(t => t.id === selectedType);
-
-        const booking = {
-          id: result.booking.id,
-          type: selectedTypeData.name,
-          duration: selectedDurationData.label,
-          date: format(selectedDate, "EEEE, d 'de' MMMM yyyy", { locale: es }),
-          therapist: selectedReaderData.name,
-          time: selectedTime,
-          price: selectedDurationData.price,
-          status: 'confirmed',
-          bookingData: result.booking
-        };
-
-        setConfirmedBooking(booking);
-        setShowPaymentModal(false);
-        setShowConfirmationModal(true);
-
-        toast({
-          title: "¡Pago Exitoso!",
-          description: "Tu reserva ha sido confirmada. Recibirás un correo con los detalles.",
-          duration: 5000
-        });
-      }
-    } catch (error) {
-      console.error('Error al confirmar pago:', error);
-      toast({
-        title: "Error",
-        description: "Hubo un problema al confirmar tu reserva. Contacta con soporte.",
-        variant: "destructive"
-      });
-    }
-  };
-
-  const handlePaymentError = (error) => {
-    console.error('Payment error:', error);
-    toast({
-      title: "Error en el pago",
-      description: "No se pudo procesar el pago. Por favor, intenta de nuevo.",
-      variant: "destructive"
-    });
   };
 
   const handleAddToCart = () => {
     if (!confirmedBooking) return;
 
+    // Usar CartContext para añadir al carrito
     const cartItem = {
       id: confirmedBooking.id,
       type: 'booking',
@@ -377,6 +274,8 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       duration: 3000
     });
 
+    setShowConfirmationModal(false);
+  };
     setShowConfirmationModal(false);
   };
 
@@ -467,11 +366,12 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       3: 'Selecciona el Día',
       4: 'Elige a tu Terapeuta',
       5: 'Selecciona la Hora',
-      6: 'Confirma y Paga'
+      6: 'Confirma tu Reserva'
     };
     return titles[currentStep] || '';
   };
 
+  // Calcular número total de pasos según el modo
   const totalSteps = mode === 'apertura' ? 5 : 6;
   const steps = mode === 'apertura' ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
@@ -567,7 +467,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
           </div>
         )}
 
-        {/* Step 3: Fecha - Calendario Mensual */}
+        {/* Step 3: Fecha - Calendario Mensual Estilo Windows */}
         {currentStep === 3 && (
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl shadow-xl p-6">
@@ -576,39 +476,39 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
                 <button
                   onClick={() => navigateMonth(-1)}
                   disabled={isSameMonth(currentMonth, new Date())}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                     isSameMonth(currentMonth, new Date())
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+                      : 'bg-purple-50 text-purple-700 hover:bg-purple-100'
                   }`}
                 >
                   <ChevronLeft className="w-5 h-5" />
-                  <span>Anterior</span>
+                  <span className="font-medium">Anterior</span>
                 </button>
 
-                <h3 className="text-2xl font-bold text-gray-800">
-                  {format(currentMonth, 'MMMM yyyy', { locale: es })}
+                <h3 className="text-2xl font-bold text-gray-900 capitalize">
+                  {format(currentMonth, "MMMM yyyy", { locale: es })}
                 </h3>
 
                 <button
                   onClick={() => navigateMonth(1)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium bg-purple-100 text-purple-700 hover:bg-purple-200 transition-all"
+                  className="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-all"
                 >
-                  <span>Siguiente</span>
+                  <span className="font-medium">Siguiente</span>
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
 
               {/* Encabezado de días de la semana */}
               <div className="grid grid-cols-7 gap-0 mb-2 border-b border-gray-200 pb-2">
-                {['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'].map((day) => (
+                {t.calendar.weekDays.map((day) => (
                   <div key={day} className="text-center text-sm font-semibold text-gray-600 py-2">
                     {day}
                   </div>
                 ))}
               </div>
 
-              {/* Días del mes */}
+              {/* Días del mes - Estilo Windows */}
               <div className="grid grid-cols-7 gap-0">
                 {getMonthDays().map((date) => {
                   const isCurrentMonth = isSameMonth(date, currentMonth);
@@ -721,7 +621,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
           </div>
         )}
 
-        {/* Step 6: Confirmación y Pago */}
+        {/* Step 6: Confirmación */}
         {currentStep === 6 && (
           <div className="max-w-3xl mx-auto">
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 mb-6">
@@ -771,7 +671,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
 
               <div className="text-center">
                 <button
-                  onClick={handleInitiatePayment}
+                  onClick={handleConfirmBooking}
                   disabled={isProcessing}
                   className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -782,8 +682,8 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
                     </>
                   ) : (
                     <>
-                      <CreditCard className="w-6 h-6" />
-                      <span>Proceder al Pago</span>
+                      <Check className="w-6 h-6" />
+                      <span>Confirmar y Pagar</span>
                     </>
                   )}
                 </button>
@@ -796,9 +696,9 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
         <div className="flex justify-between mt-8">
           <button
             onClick={goToPreviousStep}
-            disabled={currentStep === (mode === 'apertura' ? 2 : 1)}
+            disabled={currentStep === 1}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
-              currentStep === (mode === 'apertura' ? 2 : 1)
+              currentStep === 1
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md hover:shadow-lg'
             }`}
@@ -823,26 +723,6 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
           )}
         </div>
       </div>
-
-      {/* Modal de Pago con Stripe */}
-      <AngelicalModal
-        isOpen={showPaymentModal}
-        onClose={() => setShowPaymentModal(false)}
-        title="Pago Seguro"
-      >
-        <StripeCheckout
-          amount={durations.find(d => d.minutes === selectedDuration)?.price || 0}
-          bookingData={{
-            id: pendingBookingId,
-            type: bookingTypes.find(t => t.id === selectedType)?.name,
-            userId: currentUser?.id,
-          }}
-          clientSecret={paymentClientSecret}
-          onSuccess={handlePaymentSuccess}
-          onError={handlePaymentError}
-          onCancel={() => setShowPaymentModal(false)}
-        />
-      </AngelicalModal>
 
       {/* Modal de Confirmación */}
       <AngelicalModal
@@ -893,7 +773,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
               </div>
 
               <div className="flex justify-between py-3 bg-purple-100 rounded-lg px-4 mt-4">
-                <span className="font-bold text-gray-800">Total Pagado:</span>
+                <span className="font-bold text-gray-800">Total:</span>
                 <span className="font-bold text-2xl text-purple-700">
                   ${confirmedBooking.price} USD
                 </span>
@@ -901,19 +781,40 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
             </div>
           )}
 
+          <div className="flex gap-3 pt-4">
+            <button
+              onClick={handleAddToCart}
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+            >
+              <ShoppingCart className="w-5 h-5" />
+              Añadir al Carrito
+            </button>
+
+            <button
+              onClick={() => setShowCancellationModal(true)}
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-red-500 text-white font-semibold rounded-xl hover:bg-red-600 transition-all"
+            >
+              <X className="w-5 h-5" />
+              Cancelar Cita
+            </button>
+          </div>
+
           <button
             onClick={() => navigate('/mis-reservas')} 
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-4"
           >
             <Calendar className="w-5 h-5" />
             Ver Mis Reservas
           </button>
 
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-            <div className="text-sm text-blue-800">
-              <p className="font-semibold mb-1">Próximos Pasos</p>
-              <p>Recibirás un correo con el enlace para la videollamada 15 minutos antes de tu cita.</p>
+          <div className="hidden">
+          </div>
+
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+            <div className="text-sm text-yellow-800">
+              <p className="font-semibold mb-1">Política de Cancelación</p>
+              <p>Las cancelaciones tienen un cargo del 50% del total de la cita (${ confirmedBooking ? (confirmedBooking.price * 0.5).toFixed(2) : '0'} USD)</p>
             </div>
           </div>
         </div>
@@ -976,4 +877,3 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
 };
 
 export default SistemaReservasCompleto;
-
