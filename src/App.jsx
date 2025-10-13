@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { supabase } from './supabase';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { AudioProvider } from './contexts/AudioContext';
+import { CartProvider } from './contexts/CartContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 // Componentes principales
@@ -125,6 +126,7 @@ function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
+        <CartProvider>
         <AudioProvider>
           <Router>
             <div className="App">
@@ -177,6 +179,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+        </CartProvider>
         </AudioProvider>
       </LanguageProvider>
     </ThemeProvider>
