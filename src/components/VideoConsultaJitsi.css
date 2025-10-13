@@ -1,0 +1,372 @@
+/* Sala de Espera */
+.sala-espera-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.sala-espera-container {
+  background: white;
+  border-radius: 24px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.sala-espera-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 32px;
+  text-align: center;
+  border-radius: 24px 24px 0 0;
+}
+
+.sala-espera-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.sala-espera-header p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.sala-espera-content {
+  padding: 32px;
+}
+
+.angelologo-info {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.angelologo-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.angelologo-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.angelologo-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+}
+
+.angelologo-especialidad {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.angelologo-descripcion {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.consulta-detalles {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.detalle-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.detalle-item svg {
+  color: #667eea;
+}
+
+.preparacion-tips {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.preparacion-tips h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.preparacion-tips ul {
+  margin: 0;
+  padding-left: 24px;
+  list-style: none;
+}
+
+.preparacion-tips li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.preparacion-tips li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-weight: 700;
+}
+
+.sala-espera-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-entrar-consulta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-entrar-consulta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+}
+
+.btn-cancelar-consulta {
+  padding: 12px 32px;
+  background: white;
+  color: #666;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar-consulta:hover {
+  border-color: #999;
+  color: #333;
+}
+
+/* Video Consulta */
+.video-consulta-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  z-index: 2000;
+}
+
+.video-consulta-header {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.consulta-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.consulta-titulo {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.consulta-estado {
+  padding: 4px 12px;
+  background: rgba(244, 67, 54, 0.2);
+  color: #ff5252;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.consulta-timer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tiempo-advertencia {
+  color: #ff5252;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.btn-salir-consulta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #f44336;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-salir-consulta:hover {
+  background: #d32f2f;
+  transform: scale(1.1);
+}
+
+.video-consulta-main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.alerta-tiempo {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 152, 0, 0.95);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  animation: slideUp 0.3s ease;
+}
+
+.alerta-tiempo-terminado {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.95);
+  color: white;
+  padding: 32px 48px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-finalizar {
+  padding: 12px 32px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-finalizar:hover {
+  background: #d32f2f;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sala-espera-container {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .consulta-detalles {
+    flex-direction: column;
+  }
+  
+  .video-consulta-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .consulta-info {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
