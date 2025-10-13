@@ -117,25 +117,42 @@ const AperturaAngelicaHeader = ({
         </div>
         
         {/* Contenido del header */}
-        <div className="relative z-10 px-6 py-10">
-          {/* Contenedor con max-width para mejor control */}
-          <div className="max-w-7xl mx-auto">
-            {/* Fila 1: Título centrado y controles a la derecha */}
-            <div className="flex justify-between items-start mb-6">
-              {/* Título y subtítulo */}
-              <div className="flex-1">
-                <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-2xl mb-2">
-                  Apertura Angelical
-                </h1>
-                <p className="text-lg md:text-xl text-white/90 font-medium drop-shadow-lg">
-                  Abre tu corazón a la energía divina ✨
-                </p>
+        <div className="relative z-10 px-8 py-16">
+          <div className="flex justify-between items-start">
+            {/* Título y subtítulo */}
+            <div>
+              <h1 className="text-5xl font-bold text-white mb-4 drop-shadow-2xl">
+                Apertura Angelical
+              </h1>
+              <p className="text-xl text-white font-medium drop-shadow-2xl">
+                Abre tu corazón a la energía divina ✨
+              </p>
+            </div>
+            
+            {/* Información adicional del usuario */}
+            <div className="flex flex-col items-end space-y-4">
+              {/* Stats del usuario */}
+              <div className={`flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-4 rounded-xl border-l-4 ${currentTheme.border}`}>
+                <div className="text-center">
+                  <div className="text-sm opacity-80">Nivel Espiritual</div>
+                  <div className="font-bold text-lg">Iluminado</div>
+                </div>
+                <div className="w-px h-12 bg-white/30"></div>
+                <div className="text-center">
+                  <div className="text-sm opacity-80">Puntos de Luz</div>
+                  <div className="font-bold text-lg">1500</div>
+                </div>
               </div>
               
-              {/* Controles de usuario */}
-              <div className={`flex items-center space-x-3 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border-l-4 ${currentTheme.border} ml-4`}>
+              {/* Navegación integrada */}
+              <div className={`flex items-center space-x-3 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border-l-4 ${currentTheme.border}`}>
+                {/* Idioma */}
                 <LanguageSelector inline variant="header" />
+                
+                {/* Separador */}
                 <div className="w-px h-8 bg-white/30"></div>
+                
+                {/* Carrito */}
                 <button 
                   onClick={onCartClick}
                   className="relative p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
@@ -148,15 +165,19 @@ const AperturaAngelicaHeader = ({
                     </span>
                   )}
                 </button>
+                
+                {/* Gestión de Usuario */}
                 <button 
                   onClick={onProfileClick}
                   className="flex items-center space-x-2 p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
-                  aria-label="Perfil"
+                  aria-label="Gestión de usuario"
                 >
                   <User size={20} />
                   <span className="font-medium text-sm">{getUserName()}</span>
                 </button>
-                <button
+
+                {/* Logout */}
+                <button 
                   onClick={onLogout}
                   className={`p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/80 ${currentTheme.hoverText}`}
                   aria-label="Cerrar sesión"
@@ -164,28 +185,12 @@ const AperturaAngelicaHeader = ({
                   <LogOut size={20} />
                 </button>
               </div>
-            </div>
-            
-            {/* Fila 2: Stats y botones de acción */}
-            <div className="flex justify-between items-center">
-              {/* Stats del usuario */}
-              <div className={`flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-3 rounded-xl border-l-4 ${currentTheme.border}`}>
-                <div className="text-center">
-                  <div className="text-xs opacity-80">Nivel Espiritual</div>
-                  <div className="font-bold text-base">Iluminado</div>
-                </div>
-                <div className="w-px h-10 bg-white/30"></div>
-                <div className="text-center">
-                  <div className="text-xs opacity-80">Puntos de Luz</div>
-                  <div className="font-bold text-base">1500</div>
-                </div>
-              </div>
               
               {/* Botones de Audio y Volver */}
               <div className="flex items-center space-x-3">
                 <button 
                   onClick={handleToggleAudio}
-                  className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-5 py-2.5 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
+                  className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
                 >
                   {audioReproduciendo ? <VolumeX size={18} /> : <Volume2 size={18} />}
                   <span className="text-sm">{audioReproduciendo ? 'Silenciar' : 'Audio'}</span>
@@ -193,7 +198,7 @@ const AperturaAngelicaHeader = ({
                 
                 <button 
                   onClick={onNavigateHome}
-                  className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-5 py-2.5 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
+                  className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
                 >
                   <ArrowLeft size={18} />
                   <span className="text-sm">Volver</span>
