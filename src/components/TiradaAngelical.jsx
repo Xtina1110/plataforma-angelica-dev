@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Star, Heart, Sparkles, Download, RotateCcw, ArrowRight, ArrowLeft, Clock, Users, Layers, Zap, Video, Briefcase, Lightbulb, Calendar } from 'lucide-react';
+import { Star, Heart, Sparkles, Download, RotateCcw, ArrowRight, ArrowLeft, Clock, Users, Layers, Zap, Video, Briefcase, Lightbulb, Calendar, BookmarkPlus, History } from 'lucide-react';
 import useAutoScrollToContent from '../hooks/useAutoScrollToContent';
+import { useAperturaAngelical } from '../contexts/AperturaAngelicalContext';
 import './TiradaAngelical.css';
 import './TiradaAngelicalAnimations.css';
 import './Dashboard.css';
@@ -31,15 +32,33 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
   // Auto-scroll to main content after 2 seconds
   useAutoScrollToContent('.main-content', 2000);
   
-  // Estados principales del flujo
-  const [paso, setPaso] = useState('instrucciones'); // 'instrucciones', 'seleccion', 'resumen', 'barajando', 'seleccionCartas', 'revelando', 'resumenFinal'
-  const [tipoSeleccionado, setTipoSeleccionado] = useState(null);
-  const [temaSeleccionado, setTemaSeleccionado] = useState(null);
+  // Usar Context de Apertura Angelical
+  const {
+    aperturaState,
+    updateAperturaState,
+    guardarTirada,
+    agregarFavorito,
+    cargarHistorial
+  } = useAperturaAngelical();
+  
+  // Estados locales (mantener para UI temporal)
   const [cartasBarajeadas, setCartasBarajeadas] = useState([]);
-  const [cartasSeleccionadas, setCartasSeleccionadas] = useState([]);
   const [cartaActual, setCartaActual] = useState(0);
-  const [interpretaciones, setInterpretaciones] = useState([]);
   const [cargandoInterpretacion, setCargandoInterpretacion] = useState(false);
+  
+  // Usar estado del contexto para datos persistentes
+  const paso = aperturaState.paso;
+  const tipoSeleccionado = aperturaState.tipoSeleccionado;
+  const temaSeleccionado = aperturaState.temaSeleccionado;
+  const cartasSeleccionadas = aperturaState.cartasSeleccionadas;
+  const interpretaciones = aperturaState.interpretaciones;
+  
+  // Funciones para actualizar el contexto
+  const setPaso = (nuevoPaso) => updateAperturaState({ paso: nuevoPaso });
+  const setTipoSeleccionado = (tipo) => updateAperturaState({ tipoSeleccionado: tipo });
+  const setTemaSeleccionado = (tema) => updateAperturaState({ temaSeleccionado: tema });
+  const setCartasSeleccionadas = (cartas) => updateAperturaState({ cartasSeleccionadas: cartas });
+  const setInterpretaciones = (interps) => updateAperturaState({ interpretaciones: interps });
 
   const [modalState, setModalState] = useState({
     isOpen: false,
