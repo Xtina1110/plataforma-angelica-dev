@@ -132,37 +132,18 @@
   box-sizing: border-box;
 }
 
-/* Paso 1: Instrucciones */
+/* Paso 1: Instrucciones - Simplified structure */
 .instrucciones-container {
   background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)),
     url('/lovable-uploads/774c9267-ae3b-41ab-9ae7-8e71c2f9ecba.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 3rem 0;
-  border-radius: 0;
-  position: relative;
-  overflow: visible;
-  box-shadow: none;
+  padding: 2rem 0;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  box-sizing: border-box;
-  min-height: auto;
-  height: auto;
 }
 
-.instrucciones-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at top left, rgba(59, 130, 246, 0.05) 0%, transparent 70%),
-    radial-gradient(ellipse at bottom right, rgba(30, 64, 175, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
+/* Removed ::before to prevent positioning issues */
 
 /* Paso 2: Selección */
 .seleccion-container {
