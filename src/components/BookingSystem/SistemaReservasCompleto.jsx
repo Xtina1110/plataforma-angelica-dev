@@ -376,7 +376,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
   const steps = mode === 'apertura' ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 mt-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-24">
       <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8">
         {/* Progress Stepper */}
         <div className="mb-12">
