@@ -179,19 +179,10 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
     return slots;
   };
 
-  const isStripeConfigured = () => {
-    const configured = !!import.meta.env.VITE_STRIPE_PUBLIC_KEY;
-    console.log('[DEBUG] Stripe configurado:', configured);
-    return configured;
-  };
-
-  const handleInitiatePayment = async () => {
-    alert("CLICK DETECTADO - Iniciando pago...");
-    console.log('[DEBUG] handleInitiatePayment iniciado');
-    console.log('[DEBUG] Usuario actual:', currentUser);
+  const handleAddToCart = async () => {
+    console.log('[DEBUG] Añadiendo al carrito...');
     
     if (!currentUser) {
-      console.log('[DEBUG] No hay usuario logueado');
       toast({
         title: "Error",
         description: "Debes iniciar sesión para continuar",
@@ -200,7 +191,6 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       return;
     }
 
-    console.log('[DEBUG] Iniciando procesamiento...');
     setIsProcessing(true);
 
     try {
@@ -208,22 +198,15 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       const selectedReaderData = readers.find(r => r.id === selectedReader);
       const selectedTypeData = bookingTypes.find(t => t.id === selectedType);
 
-      console.log('[DEBUG] Datos seleccionados:', {
-        duration: selectedDurationData,
-        reader: selectedReaderData,
-        type: selectedTypeData,
-        date: selectedDate,
-        time: selectedTime
-      });
-
       const [hours, minutes] = selectedTime.split(':').map(Number);
       const startDate = new Date();
       startDate.setHours(hours, minutes, 0);
       const endDate = new Date(startDate.getTime() + selectedDuration * 60000);
       const endTime = `${endDate.getHours().toString().padStart(2, '0')}:${endDate.getMinutes().toString().padStart(2, '0')}`;
 
-      console.log('[DEBUG] Creando reserva en Supabase...');
+      console.log('[DEBUG] Creando reserva pendiente en Supabase...');
       
+      // Crear reserva PENDIENTE (no confirmada hasta que se pague)
       const { data, error } = await supabase
         .from('bookings')
         .insert({
@@ -233,10 +216,9 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
           end_time: endTime,
           duration: selectedDuration,
           total_price: selectedDurationData.price,
-          status: isStripeConfigured() ? 'pending_payment' : 'confirmed',
-          payment_status: isStripeConfigured() ? 'pending' : 'paid',
+          status: 'pending',  // Estado pendiente hasta pagar
+          payment_status: 'pending',
           notes: `Tipo: ${selectedTypeData.name}, Terapeuta: ${selectedReaderData.name}`,
-          payment_intent_id: isStripeConfigured() ? null : 'mock_payment_' + Date.now()
         })
         .select()
         .single();
@@ -246,62 +228,45 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
         throw error;
       }
 
-      console.log('[DEBUG] Reserva creada:', data);
-      setPendingBookingId(data.id);
+      console.log('[DEBUG] Reserva pendiente creada:', data);
 
-      if (!isStripeConfigured()) {
-        console.log('[DEBUG] Modo Demo - Confirmacion directa');
-        
-        const booking = {
-          id: data.id,
-          type: selectedTypeData.name,
-          duration: selectedDurationData.label,
-          date: format(selectedDate, "EEEE, d 'de' MMMM yyyy", { locale: es }),
-          therapist: selectedReaderData.name,
-          time: selectedTime,
-          price: selectedDurationData.price,
-          status: 'confirmed',
-          bookingData: data
-        };
-
-        console.log('[DEBUG] Booking confirmado:', booking);
-        setConfirmedBooking(booking);
-        
-        console.log('[DEBUG] Mostrando modal');
-        setShowConfirmationModal(true);
-
-        toast({
-          title: "Reserva Confirmada!",
-          description: "Tu cita ha sido agendada exitosamente (Modo Demo)",
-          duration: 5000
-        });
-
-        setIsProcessing(false);
-        console.log('[DEBUG] Proceso completado');
-        return;
-      }
-
-      console.log('[DEBUG] Stripe configurado - flujo de pago');
-      const paymentData = await createPaymentIntent(selectedDurationData.price, {
+      // Añadir al carrito usando CartContext
+      const cartItem = {
         id: data.id,
-        type: selectedTypeData.name,
-        userId: currentUser.id,
+        type: 'booking',
+        bookingType: selectedTypeData.name,
+        duration: selectedDurationData.label,
+        date: format(selectedDate, "EEEE, d 'de' MMMM yyyy", { locale: es }),
+        therapist: selectedReaderData.name,
+        time: selectedTime,
+        price: selectedDurationData.price,
+        bookingId: data.id
+      };
+
+      console.log('[DEBUG] Añadiendo al carrito:', cartItem);
+      addToCart(cartItem);
+
+      toast({
+        title: "¡Añadido al Carrito!",
+        description: "Tu reserva ha sido añadida. Completa el pago desde el carrito.",
+        duration: 5000
       });
 
-      console.log('[DEBUG] PaymentIntent creado');
-      setPaymentClientSecret(paymentData.clientSecret);
-      setShowPaymentModal(true);
+      // Navegar a Mis Reservas para ver la reserva pendiente
+      console.log('[DEBUG] Navegando a /mis-reservas');
+      setTimeout(() => {
+        navigate('/mis-reservas');
+      }, 1500);
 
     } catch (error) {
       console.error('[DEBUG] Error:', error);
       toast({
         title: "Error",
-        description: "No se pudo procesar la reserva. Por favor, intenta de nuevo.",
+        description: "No se pudo añadir la reserva al carrito. Por favor, intenta de nuevo.",
         variant: "destructive"
       });
     } finally {
       setIsProcessing(false);
-      console.log('[DEBUG] Finalizado');
     }
   };
 
@@ -356,29 +321,6 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
     });
   };
 
-  const handleAddToCart = () => {
-    if (!confirmedBooking) return;
-
-    const cartItem = {
-      id: confirmedBooking.id,
-      type: 'booking',
-      name: `${confirmedBooking.type} - ${confirmedBooking.date} ${confirmedBooking.time}`,
-      description: `Sesión de ${confirmedBooking.duration} con ${confirmedBooking.therapist}`,
-      price: confirmedBooking.price,
-      quantity: 1,
-      bookingId: confirmedBooking.id
-    };
-
-    addToCart(cartItem);
-
-    toast({
-      title: "Añadido al carrito",
-      description: "La reserva ha sido añadida a tu carrito de compra",
-      duration: 3000
-    });
-
-    setShowConfirmationModal(false);
-  };
 
   const handleCancelBooking = async () => {
     if (!confirmedBooking || !cancellationReason.trim()) {
@@ -771,7 +713,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
 
               <div className="text-center">
                 <button
-                  onClick={handleInitiatePayment}
+                  onClick={handleAddToCart}
                   disabled={isProcessing}
                   className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -783,7 +725,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
                   ) : (
                     <>
                       <CreditCard className="w-6 h-6" />
-                      <span>Proceder al Pago</span>
+                      <span>Añadir al Carrito</span>
                     </>
                   )}
                 </button>
