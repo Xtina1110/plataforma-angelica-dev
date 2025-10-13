@@ -13,6 +13,7 @@ import { useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAudio } from '../contexts/AudioContext';
 import { useIsMobile } from '../hooks/use-mobile';
+import { AperturaAngelicalProvider } from '../contexts/AperturaAngelicalContext';
 import LanguageSelector from './LanguageSelector';
 
 import TiradaAngelical from './TiradaAngelical';
@@ -1127,10 +1128,12 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     switch (activeSection) {
        case 'tirada': 
         return (
-          <div>
-            {renderHeader()}
-            <TiradaAngelical onVolver={() => setActiveSection('home')} />
-          </div>
+          <AperturaAngelicalProvider>
+            <div>
+              {renderHeader()}
+              <TiradaAngelical onVolver={() => setActiveSection('home')} />
+            </div>
+          </AperturaAngelicalProvider>
         );
        case 'canalizaciones': 
         return (

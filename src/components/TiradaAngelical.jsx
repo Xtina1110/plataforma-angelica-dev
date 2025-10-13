@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Star, Heart, Sparkles, Download, RotateCcw, ArrowRight, ArrowLeft, Clock, Users, Layers, Zap, Video, Briefcase, Lightbulb, Calendar, BookmarkPlus, History } from 'lucide-react';
 import useAutoScrollToContent from '../hooks/useAutoScrollToContent';
 import { useAperturaAngelical } from '../contexts/AperturaAngelicalContext';
+import HistorialTiradas from './HistorialTiradas';
+import FavoritosTiradas from './FavoritosTiradas';
 import './TiradaAngelical.css';
 import './TiradaAngelicalAnimations.css';
 import './Dashboard.css';
@@ -66,6 +68,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
     message: '',
     type: 'success'
   });
+  
+  const [mostrarHistorial, setMostrarHistorial] = useState(false);
+  const [mostrarFavoritos, setMostrarFavoritos] = useState(false);
   
   // Auto-scroll to instructions section after 2 seconds when on instructions step
   useEffect(() => {
@@ -322,12 +327,30 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
         temaConsulta: temaSeleccionado
       });
       setInterpretaciones(interpretacionesGeneradas);
+      
+      // Guardar automáticamente en el historial
+      await guardarTirada({
+        tipo_tirada: tipoSeleccionado,
+        tema: temaSeleccionado,
+        cartas: cartas,
+        interpretaciones: interpretacionesGeneradas,
+        ambiente: aperturaState.configuracion.ambiente || 'Ninguno'
+      });
     } catch (error) {
       console.error('Error generando interpretaciones:', error);
       const defaultInterpretaciones = cartas.map(carta =>
         angelicInterpretationService.getDefaultInterpretation(carta)
       );
       setInterpretaciones(defaultInterpretaciones);
+      
+      // Guardar con interpretaciones por defecto
+      await guardarTirada({
+        tipo_tirada: tipoSeleccionado,
+        tema: temaSeleccionado,
+        cartas: cartas,
+        interpretaciones: defaultInterpretaciones,
+        ambiente: aperturaState.configuracion.ambiente || 'Ninguno'
+      });
     } finally {
       setCargandoInterpretacion(false);
     }
@@ -1049,8 +1072,38 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
         message={modalState.message}
         type={modalState.type}
       />
+      
+      {/* Modales de Historial y Favoritos */}
+      {mostrarHistorial && (
+        <HistorialTiradas 
+          onClose={() => setMostrarHistorial(false)}
+          onVerTirada={(tirada) => {
+            // Cargar tirada desde historial
+            setTipoSeleccionado(tirada.tipo_tirada);
+            setTemaSeleccionado(tirada.tema);
+            setCartasSeleccionadas(tirada.cartas);
+            setInterpretaciones(tirada.interpretaciones);
+            setPaso('resumen');
+            setMostrarHistorial(false);
+          }}
+        />
+      )}
+      
+      {mostrarFavoritos && (
+        <FavoritosTiradas 
+          onClose={() => setMostrarFavoritos(false)}
+          onVerTirada={(tirada) => {
+            // Cargar tirada desde favoritos
+            setTipoSeleccionado(tirada.tipo_tirada);
+            setTemaSeleccionado(tirada.tema);
+            setCartasSeleccionadas(tirada.cartas);
+            setInterpretaciones(tirada.interpretaciones);
+            setPaso('resumen');
+            setMostrarFavoritos(false);
+          }}
+        />
+      )}
     </div>
   );
 };
-
-export default TiradaAngelical;
+export default TiradaAngelical;;
