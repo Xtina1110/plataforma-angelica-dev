@@ -1,23 +1,26 @@
 .event-calendar-container {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.12);
-  margin-bottom: 32px;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.12);
+  margin-bottom: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .calendar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .calendar-month-year {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 20px;
+  gap: 8px;
+  font-size: 16px;
   font-weight: 700;
   color: #6E3CBC;
   margin: 0;
@@ -27,15 +30,15 @@
   background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
 .calendar-nav-btn:hover {
@@ -46,17 +49,17 @@
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 4px;
 }
 
 .calendar-day-name {
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   color: #6b7280;
-  padding: 8px 0;
+  padding: 6px 0;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .calendar-day {
@@ -124,7 +127,7 @@
 }
 
 .day-number {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #374151;
 }
