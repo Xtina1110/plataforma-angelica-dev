@@ -179,6 +179,11 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
     return slots;
   };
 
+  // Verificar si Stripe está configurado
+  const isStripeConfigured = () => {
+    return !!import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+  };
+
   const handleInitiatePayment = async () => {
     if (!currentUser) {
       toast({
@@ -203,7 +208,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       const endDate = new Date(startDate.getTime() + selectedDuration * 60000);
       const endTime = `${endDate.getHours().toString().padStart(2, '0')}:${endDate.getMinutes().toString().padStart(2, '0')}`;
 
-      // Crear reserva pendiente en Supabase
+      // Crear reserva en Supabase
       const { data, error } = await supabase
         .from('bookings')
         .insert({
@@ -213,9 +218,10 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
           end_time: endTime,
           duration: selectedDuration,
           total_price: selectedDurationData.price,
-          status: 'pending_payment',
-          payment_status: 'pending',
-          notes: `Tipo: ${selectedTypeData.name}, Terapeuta: ${selectedReaderData.name}`
+          status: isStripeConfigured() ? 'pending_payment' : 'confirmed',
+          payment_status: isStripeConfigured() ? 'pending' : 'paid',
+          notes: `Tipo: ${selectedTypeData.name}, Terapeuta: ${selectedReaderData.name}`,
+          payment_intent_id: isStripeConfigured() ? null : 'mock_payment_' + Date.now()
         })
         .select()
         .single();
@@ -224,7 +230,34 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
 
       setPendingBookingId(data.id);
 
-      // Crear PaymentIntent en Stripe
+      // Si Stripe NO está configurado, ir directo a confirmación
+      if (!isStripeConfigured()) {
+        const booking = {
+          id: data.id,
+          type: selectedTypeData.name,
+          duration: selectedDurationData.label,
+          date: format(selectedDate, "EEEE, d 'de' MMMM yyyy", { locale: es }),
+          therapist: selectedReaderData.name,
+          time: selectedTime,
+          price: selectedDurationData.price,
+          status: 'confirmed',
+          bookingData: data
+        };
+
+        setConfirmedBooking(booking);
+        setShowConfirmationModal(true);
+
+        toast({
+          title: "¡Reserva Confirmada!",
+          description: "Tu cita ha sido agendada exitosamente (Modo Demo - Sin pago real)",
+          duration: 5000
+        });
+
+        setIsProcessing(false);
+        return;
+      }
+
+      // Si Stripe SÍ está configurado, continuar con flujo normal
       const paymentData = await createPaymentIntent(selectedDurationData.price, {
         id: data.id,
         type: selectedTypeData.name,
@@ -235,10 +268,10 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       setShowPaymentModal(true);
 
     } catch (error) {
-      console.error('Error al iniciar pago:', error);
+      console.error('Error al procesar reserva:', error);
       toast({
         title: "Error",
-        description: "No se pudo iniciar el proceso de pago. Por favor, intenta de nuevo.",
+        description: "No se pudo procesar la reserva. Por favor, intenta de nuevo.",
         variant: "destructive"
       });
     } finally {
