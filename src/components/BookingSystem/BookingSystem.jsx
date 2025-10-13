@@ -27,7 +27,7 @@ const BookingSystem = ({ onBack, user, onLogout, mode = 'general' }) => {
           theme="purple"
         />
 
-        <SistemaReservasCompleto />
+        <SistemaReservasCompleto mode={mode} />
       </main>
     </div>
   );

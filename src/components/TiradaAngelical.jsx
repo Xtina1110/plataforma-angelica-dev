@@ -230,9 +230,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
 
   // Comenzar tirada
   const handleComenzarTirada = () => {
-    // Si es consulta en vivo, redirigir a videollamada
+    // Si es consulta en vivo, redirigir al sistema de reservas
     if (tipoSeleccionado.esEnVivo) {
-      navigate('/consulta-online');
+      navigate('/reservas-apertura');
       return;
     }
     

@@ -11,10 +11,10 @@ import { useToast } from '../../hooks/use-toast';
 import { useLanguage } from '../../hooks/useLanguage';
 import AngelicalModal from '../AngelicalModal';
 
-const SistemaReservasCompleto = () => {
+const SistemaReservasCompleto = ({ mode = 'general' }) => {
   const { toast } = useToast();
   const { t } = useLanguage();
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(mode === 'apertura' ? 2 : 1);
   const [selectedType, setSelectedType] = useState(null);
   const [selectedDuration, setSelectedDuration] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -67,6 +67,14 @@ const SistemaReservasCompleto = () => {
     }
   ];
 
+  // Auto-seleccionar tipo si viene desde Apertura Angelica
+  useEffect(() => {
+    if (mode === 'apertura') {
+      const aperturaType = bookingTypes.find(t => t.id === 'apertura');
+      setSelectedType(aperturaType);
+    }
+  }, [mode]);
+
   const durations = [
     { minutes: 60, label: '1 hora', price: 200 },
     { minutes: 75, label: '1h 15min', price: 250 },
@@ -79,31 +87,14 @@ const SistemaReservasCompleto = () => {
 
   const readers = [
     {
-      id: 'maria',
-      name: 'María Luz',
-      specialty: ['apertura', 'terapias'],
-      rating: 4.9,
-      sessions: 1247,
-      avatar: '👩‍🦳',
-      description: 'Especialista en Apertura Angelical y conexión espiritual'
-    },
-    {
-      id: 'carlos',
-      name: 'Carlos Ángel',
-      specialty: ['terapias', 'limpiezas'],
-      rating: 4.8,
-      sessions: 892,
-      avatar: '👨‍🦲',
-      description: 'Experto en terapias energéticas y sanación'
-    },
-    {
-      id: 'sofia',
-      name: 'Sofía Celestial',
-      specialty: ['apertura', 'limpiezas'],
+      id: 'juan-carlos-avila',
+      name: 'Juan Carlos Ávila',
+      title: 'El Angelólogo',
+      specialty: ['apertura', 'terapias', 'limpiezas'],
       rating: 5.0,
-      sessions: 2156,
-      avatar: '👩‍🦰',
-      description: 'Maestra en limpiezas espirituales y protección'
+      sessions: 3500,
+      avatar: '/juan-carlos-avila.png',
+      description: 'Fundador y maestro angelólogo con más de 20 años de experiencia en conexión angelical y sanación espiritual'
     }
   ];
 
