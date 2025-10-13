@@ -4264,7 +4264,8 @@ body {
 
 .eventos-content {
   display: flex;
-  gap: 30px; /* Mayor espacio entre tarjetas */
+  gap: 20px; /* Espacio entre tarjetas */
+  padding: 0 10px; /* Padding para separar del borde */
 }
 
 .carousel-item-evento {
@@ -4272,6 +4273,7 @@ body {
   width: 350px; /* Ancho fijo más grande */
   min-width: 350px;
   max-width: 350px;
+  padding: 0 8px; /* Padding adicional para separación */
 }
 
 .evento-card-horizontal {
