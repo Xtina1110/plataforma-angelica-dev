@@ -13,6 +13,7 @@ import Login from './components/Login';
 import LoginOptimized from './components/LoginOptimized';
 import LoginEnhanced from './components/LoginEnhanced';
 import DashboardRedirect from './components/DashboardRedirect';
+import MisReservas from './components/MisReservas';
 import Registro from './components/Registro';
 import RegistroMultiStep from './components/RegistroMultiStep';
 import RegistroExitoso from './components/RegistroExitoso';
@@ -146,6 +147,7 @@ function App() {
             <Route path="/mensaje-del-dia" element={<MainLayout><Dashboard initialSection="mensaje" /></MainLayout>} />
             <Route path="/reservas" element={<BookingSystem onBack={() => window.history.back()} user={user} onLogout={handleLogout} mode="general" />} />
             <Route path="/reservas-apertura" element={<BookingSystem onBack={() => window.history.back()} user={user} onLogout={handleLogout} mode="apertura" />} />
+            <Route path="/mis-reservas" element={<MainLayout><MisReservas user={user} /></MainLayout>} />
             <Route path="/consulta-online" element={<MainLayout><ConsultasOnlineVivo user={user} onLogout={handleLogout} /></MainLayout>} />
             
             {/* Rutas principales de aplicaciones */}
