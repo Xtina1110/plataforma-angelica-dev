@@ -1,0 +1,282 @@
+/* Animaciones mejoradas para Apertura Angelical */
+
+/* Animación de entrada para cartas reveladas */
+@keyframes cardRevealFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardRevealSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes messageRevealSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animación de pulso suave para elementos importantes */
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+/* Animación de brillo angelical */
+@keyframes angelicGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  }
+}
+
+/* Aplicar animaciones a elementos */
+.carta-revelacion {
+  animation: cardRevealFadeIn 0.8s ease-out;
+}
+
+.carta-imagen-container {
+  animation: cardRevealSlideIn 0.6s ease-out;
+}
+
+.carta-mensajes {
+  animation: messageRevealSlideIn 0.6s ease-out 0.2s both;
+}
+
+.carta-imagen {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carta-imagen:hover {
+  transform: scale(1.02);
+  animation: angelicGlow 2s ease-in-out infinite;
+}
+
+/* Barra de progreso mejorada */
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 100%);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 1rem 0;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #06b6d4 100%);
+  border-radius: 10px;
+  transition: width 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Indicadores de paso mejorados */
+.step-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.step-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.step-indicator.active {
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.step-indicator.completed {
+  background: #10b981;
+}
+
+.step-indicator:hover:not(.active) {
+  background: #cbd5e1;
+  transform: scale(1.1);
+}
+
+/* Vista previa de todas las cartas */
+.cards-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+  animation: cardRevealFadeIn 0.8s ease-out;
+}
+
+.card-preview {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card-preview:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-preview img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-preview-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 1rem 0.5rem;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Transición suave entre cartas */
+.card-transition-enter {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.card-transition-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s ease-out;
+}
+
+.card-transition-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.card-transition-exit-active {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.5s ease-out;
+}
+
+/* Mejoras para diferentes números de cartas */
+.tirada-3-cartas .carta-revelacion-content {
+  grid-template-columns: 1fr 2fr;
+}
+
+.tirada-6-cartas .carta-revelacion-content {
+  grid-template-columns: 1fr 1.5fr;
+}
+
+.tirada-9-cartas .carta-revelacion-content {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carta-revelacion-content {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .cards-overview {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  
+  .card-preview img {
+    height: 150px;
+  }
+}
+
+/* Loading animation mejorada */
+.loading-interpretation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  gap: 1rem;
+}
+
+.loading-interpretation svg {
+  animation: spin 2s linear infinite, gentlePulse 1.5s ease-in-out infinite;
+  color: #3b82f6;
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-interpretation p {
+  color: #64748b;
+  font-size: 1rem;
+  text-align: center;
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+

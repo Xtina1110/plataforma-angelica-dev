@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Star, Heart, Sparkles, Download, RotateCcw, ArrowRight, ArrowLeft, Clock, Users, Layers, Zap, Video, Briefcase, Lightbulb, Calendar } from 'lucide-react';
 import useAutoScrollToContent from '../hooks/useAutoScrollToContent';
 import './TiradaAngelical.css';
+import './TiradaAngelicalAnimations.css';
 import './Dashboard.css';
 import IconoAmbienteSagrado from './IconoAmbienteSagrado';
 import IconoTirada3Cartas from './IconoTirada3Cartas';
@@ -656,9 +657,27 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                 <div className="carta-progress">
                   Carta {cartaActual + 1} de {cartasSeleccionadas.length}
                 </div>
+                {/* Barra de progreso mejorada */}
+                <div className="progress-bar-container">
+                  <div 
+                    className="progress-bar-fill" 
+                    style={{ width: `${((cartaActual + 1) / cartasSeleccionadas.length) * 100}%` }}
+                  ></div>
+                </div>
+                {/* Indicadores de paso */}
+                <div className="step-indicators">
+                  {cartasSeleccionadas.map((_, index) => (
+                    <div 
+                      key={index}
+                      className={`step-indicator ${index === cartaActual ? 'active' : ''} ${index < cartaActual ? 'completed' : ''}`}
+                      onClick={() => setCartaActual(index)}
+                      title={`Ir a carta ${index + 1}`}
+                    />
+                  ))}
+                </div>
               </CardHeader>
               <CardContent>
-                <div className="carta-revelacion-content">
+                <div className={`carta-revelacion-content tirada-${cartasSeleccionadas.length}-cartas`}>
                   <div 
                     className="carta-imagen-container" 
                     style={{ 
