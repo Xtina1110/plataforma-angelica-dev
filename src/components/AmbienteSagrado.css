@@ -1,0 +1,284 @@
+.ambiente-sagrado-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.ambiente-fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background 1s ease;
+}
+
+.ambiente-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+/* Partículas */
+.particulas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.particula {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: flotar infinite ease-in-out;
+}
+
+/* Estrellas */
+.particulas-estrellas .particula {
+  background: white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation-name: brillar;
+}
+
+@keyframes brillar {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+}
+
+/* Nieve */
+.particulas-nieve .particula {
+  background: white;
+  animation-name: caer-nieve;
+}
+
+@keyframes caer-nieve {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh);
+  }
+}
+
+/* Burbujas */
+.particulas-burbujas .particula {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3));
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  animation-name: subir-burbujas;
+}
+
+@keyframes subir-burbujas {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) translateX(20px);
+  }
+}
+
+/* Hojas */
+.particulas-hojas .particula {
+  background: linear-gradient(135deg, #90EE90, #228B22);
+  border-radius: 50% 0;
+  animation-name: caer-hojas;
+}
+
+@keyframes caer-hojas {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+/* Luz */
+.particulas-luz .particula {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+  animation-name: pulsar-luz;
+}
+
+@keyframes pulsar-luz {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.5);
+  }
+}
+
+/* Selector de ambiente */
+.ambiente-selector {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 300px;
+}
+
+.ambiente-selector-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #333;
+  font-size: 14px;
+}
+
+.ambiente-opciones {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.ambiente-opcion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+}
+
+.ambiente-opcion:hover {
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.ambiente-opcion.activo {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #667eea;
+  color: white;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+}
+
+.ambiente-opcion svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Selector compacto */
+.selector-ambiente-compacto {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.selector-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.selector-ambiente-dropdown {
+  padding: 8px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.selector-ambiente-dropdown:hover {
+  border-color: #667eea;
+}
+
+.selector-ambiente-dropdown:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ambiente-selector {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .ambiente-opciones {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .ambiente-opcion {
+    padding: 8px 4px;
+    font-size: 10px;
+  }
+  
+  .ambiente-opcion svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
