@@ -413,65 +413,68 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
 
   return (
     <div className="tirada-angelical" style={{ position: 'relative' }}>
-      {/* Paso 1: Instrucciones */}
+      {/* Paso 1: Instrucciones - REESCRITO DESDE CERO */}
       {paso === 'instrucciones' && (
-        <div className="tirada-step main-content">
-          <div className="instrucciones-container">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)' }}>
-                <div className="text-center mb-6">
-                  <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
-                    Preparación para tu Experiencia
-                  </h2>
-                  <p className="text-sm text-gray-600">
-                    Sigue estas recomendaciones para conectar profundamente con tus guías
+        <div className="w-full" style={{ 
+          background: 'linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url(/lovable-uploads/774c9267-ae3b-41ab-9ae7-8e71c2f9ecba.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          padding: '2rem 0'
+        }}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)' }}>
+              <div className="text-center mb-6">
+                <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
+                  Preparación para tu Experiencia
+                </h2>
+                <p className="text-sm text-gray-600">
+                  Sigue estas recomendaciones para conectar profundamente con tus guías
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" style={{ gridAutoRows: '1fr' }}>
+                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                  <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
+                    <IconoAmbienteSagrado className="w-10 h-10 text-blue-600" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 text-base">Ambiente Sagrado</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-grow">
+                    Crea un espacio tranquilo y luminoso. Enciende una vela o incienso para elevar la vibración.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-stretch" style={{ gridAutoRows: '1fr' }}>
-                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 h-full">
-                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
-                      <IconoAmbienteSagrado className="w-10 h-10 text-blue-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 text-base">Ambiente Sagrado</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed flex-grow">
-                      Crea un espacio tranquilo y luminoso. Enciende una vela o incienso para elevar la vibración.
-                    </p>
+                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                  <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
+                    <img src="/lovable-uploads/9719b790-82ed-40af-a6f4-432b64d7785e.png" alt="Mente Abierta" className="w-10 h-10 object-contain" />
                   </div>
-
-                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 h-full">
-                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
-                      <img src="/lovable-uploads/9719b790-82ed-40af-a6f4-432b64d7785e.png" alt="Mente Abierta" className="w-10 h-10 object-contain" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 text-base">Mente Abierta</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed flex-grow">
-                      Libera expectativas y permite que los mensajes angelicales fluyan naturalmente a tu corazón.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 h-full">
-                    <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
-                      <img src="/lovable-uploads/f91a46d2-e9aa-4206-8e01-a593fc026480.png" alt="Intención Pura" className="w-10 h-10 object-contain" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 text-base">Intención Pura</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed flex-grow">
-                      Enfócate en tu pregunta con amor y sinceridad. Los ángeles responden a la pureza del corazón.
-                    </p>
-                  </div>
+                  <h3 className="font-semibold text-gray-900 text-base">Mente Abierta</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-grow">
+                    Libera expectativas y permite que los mensajes angelicales fluyan naturalmente a tu corazón.
+                  </p>
                 </div>
 
-                <div className="text-center">
-                  <button
-                    onClick={() => {
-                      setPaso('seleccion');
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-base hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 inline-flex items-center gap-2"
-                  >
-                    <Sparkles className="w-5 h-5" />
-                    <span>Comienza tu apertura</span>
-                  </button>
+                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                  <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
+                    <img src="/lovable-uploads/f91a46d2-e9aa-4206-8e01-a593fc026480.png" alt="Intención Pura" className="w-10 h-10 object-contain" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 text-base">Intención Pura</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-grow">
+                    Enfócate en tu pregunta con amor y sinceridad. Los ángeles responden a la pureza del corazón.
+                  </p>
                 </div>
+              </div>
+
+              <div className="text-center">
+                <button
+                  onClick={() => {
+                    setPaso('seleccion');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-full font-semibold text-base hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 inline-flex items-center gap-2"
+                >
+                  <Sparkles className="w-5 h-5" />
+                  <span>Comienza tu apertura</span>
+                </button>
               </div>
             </div>
           </div>
