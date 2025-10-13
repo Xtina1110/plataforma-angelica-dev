@@ -147,7 +147,7 @@ function App() {
             <Route path="/dashboard-tecnico" element={<MainLayout><DashboardTecnico /></MainLayout>} />
             <Route path="/mensaje-del-dia" element={<MainLayout><Dashboard initialSection="mensaje" /></MainLayout>} />
             <Route path="/reservas" element={<BookingSystem onBack={() => window.history.back()} user={user} onLogout={handleLogout} mode="general" />} />
-            <Route path="/reservas-apertura" element={<MainLayout><BookingPageApertura /></MainLayout>} />
+            <Route path="/reservas-apertura" element={<BookingPageApertura />} />
             <Route path="/mis-reservas" element={<MainLayout><MisReservas user={user} /></MainLayout>} />
             <Route path="/consulta-online" element={<MainLayout><ConsultasOnlineVivo user={user} onLogout={handleLogout} /></MainLayout>} />
             
