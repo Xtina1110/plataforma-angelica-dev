@@ -1413,3 +1413,34 @@
     overflow-y: auto;
   }
 }
+
+/* Instruction cards hover effect - matching tipo-card style */
+.instruction-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background: white;
+  border: 2px solid #bfdbfe;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  transform: scale(1);
+}
+
+.instruction-card:hover {
+  border-color: #3b82f6;
+  background: linear-gradient(to bottom right, #3b82f6, #06b6d4);
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+.instruction-card:hover * {
+  color: white !important;
+}
+
+.instruction-card:hover .instruction-icon-wrapper {
+  background: rgba(255, 255, 255, 0.2);
+}
