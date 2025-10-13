@@ -371,13 +371,17 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
     return titles[currentStep] || '';
   };
 
+  // Calcular número total de pasos según el modo
+  const totalSteps = mode === 'apertura' ? 5 : 6;
+  const steps = mode === 'apertura' ? [2, 3, 4, 5, 6] : [1, 2, 3, 4, 5, 6];
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 mt-8">
       <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8">
         {/* Progress Stepper */}
         <div className="mb-12">
           <div className="flex items-center justify-between relative">
-            {[1, 2, 3, 4, 5, 6].map((step, index) => (
+            {steps.map((step, index) => (
               <React.Fragment key={step}>
                 <div className="flex flex-col items-center relative z-10">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all ${
@@ -387,15 +391,15 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
                       ? 'bg-green-500 text-white'
                       : 'bg-gray-200 text-gray-500'
                   }`}>
-                    {currentStep > step ? <Check className="w-6 h-6" /> : step}
+                    {currentStep > step ? <Check className="w-6 h-6" /> : mode === 'apertura' ? index + 1 : step}
                   </div>
                   <span className={`text-xs mt-2 font-medium ${
                     currentStep === step ? 'text-purple-600' : 'text-gray-500'
                   }`}>
-                    Paso {step}
+                    Paso {mode === 'apertura' ? index + 1 : step}
                   </span>
                 </div>
-                {index < 5 && (
+                {index < steps.length - 1 && (
                   <div className={`flex-1 h-1 mx-2 rounded transition-all ${
                     currentStep > step ? 'bg-green-500' : 'bg-gray-200'
                   }`} />
