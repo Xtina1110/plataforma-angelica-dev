@@ -179,13 +179,18 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
     return slots;
   };
 
-  // Verificar si Stripe está configurado
   const isStripeConfigured = () => {
-    return !!import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+    const configured = !!import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+    console.log('[DEBUG] Stripe configurado:', configured);
+    return configured;
   };
 
   const handleInitiatePayment = async () => {
+    console.log('[DEBUG] handleInitiatePayment iniciado');
+    console.log('[DEBUG] Usuario actual:', currentUser);
+    
     if (!currentUser) {
+      console.log('[DEBUG] No hay usuario logueado');
       toast({
         title: "Error",
         description: "Debes iniciar sesión para continuar",
@@ -194,6 +199,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       return;
     }
 
+    console.log('[DEBUG] Iniciando procesamiento...');
     setIsProcessing(true);
 
     try {
@@ -201,14 +207,22 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       const selectedReaderData = readers.find(r => r.id === selectedReader);
       const selectedTypeData = bookingTypes.find(t => t.id === selectedType);
 
-      // Calcular end_time
+      console.log('[DEBUG] Datos seleccionados:', {
+        duration: selectedDurationData,
+        reader: selectedReaderData,
+        type: selectedTypeData,
+        date: selectedDate,
+        time: selectedTime
+      });
+
       const [hours, minutes] = selectedTime.split(':').map(Number);
       const startDate = new Date();
       startDate.setHours(hours, minutes, 0);
       const endDate = new Date(startDate.getTime() + selectedDuration * 60000);
       const endTime = `${endDate.getHours().toString().padStart(2, '0')}:${endDate.getMinutes().toString().padStart(2, '0')}`;
 
-      // Crear reserva en Supabase
+      console.log('[DEBUG] Creando reserva en Supabase...');
+      
       const { data, error } = await supabase
         .from('bookings')
         .insert({
@@ -226,12 +240,17 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
         .select()
         .single();
 
-      if (error) throw error;
+      if (error) {
+        console.error('[DEBUG] Error de Supabase:', error);
+        throw error;
+      }
 
+      console.log('[DEBUG] Reserva creada:', data);
       setPendingBookingId(data.id);
 
-      // Si Stripe NO está configurado, ir directo a confirmación
       if (!isStripeConfigured()) {
+        console.log('[DEBUG] Modo Demo - Confirmacion directa');
+        
         const booking = {
           id: data.id,
           type: selectedTypeData.name,
@@ -244,31 +263,36 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
           bookingData: data
         };
 
+        console.log('[DEBUG] Booking confirmado:', booking);
         setConfirmedBooking(booking);
+        
+        console.log('[DEBUG] Mostrando modal');
         setShowConfirmationModal(true);
 
         toast({
-          title: "¡Reserva Confirmada!",
-          description: "Tu cita ha sido agendada exitosamente (Modo Demo - Sin pago real)",
+          title: "Reserva Confirmada!",
+          description: "Tu cita ha sido agendada exitosamente (Modo Demo)",
           duration: 5000
         });
 
         setIsProcessing(false);
+        console.log('[DEBUG] Proceso completado');
         return;
       }
 
-      // Si Stripe SÍ está configurado, continuar con flujo normal
+      console.log('[DEBUG] Stripe configurado - flujo de pago');
       const paymentData = await createPaymentIntent(selectedDurationData.price, {
         id: data.id,
         type: selectedTypeData.name,
         userId: currentUser.id,
       });
 
+      console.log('[DEBUG] PaymentIntent creado');
       setPaymentClientSecret(paymentData.clientSecret);
       setShowPaymentModal(true);
 
     } catch (error) {
-      console.error('Error al procesar reserva:', error);
+      console.error('[DEBUG] Error:', error);
       toast({
         title: "Error",
         description: "No se pudo procesar la reserva. Por favor, intenta de nuevo.",
@@ -276,6 +300,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
       });
     } finally {
       setIsProcessing(false);
+      console.log('[DEBUG] Finalizado');
     }
   };
 
