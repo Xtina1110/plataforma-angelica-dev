@@ -122,95 +122,96 @@ const AperturaAngelicaHeader = ({
         </div>
         
         {/* Contenido del header */}
-        <div className="relative z-10 px-8 py-6">
-          {/* Fila superior: Título y controles de usuario */}
-          <div className="flex justify-between items-center mb-4">
-            {/* Título */}
-            <div>
-              <h1 className="text-4xl font-bold text-white drop-shadow-2xl">
+        <div className="relative z-10 px-8 py-8">
+          {/* Contenedor principal con grid para alineación perfecta */}
+          <div className="grid grid-cols-3 gap-4 items-center">
+            {/* Columna izquierda: Título y subtítulo */}
+            <div className="col-span-1">
+              <h1 className="text-3xl font-bold text-white drop-shadow-2xl mb-2">
                 Apertura Angelical
               </h1>
-              <p className="text-lg text-white/90 font-medium drop-shadow-lg mt-1">
+              <p className="text-base text-white/90 font-medium drop-shadow-lg">
                 Abre tu corazón a la energía divina ✨
               </p>
             </div>
             
-            {/* Controles de usuario */}
-            <div className={`flex items-center space-x-3 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border-l-4 ${currentTheme.border}`}>
-              {/* Idioma */}
-              <LanguageSelector inline variant="header" />
-              
-              {/* Separador */}
-              <div className="w-px h-8 bg-white/30"></div>
-              
-              {/* Carrito */}
-              <button 
-                onClick={onCartClick}
-                className="relative p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
-                aria-label="Carrito de compras"
-              >
-                <ShoppingCart size={20} />
-                {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-                    {cartCount}
-                  </span>
-                )}
-              </button>
-              
-              {/* Usuario */}
-              <button 
-                onClick={onProfileClick}
-                className="flex items-center space-x-2 p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
-                aria-label="Gestión de usuario"
-              >
-                <User size={20} />
-                <span className="font-medium text-sm">{getUserName()}</span>
-              </button>
-
-              {/* Logout */}
-              <button
-                onClick={onLogout}
-                className={`p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/80 ${currentTheme.hoverText}`}
-                aria-label="Cerrar sesión"
-              >
-                <LogOut size={20} />
-              </button>
-            </div>
-          </div>
-          
-          {/* Fila inferior: Stats y botones de acción */}
-          <div className="flex justify-between items-center">
-            {/* Stats del usuario */}
-            <div className={`flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-3 rounded-xl border-l-4 ${currentTheme.border}`}>
-              <div className="text-center">
-                <div className="text-xs opacity-80">Nivel Espiritual</div>
-                <div className="font-bold text-base">Iluminado</div>
-              </div>
-              <div className="w-px h-10 bg-white/30"></div>
-              <div className="text-center">
-                <div className="text-xs opacity-80">Puntos de Luz</div>
-                <div className="font-bold text-base">1500</div>
+            {/* Columna central: Stats del usuario */}
+            <div className="col-span-1 flex justify-center">
+              <div className={`flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-3 rounded-xl border-l-4 ${currentTheme.border}`}>
+                <div className="text-center">
+                  <div className="text-xs opacity-80 whitespace-nowrap">Nivel Espiritual</div>
+                  <div className="font-bold text-base">Iluminado</div>
+                </div>
+                <div className="w-px h-10 bg-white/30"></div>
+                <div className="text-center">
+                  <div className="text-xs opacity-80 whitespace-nowrap">Puntos de Luz</div>
+                  <div className="font-bold text-base">1500</div>
+                </div>
               </div>
             </div>
             
-            {/* Botones de Audio y Volver */}
-            <div className="flex items-center space-x-3">
-              <button 
-                onClick={handleToggleAudio}
-                className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
-              >
-                {audioReproduciendo ? <VolumeX size={18} /> : <Volume2 size={18} />}
-                <span className="text-sm">{audioReproduciendo ? 'Silenciar' : 'Audio'}</span>
-              </button>
-              
-              <button 
-                onClick={onNavigateHome}
-                className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
-              >
-                <ArrowLeft size={18} />
-                <span className="text-sm">Volver</span>
-              </button>
+            {/* Columna derecha: Controles de usuario */}
+            <div className="col-span-1 flex justify-end">
+              <div className={`flex items-center space-x-3 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border-l-4 ${currentTheme.border}`}>
+                {/* Idioma */}
+                <LanguageSelector inline variant="header" />
+                
+                {/* Separador */}
+                <div className="w-px h-8 bg-white/30"></div>
+                
+                {/* Carrito */}
+                <button 
+                  onClick={onCartClick}
+                  className="relative p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
+                  aria-label="Carrito de compras"
+                >
+                  <ShoppingCart size={20} />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                      {cartCount}
+                    </span>
+                  )}
+                </button>
+                
+                {/* Usuario */}
+                <button 
+                  onClick={onProfileClick}
+                  className="flex items-center space-x-2 p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
+                  aria-label="Gestión de usuario"
+                >
+                  <User size={20} />
+                  <span className="font-medium text-sm whitespace-nowrap">{getUserName()}</span>
+                </button>
+
+                {/* Logout */}
+                <button
+                  onClick={onLogout}
+                  className={`p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/80 ${currentTheme.hoverText}`}
+                  aria-label="Cerrar sesión"
+                >
+                  <LogOut size={20} />
+                </button>
+              </div>
             </div>
+          </div>
+          
+          {/* Fila inferior: Botones de Audio y Volver centrados */}
+          <div className="flex justify-center items-center mt-6 space-x-3">
+            <button 
+              onClick={handleToggleAudio}
+              className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-5 py-2.5 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
+            >
+              {audioReproduciendo ? <VolumeX size={18} /> : <Volume2 size={18} />}
+              <span className="text-sm">{audioReproduciendo ? 'Silenciar' : 'Audio'}</span>
+            </button>
+            
+            <button 
+              onClick={onNavigateHome}
+              className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-5 py-2.5 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
+            >
+              <ArrowLeft size={18} />
+              <span className="text-sm">Volver</span>
+            </button>
           </div>
         </div>
         
