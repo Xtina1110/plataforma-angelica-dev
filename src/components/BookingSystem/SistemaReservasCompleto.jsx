@@ -561,8 +561,21 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
                       : 'border-gray-200 hover:border-purple-300 hover:shadow-lg'
                   }`}
                 >
-                  <div className="text-6xl mb-4">{reader.avatar}</div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-2">{reader.name}</h3>
+                  <div className="mb-4">
+                    {reader.avatar.startsWith('/') ? (
+                      <img 
+                        src={reader.avatar} 
+                        alt={reader.name}
+                        className="w-32 h-32 rounded-full mx-auto object-cover shadow-lg"
+                      />
+                    ) : (
+                      <div className="text-6xl">{reader.avatar}</div>
+                    )}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">{reader.name}</h3>
+                  {reader.title && (
+                    <p className="text-sm font-semibold text-purple-600 mb-2">{reader.title}</p>
+                  )}
                   <p className="text-sm text-gray-600 mb-4">{reader.description}</p>
 
                   <div className="flex items-center justify-center gap-4 mb-2">
