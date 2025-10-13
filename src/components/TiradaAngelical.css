@@ -128,8 +128,9 @@
 .tirada-step {
   margin: 0;
   padding: 0;
-  width: 100%;
+  /* Removed width: 100% to let content flow naturally */
   box-sizing: border-box;
+  overflow: hidden; /* Prevent horizontal overflow */
 }
 
 /* Paso 1: Instrucciones - Simplified structure */
@@ -140,7 +141,8 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 2rem 0;
-  width: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevent horizontal overflow */
 }
 
 /* Removed ::before to prevent positioning issues */
