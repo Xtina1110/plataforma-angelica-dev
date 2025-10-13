@@ -433,7 +433,7 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" style={{ gridAutoRows: '1fr' }}>
-                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 transition-all duration-300 hover:border-blue-400 hover:shadow-lg hover:scale-105 cursor-pointer">
                   <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
                     <IconoAmbienteSagrado className="w-10 h-10 text-blue-600" />
                   </div>
@@ -443,7 +443,7 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 transition-all duration-300 hover:border-blue-400 hover:shadow-lg hover:scale-105 cursor-pointer">
                   <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
                     <img src="/lovable-uploads/9719b790-82ed-40af-a6f4-432b64d7785e.png" alt="Mente Abierta" className="w-10 h-10 object-contain" />
                   </div>
@@ -453,7 +453,7 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                   </p>
                 </div>
 
-                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+                <div className="flex flex-col items-center text-center gap-3 p-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 transition-all duration-300 hover:border-blue-400 hover:shadow-lg hover:scale-105 cursor-pointer">
                   <div className="w-16 h-16 rounded-full bg-white/80 flex items-center justify-center shadow-md flex-shrink-0">
                     <img src="/lovable-uploads/f91a46d2-e9aa-4206-8e01-a593fc026480.png" alt="Intención Pura" className="w-10 h-10 object-contain" />
                   </div>
