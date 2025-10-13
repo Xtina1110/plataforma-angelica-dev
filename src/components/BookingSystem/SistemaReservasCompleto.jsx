@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import {
   Clock, Calendar, User, Check, ArrowRight, ArrowLeft,
@@ -13,6 +14,7 @@ import AngelicalModal from '../AngelicalModal';
 
 const SistemaReservasCompleto = ({ mode = 'general' }) => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const { t } = useLanguage();
   const [currentStep, setCurrentStep] = useState(mode === 'apertura' ? 2 : 1);
   const [selectedType, setSelectedType] = useState(null);
@@ -797,6 +799,17 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
               <X className="w-5 h-5" />
               Cancelar Cita
             </button>
+          </div>
+
+          <button
+            onClick={() => navigate('/mis-reservas')} 
+            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all mt-4"
+          >
+            <Calendar className="w-5 h-5" />
+            Ver Mis Reservas
+          </button>
+
+          <div className="hidden">
           </div>
 
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 flex items-start gap-3">

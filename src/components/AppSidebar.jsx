@@ -12,6 +12,7 @@ const navItems = [
   { to: '/apertura-angelica', icon: Zap, label: 'Apertura Angelica', color: '#1DBF73' },
   { to: '/sonoterapia', icon: Headphones, label: 'Sonoterapia y Canalizaciones', color: '#9C27B0' },
   { to: '/terapias', icon: Heart, label: 'Terapias y Limpiezas', color: '#E91E63' },
+  { to: '/mis-reservas', icon: Calendar, label: 'Mis Reservas', color: '#00BCD4' },
   { to: '/academia', icon: GraduationCap, label: 'Academia Angelica', color: '#4CAF50' },
   { to: '/mensaje-del-dia', icon: MessageSquare, label: 'Mensaje Diario', color: '#B388FF' },
   { to: '/eventos', icon: Calendar, label: 'Eventos Angelicales', color: '#3F51B5' },
