@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AppSidebar from '../components/AppSidebar';
 import { AperturaAngelicaHeader } from '../components/headers';
 import SistemaReservasCompleto from '../components/BookingSystem/SistemaReservasCompleto';
 import { supabase } from '../integrations/supabase/client';
-import '../components/Dashboard.css';
 
 const BookingPageApertura = () => {
   const navigate = useNavigate();
@@ -53,46 +51,38 @@ const BookingPageApertura = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      {/* Sidebar correcto */}
-      <AppSidebar />
+    <div 
+      style={{
+        minHeight: '100vh',
+        width: '100%',
+        backgroundImage: 'url(/FondoMarmoleado02.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      {/* Header de Apertura Angelica */}
+      <div style={{ 
+        position: 'sticky', 
+        top: 0, 
+        zIndex: 1000,
+        backgroundColor: 'transparent'
+      }}>
+        <AperturaAngelicaHeader
+          user={user}
+          onLogout={handleLogout}
+          onNavigateHome={handleBack}
+          onCartClick={handleCartClick}
+          onProfileClick={handleProfileClick}
+          cartCount={cartCount}
+          theme="purple"
+        />
+      </div>
 
-      {/* Main content */}
-      <main
-        className="main-content"
-        style={{
-          backgroundImage: 'url(/FondoMarmoleado02.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          minHeight: '100vh',
-          overflowY: 'auto',
-          position: 'relative'
-        }}
-      >
-        {/* Header de Apertura Angelica con botones morados */}
-        <div style={{ 
-          position: 'sticky', 
-          top: 0, 
-          zIndex: 50,
-          backgroundColor: 'transparent'
-        }}>
-          <AperturaAngelicaHeader
-            user={user}
-            onLogout={handleLogout}
-            onNavigateHome={handleBack}
-            onCartClick={handleCartClick}
-            onProfileClick={handleProfileClick}
-            cartCount={cartCount}
-            theme="purple"
-          />
-        </div>
-
-        {/* Sistema de reservas con padding superior adecuado */}
-        <div style={{ paddingTop: '2rem' }}>
-          <SistemaReservasCompleto mode="apertura" />
-        </div>
-      </main>
+      {/* Sistema de reservas con padding superior MUY grande */}
+      <div style={{ paddingTop: '8rem', paddingBottom: '2rem', paddingLeft: '1rem', paddingRight: '1rem' }}>
+        <SistemaReservasCompleto mode="apertura" />
+      </div>
     </div>
   );
 };
