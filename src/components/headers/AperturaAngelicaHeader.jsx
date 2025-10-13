@@ -97,7 +97,7 @@ const AperturaAngelicaHeader = ({
   return (
     <div className="w-full">
       {/* Header principal con gradiente azul */}
-      <div className="relative overflow-hidden rounded-2xl mx-4 my-4 shadow-2xl">
+      <div className="relative overflow-visible rounded-2xl mx-2 my-4 shadow-2xl">
         {/* Fondo con imagen angélica */}
         <div 
           className="absolute inset-0"
