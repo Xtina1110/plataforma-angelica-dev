@@ -3731,17 +3731,19 @@ body {
 }
 
 .hover-description {
-  color: #333;
-  font-size: 0.85rem;
-  line-height: 1.4;
-  margin-bottom: 10px;
+  color: #1a1a1a;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 12px 0;
+  padding: 10px 0;
   text-align: left;
   text-indent: 0;
-  max-height: 70px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+  max-height: none;
+  overflow: visible;
+  display: block;
+  font-weight: 400;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .hover-footer {
