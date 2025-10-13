@@ -179,8 +179,8 @@ function App() {
           </Routes>
         </div>
       </Router>
-        </CartProvider>
         </AudioProvider>
+        </CartProvider>
       </LanguageProvider>
     </ThemeProvider>
   );
