@@ -70,8 +70,7 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
   // Auto-seleccionar tipo si viene desde Apertura Angelica
   useEffect(() => {
     if (mode === 'apertura') {
-      const aperturaType = bookingTypes.find(t => t.id === 'apertura');
-      setSelectedType(aperturaType);
+      setSelectedType('apertura');
     }
   }, [mode]);
 
