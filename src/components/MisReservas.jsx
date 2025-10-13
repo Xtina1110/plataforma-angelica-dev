@@ -47,7 +47,7 @@ const MisReservas = ({ user }) => {
     if (activeTab === 'proximas') {
       return reservas.filter(r => {
         const reservaDateTime = parseISO(`${r.booking_date}T${r.start_time}`);
-        return isAfter(reservaDateTime, now) && r.status === 'confirmed';
+        return isAfter(reservaDateTime, now) && ['confirmed', 'pending'].includes(r.status);
       });
     } else if (activeTab === 'pasadas') {
       return reservas.filter(r => {
