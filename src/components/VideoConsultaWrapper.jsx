@@ -39,9 +39,9 @@ const VideoConsultaWrapper = ({ user, onSalir }) => {
         return;
       }
 
-      // Verificar que la reserva está confirmada
-      if (bookingData.status !== 'confirmed') {
-        setError('Esta reserva no está confirmada');
+      // Verificar que la reserva está confirmada o pendiente
+      if (bookingData.status !== 'confirmed' && bookingData.status !== 'pending') {
+        setError('Esta reserva no está disponible para videollamada');
         return;
       }
 
