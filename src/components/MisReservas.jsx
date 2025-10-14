@@ -188,14 +188,14 @@ const MisReservas = ({ user }) => {
             <p className="text-gray-600 text-lg">No tienes reservas {activeTab}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
             {reservasFiltradas.map((reserva) => {
               const sessionStatus = activeTab === 'proximas' ? getSessionStatus(reserva) : null;
               
               return (
                 <div
                   key={reserva.id}
-                  className="border-2 border-purple-200 rounded-xl p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
+                  className="w-full border-2 border-purple-200 rounded-xl p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center space-x-2">
@@ -288,6 +288,13 @@ const MisReservas = ({ user }) => {
                       >
                         <Download className="w-5 h-5" />
                         <span>Descargar Grabación</span>
+                      </button>
+                      
+                      <button
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-lg hover:from-green-600 hover:to-green-700 transition-all shadow-md flex items-center justify-center space-x-2"
+                      >
+                        <FileText className="w-5 h-5" />
+                        <span>Descargar Transcripción (PDF)</span>
                       </button>
                       
                       <div className="flex space-x-2">
