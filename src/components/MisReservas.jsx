@@ -72,7 +72,7 @@ const MisReservas = ({ user }) => {
   const getSessionStatus = (reserva) => {
     const now = new Date();
     const reservaDateTime = parseISO(`${reserva.booking_date}T${reserva.start_time}`);
-    const fifteenMinutesBefore = addMinutes(reservaDateTime, -15);
+    const fifteenMinutesBefore = addMinutes(reservaDateTime, -120);
     const sessionEnd = addMinutes(reservaDateTime, reserva.duration);
     const minutesUntilStart = differenceInMinutes(reservaDateTime, now);
 
@@ -245,7 +245,7 @@ const MisReservas = ({ user }) => {
                   )}
 
                   {/* Botón de videollamada - Estilo Teams/Zoom */}
-                  {activeTab === 'proximas' && sessionStatus?.canJoin && (
+                  {activeTab === 'proximas' && sessionStatus?.canJoin && (reserva.status === 'confirmed' || reserva.status === 'pending') && (
                     <div className="mt-4 space-y-2">
                       <button
                         onClick={() => handleJoinVideoCall(reserva)}
