@@ -160,7 +160,7 @@ const MisReservas = ({ user }) => {
       
       {/* Contenido Principal */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8">
+      <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 flex flex-col items-center">
         {/* Tabs */}
         <div className="flex justify-center mb-8 space-x-4">
           <button
@@ -206,7 +206,7 @@ const MisReservas = ({ user }) => {
             <p className="text-gray-600 text-lg">No tienes reservas {activeTab}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {reservasFiltradas.map((reserva) => {
               const sessionStatus = activeTab === 'proximas' ? getSessionStatus(reserva) : null;
               
