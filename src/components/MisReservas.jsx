@@ -1,15 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../integrations/supabase/client';
-import { Calendar, Clock, User as UserIcon, Video, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
-import { format, parseISO, isBefore, isAfter, addMinutes } from 'date-fns';
+import { supabase } from '../supabase';
+import { 
+  Calendar, 
+  Clock, 
+  User as UserIcon, 
+  Video, 
+  CheckCircle, 
+  XCircle, 
+  AlertCircle,
+  VideoOff,
+  Wifi,
+  WifiOff,
+  Download,
+  FileText,
+  Star
+} from 'lucide-react';
+import { format, parseISO, isBefore, isAfter, addMinutes, differenceInMinutes } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { useToast } from '../hooks/use-toast';
+import { useNavigate } from 'react-router-dom';
+import './MisReservas.css';
 
 const MisReservas = ({ user }) => {
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('proximas'); // 'proximas', 'pasadas', 'canceladas'
-  const { toast } = useToast();
+  const [activeTab, setActiveTab] = useState('proximas');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -31,11 +46,6 @@ const MisReservas = ({ user }) => {
       setReservas(data || []);
     } catch (error) {
       console.error('Error cargando reservas:', error);
-      toast({
-        title: "Error",
-        description: "No se pudieron cargar las reservas",
-        variant: "destructive"
-      });
     } finally {
       setLoading(false);
     }
@@ -59,18 +69,45 @@ const MisReservas = ({ user }) => {
     }
   };
 
-  const canJoinVideoCall = (reserva) => {
+  const getSessionStatus = (reserva) => {
     const now = new Date();
     const reservaDateTime = parseISO(`${reserva.booking_date}T${reserva.start_time}`);
     const fifteenMinutesBefore = addMinutes(reservaDateTime, -15);
     const sessionEnd = addMinutes(reservaDateTime, reserva.duration);
+    const minutesUntilStart = differenceInMinutes(reservaDateTime, now);
 
-    return isAfter(now, fifteenMinutesBefore) && isBefore(now, sessionEnd);
+    if (isBefore(now, fifteenMinutesBefore)) {
+      return {
+        canJoin: false,
+        status: 'upcoming',
+        message: `Disponible en ${minutesUntilStart} minutos`,
+        color: 'text-blue-600',
+        bgColor: 'bg-blue-50',
+        icon: Clock
+      };
+    } else if (isAfter(now, fifteenMinutesBefore) && isBefore(now, sessionEnd)) {
+      return {
+        canJoin: true,
+        status: 'ready',
+        message: '¡Sesión disponible ahora!',
+        color: 'text-green-600',
+        bgColor: 'bg-green-50',
+        icon: Wifi
+      };
+    } else {
+      return {
+        canJoin: false,
+        status: 'ended',
+        message: 'Sesión finalizada',
+        color: 'text-gray-600',
+        bgColor: 'bg-gray-50',
+        icon: WifiOff
+      };
+    }
   };
 
   const handleJoinVideoCall = (reserva) => {
-    // Navegar a la sala de videollamada
-    window.location.href = `/videollamada/${reserva.id}`;
+    navigate(`/videollamada/${reserva.id}`);
   };
 
   const getStatusIcon = (status) => {
@@ -152,60 +189,126 @@ const MisReservas = ({ user }) => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {reservasFiltradas.map((reserva) => (
-              <div
-                key={reserva.id}
-                className="border-2 border-purple-200 rounded-xl p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <div className="flex items-center space-x-2">
-                    {getStatusIcon(reserva.status)}
-                    <span className="font-semibold text-gray-700">
-                      {getStatusText(reserva.status)}
-                    </span>
-                  </div>
-                  <span className="text-2xl font-bold text-purple-600">
-                    ${reserva.total_price}
-                  </span>
-                </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 text-gray-700">
-                    <Calendar className="w-5 h-5 text-purple-500" />
-                    <span>
-                      {format(parseISO(reserva.booking_date), "EEEE, d 'de' MMMM yyyy", { locale: es })}
+            {reservasFiltradas.map((reserva) => {
+              const sessionStatus = activeTab === 'proximas' ? getSessionStatus(reserva) : null;
+              
+              return (
+                <div
+                  key={reserva.id}
+                  className="border-2 border-purple-200 rounded-xl p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="flex items-center space-x-2">
+                      {getStatusIcon(reserva.status)}
+                      <span className="font-semibold text-gray-700">
+                        {getStatusText(reserva.status)}
+                      </span>
+                    </div>
+                    <span className="text-2xl font-bold text-purple-600">
+                      ${reserva.total_price}
                     </span>
                   </div>
 
-                  <div className="flex items-center space-x-3 text-gray-700">
-                    <Clock className="w-5 h-5 text-purple-500" />
-                    <span>{reserva.start_time} - {reserva.end_time}</span>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 text-gray-700">
+                      <Calendar className="w-5 h-5 text-purple-500" />
+                      <span>
+                        {format(parseISO(reserva.booking_date), "EEEE, d 'de' MMMM yyyy", { locale: es })}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center space-x-3 text-gray-700">
+                      <Clock className="w-5 h-5 text-purple-500" />
+                      <span>{reserva.start_time} - {reserva.end_time}</span>
+                    </div>
+
+                    <div className="flex items-center space-x-3 text-gray-700">
+                      <UserIcon className="w-5 h-5 text-purple-500" />
+                      <span>Duración: {reserva.duration} minutos</span>
+                    </div>
                   </div>
 
-                  <div className="flex items-center space-x-3 text-gray-700">
-                    <UserIcon className="w-5 h-5 text-purple-500" />
-                    <span>Duración: {reserva.duration} minutos</span>
-                  </div>
+                  {reserva.notes && (
+                    <div className="mt-4 p-3 bg-purple-100 rounded-lg">
+                      <p className="text-sm text-gray-700">{reserva.notes}</p>
+                    </div>
+                  )}
+
+                  {/* Estado de la sesión */}
+                  {activeTab === 'proximas' && sessionStatus && (
+                    <div className={`mt-4 p-3 rounded-lg ${sessionStatus.bgColor} flex items-center space-x-2`}>
+                      <sessionStatus.icon className={`w-5 h-5 ${sessionStatus.color}`} />
+                      <span className={`font-semibold ${sessionStatus.color}`}>
+                        {sessionStatus.message}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Botón de videollamada - Estilo Teams/Zoom */}
+                  {activeTab === 'proximas' && sessionStatus?.canJoin && (
+                    <div className="mt-4 space-y-2">
+                      <button
+                        onClick={() => handleJoinVideoCall(reserva)}
+                        className="video-call-button-teams w-full group"
+                      >
+                        <div className="flex items-center justify-center space-x-3">
+                          <div className="video-icon-container">
+                            <Video className="w-6 h-6" />
+                          </div>
+                          <div className="flex flex-col items-start">
+                            <span className="text-lg font-bold">Iniciar Sesión en Vivo</span>
+                            <span className="text-xs opacity-90">Videollamada segura y encriptada</span>
+                          </div>
+                        </div>
+                        <div className="pulse-indicator"></div>
+                      </button>
+                      
+                      <div className="flex space-x-2">
+                        <button
+                          className="flex-1 bg-white border-2 border-purple-300 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-50 transition-all flex items-center justify-center space-x-2 text-sm font-semibold"
+                        >
+                          <FileText className="w-4 h-4" />
+                          <span>Preparar Notas</span>
+                        </button>
+                        <button
+                          className="flex-1 bg-white border-2 border-purple-300 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-50 transition-all flex items-center justify-center space-x-2 text-sm font-semibold"
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Descargar Info</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Botones para sesiones pasadas */}
+                  {activeTab === 'pasadas' && (
+                    <div className="mt-4 space-y-2">
+                      <button
+                        className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all shadow-md flex items-center justify-center space-x-2"
+                      >
+                        <Download className="w-5 h-5" />
+                        <span>Descargar Grabación</span>
+                      </button>
+                      
+                      <div className="flex space-x-2">
+                        <button
+                          className="flex-1 bg-white border-2 border-blue-300 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-50 transition-all flex items-center justify-center space-x-2 text-sm font-semibold"
+                        >
+                          <FileText className="w-4 h-4" />
+                          <span>Ver Notas</span>
+                        </button>
+                        <button
+                          className="flex-1 bg-white border-2 border-blue-300 text-blue-700 px-4 py-2 rounded-lg hover:bg-blue-50 transition-all flex items-center justify-center space-x-2 text-sm font-semibold"
+                        >
+                          <Star className="w-4 h-4" />
+                          <span>Calificar</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
-
-                {reserva.notes && (
-                  <div className="mt-4 p-3 bg-purple-100 rounded-lg">
-                    <p className="text-sm text-gray-700">{reserva.notes}</p>
-                  </div>
-                )}
-
-                {/* Botón de videollamada */}
-                {activeTab === 'proximas' && canJoinVideoCall(reserva) && (
-                  <button
-                    onClick={() => handleJoinVideoCall(reserva)}
-                    className="mt-4 w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all shadow-lg flex items-center justify-center space-x-2"
-                  >
-                    <Video className="w-5 h-5" />
-                    <span>Iniciar Sesión en Vivo</span>
-                  </button>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
@@ -214,3 +317,4 @@ const MisReservas = ({ user }) => {
 };
 
 export default MisReservas;
+

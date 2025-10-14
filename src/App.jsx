@@ -35,6 +35,7 @@ import MainLayout from './components/MainLayout';
 import BookingSystem from './components/BookingSystem/BookingSystem';
 import BookingPageApertura from './pages/BookingPageApertura';
 import ConsultasOnlineVivo from './components/OnlineConsultation/ConsultasOnlineVivo';
+import VideoConsultaWrapper from './components/VideoConsultaWrapper';
 
 // Importar componentes principales de aplicaciones
 import TiradaAngelical from './components/TiradaAngelical';
@@ -152,6 +153,7 @@ function App() {
             <Route path="/reservas-apertura" element={<BookingPageApertura />} />
             <Route path="/mis-reservas" element={<MainLayout><MisReservas user={user} /></MainLayout>} />
             <Route path="/consulta-online" element={<MainLayout><ConsultasOnlineVivo user={user} onLogout={handleLogout} /></MainLayout>} />
+            <Route path="/videollamada/:id" element={<VideoConsultaWrapper user={user} onSalir={() => window.history.back()} />} />
             
             {/* Rutas principales de aplicaciones */}
             <Route path="/apertura-angelica" element={<MainLayout><TiradaAngelical onVolver={() => window.history.back()} /></MainLayout>} />
