@@ -51,6 +51,14 @@ const InstruccionesAngelicales = ({
       border: "border-pink-200", 
       button: "from-pink-600 to-pink-700",
       hover: "hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-600 hover:text-white"
+    },
+    cyan: {
+      gradient: "from-cyan-500 to-teal-600",
+      bg: "bg-cyan-50",
+      text: "text-cyan-700",
+      border: "border-cyan-200",
+      button: "from-cyan-600 to-teal-700",
+      hover: "hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-600 hover:text-white"
     }
   };
 
@@ -114,15 +122,15 @@ const InstruccionesAngelicales = ({
             return (
               <div
                 key={index}
-                className="group p-6 rounded-2xl text-center min-h-[220px] flex flex-col justify-start bg-white border-2 border-gray-200 transition-all duration-300 hover:border-blue-500 hover:bg-gradient-to-br hover:from-blue-500 hover:to-cyan-600 hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer"
+                className={`group p-6 rounded-2xl text-center min-h-[220px] flex flex-col justify-start bg-white border-2 border-gray-200 transition-all duration-300 hover:border-${colorPrimario}-500 hover:bg-gradient-to-br hover:${configuracionColor.gradient} hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer`}
               >
                 <div className="flex items-center justify-center mx-auto mb-3 transition-all duration-300">
                   {typeof IconoComponent === 'function' ? (
-                    <div className="text-blue-600 group-hover:text-white transition-colors duration-300">
+                    <div className={`text-${colorPrimario}-600 group-hover:text-white transition-colors duration-300`}>
                       <IconoComponent />
                     </div>
                   ) : (
-                    <IconoComponent className="w-12 h-12 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                    <IconoComponent className={`w-12 h-12 text-${colorPrimario}-600 group-hover:text-white transition-colors duration-300`} />
                   )}
                 </div>
                 <h3 className="font-bold text-base text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">

@@ -29,7 +29,7 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
         <InstruccionesAngelicales
           titulo="Canalizaciones y Sonoterapia"
           descripcion="Eleva tu vibración a través de mensajes angelicales y frecuencias sagradas. Cada experiencia está diseñada para tu sanación y conexión divina."
-          colorPrimario="purple"
+          colorPrimario="cyan"
           instrucciones={[
             {
               icono: Music,
