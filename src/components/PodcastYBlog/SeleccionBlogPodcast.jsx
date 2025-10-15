@@ -4,7 +4,6 @@ import { BookOpen, Headphones, ArrowRight, Sparkles } from 'lucide-react';
 import { supabase } from '../../integrations/supabase/client';
 import ThematicHeader from '../ThematicHeader';
 import FooterLegal from '../FooterLegal';
-import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 import './SeleccionBlogPodcast.css';
 
 const SeleccionBlogPodcast = () => {
@@ -60,42 +59,19 @@ const SeleccionBlogPodcast = () => {
   };
 
   return (
-    <div className="seleccion-wrapper">
-      {/* Fondo angelical */}
-      <div
-        className="seleccion-background"
-        style={{
-          backgroundImage: `url(${fondoAngelico})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      />
-      
-      {/* Capas de gradiente dorado */}
-      <div className="seleccion-overlay seleccion-overlay-1" />
-      <div className="seleccion-overlay seleccion-overlay-2" />
-      
-      {/* Efectos decorativos */}
-      <div className="seleccion-effects">
-        <div className="seleccion-effect seleccion-effect-1" />
-        <div className="seleccion-effect seleccion-effect-2" />
-        <div className="seleccion-effect seleccion-effect-3" />
-      </div>
-
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       {/* Header Temático */}
-      <div className="relative z-10">
-        <ThematicHeader
-          appType="blog"
-          user={user}
-          onNavigateHome={() => navigate('/blog-podcast')}
-          onCartClick={() => navigate('/carrito')}
-          onProfileClick={() => navigate('/perfil')}
-          onLogout={handleLogout}
-        />
-      </div>
+      <ThematicHeader
+        appType="blog"
+        user={user}
+        onNavigateHome={() => navigate('/blog-podcast')}
+        onCartClick={() => navigate('/carrito')}
+        onProfileClick={() => navigate('/perfil')}
+        onLogout={handleLogout}
+      />
 
       {/* Contenido principal */}
-      <div className="seleccion-content">
+      <div className="seleccion-content-wrapper">
         {/* Header */}
         <div className="seleccion-header">
           <div className="seleccion-sparkles">
@@ -169,7 +145,7 @@ const SeleccionBlogPodcast = () => {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10">
+      <div className="mt-16">
         <FooterLegal />
       </div>
     </div>

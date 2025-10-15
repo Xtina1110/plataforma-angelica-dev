@@ -5,7 +5,6 @@ import { supabase } from '../../integrations/supabase/client';
 import ThematicHeader from '../ThematicHeader';
 import FooterLegal from '../FooterLegal';
 import InstruccionesAngelicales from '../InstruccionesAngelicales';
-import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 
 const InstruccionesBlogPodcast = () => {
   const navigate = useNavigate();
@@ -48,37 +47,19 @@ const InstruccionesBlogPodcast = () => {
   };
 
   return (
-    <div className="min-h-screen relative">
-      {/* Fondo */}
-      <div
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url(${fondoAngelico})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      />
-      <div 
-        className="fixed inset-0 z-0" 
-        style={{
-          background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.3) 0%, rgba(245, 158, 11, 0.25) 50%, rgba(217, 119, 6, 0.2) 100%)'
-        }}
-      />
-
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
       {/* Header Temático */}
-      <div className="relative z-10">
-        <ThematicHeader
-          appType="blog"
-          user={user}
-          onNavigateHome={() => navigate('/dashboard')}
-          onCartClick={() => navigate('/carrito')}
-          onProfileClick={() => navigate('/perfil')}
-          onLogout={handleLogout}
-        />
-      </div>
+      <ThematicHeader
+        appType="blog"
+        user={user}
+        onNavigateHome={() => navigate('/dashboard')}
+        onCartClick={() => navigate('/carrito')}
+        onProfileClick={() => navigate('/perfil')}
+        onLogout={handleLogout}
+      />
 
-      {/* Contenido Principal */}
-      <div className="relative z-10 px-4 md:px-8 py-8 max-w-7xl mx-auto">
+      {/* Contenido Principal - Ajustado para respetar el sidebar */}
+      <div className="px-4 md:px-8 py-8 max-w-7xl mx-auto">
         <InstruccionesAngelicales
           titulo="Blog & Podcast Angelical"
           descripcion="Contenido espiritual para iluminar tu camino"
@@ -90,7 +71,7 @@ const InstruccionesBlogPodcast = () => {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10 mt-16">
+      <div className="mt-16">
         <FooterLegal />
       </div>
     </div>
