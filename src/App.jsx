@@ -48,6 +48,10 @@ import TiendaAngelical from './components/TiendaAngelical';
 // Componentes PodcastYBlog
 import PodcastYBlog from './components/PodcastYBlog/PodcastYBlog';
 import PodcastYBlogDashboard from './components/PodcastYBlog/PodcastYBlogDashboard';
+import InstruccionesBlogPodcast from './components/PodcastYBlog/InstruccionesBlogPodcast';
+import SeleccionBlogPodcast from './components/PodcastYBlog/SeleccionBlogPodcast';
+import PodcastPage from './components/PodcastYBlog/PodcastPage';
+import BlogPage from './components/PodcastYBlog/BlogPage';
 import Episodios from './components/PodcastYBlog/Episodios';
 import EpisodioDetalle from './components/PodcastYBlog/EpisodioDetalle';
 import Blog from './components/PodcastYBlog/Blog';
@@ -170,12 +174,11 @@ function App() {
             <Route path="/en-construccion" element={<MainLayout><EnConstruccion /></MainLayout>} />
 
             {/* Rutas PodcastYBlog */}
-            <Route path="/podcast-blog" element={<Navigate to="/dashboard?section=blog" replace />} />
+            <Route path="/blog-podcast" element={<MainLayout><InstruccionesBlogPodcast /></MainLayout>} />
+            <Route path="/blog-podcast/seleccion" element={<SeleccionBlogPodcast />} />
+            <Route path="/blog-podcast/podcast" element={<MainLayout><PodcastPage /></MainLayout>} />
+            <Route path="/blog-podcast/blog" element={<MainLayout><BlogPage /></MainLayout>} />
             <Route path="/podcast-blog-dashboard" element={<MainLayout><PodcastYBlogDashboard /></MainLayout>} />
-            <Route path="/podcast" element={<MainLayout><Episodios /></MainLayout>} />
-            <Route path="/podcast/episodio/:id" element={<MainLayout><EpisodioDetalle /></MainLayout>} />
-            <Route path="/blog" element={<MainLayout><Blog /></MainLayout>} />
-            <Route path="/blog/articulo/:id" element={<MainLayout><BlogDetalle /></MainLayout>} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
