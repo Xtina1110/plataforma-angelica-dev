@@ -4,7 +4,8 @@ import { ArrowLeft, X } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import LogoAngelico from './LogoAngelico';
 import FooterLegal from './FooterLegal';
-import fondoAngelico from '../assets/FondoAngelicoDashboard.png';
+import fondoMarmol from '../assets/Fondomarmoleado.jpg';
+import sanMiguel from '../assets/FondoPantallaIniciovf.png';
 
 const AuthPageLayout = ({ 
   children, 
@@ -21,31 +22,26 @@ const AuthPageLayout = ({
 
   return (
     <div className="min-h-screen flex flex-col relative bg-cover bg-center overflow-hidden">
-      {/* Fondo idéntico al onboarding */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url(${fondoAngelico})`,
+      {/* Fondo principal - igual que antes */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `url(${fondoMarmol})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       />
+      <div className="absolute inset-0 bg-white/60 z-0" />
       
-      {/* Capa azul transparente sobre la imagen (en lugar de morada) */}
-      <div className="absolute inset-0 bg-blue-600/40" />
-      
-      {/* Degradación azul adicional (en lugar de morada) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-800/30 via-blue-600/25 to-cyan-500/20" />
-      
-      {/* Overlay adicional muy sutil para mejorar legibilidad */}
-      <div className="absolute inset-0 bg-blue-900/10" />
-      
-      {/* Efectos de fondo decorativos */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-xl" />
-        <div className="absolute bottom-10 right-20 w-48 h-48 bg-blue-400/30 rounded-full blur-2xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl" />
-      </div>
+      {/* Imagen San Miguel Arcángel igual que en inicio */}
+      <div
+        className="absolute inset-0 bg-no-repeat bg-center bg-contain opacity-30 z-10 transition-opacity duration-500 hover:opacity-40"
+        style={{ 
+          backgroundImage: `url(${sanMiguel})`,
+          backgroundSize: 'contain',
+          backgroundPosition: 'center'
+        }}
+      />
 
       {/* Logo */}
       <LogoAngelico />
@@ -63,7 +59,7 @@ const AuthPageLayout = ({
                 style={{ backgroundImage: `url(${headerImage})` }}
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-cyan-900/80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-blue-900/80" />
             
             {/* Contenido compacto */}
             <div className="relative z-10 h-full flex items-center justify-between px-4">
@@ -83,7 +79,7 @@ const AuthPageLayout = ({
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => navigate(-1)}
-                  className="inline-flex items-center px-2 py-1 text-white hover:text-cyan-200 transition-colors duration-200 bg-white/10 rounded-lg backdrop-blur-sm text-xs"
+                  className="inline-flex items-center px-2 py-1 text-white hover:text-purple-200 transition-colors duration-200 bg-white/10 rounded-lg backdrop-blur-sm text-xs"
                 >
                   <ArrowLeft size={14} className="mr-1" />
                   <span className="font-medium">Volver</span>
