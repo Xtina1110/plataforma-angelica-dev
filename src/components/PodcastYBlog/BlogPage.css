@@ -1,10 +1,10 @@
-/* Contenedor principal */
-.blog-page {
+/* Contenedor principal - Ajustado para layout con sidebar */
+.blog-page-wrapper {
   position: relative;
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
-  padding-bottom: 4rem;
+  background: transparent;
 }
 
 /* Fondo */
@@ -31,83 +31,14 @@
   z-index: 1;
 }
 
-/* Header */
-.blog-header {
-  position: relative;
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.blog-back-button {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 2rem;
-}
-
-.blog-back-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
-}
-
-.blog-header-content {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.blog-header-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(251, 191, 36, 0.3);
-}
-
-.blog-header-text {
-  flex: 1;
-}
-
-.blog-header-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 0.5rem 0;
-}
-
-.blog-header-subtitle {
-  font-size: 1.125rem;
-  color: #6b7280;
-  margin: 0;
-}
-
-/* Controles */
+/* Controles - Ajustado para encajar entre sidebar y margen */
 .blog-controls {
   position: relative;
   z-index: 10;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   padding: 2rem;
-  margin: 2rem 2rem 0 2rem;
+  margin: 0 2rem 2rem 2rem;
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -175,13 +106,13 @@
   border-color: transparent;
 }
 
-/* Contenido principal */
+/* Contenido principal - Ajustado para encajar entre sidebar y margen */
 .blog-main {
   position: relative;
   z-index: 10;
-  padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 0 2rem 2rem 2rem;
+  max-width: 100%;
+  margin: 0;
 }
 
 /* Grid de artículos */
@@ -402,8 +333,8 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  padding: 1.5rem 2.5rem;
-  margin: 2rem;
+  padding: 2rem;
+  margin: 2rem 2rem 0 2rem;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-radius: 16px;
@@ -443,50 +374,33 @@
   .blog-articles-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
+  
+  .blog-controls,
+  .blog-main,
+  .blog-message {
+    margin: 0 1.5rem 1.5rem 1.5rem;
+    padding: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .blog-header-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .blog-header-title {
-    font-size: 2rem;
-  }
-
   .blog-categories {
     justify-content: center;
   }
 
   .blog-articles-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
-
+  
+  .blog-controls,
+  .blog-main,
   .blog-message {
-    flex-direction: column;
-    text-align: center;
-    padding: 1.25rem 1.5rem;
+    margin: 0 1rem 1rem 1rem;
+    padding: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .blog-page {
-    padding-bottom: 2rem;
-  }
-
-  .blog-header,
-  .blog-controls,
-  .blog-main {
-    padding: 1.5rem;
-    margin: 1rem;
-  }
-
-  .blog-header-title {
-    font-size: 1.75rem;
-  }
-
   .blog-category {
     font-size: 0.875rem;
     padding: 0.5rem 1rem;
@@ -494,6 +408,17 @@
 
   .blog-article-title {
     font-size: 1.25rem;
+  }
+  
+  .blog-controls,
+  .blog-main,
+  .blog-message {
+    margin: 0 0.75rem 0.75rem 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .blog-message-text {
+    font-size: 1rem;
   }
 }
 

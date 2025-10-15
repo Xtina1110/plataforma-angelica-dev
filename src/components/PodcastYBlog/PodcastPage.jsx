@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Play, Search, Filter, Heart, Share2, Download, 
-  Clock, Eye, ArrowLeft, Sparkles, Music
+  Clock, Eye, Sparkles, Music
 } from 'lucide-react';
 import { getPlaylistVideos, buscarVideos, filtrarPorCategoria } from '../../services/youtubeService';
+import { supabase } from '../../integrations/supabase/client';
+import ThematicHeader from '../ThematicHeader';
+import FooterLegal from '../FooterLegal';
 import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 import './PodcastPage.css';
 
@@ -17,6 +20,7 @@ const PodcastPage = () => {
   const [categoria, setCategoria] = useState('todos');
   const [videoSeleccionado, setVideoSeleccionado] = useState(null);
   const [favoritos, setFavoritos] = useState([]);
+  const [user, setUser] = useState(null);
 
   const categorias = [
     { id: 'todos', nombre: 'Todos', icono: '✨' },
@@ -27,6 +31,7 @@ const PodcastPage = () => {
   ];
 
   useEffect(() => {
+    cargarUsuario();
     cargarVideos();
     cargarFavoritos();
   }, []);
@@ -42,6 +47,11 @@ const PodcastPage = () => {
     
     setVideosFiltrados(resultado);
   }, [videos, categoria, searchTerm]);
+
+  const cargarUsuario = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
 
   const cargarVideos = async () => {
     setLoading(true);
@@ -108,8 +118,13 @@ const PodcastPage = () => {
     return vistas;
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/login');
+  };
+
   return (
-    <div className="podcast-page">
+    <div className="podcast-page-wrapper">
       {/* Fondo */}
       <div
         className="podcast-background"
@@ -121,25 +136,15 @@ const PodcastPage = () => {
       />
       <div className="podcast-overlay" />
 
-      {/* Header */}
-      <div className="podcast-header">
-        <button className="podcast-back-button" onClick={() => navigate('/blog-podcast/seleccion')}>
-          <ArrowLeft size={20} />
-          <span>Volver</span>
-        </button>
-
-        <div className="podcast-header-content">
-          <div className="podcast-header-icon">
-            <Music size={40} />
-          </div>
-          <div className="podcast-header-text">
-            <h1 className="podcast-header-title">Podcast Angelical</h1>
-            <p className="podcast-header-subtitle">
-              Canalizaciones y enseñanzas de Juan Carlos Ávila
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* Header Temático */}
+      <ThematicHeader
+        appType="podcast"
+        user={user}
+        onNavigateHome={() => navigate('/blog-podcast/seleccion')}
+        onCartClick={() => navigate('/carrito')}
+        onProfileClick={() => navigate('/perfil')}
+        onLogout={handleLogout}
+      />
 
       {/* Controles */}
       <div className="podcast-controls">
@@ -304,6 +309,9 @@ const PodcastPage = () => {
           )}
         </div>
       </div>
+
+      {/* Footer Legal */}
+      <FooterLegal />
     </div>
   );
 };

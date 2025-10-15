@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   BookOpen, Search, Heart, Share2, Clock, 
-  ArrowLeft, Sparkles, Tag, Calendar, User
+  Sparkles, Calendar, User
 } from 'lucide-react';
 import { supabase } from '../../integrations/supabase/client';
+import ThematicHeader from '../ThematicHeader';
+import FooterLegal from '../FooterLegal';
 import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 import './BlogPage.css';
 
@@ -16,6 +18,7 @@ const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoria, setCategoria] = useState('todos');
   const [favoritos, setFavoritos] = useState([]);
+  const [user, setUser] = useState(null);
 
   const categorias = [
     { id: 'todos', nombre: 'Todos', icono: '✨', color: '#fbbf24' },
@@ -27,6 +30,7 @@ const BlogPage = () => {
   ];
 
   useEffect(() => {
+    cargarUsuario();
     cargarArticulos();
     cargarFavoritos();
   }, []);
@@ -34,6 +38,11 @@ const BlogPage = () => {
   useEffect(() => {
     filtrarArticulos();
   }, [articulos, categoria, searchTerm]);
+
+  const cargarUsuario = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
 
   const cargarArticulos = async () => {
     setLoading(true);
@@ -150,8 +159,13 @@ const BlogPage = () => {
     ];
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/login');
+  };
+
   return (
-    <div className="blog-page">
+    <div className="blog-page-wrapper">
       {/* Fondo */}
       <div
         className="blog-background"
@@ -163,25 +177,15 @@ const BlogPage = () => {
       />
       <div className="blog-overlay" />
 
-      {/* Header */}
-      <div className="blog-header">
-        <button className="blog-back-button" onClick={() => navigate('/blog-podcast/seleccion')}>
-          <ArrowLeft size={20} />
-          <span>Volver</span>
-        </button>
-
-        <div className="blog-header-content">
-          <div className="blog-header-icon">
-            <BookOpen size={40} />
-          </div>
-          <div className="blog-header-text">
-            <h1 className="blog-header-title">Blog Angelical</h1>
-            <p className="blog-header-subtitle">
-              Artículos inspiradores sobre ángeles, arcángeles y espiritualidad
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* Header Temático */}
+      <ThematicHeader
+        appType="blog"
+        user={user}
+        onNavigateHome={() => navigate('/blog-podcast/seleccion')}
+        onCartClick={() => navigate('/carrito')}
+        onProfileClick={() => navigate('/perfil')}
+        onLogout={handleLogout}
+      />
 
       {/* Controles */}
       <div className="blog-controls">
@@ -326,6 +330,9 @@ const BlogPage = () => {
         </p>
         <Sparkles size={20} className="blog-message-icon blog-message-icon-delayed" />
       </div>
+
+      {/* Footer Legal */}
+      <FooterLegal />
     </div>
   );
 };
