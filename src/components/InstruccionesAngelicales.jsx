@@ -13,52 +13,46 @@ const InstruccionesAngelicales = ({
   // Configuración de colores según la aplicación
   const colores = {
     purple: {
-      gradient: "from-purple-500 to-indigo-600",
-      bg: "bg-purple-50",
-      text: "text-purple-700",
-      border: "border-purple-200",
-      button: "from-purple-600 to-purple-700",
-      hover: "hover:bg-gradient-to-r hover:from-purple-500 hover:to-indigo-600 hover:text-white"
+      primary: '#9333ea',
+      secondary: '#6366f1',
+      light: '#f3e8ff',
+      border: '#e9d5ff',
+      hover: 'linear-gradient(135deg, #9333ea 0%, #6366f1 100%)'
     },
     blue: {
-      gradient: "from-blue-500 to-cyan-600", 
-      bg: "bg-blue-50",
-      text: "text-blue-700",
-      border: "border-blue-200",
-      button: "from-blue-600 to-blue-700",
-      hover: "hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-600 hover:text-white"
+      primary: '#3b82f6',
+      secondary: '#0891b2',
+      light: '#eff6ff',
+      border: '#bfdbfe',
+      hover: 'linear-gradient(135deg, #3b82f6 0%, #0891b2 100%)'
     },
     green: {
-      gradient: "from-green-500 to-teal-600",
-      bg: "bg-green-50", 
-      text: "text-green-700",
-      border: "border-green-200",
-      button: "from-green-600 to-green-700",
-      hover: "hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-600 hover:text-white"
+      primary: '#10b981',
+      secondary: '#14b8a6',
+      light: '#f0fdf4',
+      border: '#bbf7d0',
+      hover: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)'
     },
     amber: {
-      gradient: "from-amber-500 to-orange-600",
-      bg: "bg-amber-50",
-      text: "text-amber-700", 
-      border: "border-amber-200",
-      button: "from-amber-600 to-amber-700",
-      hover: "hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-600 hover:text-white"
+      primary: '#f59e0b',
+      secondary: '#ea580c',
+      light: '#fffbeb',
+      border: '#fde68a',
+      hover: 'linear-gradient(135deg, #f59e0b 0%, #ea580c 100%)'
     },
     pink: {
-      gradient: "from-pink-500 to-rose-600",
-      bg: "bg-pink-50",
-      text: "text-pink-700",
-      border: "border-pink-200", 
-      button: "from-pink-600 to-pink-700",
-      hover: "hover:bg-gradient-to-r hover:from-pink-500 hover:to-rose-600 hover:text-white"
+      primary: '#ec4899',
+      secondary: '#f43f5e',
+      light: '#fdf2f8',
+      border: '#fbcfe8',
+      hover: 'linear-gradient(135deg, #ec4899 0%, #f43f5e 100%)'
     },
     cyan: {
-      gradient: "from-cyan-500 to-teal-600",
-      bg: "bg-cyan-50",
-      text: "text-cyan-700",
-      border: "border-cyan-200",
-      button: "from-cyan-600 to-teal-700",
-      hover: "hover:bg-gradient-to-r hover:from-cyan-500 hover:to-teal-600 hover:text-white"
+      primary: '#06b6d4',
+      secondary: '#0d9488',
+      light: '#ecfeff',
+      border: '#a5f3fc',
+      hover: 'linear-gradient(135deg, #06b6d4 0%, #0d9488 100%)'
     }
   };
 
@@ -120,26 +114,13 @@ const InstruccionesAngelicales = ({
           {instruccionesDefault.map((instruccion, index) => {
             const IconoComponent = instruccion.icono || iconosDefault[index % iconosDefault.length];
             return (
-              <div
+              <CardInstruccion
                 key={index}
-                className={`group p-6 rounded-2xl text-center min-h-[220px] flex flex-col justify-start bg-white border-2 border-gray-200 transition-all duration-300 hover:border-${colorPrimario}-500 hover:bg-gradient-to-br hover:${configuracionColor.gradient} hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer`}
-              >
-                <div className="flex items-center justify-center mx-auto mb-3 transition-all duration-300">
-                  {typeof IconoComponent === 'function' ? (
-                    <div className={`text-${colorPrimario}-600 group-hover:text-white transition-colors duration-300`}>
-                      <IconoComponent />
-                    </div>
-                  ) : (
-                    <IconoComponent className={`w-12 h-12 text-${colorPrimario}-600 group-hover:text-white transition-colors duration-300`} />
-                  )}
-                </div>
-                <h3 className="font-bold text-base text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">
-                  {instruccion.titulo}
-                </h3>
-                <p className="text-sm leading-relaxed break-words text-gray-600 group-hover:text-white/95 transition-colors duration-300">
-                  {instruccion.descripcion}
-                </p>
-              </div>
+                icono={IconoComponent}
+                titulo={instruccion.titulo}
+                descripcion={instruccion.descripcion}
+                colorConfig={configuracionColor}
+              />
             );
           })}
         </div>
@@ -147,7 +128,10 @@ const InstruccionesAngelicales = ({
         {/* Llamada a la acción */}
         <div className="text-center mt-6">
           <button
-            className={`bg-gradient-to-r ${configuracionColor.button} text-white px-6 py-3 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 flex items-center space-x-2 mx-auto hover:transform hover:scale-105 shadow-lg`}
+            className="text-white px-6 py-3 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 flex items-center space-x-2 mx-auto hover:transform hover:scale-105 shadow-lg"
+            style={{
+              background: configuracionColor.hover
+            }}
             onClick={onAccionClick}
           >
             <Sparkles className="w-5 h-5" />
@@ -159,4 +143,50 @@ const InstruccionesAngelicales = ({
   );
 };
 
+// Componente separado para cada tarjeta con manejo de hover
+const CardInstruccion = ({ icono: IconoComponent, titulo, descripcion, colorConfig }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  return (
+    <div
+      className="group p-6 rounded-2xl text-center min-h-[220px] flex flex-col justify-start bg-white border-2 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer"
+      style={{
+        borderColor: isHovered ? colorConfig.primary : '#e5e7eb',
+        background: isHovered ? colorConfig.hover : 'white'
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="flex items-center justify-center mx-auto mb-3 transition-all duration-300">
+        {typeof IconoComponent === 'function' ? (
+          <div 
+            className="transition-colors duration-300"
+            style={{ color: isHovered ? 'white' : colorConfig.primary }}
+          >
+            <IconoComponent />
+          </div>
+        ) : (
+          <IconoComponent 
+            className="w-12 h-12 transition-colors duration-300" 
+            style={{ color: isHovered ? 'white' : colorConfig.primary }}
+          />
+        )}
+      </div>
+      <h3 
+        className="font-bold text-base mb-2 transition-colors duration-300"
+        style={{ color: isHovered ? 'white' : '#111827' }}
+      >
+        {titulo}
+      </h3>
+      <p 
+        className="text-sm leading-relaxed break-words transition-colors duration-300"
+        style={{ color: isHovered ? 'rgba(255, 255, 255, 0.95)' : '#4b5563' }}
+      >
+        {descripcion}
+      </p>
+    </div>
+  );
+};
+
 export default InstruccionesAngelicales;
+
