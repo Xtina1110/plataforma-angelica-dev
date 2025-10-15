@@ -1,12 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, Headphones, ArrowRight, Sparkles } from 'lucide-react';
+import { supabase } from '../../integrations/supabase/client';
+import ThematicHeader from '../ThematicHeader';
+import FooterLegal from '../FooterLegal';
 import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 import './SeleccionBlogPodcast.css';
 
 const SeleccionBlogPodcast = () => {
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    cargarUsuario();
+  }, []);
+
+  const cargarUsuario = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    setUser(user);
+  };
 
   const opciones = [
     {
@@ -41,8 +54,13 @@ const SeleccionBlogPodcast = () => {
     navigate(ruta);
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/login');
+  };
+
   return (
-    <div className="seleccion-container">
+    <div className="seleccion-wrapper">
       {/* Fondo angelical */}
       <div
         className="seleccion-background"
@@ -62,6 +80,18 @@ const SeleccionBlogPodcast = () => {
         <div className="seleccion-effect seleccion-effect-1" />
         <div className="seleccion-effect seleccion-effect-2" />
         <div className="seleccion-effect seleccion-effect-3" />
+      </div>
+
+      {/* Header Temático */}
+      <div className="relative z-10">
+        <ThematicHeader
+          appType="blog"
+          user={user}
+          onNavigateHome={() => navigate('/blog-podcast')}
+          onCartClick={() => navigate('/carrito')}
+          onProfileClick={() => navigate('/perfil')}
+          onLogout={handleLogout}
+        />
       </div>
 
       {/* Contenido principal */}
@@ -136,6 +166,11 @@ const SeleccionBlogPodcast = () => {
           </p>
           <Sparkles size={20} className="seleccion-message-icon seleccion-message-icon-delayed" />
         </div>
+      </div>
+
+      {/* Footer */}
+      <div className="relative z-10">
+        <FooterLegal />
       </div>
     </div>
   );

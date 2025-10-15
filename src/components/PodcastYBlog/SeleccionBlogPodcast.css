@@ -1,18 +1,15 @@
-/* Contenedor principal */
-.seleccion-container {
+/* Contenedor principal - Ajustado para layout con header */
+.seleccion-wrapper {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  overflow-x: hidden;
+  background: transparent;
 }
 
 /* Fondo */
 .seleccion-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -22,7 +19,7 @@
 
 /* Capas de gradiente dorado */
 .seleccion-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -46,7 +43,7 @@
 
 /* Efectos decorativos */
 .seleccion-effects {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -109,6 +106,8 @@
   z-index: 10;
   max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -422,6 +421,12 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .seleccion-content {
+    padding: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .seleccion-title {
     font-size: 2.5rem;
@@ -448,7 +453,7 @@
 }
 
 @media (max-width: 480px) {
-  .seleccion-container {
+  .seleccion-content {
     padding: 1rem;
   }
 
