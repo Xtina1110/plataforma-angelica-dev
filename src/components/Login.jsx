@@ -152,9 +152,9 @@ const Login = () => {
             }}
           />
           
-          {/* Capas de gradiente morado como en el dashboard */}
-          <div className="absolute inset-0 bg-purple-600/40" />
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-800/30 via-purple-600/25 to-violet-500/20" />
+          {/* Capas de gradiente azul */}
+          <div className="absolute inset-0 bg-blue-600/40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-800/30 via-blue-600/25 to-cyan-500/20" />
           
           {/* Contenido centrado */}
           <div className="relative z-10 text-center animate-scale-in max-w-2xl mx-auto px-6">
