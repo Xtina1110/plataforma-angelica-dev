@@ -48,11 +48,11 @@ const InstruccionesAngelicales = ({
       hover: 'linear-gradient(135deg, #ec4899 0%, #f43f5e 100%)'
     },
     cyan: {
-      primary: '#06b6d4',
-      secondary: '#0d9488',
-      light: '#ecfeff',
-      border: '#a5f3fc',
-      hover: 'linear-gradient(135deg, #06b6d4 0%, #0d9488 100%)'
+      primary: '#7c3aed',
+      secondary: '#a855f7',
+      light: '#faf5ff',
+      border: '#e9d5ff',
+      hover: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)'
     }
   };
 
