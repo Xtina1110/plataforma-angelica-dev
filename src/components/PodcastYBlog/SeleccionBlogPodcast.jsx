@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, Headphones, ArrowRight, Sparkles } from 'lucide-react';
-import { supabase } from '../../integrations/supabase/client';
-import ThematicHeader from '../ThematicHeader';
-import FooterLegal from '../FooterLegal';
 import './SeleccionBlogPodcast.css';
 
 const SeleccionBlogPodcast = () => {
   const navigate = useNavigate();
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    cargarUsuario();
-  }, []);
-
-  const cargarUsuario = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    setUser(user);
-  };
 
   const opciones = [
     {
@@ -53,23 +40,8 @@ const SeleccionBlogPodcast = () => {
     navigate(ruta);
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    navigate('/login');
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
-      {/* Header Temático */}
-      <ThematicHeader
-        appType="blog"
-        user={user}
-        onNavigateHome={() => navigate('/blog-podcast')}
-        onCartClick={() => navigate('/carrito')}
-        onProfileClick={() => navigate('/perfil')}
-        onLogout={handleLogout}
-      />
-
       {/* Contenido principal */}
       <div className="seleccion-content-wrapper">
         {/* Header */}
@@ -142,11 +114,6 @@ const SeleccionBlogPodcast = () => {
           </p>
           <Sparkles size={20} className="seleccion-message-icon seleccion-message-icon-delayed" />
         </div>
-      </div>
-
-      {/* Footer */}
-      <div className="mt-16">
-        <FooterLegal />
       </div>
     </div>
   );

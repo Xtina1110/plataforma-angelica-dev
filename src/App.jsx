@@ -175,7 +175,7 @@ function App() {
 
             {/* Rutas PodcastYBlog */}
             <Route path="/blog-podcast" element={<MainLayout><InstruccionesBlogPodcast /></MainLayout>} />
-            <Route path="/blog-podcast/seleccion" element={<SeleccionBlogPodcast />} />
+            <Route path="/blog-podcast/seleccion" element={<MainLayout><SeleccionBlogPodcast /></MainLayout>} />
             <Route path="/blog-podcast/podcast" element={<MainLayout><PodcastPage /></MainLayout>} />
             <Route path="/blog-podcast/blog" element={<MainLayout><BlogPage /></MainLayout>} />
             <Route path="/podcast-blog-dashboard" element={<MainLayout><PodcastYBlogDashboard /></MainLayout>} />
