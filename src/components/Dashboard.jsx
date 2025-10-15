@@ -574,7 +574,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   // Función para manejar la navegación
   const handleMenuNavigation = (sectionId) => {
     if (sectionId === 'blog') {
-      navigate('/podcast-blog');
+      navigate('/blog-podcast');
       return;
     }
     if (sectionId === 'reservas') {

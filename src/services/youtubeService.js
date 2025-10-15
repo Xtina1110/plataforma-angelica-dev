@@ -7,7 +7,7 @@
  * 3. Agrega: VITE_YOUTUBE_API_KEY=tu_api_key_aqui
  */
 
-const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY || 'TU_API_KEY_AQUI';
+const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY || 'AIzaSyDD41BLhkqHZKZ-cK9yuQCnV5RaGCtrLpw';
 const PLAYLIST_ID = 'PLCmMvj-r62Yg1Fan4iG_U8va5XdsJEPW6';
 const CHANNEL_ID = 'UCxxx'; // ID del canal de Juan Carlos Ávila
 
