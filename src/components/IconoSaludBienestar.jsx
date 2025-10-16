@@ -1,5 +1,5 @@
 import React from 'react';
-import iconoSaludBienestar from '../assets/IconoSaludBienestarV3.png';
+import iconoSaludBienestar from '../assets/IconoSaludBienestarV4.png';
 
 const IconoSaludBienestar = ({ className = "w-12 h-12" }) => {
   return (
