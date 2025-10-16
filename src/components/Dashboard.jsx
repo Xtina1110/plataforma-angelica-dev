@@ -142,6 +142,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   
   // Ref para el carrusel de eventos
   const eventCarouselRef = useRef(null);
+  const [eventCarouselApi, setEventCarouselApi] = useState(null);
 
   // Estados para los filtros de cada aplicación
   const [filters, setFilters] = useState({});
@@ -863,6 +864,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       <div ref={eventCarouselRef} className="eventos-carousel-horizontal">
         <Carousel 
           className="carousel-eventos-manual"
+          setApi={setEventCarouselApi}
           plugins={[
             Autoplay({
               delay: 5000,
@@ -1003,7 +1005,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       {/* Indicadores dinámicos con auto-scroll */}
       <EventCarouselIndicators 
         totalSlides={eventos.length}
-        containerRef={eventCarouselRef}
+        carouselApi={eventCarouselApi}
         autoScrollInterval={5000}
         enableAutoScroll={true}
       />

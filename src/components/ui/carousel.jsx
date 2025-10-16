@@ -13,7 +13,7 @@ function useCarousel() {
 }
 
 const Carousel = React.forwardRef(
-  ({ opts, plugins, className, children, ...props }, ref) => {
+  ({ opts, setApi, plugins, className, children, ...props }, ref) => {
     const [emblaRef, emblaApi] = useEmblaCarousel(
       {
         ...opts,
@@ -23,6 +23,12 @@ const Carousel = React.forwardRef(
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
+
+    React.useEffect(() => {
+      if (setApi && emblaApi) {
+        setApi(emblaApi)
+      }
+    }, [emblaApi, setApi])
 
     const onSelect = React.useCallback((api) => {
       if (!api) {

@@ -1,74 +1,73 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 
 const EventCarouselIndicators = ({ 
   totalSlides, 
-  containerRef,
+  carouselApi,
   autoScrollInterval = 5000,
   enableAutoScroll = true 
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const autoScrollTimerRef = useRef(null);
-  const isUserInteractingRef = useRef(false);
+  const [autoScrollEnabled, setAutoScrollEnabled] = useState(enableAutoScroll);
+
+  // Sincronizar con el carrusel cuando cambia de slide
+  const onSelect = useCallback(() => {
+    if (!carouselApi) return;
+    setCurrentSlide(carouselApi.selectedScrollSnap());
+  }, [carouselApi]);
 
   useEffect(() => {
-    const container = containerRef?.current;
-    if (!container) return;
+    if (!carouselApi) return;
 
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const slideWidth = container.offsetWidth;
-      const newSlide = Math.round(scrollLeft / slideWidth);
-      setCurrentSlide(newSlide);
-      
-      isUserInteractingRef.current = true;
-      clearTimeout(autoScrollTimerRef.current);
-      
-      autoScrollTimerRef.current = setTimeout(() => {
-        isUserInteractingRef.current = false;
+    onSelect();
+    carouselApi.on('select', onSelect);
+    carouselApi.on('reInit', onSelect);
+
+    return () => {
+      carouselApi.off('select', onSelect);
+      carouselApi.off('reInit', onSelect);
+    };
+  }, [carouselApi, onSelect]);
+
+  // Auto-scroll
+  useEffect(() => {
+    if (!carouselApi || !autoScrollEnabled) return;
+
+    const interval = setInterval(() => {
+      if (carouselApi.canScrollNext()) {
+        carouselApi.scrollNext();
+      } else {
+        carouselApi.scrollTo(0);
+      }
+    }, autoScrollInterval);
+
+    return () => clearInterval(interval);
+  }, [carouselApi, autoScrollEnabled, autoScrollInterval, currentSlide]);
+
+  // Pausar auto-scroll al interactuar
+  useEffect(() => {
+    if (!carouselApi) return;
+
+    const handlePointerDown = () => {
+      setAutoScrollEnabled(false);
+      // Reactivar después de 10 segundos
+      setTimeout(() => {
+        setAutoScrollEnabled(true);
       }, 10000);
     };
 
-    container.addEventListener('scroll', handleScroll);
+    carouselApi.on('pointerDown', handlePointerDown);
+
     return () => {
-      container.removeEventListener('scroll', handleScroll);
-      clearTimeout(autoScrollTimerRef.current);
+      carouselApi.off('pointerDown', handlePointerDown);
     };
-  }, [containerRef]);
-
-  useEffect(() => {
-    if (!enableAutoScroll) return;
-    
-    const container = containerRef?.current;
-    if (!container) return;
-
-    const autoScroll = setInterval(() => {
-      if (isUserInteractingRef.current) return;
-      
-      const nextSlide = (currentSlide + 1) % totalSlides;
-      scrollToSlide(nextSlide);
-    }, autoScrollInterval);
-
-    return () => clearInterval(autoScroll);
-  }, [currentSlide, totalSlides, enableAutoScroll, autoScrollInterval, containerRef]);
-
-  const scrollToSlide = (slideIndex) => {
-    const container = containerRef?.current;
-    if (!container) return;
-
-    const slideWidth = container.offsetWidth;
-    container.scrollTo({
-      left: slideWidth * slideIndex,
-      behavior: 'smooth'
-    });
-  };
+  }, [carouselApi]);
 
   const handleIndicatorClick = (index) => {
-    isUserInteractingRef.current = true;
-    scrollToSlide(index);
-    
-    clearTimeout(autoScrollTimerRef.current);
-    autoScrollTimerRef.current = setTimeout(() => {
-      isUserInteractingRef.current = false;
+    if (!carouselApi) return;
+    carouselApi.scrollTo(index);
+    setAutoScrollEnabled(false);
+    setTimeout(() => {
+      setAutoScrollEnabled(true);
     }, 10000);
   };
 
