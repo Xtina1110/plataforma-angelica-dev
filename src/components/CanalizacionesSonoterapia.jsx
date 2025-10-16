@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './CanalizacionesSonoterapia.css';
 import './Dashboard.css';
 import { ArrowLeft, Music, MessageCircle, Headphones, Heart, Star, Clock, Users, Sparkles } from 'lucide-react';
+import IconoEspacioSagrado from './IconoEspacioSagrado';
+import IconoIntencionClara from './IconoIntencionClara';
+import IconoReceptividadTotal from './IconoReceptividadTotal';
 import AppSidebar from './AppSidebar';
 import Sonoterapia from './Sonoterapia';
 import CanalizacionesAngelicales from './CanalizacionesAngelicales';
@@ -40,17 +43,17 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
             colorPrimario="cyan"
             instrucciones={[
               {
-                icono: Music,
+                icono: IconoEspacioSagrado,
                 titulo: "Espacio Sagrado",
                 descripcion: "Busca un lugar tranquilo donde puedas conectar sin interrupciones con las energías angelicales."
               },
               {
-                icono: Heart,
+                icono: IconoIntencionClara,
                 titulo: "Intención Clara",
                 descripcion: "Define qué tipo de sanación o mensaje necesitas. Tu intención guía la experiencia."
               },
               {
-                icono: Sparkles,
+                icono: IconoReceptividadTotal,
                 titulo: "Receptividad Total",
                 descripcion: "Mantén tu corazón y mente abiertos para recibir la sanación y sabiduría que los ángeles te ofrecen."
               }
