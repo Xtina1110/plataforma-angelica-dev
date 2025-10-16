@@ -222,12 +222,10 @@
   background: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
-  min-height: 200px;
-  max-height: 200px;
-  height: 200px;
+  min-height: 220px;
+  height: auto;
   width: 100%;
   position: relative;
-  overflow: hidden;
 }
 
 .tipo-card:hover {
@@ -357,12 +355,23 @@
   transition: color 0.3s ease;
 }
 
+.tema-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  flex: 1;
+}
+
 .tema-content p {
   font-size: 0.875rem;
   color: #4b5563;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
   transition: color 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Resumen de selección */
