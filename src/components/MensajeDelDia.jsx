@@ -137,9 +137,9 @@ const MensajeDelDia = () => {
             alt="San Gabriel"
             style={{
               position: 'absolute',
-              top: '10px',
+              top: '100px',
               right: '20px',
-              width: '500px',
+              width: '450px',
               height: 'auto',
               filter: 'drop-shadow(0 8px 16px rgba(106, 13, 173, 0.4)) drop-shadow(0 4px 8px rgba(30, 144, 255, 0.3))',
               animation: 'float 3s ease-in-out infinite',

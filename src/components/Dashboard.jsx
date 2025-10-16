@@ -27,6 +27,7 @@ import FooterLegal from './FooterLegal';
 import FilterBar from './FilterBar';
 import MensajeDelDia from './MensajeDelDia';
 import AudioButton from './AudioButton';
+import MisReservas from './MisReservas';
 
 // Importar componentes premium
 import GlobalSearchModal from './GlobalSearchModal';
@@ -420,7 +421,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 1,
       titulo: "Meditación Grupal con Arcángeles",
-      fecha: "2025-01-15",
+      fecha: "2026-01-14",
       hora: "19:00",
       duracion: "90 min",
       modalidad: "Presencial",
@@ -437,7 +438,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 2,
       titulo: "Taller de Cartas Angelicales",
-      fecha: "2025-01-18",
+      fecha: "2026-01-17",
       hora: "16:30",
       duracion: "3 horas",
       modalidad: "Online",
@@ -454,7 +455,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 3,
       titulo: "Sanación con Frecuencias Angelicales",
-      fecha: "2025-01-22",
+      fecha: "2026-01-22",
       hora: "20:00",
       duracion: "60 min",
       modalidad: "Online",
@@ -470,7 +471,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 4,
       titulo: "Círculo de Canalización Angelical",
-      fecha: "2025-01-25",
+      fecha: "2026-01-25",
       hora: "18:00",
       duracion: "2 horas",
       modalidad: "Presencial",
@@ -487,7 +488,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 5,
       titulo: "Retiro Espiritual de Fin de Semana",
-      fecha: "2025-01-28",
+      fecha: "2026-01-28",
       hora: "09:00",
       duracion: "2 días",
       modalidad: "Presencial",
@@ -504,7 +505,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 6,
       titulo: "Masterclass: Comunicación Angelical",
-      fecha: "2025-02-02",
+      fecha: "2026-02-02",
       hora: "19:30",
       duracion: "2.5 horas",
       modalidad: "Online",
@@ -521,7 +522,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 7,
       titulo: "Sesión de Sanación Grupal",
-      fecha: "2025-02-05",
+      fecha: "2026-02-05",
       hora: "20:30",
       duracion: "90 min",
       modalidad: "Online",
@@ -581,10 +582,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       navigate('/reservas');
       return;
     }
-    if (sectionId === 'videollamada') {
-      navigate('/consulta-online');
-      return;
-    }
+    // videollamada ahora muestra MisReservas dentro del dashboard
     setActiveSection(sectionId);
   };
 
@@ -865,6 +863,13 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       <div ref={eventCarouselRef} className="eventos-carousel-horizontal">
         <Carousel 
           className="carousel-eventos-manual"
+          plugins={[
+            Autoplay({
+              delay: 5000,
+              stopOnInteraction: true,
+              stopOnMouseEnter: true,
+            })
+          ]}
           opts={{
             align: "start",
             loop: true,
@@ -908,9 +913,10 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                         {estaInscrito ? 'INSCRITO' : 'DISPONIBLE'}
                       </div>
                       
-                      {/* Título superpuesto */}
+                      {/* Título y descripción breve superpuestos */}
                       <div className="evento-titulo-superpuesto">
                         <h3>{evento.titulo}</h3>
+                        <p className="evento-descripcion-breve">{evento.descripcion}</p>
                       </div>
 
                       {/* Hover información completa */}
@@ -1268,6 +1274,24 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               actionLabel="Ver Productos"
             />
             <TiendaAngelical onVolver={() => setActiveSection('home')} addToCart={addToCart} />
+          </div>
+        );
+      case 'videollamada':
+        return (
+          <div>
+            <div className="mis-reservas-header" style={{
+              background: 'linear-gradient(135deg, #DC143C 0%, #FF1493 100%)',
+              padding: '30px',
+              borderRadius: '20px',
+              marginBottom: '30px',
+              color: 'white',
+              textAlign: 'center'
+            }}>
+              <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '10px' }}>Mis Consultas en Vivo</h1>
+              <p style={{ fontSize: '1rem', opacity: 0.9 }}>Accede a tus videollamadas angelicales programadas</p>
+            </div>
+            <MisReservas user={user} />
+            <FooterLegal />
           </div>
         );
       default:
