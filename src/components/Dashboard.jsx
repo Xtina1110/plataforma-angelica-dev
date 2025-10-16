@@ -28,6 +28,7 @@ import FilterBar from './FilterBar';
 import MensajeDelDia from './MensajeDelDia';
 import AudioButton from './AudioButton';
 import MisReservas from './MisReservas';
+import DayEventsModal from './DayEventsModal';
 
 // Importar componentes premium
 import GlobalSearchModal from './GlobalSearchModal';
@@ -89,6 +90,8 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showCart, setShowCart] = useState(false);
+  const [selectedDayEvents, setSelectedDayEvents] = useState(null);
+  const [showDayEventsModal, setShowDayEventsModal] = useState(false);
   
   // Estados específicos para blog
   const [blogFilter, setBlogFilter] = useState('todos');
@@ -839,7 +842,18 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         <EventCalendar 
           events={eventos}
           onDateSelect={(date) => {
-            // Buscar evento en esa fecha
+            // Buscar eventos en esa fecha
+            const eventosDelDia = eventos.filter(e => {
+              const eventDate = new Date(e.fecha);
+              return eventDate.toDateString() === date.toDateString();
+            });
+            
+            if (eventosDelDia.length > 0) {
+              setSelectedDayEvents({ date, events: eventosDelDia });
+              setShowDayEventsModal(true);
+            }
+            
+            // También hacer scroll al primer evento
             const eventoIndex = eventos.findIndex(e => {
               const eventDate = new Date(e.fecha);
               return eventDate.toDateString() === date.toDateString();
@@ -1583,6 +1597,21 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         onClose={() => setSearchOpen(false)}
         userId={user?.id}
       />
+
+      {showDayEventsModal && selectedDayEvents && (
+        <DayEventsModal
+          date={selectedDayEvents.date}
+          events={selectedDayEvents.events}
+          onClose={() => {
+            setShowDayEventsModal(false);
+            setSelectedDayEvents(null);
+          }}
+          onEventClick={(evento) => {
+            setEventoSeleccionado(evento);
+            setShowDayEventsModal(false);
+          }}
+        />
+      )}
 
       <NotificationsCenter
         isOpen={notificationsOpen}

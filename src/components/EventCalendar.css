@@ -110,6 +110,18 @@
   font-weight: 700;
 }
 
+.calendar-day.has-events {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.15) 100%);
+  border: 2px solid #FFC107;
+  font-weight: 600;
+}
+
+.calendar-day.has-events:hover {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.25) 0%, rgba(255, 152, 0, 0.25) 100%);
+  border-color: #FF9800;
+  transform: scale(1.08);
+}
+
 .calendar-day.has-events::after {
   content: '';
   position: absolute;
