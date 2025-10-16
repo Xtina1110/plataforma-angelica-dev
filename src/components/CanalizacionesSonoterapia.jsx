@@ -25,31 +25,43 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
   // Página de instrucciones
   if (paso === 'instrucciones') {
     return (
-      <div className="canalizaciones-sonoterapia-principal">
-        <InstruccionesAngelicales
-          titulo="Canalizaciones y Sonoterapia"
-          descripcion="Eleva tu vibración a través de mensajes angelicales y frecuencias sagradas. Cada experiencia está diseñada para tu sanación y conexión divina."
-          colorPrimario="cyan"
-          instrucciones={[
-            {
-              icono: Music,
-              titulo: "Espacio Sagrado",
-              descripcion: "Busca un lugar tranquilo donde puedas conectar sin interrupciones con las energías angelicales."
-            },
-            {
-              icono: Heart,
-              titulo: "Intención Clara",
-              descripcion: "Define qué tipo de sanación o mensaje necesitas. Tu intención guía la experiencia."
-            },
-            {
-              icono: Sparkles,
-              titulo: "Receptividad Total",
-              descripcion: "Mantén tu corazón y mente abiertos para recibir la sanación y sabiduría que los ángeles te ofrecen."
-            }
-          ]}
-          llamadaAccion="Elegir Mi Experiencia"
-          onAccionClick={() => setPaso('servicios')}
-        />
+      <div className="canalizaciones-sonoterapia-wrapper">
+        {/* Título y descripción fuera del recuadro */}
+        <div className="titulo-descripcion-section">
+          <h1 className="titulo-principal-sonoterapia">Canalizaciones y Sonoterapia</h1>
+          <p className="descripcion-principal-sonoterapia">
+            Eleva tu vibración a través de mensajes angelicales y frecuencias sagradas. Cada experiencia está diseñada para tu sanación y conexión divina.
+          </p>
+        </div>
+
+        {/* Recuadro morado con instrucciones */}
+        <div className="recuadro-morado-instrucciones">
+          <InstruccionesAngelicales
+            colorPrimario="cyan"
+            instrucciones={[
+              {
+                icono: Music,
+                titulo: "Espacio Sagrado",
+                descripcion: "Busca un lugar tranquilo donde puedas conectar sin interrupciones con las energías angelicales."
+              },
+              {
+                icono: Heart,
+                titulo: "Intención Clara",
+                descripcion: "Define qué tipo de sanación o mensaje necesitas. Tu intención guía la experiencia."
+              },
+              {
+                icono: Sparkles,
+                titulo: "Receptividad Total",
+                descripcion: "Mantén tu corazón y mente abiertos para recibir la sanación y sabiduría que los ángeles te ofrecen."
+              }
+            ]}
+            llamadaAccion="Elegir Mi Experiencia"
+            onAccionClick={() => setPaso('servicios')}
+            maxWidth="max-w-5xl mx-auto"
+          />
+        </div>
+
+        {/* Footer al final */}
         <FooterLegal />
       </div>
     );
@@ -151,120 +163,53 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
             <div className="card-content">
               <h3 className="card-titulo">Canalizaciones Angelicales</h3>
               <p className="card-descripcion">
-                Mensajes personalizados de tus ángeles guardianes según lo que necesites hoy. 
-                Recibe guía divina para tu camino espiritual.
+                Mensajes directos de los ángeles para guiar tu camino. Recibe orientación divina 
+                personalizada para tus desafíos y preguntas más profundas.
               </p>
               
               <div className="card-beneficios">
                 <div className="beneficio">
+                  <span className="beneficio-icono">👼</span>
+                  <span>Conexión directa con guías angelicales</span>
+                </div>
+                <div className="beneficio">
+                  <span className="beneficio-icono">💫</span>
+                  <span>Mensajes personalizados y profundos</span>
+                </div>
+                <div className="beneficio">
                   <span className="beneficio-icono">🌟</span>
-                  <span>Propósito de vida y misión del alma</span>
+                  <span>Claridad y orientación divina</span>
                 </div>
                 <div className="beneficio">
-                  <span className="beneficio-icono">💖</span>
-                  <span>Amor propio y sanación emocional</span>
-                </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">🛡️</span>
-                  <span>Protección espiritual y confianza</span>
-                </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">📩</span>
-                  <span>Mensaje angelical del día</span>
+                  <span className="beneficio-icono">🕊️</span>
+                  <span>Sanación emocional y espiritual</span>
                 </div>
               </div>
               
               <div className="card-stats">
                 <div className="stat">
                   <Clock className="w-4 h-4" />
-                  <span>6 temas</span>
+                  <span>100+ mensajes</span>
                 </div>
                 <div className="stat">
                   <Users className="w-4 h-4" />
-                  <span>25k+ lecturas</span>
+                  <span>25k+ usuarios</span>
                 </div>
                 <div className="stat">
                   <Star className="w-4 h-4" />
-                  <span>4.8 rating</span>
+                  <span>4.9 rating</span>
                 </div>
               </div>
               
               <button className="btn-acceder canalizaciones-btn">
                 <MessageCircle className="w-5 h-5" />
-                Recibir Canalización
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Sección informativa */}
-        <div className="seccion-info">
-          <div className="info-grid">
-            <div className="info-item">
-              <div className="info-icono">
-                <Heart className="w-8 h-8" />
-              </div>
-              <h4>Sanación Integral</h4>
-              <p>
-                Combina el poder de las frecuencias sagradas con la sabiduría angelical 
-                para una experiencia de sanación completa en todos los niveles.
-              </p>
-            </div>
-            
-            <div className="info-item">
-              <div className="info-icono">
-                <Star className="w-8 h-8" />
-              </div>
-              <h4>Guía Personalizada</h4>
-              <p>
-                Cada sesión está diseñada para resonar con tu energía única y 
-                proporcionarte exactamente lo que tu alma necesita en este momento.
-              </p>
-            </div>
-            
-            <div className="info-item">
-              <div className="info-icono">
-                <Music className="w-8 h-8" />
-              </div>
-              <h4>Tecnología Sagrada</h4>
-              <p>
-                Utilizamos frecuencias específicas respaldadas por la ciencia y 
-                canalizaciones auténticas para maximizar los beneficios terapéuticos.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Call to action */}
-        <div className="cta-section">
-          <div className="cta-content">
-            <h3>¿Qué experiencia necesitas hoy?</h3>
-            <p>
-              La <strong>Sonoterapia</strong> te ayuda a equilibrar tu energía a través del poder 
-              de las frecuencias sagradas, mientras que las <strong>Canalizaciones</strong> te 
-              conectan directamente con los mensajes angelicales personalizados para tu situación actual.
-            </p>
-            <div className="cta-buttons">
-              <button 
-                className="cta-btn sonoterapia"
-                onClick={() => setPaso('sonoterapia')}
-              >
-                <Headphones className="w-5 h-5" />
-                Comenzar Sonoterapia
-              </button>
-              <button 
-                className="cta-btn canalizaciones"
-                onClick={() => setPaso('canalizaciones')}
-              >
-                <MessageCircle className="w-5 h-5" />
-                Recibir Mensaje Angelical
+                Explorar Canalizaciones
               </button>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Footer */}
       <FooterLegal />
     </div>
   );
