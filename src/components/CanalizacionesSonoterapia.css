@@ -54,13 +54,29 @@
 
 /* Recuadro morado con instrucciones */
 .recuadro-morado-instrucciones {
-  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+  background-image: url('../assets/FondoMoradoSonoterapia.png');
+  background-size: cover;
+  background-position: center;
   border-radius: 3rem;
   padding: 3rem;
   max-width: 1400px;
   margin: 0 auto;
   box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
   flex: 1;
+  position: relative;
+}
+
+/* Overlay semi-transparente para mejor legibilidad */
+.recuadro-morado-instrucciones::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(147, 51, 234, 0.1);
+  border-radius: 3rem;
+  pointer-events: none;
 }
 
 /* ========================================
