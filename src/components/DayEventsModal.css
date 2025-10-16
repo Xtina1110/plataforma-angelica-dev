@@ -25,12 +25,12 @@
 
 .day-events-modal {
   background: white;
-  border-radius: 20px;
-  max-width: 700px;
+  border-radius: 16px;
+  max-width: 500px;
   width: 100%;
-  max-height: 80vh;
+  max-height: 70vh;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
   animation: slideUp 0.3s ease;
 }
 
@@ -49,19 +49,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 30px;
+  padding: 16px 20px;
   background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
   color: white;
 }
 
 .day-events-modal-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700;
   margin: 0 0 4px 0;
 }
 
 .day-events-modal-date {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   opacity: 0.95;
   margin: 0;
   text-transform: capitalize;
@@ -71,8 +71,8 @@
   background: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,12 +87,12 @@
 }
 
 .day-events-modal-content {
-  padding: 24px 30px;
-  max-height: calc(80vh - 100px);
+  padding: 16px 20px;
+  max-height: calc(70vh - 80px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .day-events-modal-content::-webkit-scrollbar {
@@ -112,8 +112,8 @@
 .day-event-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 2px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 20px;
+  border-radius: 12px;
+  padding: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -133,7 +133,7 @@
 }
 
 .day-event-title {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #1f2937;
   margin: 0;
@@ -141,7 +141,7 @@
 }
 
 .day-event-price {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #FFC107;
   white-space: nowrap;
@@ -149,24 +149,24 @@
 
 .day-event-description {
   color: #6b7280;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin: 0 0 16px 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0 0 12px 0;
 }
 
 .day-event-details {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
 .day-event-detail {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: #4b5563;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .day-event-detail svg {
@@ -178,7 +178,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 16px;
+  padding-top: 12px;
   border-top: 1px solid #e5e7eb;
 }
 
@@ -191,9 +191,9 @@
   background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
   color: white;
   border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  font-size: 0.9rem;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
