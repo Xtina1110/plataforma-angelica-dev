@@ -8,7 +8,7 @@ const FooterLegal = () => {
   const translation = getCurrentTranslation();
 
   return (
-    <footer className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 text-white border-t border-purple-500/20">
+    <footer className="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 text-white border-t border-purple-500/20 rounded-t-2xl">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-2">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
 

@@ -4,6 +4,7 @@ import { supabase } from '../integrations/supabase/client';
 import DashboardSidebar from './DashboardSidebar';
 import GlobalAudioControl from './GlobalAudioControl';
 import { useCart } from '../contexts/CartContext';
+import FooterLegal from './FooterLegal';
 
 export default function MainLayout({ children }) {
   const navigate = useNavigate();
@@ -55,7 +56,10 @@ export default function MainLayout({ children }) {
         onProfileClick={() => navigate('/perfil')}
       />
       <div className="flex-1 flex flex-col">
-        {children}
+        <div className="flex-1">
+          {children}
+        </div>
+        <FooterLegal />
         <GlobalAudioControl />
       </div>
     </div>
