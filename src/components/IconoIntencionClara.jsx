@@ -1,5 +1,5 @@
 import React from 'react';
-import iconoIntencionClara from '../assets/IconoIntencionClaraHD.png';
+import iconoIntencionClara from '../assets/IconoIntencionClara.png';
 
 const IconoIntencionClara = ({ className = "w-24 h-24" }) => {
   return (

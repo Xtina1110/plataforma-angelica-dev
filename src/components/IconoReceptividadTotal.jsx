@@ -1,5 +1,5 @@
 import React from 'react';
-import iconoReceptividadTotal from '../assets/IconoReceptividadTotalHD.png';
+import iconoReceptividadTotal from '../assets/IconoReceptividadTotal.png';
 
 const IconoReceptividadTotal = ({ className = "w-24 h-24" }) => {
   return (

@@ -40,16 +40,16 @@
 }
 
 .titulo-principal-sonoterapia {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: #1f2937;
 }
 
 .descripcion-principal-sonoterapia {
-  font-size: 1.125rem;
+  font-size: 0.875rem;
   color: #6b7280;
-  line-height: 1.75;
+  line-height: 1.5;
 }
 
 /* Recuadro morado con instrucciones */
