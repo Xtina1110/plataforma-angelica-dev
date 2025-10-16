@@ -15,7 +15,8 @@ const InstruccionesAngelicales = ({
     purple: {
       primary: '#9333ea',
       secondary: '#6366f1',
-      light: '#f3e8ff',
+      light: '#eff6ff',
+      iconBg: '#e0e7ff',
       border: '#e9d5ff',
       hover: 'linear-gradient(135deg, #9333ea 0%, #6366f1 100%)'
     },
@@ -23,6 +24,7 @@ const InstruccionesAngelicales = ({
       primary: '#3b82f6',
       secondary: '#0891b2',
       light: '#eff6ff',
+      iconBg: '#dbeafe',
       border: '#bfdbfe',
       hover: 'linear-gradient(135deg, #3b82f6 0%, #0891b2 100%)'
     },
@@ -30,6 +32,7 @@ const InstruccionesAngelicales = ({
       primary: '#10b981',
       secondary: '#14b8a6',
       light: '#f0fdf4',
+      iconBg: '#d1fae5',
       border: '#bbf7d0',
       hover: 'linear-gradient(135deg, #10b981 0%, #14b8a6 100%)'
     },
@@ -37,6 +40,7 @@ const InstruccionesAngelicales = ({
       primary: '#fbbf24',
       secondary: '#f59e0b',
       light: '#fffbeb',
+      iconBg: '#fef3c7',
       border: '#fde68a',
       hover: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)'
     },
@@ -44,6 +48,7 @@ const InstruccionesAngelicales = ({
       primary: '#ec4899',
       secondary: '#f43f5e',
       light: '#fdf2f8',
+      iconBg: '#fce7f3',
       border: '#fbcfe8',
       hover: 'linear-gradient(135deg, #ec4899 0%, #f43f5e 100%)'
     },
@@ -51,6 +56,7 @@ const InstruccionesAngelicales = ({
       primary: '#7c3aed',
       secondary: '#a855f7',
       light: '#faf5ff',
+      iconBg: '#e9d5ff',
       border: '#e9d5ff',
       hover: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)'
     }
@@ -83,11 +89,11 @@ const InstruccionesAngelicales = ({
     <div className={maxWidth || ""}>
       {/* Título principal - estilo dashboard */}
       {titulo && (
-        <div className="text-center mb-4">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
             {titulo}
           </h1>
-          <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
             {descripcion}
           </p>
         </div>
@@ -95,22 +101,22 @@ const InstruccionesAngelicales = ({
 
       {/* Recuadro de instrucciones */}
       <div
-        className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg overflow-visible"
+        className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl overflow-visible"
         style={{
-          border: '1px solid rgba(200, 200, 255, 0.3)',
-          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)'
+          border: '2px solid rgba(200, 200, 255, 0.2)',
+          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)'
         }}
       >
-        <div className="text-center mb-6">
-          <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
             Preparación para tu Experiencia
           </h2>
-          <p className="text-gray-600 text-xs md:text-sm">
-            Sigue estos pasos para maximizar tu conexión con la energía angelical
+          <p className="text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
+            Sigue estas recomendaciones para conectar profundamente con tus guías
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mb-8">
           {instruccionesDefault.map((instruccion, index) => {
             const IconoComponent = instruccion.icono || iconosDefault[index % iconosDefault.length];
             return (
@@ -126,15 +132,15 @@ const InstruccionesAngelicales = ({
         </div>
 
         {/* Llamada a la acción */}
-        <div className="text-center mt-6">
+        <div className="text-center mt-10">
           <button
-            className="text-white px-6 py-3 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 flex items-center space-x-2 mx-auto hover:transform hover:scale-105 shadow-lg"
+            className="text-white px-8 py-4 rounded-2xl font-bold text-base md:text-lg transition-all duration-300 flex items-center space-x-3 mx-auto hover:transform hover:scale-105 shadow-2xl hover:shadow-3xl"
             style={{
               background: configuracionColor.hover
             }}
             onClick={onAccionClick}
           >
-            <Sparkles className="w-5 h-5" />
+            <Sparkles className="w-6 h-6" />
             <span>{llamadaAccion}</span>
           </button>
         </div>
@@ -149,38 +155,53 @@ const CardInstruccion = ({ icono: IconoComponent, titulo, descripcion, colorConf
 
   return (
     <div
-      className="group p-6 rounded-2xl text-center min-h-[220px] flex flex-col justify-start bg-white border-2 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer"
+      className="group p-8 rounded-3xl text-center flex flex-col items-center bg-white border-2 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl cursor-pointer"
       style={{
         borderColor: isHovered ? colorConfig.primary : '#e5e7eb',
-        background: isHovered ? colorConfig.hover : 'white'
+        background: isHovered ? colorConfig.hover : 'white',
+        minHeight: '280px'
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex items-center justify-center mx-auto mb-3 transition-all duration-300">
+      {/* Icono con círculo de fondo */}
+      <div 
+        className="flex items-center justify-center mb-5 rounded-full transition-all duration-300"
+        style={{
+          width: '100px',
+          height: '100px',
+          backgroundColor: isHovered ? 'rgba(255, 255, 255, 0.2)' : colorConfig.iconBg
+        }}
+      >
         {typeof IconoComponent === 'function' ? (
           <div 
             className="transition-colors duration-300"
             style={{ color: isHovered ? 'white' : colorConfig.primary }}
           >
-            <IconoComponent />
+            <IconoComponent size={48} strokeWidth={2} />
           </div>
         ) : (
           <IconoComponent 
-            className="w-12 h-12 transition-colors duration-300" 
+            className="transition-colors duration-300" 
+            size={48}
+            strokeWidth={2}
             style={{ color: isHovered ? 'white' : colorConfig.primary }}
           />
         )}
       </div>
+
+      {/* Título */}
       <h3 
-        className="font-bold text-base mb-2 transition-colors duration-300"
+        className="font-bold text-lg md:text-xl mb-3 transition-colors duration-300"
         style={{ color: isHovered ? 'white' : '#111827' }}
       >
         {titulo}
       </h3>
+
+      {/* Descripción */}
       <p 
-        className="text-sm leading-relaxed break-words transition-colors duration-300"
-        style={{ color: isHovered ? 'rgba(255, 255, 255, 0.95)' : '#4b5563' }}
+        className="text-sm md:text-base leading-relaxed break-words transition-colors duration-300"
+        style={{ color: isHovered ? 'rgba(255, 255, 255, 0.95)' : '#6b7280' }}
       >
         {descripcion}
       </p>
