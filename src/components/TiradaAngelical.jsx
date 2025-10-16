@@ -416,11 +416,12 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
     <div className="tirada-angelical" style={{ position: 'relative' }}>
       {/* Paso 1: Instrucciones - REESCRITO DESDE CERO */}
       {paso === 'instrucciones' && (
-        <div className="w-full rounded-2xl overflow-hidden mx-4 my-4" style={{ 
+        <div className="w-full overflow-hidden" style={{ 
           background: 'linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url(/lovable-uploads/774c9267-ae3b-41ab-9ae7-8e71c2f9ecba.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          padding: '2rem 0'
+          padding: '2rem 0 0 0',
+          marginBottom: 0
         }}>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)' }}>
@@ -479,6 +480,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
               </div>
             </div>
           </div>
+          
+          {/* Footer Legal dentro del fondo azul */}
+          <FooterLegal />
         </div>
       )}
 
@@ -1107,9 +1111,6 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           }}
         />
       )}
-      
-      {/* Footer Legal */}
-      <FooterLegal />
     </div>
   );
 };
