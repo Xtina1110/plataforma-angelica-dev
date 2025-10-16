@@ -108,10 +108,10 @@ const InstruccionesAngelicales = ({
         }}
       >
         <div className="text-center mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
             Preparación para tu Experiencia
           </h2>
-          <p className="text-gray-600 text-sm md:text-base max-w-3xl mx-auto">
+          <p className="text-gray-600 text-xs md:text-sm max-w-3xl mx-auto">
             Sigue estas recomendaciones para conectar profundamente con tus guías
           </p>
         </div>
@@ -192,7 +192,7 @@ const CardInstruccion = ({ icono: IconoComponent, titulo, descripcion, colorConf
 
       {/* Título */}
       <h3 
-        className="font-bold text-lg md:text-xl mb-3 transition-colors duration-300"
+        className="font-bold text-base md:text-lg mb-3 transition-colors duration-300"
         style={{ color: isHovered ? 'white' : '#111827' }}
       >
         {titulo}
@@ -200,7 +200,7 @@ const CardInstruccion = ({ icono: IconoComponent, titulo, descripcion, colorConf
 
       {/* Descripción */}
       <p 
-        className="text-sm md:text-base leading-relaxed break-words transition-colors duration-300"
+        className="text-xs md:text-sm leading-relaxed break-words transition-colors duration-300"
         style={{ color: isHovered ? 'rgba(255, 255, 255, 0.95)' : '#6b7280' }}
       >
         {descripcion}
