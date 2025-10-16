@@ -177,18 +177,18 @@ const SonoterapiaHeader = ({
               <div className="flex items-center space-x-3">
                 <button 
                   onClick={handleToggleAudio}
-                  className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
+                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                 >
                   {audioReproduciendo ? <VolumeX size={18} /> : <Volume2 size={18} />}
-                  <span className="text-sm">{audioReproduciendo ? 'Silenciar' : 'Audio'}</span>
+                  <span className="text-sm font-semibold">{audioReproduciendo ? 'Silenciar' : 'Audio'}</span>
                 </button>
                 
                 <button 
                   onClick={onNavigateHome}
-                  className="flex items-center space-x-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-4 py-2 rounded-lg transition-all duration-200 backdrop-filter backdrop-blur-sm font-medium shadow-lg"
+                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                 >
                   <ArrowLeft size={18} />
-                  <span className="text-sm">Volver</span>
+                  <span className="text-sm font-semibold">Volver</span>
                 </button>
               </div>
             </div>

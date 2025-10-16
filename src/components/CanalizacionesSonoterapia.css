@@ -13,9 +13,24 @@
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   line-height: 1.6;
-  background: linear-gradient(135deg, #fafafa 0%, #f0f0ff 25%, #fff8e1 50%, #f3e5f5 75%, #e8f5e8 100%);
+  background-image: url('../assets/FondoMoradoSonoterapia.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   min-height: 100vh;
-  padding-top: 0; /* Removido padding superior ya que no hay header interno */
+  padding-top: 0;
+  position: relative;
+}
+
+.canalizaciones-sonoterapia-principal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
 }
 
 /* ========================================
