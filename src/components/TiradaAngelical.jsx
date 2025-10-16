@@ -26,6 +26,7 @@ import angelicInterpretationService from '../services/angelicInterpretationServi
 import PageWatermark from './PageWatermark';
 import WatermarkedImage from './WatermarkedImage';
 import AngelicalModal from './AngelicalModal';
+import FooterLegal from './FooterLegal';
 import logo from '../assets/Logosinfondo.png';
 
 const TiradaAngelical = ({ onVolver, user, onLogout }) => {
@@ -1106,6 +1107,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           }}
         />
       )}
+      
+      {/* Footer Legal */}
+      <FooterLegal />
     </div>
   );
 };
