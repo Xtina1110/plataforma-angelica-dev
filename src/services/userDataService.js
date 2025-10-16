@@ -80,20 +80,78 @@ export const loadUserActivity = async (userId) => {
 };
 
 /**
- * Actualiza el último login del usuario
+ * Actualiza el último login del usuario y calcula racha de días
  * @param {string} userId - ID del usuario
  */
 export const updateLastLogin = async (userId) => {
   try {
-    const { error } = await supabase
+    // Obtener actividad actual
+    const { data: currentActivity, error: fetchError } = await supabase
       .from('user_activity')
-      .upsert({
-        user_id: userId,
-        last_login: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      });
+      .select('*')
+      .eq('user_id', userId)
+      .single();
 
-    if (error) throw error;
+    const now = new Date();
+    const today = now.toISOString().split('T')[0];
+    
+    if (fetchError && fetchError.code === 'PGRST116') {
+      // No existe registro, crear uno nuevo
+      const { error: insertError } = await supabase
+        .from('user_activity')
+        .insert({
+          user_id: userId,
+          consecutive_days: 1,
+          total_logins: 1,
+          longest_streak: 1,
+          last_login: now.toISOString(),
+          created_at: now.toISOString(),
+          updated_at: now.toISOString()
+        });
+      
+      if (insertError) throw insertError;
+      return { success: true, error: null };
+    }
+
+    if (fetchError) throw fetchError;
+
+    // Calcular si es un nuevo día
+    const lastLoginDate = currentActivity.last_login ? new Date(currentActivity.last_login).toISOString().split('T')[0] : null;
+    const isNewDay = lastLoginDate !== today;
+    
+    let consecutiveDays = currentActivity.consecutive_days || 1;
+    let longestStreak = currentActivity.longest_streak || 1;
+    
+    if (isNewDay && lastLoginDate) {
+      // Calcular diferencia de días
+      const lastDate = new Date(lastLoginDate);
+      const todayDate = new Date(today);
+      const diffTime = Math.abs(todayDate - lastDate);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      if (diffDays === 1) {
+        // Login consecutivo
+        consecutiveDays += 1;
+        longestStreak = Math.max(longestStreak, consecutiveDays);
+      } else if (diffDays > 1) {
+        // Racha rota
+        consecutiveDays = 1;
+      }
+    }
+
+    // Actualizar registro
+    const { error: updateError } = await supabase
+      .from('user_activity')
+      .update({
+        consecutive_days: consecutiveDays,
+        total_logins: (currentActivity.total_logins || 0) + 1,
+        longest_streak: longestStreak,
+        last_login: now.toISOString(),
+        updated_at: now.toISOString()
+      })
+      .eq('user_id', userId);
+
+    if (updateError) throw updateError;
     return { success: true, error: null };
   } catch (err) {
     console.error('Error updating last login:', err);
