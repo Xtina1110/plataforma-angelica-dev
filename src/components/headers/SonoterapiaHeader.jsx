@@ -131,22 +131,19 @@ const SonoterapiaHeader = ({
               </div>
               
               {/* Navegación integrada */}
-              <div className="flex items-center space-x-3 bg-white/15 backdrop-blur-sm px-4 py-3 rounded-xl border-l-4" style={{ borderLeftColor: '#BB46D6' }}>
-                {/* Idioma (lista completa) */}
+              <div className="flex items-center space-x-3">
+                {/* Idioma */}
                 <LanguageSelector inline variant="header" />
-                
-                {/* Separador */}
-                <div className="w-px h-8 bg-white/30"></div>
                 
                 {/* Carrito */}
                 <button 
                   onClick={onCartClick}
-                  className="relative p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
+                  className="relative flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Carrito de compras"
                 >
-                  <ShoppingCart size={20} />
+                  <ShoppingCart size={18} />
                   {cartCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
                       {cartCount}
                     </span>
                   )}
@@ -155,21 +152,20 @@ const SonoterapiaHeader = ({
                 {/* Gestión de Usuario */}
                 <button 
                   onClick={onProfileClick}
-                  className="flex items-center space-x-2 p-2 hover:bg-white/20 rounded-lg transition-all duration-200 text-white/90 hover:text-white"
+                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Gestión de usuario"
                 >
-                  <User size={20} />
-                  <span className="font-medium text-sm">{getUserName()}</span>
+                  <User size={18} />
+                  <span className="text-sm font-semibold">{getUserName()}</span>
                 </button>
 
                 {/* Logout */}
                 <button 
                   onClick={onLogout}
-                  className="p-2 hover:bg-white/20 rounded-lg transition-all duration-200 hover:text-red-200"
-                  style={{ color: '#BB46D6' }}
+                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Cerrar sesión"
                 >
-                  <LogOut size={20} />
+                  <LogOut size={18} />
                 </button>
               </div>
               
