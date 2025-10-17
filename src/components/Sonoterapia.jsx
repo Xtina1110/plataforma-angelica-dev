@@ -553,6 +553,17 @@ const AudioCard = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {/* Background image */}
+      <div 
+        className="audio-card-background"
+        style={{
+          backgroundImage: `url(${audio.imagen})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+      
       {/* Icono dorado circular */}
       <div className="audio-icono-dorado">
         <Headphones className="w-8 h-8" />

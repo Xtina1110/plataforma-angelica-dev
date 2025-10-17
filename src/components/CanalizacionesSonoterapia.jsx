@@ -13,7 +13,7 @@ import InstruccionesAngelicales from './InstruccionesAngelicales';
 import { useShoppingCart } from '../hooks/useShoppingCart';
 
 const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
-  const [paso, setPaso] = useState('sonoterapia'); // 'instrucciones', 'servicios', 'sonoterapia', 'canalizaciones' - Changed to 'sonoterapia' for direct access
+  const [paso, setPaso] = useState('instrucciones'); // 'instrucciones', 'servicios', 'sonoterapia', 'canalizaciones'
   const { addToCart } = useShoppingCart();
 
   // Si está en sonoterapia o canalizaciones, mostrar el componente correspondiente
