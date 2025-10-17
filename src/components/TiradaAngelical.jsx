@@ -420,7 +420,7 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           background: 'linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url(/lovable-uploads/774c9267-ae3b-41ab-9ae7-8e71c2f9ecba.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          padding: '2rem 0',
+          padding: '2rem 0 0 0',
           marginBottom: 0,
           display: 'flex',
           flexDirection: 'column'

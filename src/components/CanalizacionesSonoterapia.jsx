@@ -9,7 +9,7 @@ import AppSidebar from './AppSidebar';
 import Sonoterapia from './Sonoterapia';
 import CanalizacionesAngelicales from './CanalizacionesAngelicales';
 import InstruccionesAngelicales from './InstruccionesAngelicales';
-import FooterLegal from './FooterLegal';
+// FooterLegal removed - now handled by Dashboard
 import { useShoppingCart } from '../hooks/useShoppingCart';
 
 const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
@@ -64,8 +64,7 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
           />
         </div>
 
-        {/* Footer al final */}
-        <FooterLegal />
+        {/* Footer removed - now handled by Dashboard */
       </div>
     );
   }
@@ -212,8 +211,6 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
           </div>
         </div>
       </main>
-
-      <FooterLegal />
     </div>
   );
 };
