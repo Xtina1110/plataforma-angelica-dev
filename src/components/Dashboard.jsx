@@ -1174,6 +1174,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               onFilterChange={handleFilterChange}
             />
             <CanalizacionesSonoterapia onVolver={() => setActiveSection('home')} addToCart={addToCart} />
+            <FooterLegal />
           </div>
         );
        case 'terapias': 
@@ -1188,6 +1189,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               actionLabel="Iniciar Terapia"
             />
             <TerapiasLimpiezas onVolver={() => setActiveSection('home')} addToCart={addToCart} />
+            <FooterLegal />
           </div>
         );
        case 'academia': 
@@ -1202,6 +1204,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               actionLabel="Ver Cursos"
             />
             <AcademiaAngelical onVolver={() => setActiveSection('home')} addToCart={addToCart} />
+            <FooterLegal />
           </div>
         );
       case 'blog':
@@ -1238,6 +1241,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                 {renderBlogContent()}
               </div>
             </div>
+            <FooterLegal />
           </div>
         );
       case 'mensaje':
@@ -1247,6 +1251,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
             <div className="mensaje-del-dia-container">
               <MensajeDelDia />
             </div>
+            <FooterLegal />
           </div>
         );
       case 'eventos':
@@ -1276,6 +1281,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               onEventoClick={() => {}} 
               onToggleInscripcion={() => {}}
             />
+            <FooterLegal />
           </div>
         );
       case 'tienda':
@@ -1290,6 +1296,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               actionLabel="Ver Productos"
             />
             <TiendaAngelical onVolver={() => setActiveSection('home')} addToCart={addToCart} />
+            <FooterLegal />
           </div>
         );
       case 'videollamada':
