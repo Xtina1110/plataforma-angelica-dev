@@ -105,7 +105,7 @@ const categorias = {
         popularidad: 95,
         rating: 4.9,
         reproducciones: 15420,
-        imagen: "/images/sonoterapia/healing-nature.jpg",
+        imagen: "/images/sonoterapia/432hz-nature.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
         comprado: false
       },
@@ -122,7 +122,7 @@ const categorias = {
         popularidad: 98,
         rating: 5.0,
         reproducciones: 23100,
-        imagen: "/images/sonoterapia/healing-nature.jpg",
+        imagen: "/images/sonoterapia/528hz-dna.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
         comprado: false
       },
@@ -139,7 +139,7 @@ const categorias = {
         popularidad: 92,
         rating: 4.8,
         reproducciones: 18500,
-        imagen: "/images/sonoterapia/forest-peace.jpg",
+        imagen: "/images/sonoterapia/741hz-awakening.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
         comprado: false
       }
@@ -164,7 +164,7 @@ const categorias = {
         popularidad: 88,
         rating: 4.7,
         reproducciones: 12300,
-        imagen: "/images/sonoterapia/forest-meditation.jpg",
+        imagen: "/images/sonoterapia/meditation-deep.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
         comprado: false
       }
@@ -189,7 +189,7 @@ const categorias = {
         popularidad: 94,
         rating: 4.9,
         reproducciones: 19800,
-        imagen: "/images/sonoterapia/ocean-sunset.jpg",
+        imagen: "/images/sonoterapia/delta-waves-sleep.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
         comprado: false
       }

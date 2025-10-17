@@ -126,7 +126,31 @@ const AudioCardWorldClass = ({
             <span className="metadata-label">Precio:</span>
             <span className="metadata-value">{audio.premium ? `$${audio.precio} USD` : 'Gratis'}</span>
           </div>
+          {audio.rating && (
+            <div className="metadata-row">
+              <span className="metadata-label">Rating:</span>
+              <span className="metadata-value">⭐ {audio.rating}/5.0</span>
+            </div>
+          )}
+          {audio.reproducciones && (
+            <div className="metadata-row">
+              <span className="metadata-label">Reproducciones:</span>
+              <span className="metadata-value">🎧 {audio.reproducciones.toLocaleString()}</span>
+            </div>
+          )}
         </div>
+
+        {/* Beneficios */}
+        {audio.beneficios && audio.beneficios.length > 0 && (
+          <div className="audio-beneficios">
+            <h4 className="beneficios-title">Beneficios:</h4>
+            <ul className="beneficios-list">
+              {audio.beneficios.map((beneficio, index) => (
+                <li key={index} className="beneficio-item">✨ {beneficio}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Botones de acción */}
         <div className="audio-actions-world-class">
