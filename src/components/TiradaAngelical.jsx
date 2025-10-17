@@ -425,8 +425,8 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)' }}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ marginBottom: 0, paddingBottom: 0 }}>
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl pt-6 px-6 pb-8 md:pt-8 md:px-8 md:pb-10 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)', marginBottom: 0 }}>
               <div className="text-center mb-6">
                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
                   Preparación para tu Experiencia
