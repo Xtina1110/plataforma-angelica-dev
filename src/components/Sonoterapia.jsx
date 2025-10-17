@@ -5,10 +5,9 @@ import {
   ArrowLeft, Play, Pause, Volume2, VolumeX, Download, Star, Lock, 
   ShoppingCart, AlertTriangle, Heart, Brain, Waves, Moon, Sparkles,
   Headphones, Music, Timer, RotateCcw, Settings, Share2, Bookmark,
-  Search, Filter, Grid, List, Maximize2, X, Clock, Users
+  Search, Filter, Grid, List, Maximize2, X, Clock, Users, Check, ShoppingBag
 } from 'lucide-react';
-import InstruccionesAngelicales from './InstruccionesAngelicales';
-import FooterLegal from './FooterLegal';
+import { Link } from 'react-router-dom';
 
 // Context para el estado de la sonoterapia
 const SonoterapiaContext = createContext();
@@ -29,6 +28,7 @@ export const SonoterapiaProvider = ({ children }) => {
     busqueda: '',
     favoritos: [],
     historialReproduccion: [],
+    comprados: [], // Audios comprados por el usuario
     configuracion: {
       autoplay: false,
       repetir: false,
@@ -54,12 +54,20 @@ export const SonoterapiaProvider = ({ children }) => {
     }));
   };
 
+  const marcarComoComprado = (audioId) => {
+    setSonoterapiaState(prev => ({
+      ...prev,
+      comprados: [...prev.comprados, audioId]
+    }));
+  };
+
   return (
     <SonoterapiaContext.Provider value={{
       sonoterapiaState,
       updateSonoterapiaState,
       agregarFavorito,
-      quitarFavorito
+      quitarFavorito,
+      marcarComoComprado
     }}>
       {children}
     </SonoterapiaContext.Provider>
@@ -98,224 +106,141 @@ const categorias = {
         reproducciones: 15420,
         imagen: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        tags: ["432hz", "amor", "corazón", "equilibrio"],
-        fechaCreacion: "2024-01-15"
+        comprado: false
       },
       {
         id: 2,
-        titulo: "528Hz - Frecuencia de la Sanación",
-        descripcion: "Repara el ADN y sana a nivel celular, conocida como la frecuencia del amor",
-        duracion: "8:00:00",
+        titulo: "528Hz - Reparación del ADN",
+        descripcion: "Frecuencia milagrosa para transformación y sanación celular",
+        duracion: "10:00:00",
         duracionMuestra: "3:00",
         premium: true,
-        precio: 5.99,
-        beneficios: ["Sanación celular", "Reparación ADN", "Transformación", "Regeneración"],
-        categoria: "Sanación",
-        popularidad: 88,
-        rating: 4.8,
-        reproducciones: 12350,
+        precio: 9.99,
+        beneficios: ["Repara ADN", "Aumenta energía vital", "Transforma consciencia", "Activa intuición"],
+        categoria: "Transformación",
+        popularidad: 98,
+        rating: 5.0,
+        reproducciones: 23100,
         imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        tags: ["528hz", "sanación", "ADN", "transformación"],
-        fechaCreacion: "2024-01-20"
+        comprado: false
       },
       {
         id: 3,
-        titulo: "741Hz - Frecuencia de la Limpieza",
-        descripcion: "Limpia toxinas energéticas y purifica el aura completamente",
-        duracion: "8:00:00",
+        titulo: "741Hz - Despertar Intuitivo",
+        descripcion: "Limpia toxinas y despierta la intuición y expresión creativa",
+        duracion: "12:00:00",
         duracionMuestra: "3:00",
         premium: true,
-        precio: 5.99,
-        beneficios: ["Limpieza energética", "Purificación", "Claridad mental", "Desintoxicación"],
-        categoria: "Limpieza",
-        popularidad: 82,
-        rating: 4.7,
-        reproducciones: 9870,
-        imagen: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        tags: ["741hz", "limpieza", "purificación", "claridad"],
-        fechaCreacion: "2024-01-25"
-      }
-    ]
-  },
-  concentracion: {
-    titulo: "Concentración y Estudio",
-    icono: "🧠",
-    color: "from-blue-500 to-cyan-500",
-    descripcion: "Ondas binaurales para máximo enfoque y productividad",
-    audios: [
-      {
-        id: 4,
-        titulo: "Focus Deep - Concentración Profunda",
-        descripcion: "Ondas binaurales optimizadas para máximo enfoque mental",
-        duracion: "8:00:00",
-        duracionMuestra: "3:00",
-        premium: true,
-        precio: 5.99,
-        beneficios: ["Concentración extrema", "Productividad", "Claridad mental", "Enfoque sostenido"],
-        categoria: "Productividad",
-        popularidad: 91,
+        precio: 12.99,
+        beneficios: ["Limpia toxinas", "Despierta intuición", "Aumenta creatividad", "Claridad mental"],
+        categoria: "Despertar",
+        popularidad: 92,
         rating: 4.8,
-        reproducciones: 11200,
-        imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        tags: ["concentración", "estudio", "productividad", "enfoque"],
-        fechaCreacion: "2024-02-01"
-      }
-    ]
-  },
-  relajacion: {
-    titulo: "Relajación Profunda",
-    icono: "🌊",
-    color: "from-green-500 to-teal-500",
-    descripcion: "Sonidos naturales y frecuencias para relajación total",
-    audios: [
-      {
-        id: 5,
-        titulo: "Ocean Dreams - Sueños del Océano",
-        descripcion: "Sonidos del mar combinados con frecuencias relajantes",
-        duracion: "8:00:00",
-        duracionMuestra: "3:00",
-        premium: true,
-        precio: 5.99,
-        beneficios: ["Relajación profunda", "Reducción ansiedad", "Paz interior", "Calma mental"],
-        categoria: "Relajación",
-        popularidad: 87,
-        rating: 4.9,
-        reproducciones: 13450,
-        imagen: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
-        tags: ["océano", "relajación", "naturaleza", "calma"],
-        fechaCreacion: "2024-02-05"
+        reproducciones: 18500,
+        imagen: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        comprado: false
       }
     ]
   },
   meditacion: {
-    titulo: "Meditación Guiada",
-    icono: "🧘",
-    color: "from-indigo-500 to-purple-500",
-    descripcion: "Sesiones guiadas para diferentes tipos de meditación",
+    titulo: "Meditación Profunda",
+    icono: "🧘‍♀️",
+    color: "from-blue-500 to-cyan-500",
+    descripcion: "Audios diseñados para estados meditativos profundos",
     audios: [
       {
-        id: 6,
-        titulo: "Chakra Alignment - Alineación de Chakras",
-        descripcion: "Meditación guiada para equilibrar y alinear todos los chakras",
-        duracion: "8:00:00",
-        duracionMuestra: "3:00",
-        premium: true,
-        precio: 5.99,
-        beneficios: ["Equilibrio energético", "Alineación chakras", "Armonía", "Conexión espiritual"],
-        categoria: "Espiritual",
-        popularidad: 89,
-        rating: 4.8,
-        reproducciones: 10890,
-        imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
-        tags: ["chakras", "meditación", "equilibrio", "energía"],
-        fechaCreacion: "2024-02-10"
+        id: 4,
+        titulo: "Meditación Trascendental",
+        descripcion: "Alcanza estados profundos de consciencia y paz interior",
+        duracion: "20:00:00",
+        duracionMuestra: "5:00",
+        premium: false,
+        precio: null,
+        beneficios: ["Paz profunda", "Consciencia expandida", "Reducción estrés", "Claridad mental"],
+        categoria: "Meditación",
+        popularidad: 88,
+        rating: 4.7,
+        reproducciones: 12300,
+        imagen: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        comprado: false
       }
     ]
   },
   sueno: {
     titulo: "Sueño Reparador",
-    icono: "😴",
-    color: "from-blue-800 to-indigo-900",
-    descripcion: "Ondas delta para un sueño profundo y reparador",
+    icono: "🌙",
+    color: "from-indigo-500 to-purple-500",
+    descripcion: "Frecuencias para un descanso profundo y reparador",
     audios: [
       {
-        id: 7,
-        titulo: "Deep Sleep - Sueño Profundo",
-        descripcion: "Ondas delta especialmente diseñadas para un sueño reparador",
+        id: 5,
+        titulo: "Delta Waves - Sueño Profundo",
+        descripcion: "Ondas delta para un sueño reparador y regenerador",
         duracion: "8:00:00",
         duracionMuestra: "3:00",
         premium: true,
-        precio: 5.99,
-        beneficios: ["Sueño profundo", "Descanso total", "Regeneración", "Recuperación"],
+        precio: 7.99,
+        beneficios: ["Sueño profundo", "Regeneración celular", "Reduce insomnio", "Descanso reparador"],
         categoria: "Sueño",
-        popularidad: 93,
+        popularidad: 94,
         rating: 4.9,
-        reproducciones: 16780,
-        imagen: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
-        tags: ["sueño", "descanso", "delta", "reparador"],
-        fechaCreacion: "2024-02-15"
+        reproducciones: 19800,
+        imagen: "https://images.unsplash.com/photo-1511295742362-92c96b1cf484?w=400&h=300&fit=crop",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        comprado: false
       }
     ]
   }
 };
 
-// Función para validar URL de audio
-const isValidAudioUrl = (url) => {
-  if (!url || typeof url !== 'string') return false;
-  try {
-    const parsedUrl = new URL(url);
-    return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';
-  } catch (e) {
-    return false;
-  }
-};
-
 // Componente principal
 const Sonoterapia = ({ onVolver, addToCart }) => {
-  // Auto-scroll to main content after 5 seconds
-  useAutoScrollToContent('.main-content', 5000);
-  
   const { 
     sonoterapiaState, 
     updateSonoterapiaState, 
     agregarFavorito, 
-    quitarFavorito 
+    quitarFavorito,
+    marcarComoComprado
   } = useSonoterapia();
   
-  const [audioError, setAudioError] = useState(null);
   const [cargandoAudio, setCargandoAudio] = useState(false);
+  const [audioError, setAudioError] = useState(null);
   const [timerInterval, setTimerInterval] = useState(null);
   const [mostrarConfiguracion, setMostrarConfiguracion] = useState(false);
   const audioRef = useRef(null);
 
-  // Obtener todos los audios de todas las categorías
-  const todosLosAudios = Object.values(categorias).flatMap(cat => cat.audios);
+  useAutoScrollToContent('.main-content', 2000);
 
-  // Filtrar audios según búsqueda y filtros
-  const audiosFiltrados = todosLosAudios.filter(audio => {
-    const coincideBusqueda = audio.titulo.toLowerCase().includes(sonoterapiaState.busqueda.toLowerCase()) ||
-                            audio.descripcion.toLowerCase().includes(sonoterapiaState.busqueda.toLowerCase()) ||
-                            audio.tags.some(tag => tag.toLowerCase().includes(sonoterapiaState.busqueda.toLowerCase()));
-    
-    const coincideFiltro = sonoterapiaState.filtroActivo === 'todos' ||
-                          (sonoterapiaState.filtroActivo === 'gratis' && !audio.premium) ||
-                          (sonoterapiaState.filtroActivo === 'premium' && audio.premium) ||
-                          (sonoterapiaState.filtroActivo === 'favoritos' && sonoterapiaState.favoritos.some(f => f.id === audio.id));
-    
-    return coincideBusqueda && coincideFiltro;
+  // Obtener audios de la categoría activa
+  const audiosActuales = categorias[sonoterapiaState.categoriaActiva]?.audios || [];
+  
+  // Filtrar audios
+  const audiosFiltrados = audiosActuales.filter(audio => {
+    if (sonoterapiaState.filtroActivo === 'gratis' && audio.premium) return false;
+    if (sonoterapiaState.filtroActivo === 'premium' && !audio.premium) return false;
+    if (sonoterapiaState.filtroActivo === 'favoritos' && !sonoterapiaState.favoritos.some(f => f.id === audio.id)) return false;
+    if (sonoterapiaState.filtroActivo === 'comprados' && !sonoterapiaState.comprados.includes(audio.id)) return false;
+    if (sonoterapiaState.busqueda && !audio.titulo.toLowerCase().includes(sonoterapiaState.busqueda.toLowerCase())) return false;
+    return true;
   });
 
-  // Funciones de reproducción
+  const isValidAudioUrl = (url) => {
+    return url && url.startsWith('http');
+  };
+
   const reproducirAudio = (audio) => {
     setAudioError(null);
-    
+
     if (sonoterapiaState.audioActual?.id === audio.id && sonoterapiaState.reproduciendo) {
       pausarAudio();
       return;
     }
 
-    if (audio.premium && !audio.comprado) {
-      // Agregar al carrito en lugar de solo mostrar alerta
-      if (addToCart) {
-        const cartItem = {
-          id: audio.id,
-          type: 'audio',
-          name: audio.titulo,
-          price: audio.precio,
-          image: audio.imagen,
-          category: 'Sonoterapia'
-        };
-        addToCart(cartItem);
-        alert(`${audio.titulo} ha sido agregado al carrito por $${audio.precio} USD`);
-      } else {
-        alert(`Este audio premium cuesta $${audio.precio}. En producción, aquí se abriría el modal de compra.`);
-      }
+    if (audio.premium && !sonoterapiaState.comprados.includes(audio.id)) {
+      // No permitir reproducción de premium no comprado
       return;
     }
 
@@ -386,6 +311,31 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
     }
   };
 
+  const handleComprar = (audio) => {
+    if (addToCart) {
+      const cartItem = {
+        id: `sonoterapia-${audio.id}`,
+        type: 'sonoterapia',
+        name: audio.titulo,
+        price: audio.precio,
+        image: audio.imagen,
+        category: 'Sonoterapia',
+        duration: audio.duracion
+      };
+      addToCart(cartItem);
+      alert(`${audio.titulo} ha sido agregado al carrito por $${audio.precio} USD`);
+    }
+  };
+
+  const handleDescargar = (audio) => {
+    if (!sonoterapiaState.comprados.includes(audio.id) && audio.premium) {
+      alert('Debes comprar este audio antes de descargarlo');
+      return;
+    }
+    alert(`Descargando: ${audio.titulo}`);
+    // Aquí iría la lógica real de descarga
+  };
+
   // Efectos
   useEffect(() => {
     const audioEl = audioRef.current;
@@ -433,30 +383,19 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
     <div className="sonoterapia-moderna">
       <audio ref={audioRef} />
       
-      {/* Header */}
-      <div className="sonoterapia-header">
-        <div className="header-content">
-          <button onClick={onVolver} className="btn-volver">
-            <ArrowLeft size={20} />
-            Volver al Dashboard
-          </button>
-          
-          <div className="header-title">
-            <h1>🎵 Sonoterapia Angelical</h1>
-            <p>Frecuencias sagradas para tu bienestar integral</p>
-          </div>
-          
-          <div className="header-actions">
-            <button className="btn-header" onClick={() => setMostrarConfiguracion(true)}>
-              <Settings size={20} />
-              Config
-            </button>
-          </div>
-        </div>
-      </div>
+      {/* HEADER ELIMINADO - Solo filtros */}
 
       {/* Contenido principal */}
       <div className="sonoterapia-contenido main-content">
+        {/* Link a Mis Sonoterapias */}
+        <div className="mis-sonoterapias-link-container">
+          <Link to="/mis-sonoterapias" className="mis-sonoterapias-link">
+            <ShoppingBag size={20} />
+            <span>Mis Sonoterapias</span>
+            <span className="badge-count">{sonoterapiaState.comprados.length}</span>
+          </Link>
+        </div>
+
         {/* Filtros */}
         <div className="controles-principales">          
           <div className="filtros-container">
@@ -469,6 +408,7 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
               <option value="gratis">Gratuitos</option>
               <option value="premium">Premium</option>
               <option value="favoritos">Favoritos</option>
+              <option value="comprados">Comprados</option>
             </select>
             
             <div className="vista-controles">
@@ -523,8 +463,11 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
                 esActual={sonoterapiaState.audioActual?.id === audio.id}
                 reproduciendo={sonoterapiaState.reproduciendo}
                 esFavorito={sonoterapiaState.favoritos.some(f => f.id === audio.id)}
+                esComprado={sonoterapiaState.comprados.includes(audio.id)}
                 onReproducir={reproducirAudio}
                 onToggleFavorito={toggleFavorito}
+                onComprar={handleComprar}
+                onDescargar={handleDescargar}
                 vista={sonoterapiaState.vistaActual}
                 cargando={cargandoAudio && sonoterapiaState.audioActual?.id === audio.id}
                 error={audioError && sonoterapiaState.audioActual?.id === audio.id ? audioError : null}
@@ -545,127 +488,118 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
         <ModalConfiguracion onCerrar={() => setMostrarConfiguracion(false)} />
       )}
 
-      {/* Footer Legal */}
-      <FooterLegal />
+      {/* FOOTER ELIMINADO - Manejado por Dashboard */}
     </div>
   );
 };
 
-// Componente de tarjeta de audio
+// Componente de tarjeta de audio REDISEÑADO
 const AudioCard = ({ 
-  audio, esActual, reproduciendo, esFavorito, onReproducir, onToggleFavorito, 
-  vista, cargando, error, progreso, tiempoActual, duracion, volumen, 
-  onCambiarVolumen, formatearTiempo 
+  audio, esActual, reproduciendo, esFavorito, esComprado, onReproducir, onToggleFavorito, 
+  onComprar, onDescargar, vista, cargando, error, progreso, tiempoActual, duracion, 
+  volumen, onCambiarVolumen, formatearTiempo 
 }) => {
   return (
-    <div className={`audio-card ${vista} ${esActual ? 'actual' : ''}`}>
-      <div className="audio-imagen">
-        <img src={audio.imagen} alt={audio.titulo} />
-        <div className="audio-overlay">
-          <button
-            className="btn-reproducir"
-            onClick={() => onReproducir(audio)}
-            disabled={cargando}
-          >
-            {cargando ? (
-              <div className="spinner" />
-            ) : esActual && reproduciendo ? (
-              <Pause size={24} />
-            ) : (
-              <Play size={24} />
-            )}
-          </button>
-        </div>
-        {audio.premium && (
-          <div className="premium-badge">
-            <Star size={16} />
-            Premium
-          </div>
-        )}
+    <div className={`audio-card-nueva ${vista} ${esActual ? 'actual' : ''}`}>
+      {/* Icono dorado circular */}
+      <div className="audio-icono-dorado">
+        <Headphones className="w-8 h-8" />
       </div>
-      
-      <div className="audio-info">
-        <div className="audio-header">
-          <h3 className="audio-titulo">{audio.titulo}</h3>
+
+      {/* Contenido de la tarjeta */}
+      <div className="audio-card-contenido">
+        {/* Header con título y favorito */}
+        <div className="audio-card-header">
+          <h3 className="audio-card-titulo">{audio.titulo}</h3>
           <button
-            className={`btn-favorito ${esFavorito ? 'activo' : ''}`}
+            className={`btn-favorito-nuevo ${esFavorito ? 'activo' : ''}`}
             onClick={() => onToggleFavorito(audio)}
           >
             <Heart size={20} fill={esFavorito ? 'currentColor' : 'none'} />
           </button>
         </div>
-        
-        <p className="audio-descripcion">{audio.descripcion}</p>
-        
-        <div className="audio-beneficios">
-          {audio.beneficios.slice(0, 3).map((beneficio, index) => (
-            <span key={index} className="beneficio-tag">
-              {beneficio}
-            </span>
-          ))}
-        </div>
-        
-        <div className="audio-meta">
-          <div className="meta-item">
-            <Clock size={16} />
-            <span>{audio.duracion}</span>
+
+        {/* Descripción */}
+        <p className="audio-card-descripcion">{audio.descripcion}</p>
+
+        {/* Metadatos */}
+        <div className="audio-card-meta">
+          <div className="meta-item-nuevo">
+            <span className="meta-label">Categoría:</span>
+            <span className="meta-value">{audio.categoria}</span>
           </div>
-          <div className="meta-item">
-            <Users size={16} />
-            <span>{audio.reproducciones.toLocaleString()}</span>
+          <div className="meta-item-nuevo">
+            <span className="meta-label">Duración:</span>
+            <span className="meta-value">{audio.duracion}</span>
           </div>
-          <div className="meta-item rating">
-            <Star size={16} fill="currentColor" />
-            <span>{audio.rating}</span>
+          <div className="meta-item-nuevo">
+            <span className="meta-label">Precio:</span>
+            <span className="meta-value">{audio.premium ? `$${audio.precio} USD` : 'Gratis'}</span>
           </div>
         </div>
-        
-        {audio.premium && !audio.comprado && (
-          <div className="precio-container">
-            <span className="precio">${audio.precio} USD</span>
+
+        {/* Badge de comprado */}
+        {esComprado && (
+          <div className="badge-comprado">
+            <Check size={16} />
+            <span>Ya comprada</span>
+          </div>
+        )}
+
+        {/* Botones de acción */}
+        <div className="audio-card-acciones">
+          {audio.premium && !esComprado ? (
             <button 
-              className="btn-comprar"
-              onClick={() => onReproducir(audio)}
+              className="btn-comprar-nuevo"
+              onClick={() => onComprar(audio)}
             >
-              <ShoppingCart size={16} />
-              Comprar
+              <ShoppingCart size={18} />
+              <span>Comprar</span>
             </button>
-          </div>
-        )}
-        
-        {error && (
-          <div className="error-mensaje">
-            <AlertTriangle size={16} />
-            <span>{error}</span>
-          </div>
-        )}
-        
-        {esActual && (
-          <div className="reproductor-mini">
-            <div className="progreso-container">
-              <div className="progreso-barra">
-                <div 
-                  className="progreso-fill"
-                  style={{ width: `${progreso}%` }}
-                />
-              </div>
-              <div className="tiempo-info">
-                <span>{formatearTiempo(tiempoActual)}</span>
-                <span>{formatearTiempo(duracion)}</span>
-              </div>
-            </div>
-            
-            <div className="controles-volumen">
-              <Volume2 size={16} />
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volumen}
-                onChange={(e) => onCambiarVolumen(parseFloat(e.target.value))}
-                className="volumen-slider"
+          ) : (
+            <button 
+              className="btn-reproducir-nuevo"
+              onClick={() => onReproducir(audio)}
+              disabled={cargando}
+            >
+              {cargando ? (
+                <div className="spinner-nuevo" />
+              ) : esActual && reproduciendo ? (
+                <>
+                  <Pause size={18} />
+                  <span>Pausar</span>
+                </>
+              ) : (
+                <>
+                  <Play size={18} />
+                  <span>Reproducir</span>
+                </>
+              )}
+            </button>
+          )}
+          
+          <button 
+            className="btn-descargar-nuevo"
+            onClick={() => onDescargar(audio)}
+            disabled={audio.premium && !esComprado}
+          >
+            <Download size={18} />
+            <span>Bajar</span>
+          </button>
+        </div>
+
+        {/* Barra de progreso si está reproduciéndose */}
+        {esActual && reproduciendo && (
+          <div className="progreso-container-nuevo">
+            <div className="progreso-barra-nuevo">
+              <div 
+                className="progreso-fill-nuevo"
+                style={{ width: `${progreso}%` }}
               />
+            </div>
+            <div className="tiempo-info-nuevo">
+              <span>{formatearTiempo(tiempoActual)}</span>
+              <span>{formatearTiempo(duracion)}</span>
             </div>
           </div>
         )}
