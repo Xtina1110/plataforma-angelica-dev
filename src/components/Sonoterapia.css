@@ -133,6 +133,12 @@
 /* ========================================
    CATEGORÍAS
    ======================================== */
+.categorias-container {
+  width: 100%;
+  overflow: visible;
+  margin-bottom: 2rem;
+}
+
 .categorias-filtros {
   display: flex;
   gap: 1rem;

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useContext, createContext } from 'react';
 import './Sonoterapia.css';
+import AudioCardWorldClass from './AudioCardWorldClass';
 import useAutoScrollToContent from '../hooks/useAutoScrollToContent';
 import { 
   ArrowLeft, Play, Pause, Volume2, VolumeX, Download, Star, Lock, 
@@ -104,7 +105,7 @@ const categorias = {
         popularidad: 95,
         rating: 4.9,
         reproducciones: 15420,
-        imagen: "/images/sonoterapia/healing-frequencies.jpg",
+        imagen: "/images/sonoterapia/healing-nature.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
         comprado: false
       },
@@ -121,7 +122,7 @@ const categorias = {
         popularidad: 98,
         rating: 5.0,
         reproducciones: 23100,
-        imagen: "/images/sonoterapia/sound-healing.jpg",
+        imagen: "/images/sonoterapia/healing-nature.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
         comprado: false
       },
@@ -138,7 +139,7 @@ const categorias = {
         popularidad: 92,
         rating: 4.8,
         reproducciones: 18500,
-        imagen: "/images/sonoterapia/sacred-geometry.jpg",
+        imagen: "/images/sonoterapia/forest-peace.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
         comprado: false
       }
@@ -163,7 +164,7 @@ const categorias = {
         popularidad: 88,
         rating: 4.7,
         reproducciones: 12300,
-        imagen: "/images/sonoterapia/tibetan-bowls.jpg",
+        imagen: "/images/sonoterapia/forest-meditation.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
         comprado: false
       }
@@ -188,7 +189,7 @@ const categorias = {
         popularidad: 94,
         rating: 4.9,
         reproducciones: 19800,
-        imagen: "/images/sonoterapia/ocean-waves.jpg",
+        imagen: "/images/sonoterapia/ocean-sunset.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
         comprado: false
       }
@@ -429,7 +430,8 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
         </div>
 
         {/* Categorías */}
-        <div className="categorias-filtros">
+        <div className="categorias-container">
+          <div className="categorias-filtros">
           {Object.entries(categorias).map(([key, categoria]) => (
             <button
               key={key}
@@ -445,6 +447,7 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
               <span className="categoria-titulo">{categoria.titulo}</span>
             </button>
           ))}
+          </div>
         </div>
 
         {/* Lista de audios */}
@@ -457,7 +460,7 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
             </div>
           ) : (
             audiosFiltrados.map((audio) => (
-              <AudioCard
+              <AudioCardWorldClass
                 key={audio.id}
                 audio={audio}
                 esActual={sonoterapiaState.audioActual?.id === audio.id}
