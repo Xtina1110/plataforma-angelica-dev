@@ -63,8 +63,6 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
             maxWidth="max-w-5xl mx-auto"
           />
         </div>
-
-        {/* Footer removed - now handled by Dashboard */
       </div>
     );
   }
