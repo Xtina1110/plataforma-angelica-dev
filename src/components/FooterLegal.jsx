@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Facebook, Instagram, Youtube, X, Linkedin } from 'lucide-react';
+import './FooterLegal.css';
 
 const FooterLegal = () => {
   const { getCurrentTranslation } = useLanguage();

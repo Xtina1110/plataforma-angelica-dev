@@ -1,0 +1,30 @@
+/* Footer Legal - Asegurar visibilidad en todas las secciones */
+footer {
+  margin-top: 40px;
+  margin-bottom: 0;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  clear: both;
+}
+
+/* Asegurar que el footer no sea tapado por otros elementos */
+.dashboard-home footer,
+.tirada-step footer,
+.main-content > div > footer {
+  margin-top: 60px !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  footer {
+    margin-top: 30px;
+  }
+  
+  .dashboard-home footer,
+  .tirada-step footer,
+  .main-content > div > footer {
+    margin-top: 40px !important;
+  }
+}
+
