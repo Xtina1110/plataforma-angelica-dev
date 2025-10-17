@@ -104,7 +104,7 @@ const categorias = {
         popularidad: 95,
         rating: 4.9,
         reproducciones: 15420,
-        imagen: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
+        imagen: "/images/sonoterapia/healing-frequencies.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
         comprado: false
       },
@@ -114,14 +114,14 @@ const categorias = {
         descripcion: "Frecuencia milagrosa para transformación y sanación celular",
         duracion: "10:00:00",
         duracionMuestra: "3:00",
-        premium: true,
-        precio: 9.99,
+        premium: false,
+        precio: null,
         beneficios: ["Repara ADN", "Aumenta energía vital", "Transforma consciencia", "Activa intuición"],
         categoria: "Transformación",
         popularidad: 98,
         rating: 5.0,
         reproducciones: 23100,
-        imagen: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+        imagen: "/images/sonoterapia/sound-healing.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
         comprado: false
       },
@@ -131,14 +131,14 @@ const categorias = {
         descripcion: "Limpia toxinas y despierta la intuición y expresión creativa",
         duracion: "12:00:00",
         duracionMuestra: "3:00",
-        premium: true,
-        precio: 12.99,
+        premium: false,
+        precio: null,
         beneficios: ["Limpia toxinas", "Despierta intuición", "Aumenta creatividad", "Claridad mental"],
         categoria: "Despertar",
         popularidad: 92,
         rating: 4.8,
         reproducciones: 18500,
-        imagen: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
+        imagen: "/images/sonoterapia/sacred-geometry.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
         comprado: false
       }
@@ -163,7 +163,7 @@ const categorias = {
         popularidad: 88,
         rating: 4.7,
         reproducciones: 12300,
-        imagen: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop",
+        imagen: "/images/sonoterapia/tibetan-bowls.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
         comprado: false
       }
@@ -181,14 +181,14 @@ const categorias = {
         descripcion: "Ondas delta para un sueño reparador y regenerador",
         duracion: "8:00:00",
         duracionMuestra: "3:00",
-        premium: true,
-        precio: 7.99,
+        premium: false,
+        precio: null,
         beneficios: ["Sueño profundo", "Regeneración celular", "Reduce insomnio", "Descanso reparador"],
         categoria: "Sueño",
         popularidad: 94,
         rating: 4.9,
         reproducciones: 19800,
-        imagen: "https://images.unsplash.com/photo-1511295742362-92c96b1cf484?w=400&h=300&fit=crop",
+        imagen: "/images/sonoterapia/ocean-waves.jpg",
         url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
         comprado: false
       }
@@ -499,12 +499,72 @@ const AudioCard = ({
   onComprar, onDescargar, vista, cargando, error, progreso, tiempoActual, duracion, 
   volumen, onCambiarVolumen, formatearTiempo 
 }) => {
+  const [previewing, setPreviewing] = useState(false);
+  const [previewAudio, setPreviewAudio] = useState(null);
+  const previewTimeoutRef = useRef(null);
+
+  const handleMouseEnter = () => {
+    if (audio.url && !esActual && !audio.premium) {
+      const preview = new Audio(audio.url);
+      preview.volume = 0.5;
+      preview.currentTime = 0;
+      preview.play().catch(err => console.log('Preview play failed:', err));
+      setPreviewAudio(preview);
+      setPreviewing(true);
+      
+      // Auto-stop after 30 seconds
+      previewTimeoutRef.current = setTimeout(() => {
+        if (preview) {
+          preview.pause();
+          preview.currentTime = 0;
+        }
+        setPreviewing(false);
+      }, 30000);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (previewAudio) {
+      previewAudio.pause();
+      previewAudio.currentTime = 0;
+      setPreviewAudio(null);
+    }
+    if (previewTimeoutRef.current) {
+      clearTimeout(previewTimeoutRef.current);
+    }
+    setPreviewing(false);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (previewAudio) {
+        previewAudio.pause();
+        previewAudio.currentTime = 0;
+      }
+      if (previewTimeoutRef.current) {
+        clearTimeout(previewTimeoutRef.current);
+      }
+    };
+  }, [previewAudio]);
+
   return (
-    <div className={`audio-card-nueva ${vista} ${esActual ? 'actual' : ''}`}>
+    <div 
+      className={`audio-card-nueva ${vista} ${esActual ? 'actual' : ''} ${previewing ? 'previewing' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* Icono dorado circular */}
       <div className="audio-icono-dorado">
         <Headphones className="w-8 h-8" />
       </div>
+
+      {/* Preview indicator */}
+      {previewing && (
+        <div className="preview-indicator">
+          <Play size={14} />
+          <span>Preview 30s</span>
+        </div>
+      )}
 
       {/* Contenido de la tarjeta */}
       <div className="audio-card-contenido">
