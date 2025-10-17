@@ -482,11 +482,11 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
               </div>
             </div>
           </div>
-          
-          {/* Footer Legal dentro del fondo azul */}
-          <FooterLegal />
         </div>
       )}
+      
+      {/* Footer para instrucciones - fuera del fondo azul */}
+      {paso === 'instrucciones' && <FooterLegal />}
 
       {/* Paso 2: Selección (Tipo y Tema) */}
       {paso === 'seleccion' && (
@@ -593,6 +593,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           </div>
         </div>
       )}
+      
+      {/* Footer para selección */}
+      {paso === 'seleccion' && <FooterLegal />}
 
       {/* Paso 3: Barajando */}
       {paso === 'barajando' && (
@@ -629,6 +632,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           </div>
         </div>
       )}
+      
+      {/* Footer para barajando */}
+      {paso === 'barajando' && <FooterLegal />}
 
       {/* Paso 4: Selección de cartas */}
       {paso === 'seleccionCartas' && (
@@ -694,6 +700,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           </div>
         </div>
       )}
+      
+      {/* Footer para selección de cartas */}
+      {paso === 'seleccionCartas' && <FooterLegal />}
 
       {/* Paso 5: Revelación de cartas */}
       {paso === 'revelando' && cartasSeleccionadas.length > 0 && cartasSeleccionadas[cartaActual] && (
@@ -969,6 +978,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           </div>
         </div>
       )}
+      
+      {/* Footer para revelación */}
+      {paso === 'revelando' && <FooterLegal />}
 
       {/* Paso 6: Resumen final */}
       {paso === 'resumenFinal' && (
@@ -1074,6 +1086,9 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           </div>
         </div>
       )}
+      
+      {/* Footer para resumen final */}
+      {paso === 'resumenFinal' && <FooterLegal />}
 
       <AngelicalModal
         isOpen={modalState.isOpen}
