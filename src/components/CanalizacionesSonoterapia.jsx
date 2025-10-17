@@ -67,148 +67,89 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
     );
   }
 
-  // Página de servicios (Sonoterapia o Canalizaciones)
+  // Página de servicios (Sonoterapia o Canalizaciones) - NUEVO DISEÑO
   return (
-    <div className="canalizaciones-sonoterapia-principal">
-      {/* Contenido principal */}
-      <main className="contenido-principal">
-        {/* Hero Section */}
-        <div className="hero-section">
-          <div className="hero-content">
-            <div className="hero-icono">
-              <Music className="w-16 h-16" />
-            </div>
-            <h2 className="hero-titulo">Sanación a través del Sonido y la Palabra</h2>
-            <p className="hero-descripcion">
-              Descubre el poder transformador de las frecuencias sagradas y los mensajes angelicales. 
-              Cada experiencia está diseñada para elevar tu vibración y conectarte con tu esencia divina.
+    <div className="canalizaciones-sonoterapia-seleccion">
+      {/* Fondo marmolado morado */}
+      <div className="seleccion-background-morado">
+        {/* Contenedor principal con borde dorado */}
+        <div className="seleccion-container-principal">
+          {/* Header de selección */}
+          <div className="seleccion-header">
+            <h2 className="seleccion-titulo">Elige tu Experiencia</h2>
+            <p className="seleccion-descripcion">
+              Selecciona el tipo de sanación que resuena con tu alma en este momento
             </p>
           </div>
-        </div>
 
-        {/* Opciones principales */}
-        <div className="opciones-principales">
-          {/* Sonoterapia */}
-          <div 
-            className="opcion-card sonoterapia"
-            onClick={() => setPaso('sonoterapia')}
-          >
-            <div className="card-header">
-              <div className="card-icono sonoterapia-icono">
-                <Headphones className="w-12 h-12" />
+          {/* Grid de opciones - estilo Apertura Angelical */}
+          <div className="seleccion-grid-opciones">
+            {/* Sonoterapia Angelical */}
+            <div 
+              className="seleccion-opcion-card"
+              onClick={() => setPaso('sonoterapia')}
+            >
+              <div className="seleccion-card-inner">
+                {/* Icono circular dorado */}
+                <div className="seleccion-icono-circular sonoterapia-color">
+                  <Headphones className="w-12 h-12" />
+                </div>
+                
+                {/* Título */}
+                <h3 className="seleccion-card-titulo">Sonoterapia Angelical</h3>
+                
+                {/* Descripción */}
+                <p className="seleccion-card-descripcion">
+                  Frecuencias sagradas y ondas binaurales para armonizar tu ser
+                </p>
+
+                {/* Badge "Nuevo" */}
+                <div className="seleccion-badge nuevo">Nuevo</div>
               </div>
-              <div className="card-badge">Nuevo</div>
             </div>
-            
-            <div className="card-content">
-              <h3 className="card-titulo">Sonoterapia Angelical</h3>
-              <p className="card-descripcion">
-                Frecuencias sagradas y ondas binaurales para armonizar cuerpo, mente y alma. 
-                Experimenta la sanación a través del poder del sonido.
-              </p>
-              
-              <div className="card-beneficios">
-                <div className="beneficio">
-                  <span className="beneficio-icono">🎵</span>
-                  <span>Frecuencias de 432Hz, 528Hz, 741Hz</span>
+
+            {/* Canalizaciones Angelicales */}
+            <div 
+              className="seleccion-opcion-card"
+              onClick={() => setPaso('canalizaciones')}
+            >
+              <div className="seleccion-card-inner">
+                {/* Icono circular dorado */}
+                <div className="seleccion-icono-circular canalizaciones-color">
+                  <MessageCircle className="w-12 h-12" />
                 </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">🧘‍♀️</span>
-                  <span>Meditación y concentración profunda</span>
-                </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">😴</span>
-                  <span>Sueño reparador y relajación</span>
-                </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">✨</span>
-                  <span>Limpieza energética y sanación</span>
-                </div>
+                
+                {/* Título */}
+                <h3 className="seleccion-card-titulo">Canalizaciones Angelicales</h3>
+                
+                {/* Descripción */}
+                <p className="seleccion-card-descripcion">
+                  Mensajes directos de los ángeles para guiar tu camino espiritual
+                </p>
+
+                {/* Badge "Popular" */}
+                <div className="seleccion-badge popular">Popular</div>
               </div>
-              
-              <div className="card-stats">
-                <div className="stat">
-                  <Clock className="w-4 h-4" />
-                  <span>50+ audios</span>
-                </div>
-                <div className="stat">
-                  <Users className="w-4 h-4" />
-                  <span>15k+ usuarios</span>
-                </div>
-                <div className="stat">
-                  <Star className="w-4 h-4" />
-                  <span>4.9 rating</span>
-                </div>
-              </div>
-              
-              <button className="btn-acceder sonoterapia-btn">
-                <Music className="w-5 h-5" />
-                Explorar Sonoterapia
-              </button>
             </div>
           </div>
 
-          {/* Canalizaciones */}
-          <div 
-            className="opcion-card canalizaciones"
-            onClick={() => setPaso('canalizaciones')}
-          >
-            <div className="card-header">
-              <div className="card-icono canalizaciones-icono">
-                <MessageCircle className="w-12 h-12" />
-              </div>
-              <div className="card-badge popular">Popular</div>
+          {/* Información adicional */}
+          <div className="seleccion-info-adicional">
+            <div className="info-stat">
+              <Clock className="w-5 h-5" />
+              <span>150+ contenidos disponibles</span>
             </div>
-            
-            <div className="card-content">
-              <h3 className="card-titulo">Canalizaciones Angelicales</h3>
-              <p className="card-descripcion">
-                Mensajes directos de los ángeles para guiar tu camino. Recibe orientación divina 
-                personalizada para tus desafíos y preguntas más profundas.
-              </p>
-              
-              <div className="card-beneficios">
-                <div className="beneficio">
-                  <span className="beneficio-icono">👼</span>
-                  <span>Conexión directa con guías angelicales</span>
-                </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">💫</span>
-                  <span>Mensajes personalizados y profundos</span>
-                </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">🌟</span>
-                  <span>Claridad y orientación divina</span>
-                </div>
-                <div className="beneficio">
-                  <span className="beneficio-icono">🕊️</span>
-                  <span>Sanación emocional y espiritual</span>
-                </div>
-              </div>
-              
-              <div className="card-stats">
-                <div className="stat">
-                  <Clock className="w-4 h-4" />
-                  <span>100+ mensajes</span>
-                </div>
-                <div className="stat">
-                  <Users className="w-4 h-4" />
-                  <span>25k+ usuarios</span>
-                </div>
-                <div className="stat">
-                  <Star className="w-4 h-4" />
-                  <span>4.9 rating</span>
-                </div>
-              </div>
-              
-              <button className="btn-acceder canalizaciones-btn">
-                <MessageCircle className="w-5 h-5" />
-                Explorar Canalizaciones
-              </button>
+            <div className="info-stat">
+              <Users className="w-5 h-5" />
+              <span>40k+ usuarios transformados</span>
+            </div>
+            <div className="info-stat">
+              <Star className="w-5 h-5" />
+              <span>4.9 valoración promedio</span>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };

@@ -80,7 +80,209 @@
 }
 
 /* ========================================
-   CONTENIDO PRINCIPAL
+   NUEVA PÁGINA DE SELECCIÓN - ESTILO APERTURA ANGELICAL
+   ======================================== */
+
+.canalizaciones-sonoterapia-seleccion {
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seleccion-background-morado {
+  background-image: url('../assets/FondoMoradoSonoterapia.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 3rem;
+  padding: 3rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 20px 60px rgba(147, 51, 234, 0.3);
+  position: relative;
+}
+
+.seleccion-background-morado::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(147, 51, 234, 0.05);
+  border-radius: 3rem;
+  pointer-events: none;
+}
+
+.seleccion-container-principal {
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px solid #d4af37;
+  border-radius: 2rem;
+  padding: 3rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Header de selección */
+.seleccion-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.seleccion-titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+}
+
+.seleccion-descripcion {
+  font-size: 1rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Grid de opciones */
+.seleccion-grid-opciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tarjeta de opción */
+.seleccion-opcion-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 1.5rem;
+  padding: 2.5rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: visible;
+}
+
+.seleccion-opcion-card:hover {
+  transform: translateY(-8px);
+  border-color: #3b82f6;
+  box-shadow: 0 20px 50px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+}
+
+.seleccion-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+/* Icono circular dorado */
+.seleccion-icono-circular {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+}
+
+.sonoterapia-color {
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+}
+
+.canalizaciones-color {
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+}
+
+.seleccion-opcion-card:hover .seleccion-icono-circular {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+}
+
+/* Título de la tarjeta */
+.seleccion-card-titulo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.seleccion-opcion-card:hover .seleccion-card-titulo {
+  color: #3b82f6;
+}
+
+/* Descripción de la tarjeta */
+.seleccion-card-descripcion {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 280px;
+}
+
+/* Badges */
+.seleccion-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.seleccion-badge.nuevo {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.seleccion-badge.popular {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+/* Información adicional */
+.seleccion-info-adicional {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 2px solid #e5e7eb;
+}
+
+.info-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.info-stat svg {
+  color: #d4af37;
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL (DISEÑO ANTIGUO - MANTENER POR COMPATIBILIDAD)
    ======================================== */
 .contenido-principal {
   max-width: 1200px;
@@ -134,7 +336,7 @@
 }
 
 /* ========================================
-   OPCIONES PRINCIPALES
+   OPCIONES PRINCIPALES (DISEÑO ANTIGUO)
    ======================================== */
 .opciones-principales {
   display: grid;
@@ -477,6 +679,19 @@
     grid-template-columns: 1fr;
     gap: 25px;
   }
+
+  .seleccion-grid-opciones {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .seleccion-container-principal {
+    padding: 2rem;
+  }
+
+  .seleccion-background-morado {
+    padding: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -498,226 +713,118 @@
   .hero-titulo {
     font-size: 2rem;
   }
-  
+
   .hero-descripcion {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-  
-  .opciones-principales {
-    margin-bottom: 60px;
+
+  .canalizaciones-sonoterapia-wrapper {
+    padding: 1rem;
   }
-  
-  .card-header {
-    padding: 30px 25px 15px;
+
+  .recuadro-morado-instrucciones {
+    padding: 2rem;
+    border-radius: 2rem;
   }
-  
-  .card-icono {
-    width: 60px;
-    height: 60px;
+
+  .titulo-principal-sonoterapia {
+    font-size: 1.5rem;
   }
-  
-  .card-content {
-    padding: 0 25px 30px;
+
+  .descripcion-principal-sonoterapia {
+    font-size: 0.8rem;
   }
-  
-  .card-titulo {
-    font-size: 1.6rem;
+
+  .canalizaciones-sonoterapia-seleccion {
+    padding: 1rem;
   }
-  
-  .card-stats {
+
+  .seleccion-background-morado {
+    padding: 1.5rem;
+    border-radius: 2rem;
+  }
+
+  .seleccion-container-principal {
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .seleccion-titulo {
+    font-size: 1.5rem;
+  }
+
+  .seleccion-descripcion {
+    font-size: 0.9rem;
+  }
+
+  .seleccion-icono-circular {
+    width: 80px;
+    height: 80px;
+  }
+
+  .seleccion-icono-circular svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .seleccion-card-titulo {
+    font-size: 1.25rem;
+  }
+
+  .seleccion-card-descripcion {
+    font-size: 0.875rem;
+  }
+
+  .seleccion-info-adicional {
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
   }
-  
-  .info-item {
-    padding: 25px;
-  }
-  
-  .cta-section {
-    padding: 40px 25px;
-  }
-  
-  .cta-content h3 {
-    font-size: 1.8rem;
-  }
-  
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .cta-btn {
-    width: 100%;
-    max-width: 300px;
+
+  .info-stat {
+    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
-  .header-title-principal h1 {
-    font-size: 1.8rem;
+  .opciones-principales {
+    grid-template-columns: 1fr;
   }
-  
-  .hero-titulo {
-    font-size: 1.8rem;
-  }
-  
-  .hero-descripcion {
-    font-size: 1rem;
-  }
-  
+
   .card-header {
-    padding: 25px 20px 15px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
   }
-  
-  .card-content {
-    padding: 0 20px 25px;
+
+  .card-icono {
+    width: 60px;
+    height: 60px;
   }
-  
+
   .card-titulo {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
-  
+
   .card-descripcion {
     font-size: 1rem;
   }
-  
-  .beneficio {
-    margin-bottom: 10px;
+
+  .cta-buttons {
+    flex-direction: column;
   }
-  
-  .btn-acceder {
-    padding: 15px 20px;
-    font-size: 1rem;
-  }
-  
-  .info-item {
-    padding: 20px;
-  }
-  
-  .info-icono {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .cta-section {
-    padding: 30px 20px;
-  }
-  
-  .cta-content h3 {
-    font-size: 1.5rem;
-  }
-  
-  .cta-content p {
-    font-size: 1rem;
-  }
-  
+
   .cta-btn {
-    padding: 15px 25px;
-    font-size: 1rem;
-    min-width: auto;
+    width: 100%;
   }
-}
 
-/* ========================================
-   ANIMACIONES
-   ======================================== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  .seleccion-opcion-card {
+    padding: 2rem 1.5rem;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .seleccion-badge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
   }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-.hero-icono {
-  animation: pulse 3s ease-in-out infinite;
-}
-
-.opcion-card {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.opcion-card:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.info-item {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.info-item:nth-child(2) {
-  animation-delay: 0.1s;
-}
-
-.info-item:nth-child(3) {
-  animation-delay: 0.2s;
-}
-
-/* ========================================
-   UTILIDADES
-   ======================================== */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-
-.mb-10 { margin-bottom: 10px; }
-.mb-15 { margin-bottom: 15px; }
-.mb-20 { margin-bottom: 20px; }
-.mb-30 { margin-bottom: 30px; }
-
-.p-10 { padding: 10px; }
-.p-15 { padding: 15px; }
-.p-20 { padding: 20px; }
-.p-30 { padding: 30px; }
-
-.flex { display: flex; }
-.flex-column { flex-direction: column; }
-.flex-center { align-items: center; justify-content: center; }
-.flex-between { justify-content: space-between; }
-.flex-wrap { flex-wrap: wrap; }
-
-.hidden { display: none; }
-.visible { display: block; }
-
-.cursor-pointer { cursor: pointer; }
-.cursor-not-allowed { cursor: not-allowed; }
-
-.opacity-50 { opacity: 0.5; }
-.opacity-75 { opacity: 0.75; }
-
-.transition { transition: all 0.3s ease; }
-
-/* ========================================
-   SCROLLBAR PERSONALIZADA
-   ======================================== */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #6a0dad, #d4af37);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #5a009d, #c19b26);
 }
 
