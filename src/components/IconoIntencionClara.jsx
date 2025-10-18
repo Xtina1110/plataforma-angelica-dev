@@ -1,10 +1,10 @@
 import React from 'react';
-import iconoIntencionClaraHD from '../assets/IconoIntencionClaraHD.png';
+import iconoIntencionClara from '../assets/IconoIntencionClara.png';
 
 const IconoIntencionClara = ({ className = "w-24 h-24" }) => {
   return (
     <img
-      src={iconoIntencionClaraHD}
+      src={iconoIntencionClara}
       alt="Intención Clara"
       className={className}
       style={{ objectFit: 'contain' }}

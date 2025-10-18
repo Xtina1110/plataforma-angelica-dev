@@ -140,9 +140,11 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 2rem 0;
+  border-radius: 1.5rem; /* XL - Standardized to match Sonoterapia */
+  padding: 3rem 2rem; /* Standardized to match Sonoterapia */
   margin: 0;
   overflow: hidden; /* Prevent horizontal overflow */
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3); /* Added for consistency */
 }
 
 /* Removed ::before to prevent positioning issues */
