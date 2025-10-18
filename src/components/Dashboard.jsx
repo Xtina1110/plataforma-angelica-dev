@@ -1313,7 +1313,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '10px' }}>Mis Consultas en Vivo</h1>
               <p style={{ fontSize: '1rem', opacity: 0.9 }}>Accede a tus videollamadas angelicales programadas</p>
             </div>
-            <MisReservas user={user} />
+            <MisReservas user={user} hideHeader={true} />
             <FooterLegal />
           </div>
         );

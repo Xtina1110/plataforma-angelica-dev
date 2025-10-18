@@ -6,7 +6,7 @@ import { Calendar, Clock, User, Video, FileText, Download, Star, CheckCircle, XC
 import { useNavigate } from 'react-router-dom';
 import './MisReservas.css';
 
-export default function MisReservas({ user }) {
+export default function MisReservas({ user, hideHeader = false }) {
   const [reservas, setReservas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('proximas');
@@ -162,27 +162,29 @@ export default function MisReservas({ user }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50">
       {/* Header Superior */}
-      <div className="bg-white/80 backdrop-blur-md border-b border-purple-100 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-              <Calendar className="w-6 h-6 text-white" />
+      {!hideHeader && (
+        <div className="bg-white/80 backdrop-blur-md border-b border-purple-100 sticky top-0 z-10 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Mis Reservas
+                </h2>
+                <p className="text-xs text-gray-500">Gestiona tus sesiones angelicales</p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Mis Reservas
-              </h2>
-              <p className="text-xs text-gray-500">Gestiona tus sesiones angelicales</p>
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-gray-600">{user?.email}</span>
             </div>
-          </div>
-          <div className="flex items-center space-x-4">
-            <span className="text-sm text-gray-600">{user?.email}</span>
           </div>
         </div>
-      </div>
+      )}
       
       {/* Contenido Principal */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="w-full px-4 py-8">
         <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8">
           {/* Tabs */}
           <div className="flex justify-center mb-8 space-x-4">
@@ -251,14 +253,14 @@ export default function MisReservas({ user }) {
               <p className="text-gray-600 text-lg">No tienes reservas {activeTab}</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 justify-items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
               {reservasFiltradas.map((reserva) => {
                 const sessionStatus = activeTab === 'proximas' ? getSessionStatus(reserva) : null;
                 
                 return (
                   <div
                     key={reserva.id}
-                    className="w-full max-w-md border-2 border-purple-200 rounded-xl p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
+                    className="w-full border-2 border-purple-200 rounded-xl p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center space-x-2">
