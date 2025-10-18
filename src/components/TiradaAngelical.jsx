@@ -416,16 +416,20 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
     <div className="tirada-angelical" style={{ position: 'relative' }}>
       {/* Paso 1: Instrucciones - REESCRITO DESDE CERO */}
       {paso === 'instrucciones' && (
-        <div className="w-full overflow-hidden" style={{ 
-          background: 'linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url(/lovable-uploads/774c9267-ae3b-41ab-9ae7-8e71c2f9ecba.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          padding: '3rem 2rem',
-          marginBottom: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '600px'
-        }}>
+        <div className="w-full overflow-hidden" style={{ padding: '2rem 1rem' }}>
+          <div style={{ 
+            background: 'linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url(/lovable-uploads/774c9267-ae3b-41ab-9ae7-8e71c2f9ecba.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            padding: '3rem 2rem',
+            marginBottom: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '600px',
+            borderRadius: '1.5rem',
+            maxWidth: '1024px',
+            margin: '0 auto'
+          }}>
           <div className="mx-auto max-w-5xl" style={{ marginBottom: 0, paddingBottom: 0 }}>
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl pt-6 px-6 pb-8 md:pt-8 md:px-8 md:pb-10 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)', marginBottom: 0, maxWidth: '900px', margin: '0 auto' }}>
               <div className="text-center mb-6">
@@ -482,6 +486,7 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                 </button>
               </div>
             </div>
+          </div>
           </div>
         </div>
       )}
