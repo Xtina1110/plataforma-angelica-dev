@@ -602,7 +602,6 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
               </div>
             )}
             </div>
-              </div>
             </div>
           </div>
         </div>
