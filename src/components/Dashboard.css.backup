@@ -21,7 +21,7 @@ body {
    ======================================== */
 .eventos-carousel-container {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 24px;
   margin: 24px 0;
@@ -37,7 +37,7 @@ body {
   transition: all 0.3s ease;
   height: 300px;
   position: relative;
-  border-radius: 1rem;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
@@ -73,7 +73,7 @@ body {
   background: rgba(106, 13, 173, 0.95);
   color: white;
   padding: 12px 16px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   text-align: center;
   backdrop-filter: blur(10px);
   z-index: 3;
@@ -102,7 +102,7 @@ body {
   top: 16px;
   right: 16px;
   padding: 8px 16px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -214,7 +214,7 @@ body {
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -253,7 +253,7 @@ body {
   background: rgba(107, 70, 193, 0.9);
   color: white;
   padding: 8px 12px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   text-align: center;
   backdrop-filter: blur(10px);
 }
@@ -324,7 +324,7 @@ body {
 .categoria-badge-nuevo {
   font-size: 11px;
   padding: 4px 8px;
-  border-radius: 0.5rem;
+  border-radius: 6px;
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -362,7 +362,7 @@ body {
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -385,7 +385,7 @@ body {
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   cursor: default;
@@ -417,7 +417,7 @@ body {
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -561,7 +561,7 @@ body {
   border: 2px solid rgba(139, 92, 246, 0.2);
   cursor: pointer;
   padding: 10px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   color: #8b5cf6;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
@@ -586,7 +586,7 @@ body {
 /* Estilos para navegación del sidebar */
 .sidebar-nav li {
   margin: 6px 12px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   padding: 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -602,7 +602,7 @@ body {
   padding: 12px 16px !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   width: 100% !important;
-  border-radius: 0.75rem !important;
+  border-radius: 12px !important;
   position: relative !important;
   flex-wrap: nowrap !important;
   color: #6b7280 !important;
@@ -715,7 +715,7 @@ body {
 .filter-buttons-dashboard button {
   padding: 12px 24px;
   border: none;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   color: #495057;
   font-weight: 600;
@@ -744,7 +744,7 @@ body {
 
 .blog-card-dashboard {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -808,7 +808,7 @@ body {
 
 .blog-badge {
   padding: 4px 12px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -830,7 +830,7 @@ body {
   background: linear-gradient(135deg, #FFCC00 0%, #FFB700 100%);
   color: white;
   border: none;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -849,7 +849,7 @@ body {
 
 .blog-skeleton {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
@@ -945,7 +945,7 @@ body {
   margin-bottom: 16px;
   padding: 14px;
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.08) 100%);
-  border-radius: 1rem;
+  border-radius: 16px;
   border: 2px solid rgba(139, 92, 246, 0.15);
   transition: all 0.3s ease;
 }
@@ -1035,7 +1035,7 @@ body {
   gap: 10px;
   padding: 12px 18px;
   border: 2px solid transparent;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -1240,7 +1240,7 @@ body {
   color: white;
   border: none;
   padding: 0.875rem 1rem;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
@@ -1264,7 +1264,7 @@ body {
   color: white;
   border: none;
   padding: 0.875rem 1rem;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
@@ -1301,7 +1301,7 @@ body {
   gap: 12px;
   padding: 12px;
   background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
-  border-radius: 0.75rem;
+  border-radius: 12px;
   margin-bottom: 12px;
 }
 
@@ -1363,7 +1363,7 @@ body {
   background: rgba(139, 92, 246, 0.5);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
@@ -1406,7 +1406,7 @@ body {
   background: rgba(139, 92, 246, 0.5);
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
@@ -1460,7 +1460,7 @@ body {
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
   color: white;
   padding: 30px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   margin-bottom: 30px;
   box-shadow: 0 10px 30px rgba(106, 13, 173, 0.2);
 }
@@ -1525,7 +1525,7 @@ body {
 
 .seccion-dashboard {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 1.5rem;
+  border-radius: 20px;
   padding: 30px;
   margin-bottom: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -1543,7 +1543,7 @@ body {
 .imagen-angel-dashboard {
   width: 500px !important;
   height: auto !important;
-  border-radius: 1rem !important;
+  border-radius: 15px !important;
   box-shadow: 0 10px 25px rgba(106, 13, 173, 0.2) !important;
   transition: transform 0.3s ease !important;
 }
@@ -1566,7 +1566,7 @@ body {
 .metrica-card {
   background: rgba(255, 255, 255, 0.95);
   padding: 25px;
-  border-radius: 1rem;
+  border-radius: 15px;
   text-align: center;
   box-shadow: 0 5px 20px rgba(106, 13, 173, 0.1);
   transition: all 0.3s ease;
@@ -1612,7 +1612,7 @@ body {
 .mensaje-del-dia-premium {
   position: relative;
   height: 280px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   overflow: hidden;
   background: transparent;
   border: 2px solid #d4af37;
@@ -1709,7 +1709,7 @@ body {
   color: white;
   border: none;
   padding: 8px 15px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -1775,7 +1775,7 @@ body {
    ======================================== */
 .calendario-eventos-widget {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 1.5rem;
+  border-radius: 20px;
   padding: 25px;
   margin-bottom: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -1812,7 +1812,7 @@ body {
 
 .evento-card {
   background: rgba(255, 255, 255, 0.9);
-  border-radius: 1rem;
+  border-radius: 15px;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -1844,7 +1844,7 @@ body {
   background: linear-gradient(135deg, #6a0dad, #8a2be2);
   color: white;
   padding: 12px;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   min-width: 60px;
   text-align: center;
   flex-shrink: 0;
@@ -1900,7 +1900,7 @@ body {
 
 .categoria-badge {
   padding: 3px 8px;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
@@ -1942,7 +1942,7 @@ body {
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -1966,7 +1966,7 @@ body {
   background: rgba(76, 175, 80, 0.1);
   color: #4caf50;
   padding: 6px 12px;
-  border-radius: 1rem;
+  border-radius: 15px;
   font-size: 12px;
   font-weight: 600;
 }
@@ -1976,7 +1976,7 @@ body {
   color: white;
   border: none;
   padding: 12px 20px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2010,7 +2010,7 @@ body {
 
 .app-card-correcto {
   background: white;
-  border-radius: 1rem;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -2029,7 +2029,7 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  border-radius: 1rem 15px 0 0;
+  border-radius: 15px 15px 0 0;
   position: relative;
 }
 
@@ -2074,7 +2074,7 @@ body {
   color: white;
   border: none;
   padding: 12px 20px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
@@ -2124,7 +2124,7 @@ body {
   color: white;
   border: none;
   padding: 12px 20px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2156,7 +2156,7 @@ body {
 
 .evento-card-completa {
   background: white;
-  border-radius: 1rem;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -2188,7 +2188,7 @@ body {
   align-items: center;
   background: rgba(255, 255, 255, 0.2);
   padding: 10px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
 }
 
 .evento-fecha-completa .dia {
@@ -2203,7 +2203,7 @@ body {
 
 .categoria-badge {
   padding: 6px 12px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
@@ -2258,7 +2258,7 @@ body {
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2279,7 +2279,7 @@ body {
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2300,7 +2300,7 @@ body {
   background: linear-gradient(135deg, #6a0dad, #8a2be2);
   color: white;
   padding: 20px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   margin-bottom: 30px;
   box-shadow: 0 8px 25px rgba(106, 13, 173, 0.3);
   transition: all 0.3s ease;
@@ -2338,7 +2338,7 @@ body {
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.2);
   padding: 12px 18px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2384,7 +2384,7 @@ body {
   color: white;
   border: 2px solid transparent;
   padding: 12px 18px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -2454,7 +2454,7 @@ body {
 
 .cart-modal {
   background: white;
-  border-radius: 1rem;
+  border-radius: 15px;
   width: 90%;
   max-width: 600px;
   max-height: 80vh;
@@ -2528,7 +2528,7 @@ body {
 
 .cart-item {
   background: #f8f9fa;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   padding: 15px;
   display: flex;
   justify-content: space-between;
@@ -2655,7 +2655,7 @@ body {
   color: white;
   border: none;
   padding: 12px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2672,7 +2672,7 @@ body {
   color: white;
   border: none;
   padding: 12px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2707,7 +2707,7 @@ body {
 
 .settings-modal {
   background: white;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   width: 90%;
   max-width: 600px;
   max-height: 80vh;
@@ -2780,7 +2780,7 @@ body {
 .setting-field select {
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-size: 14px;
   transition: border-color 0.3s ease;
 }
@@ -2824,7 +2824,7 @@ body {
   color: white;
   border: none;
   padding: 12px 24px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2930,7 +2930,7 @@ body {
 
 .evento-modal-content {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   width: 90%;
   max-width: 550px;
   max-height: 75vh;
@@ -2966,7 +2966,7 @@ body {
   position: relative;
   height: 220px;
   overflow: hidden;
-  border-radius: 1rem 16px 0 0;
+  border-radius: 16px 16px 0 0;
 }
 
 .evento-modal-imagen img {
@@ -2999,7 +2999,7 @@ body {
 
 .categoria-badge-modal {
   padding: 6px 12px;
-  border-radius: 1rem;
+  border-radius: 16px;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -3041,7 +3041,7 @@ body {
   margin-bottom: 16px;
   padding: 16px;
   background: #f8f9fa;
-  border-radius: 0.75rem;
+  border-radius: 12px;
 }
 
 .detalle-modal {
@@ -3077,7 +3077,7 @@ body {
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
@@ -3105,7 +3105,7 @@ body {
   color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
@@ -3160,7 +3160,7 @@ body {
    ======================================== */
 .aplicaciones-carousel-container {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 24px;
   margin: 24px 0;
@@ -3175,7 +3175,7 @@ body {
   transition: all 0.3s ease;
   height: 280px;
   position: relative;
-  border-radius: 1rem;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
@@ -3208,7 +3208,7 @@ body {
   position: absolute;
   top: 16px;
   right: 16px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   padding: 12px;
   backdrop-filter: blur(10px);
   z-index: 3;
@@ -3243,7 +3243,7 @@ body {
   top: 8px;
   right: 8px;
   padding: 4px 10px;
-  border-radius: 1rem;
+  border-radius: 15px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -3343,7 +3343,7 @@ body {
 
 .eventino-events-container {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 24px;
 }
@@ -3354,7 +3354,7 @@ body {
 
 .eventino-event-card {
   background: white;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -3391,7 +3391,7 @@ body {
   background: #8B5CF6;
   color: white;
   padding: 12px 16px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   text-align: center;
   min-width: 70px;
   backdrop-filter: blur(10px);
@@ -3488,7 +3488,7 @@ body {
   color: white;
   border: none;
   padding: 12px 20px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -3577,7 +3577,7 @@ body {
   position: relative;
   width: 100%;
   height: 350px; /* Altura aumentada para más información en hover */
-  border-radius: 1rem;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -3607,7 +3607,7 @@ body {
   background: rgba(106, 13, 173, 0.9);
   color: white;
   padding: 8px 12px;
-  border-radius: 0.75rem;
+  border-radius: 10px;
   text-align: center;
   z-index: 3;
   backdrop-filter: blur(5px);
@@ -3633,7 +3633,7 @@ body {
   top: 15px;
   right: 15px;
   padding: 6px 12px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -3695,7 +3695,7 @@ body {
 .hover-content {
   background: white;
   padding: 12px;
-  border-radius: 1rem;
+  border-radius: 15px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   max-width: 370px;
   width: 95%;
@@ -4094,7 +4094,7 @@ body {
   position: relative;
   width: 100%;
   height: 350px; /* Altura aumentada para más información en hover */
-  border-radius: 1rem;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -4124,7 +4124,7 @@ body {
   background: rgba(106, 13, 173, 0.9);
   color: white;
   padding: 8px 12px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-weight: 700;
   text-align: center;
   backdrop-filter: blur(10px);
@@ -4147,7 +4147,7 @@ body {
   top: 16px;
   right: 16px;
   padding: 6px 12px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -4288,7 +4288,7 @@ body {
   position: relative;
   width: 100%;
   height: 350px;
-  border-radius: 1rem;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -4318,7 +4318,7 @@ body {
   background: rgba(106, 13, 173, 0.9);
   color: white;
   padding: 8px 12px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   font-weight: 700;
   text-align: center;
   backdrop-filter: blur(10px);
@@ -4341,7 +4341,7 @@ body {
   top: 16px;
   right: 16px;
   padding: 6px 12px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -4469,7 +4469,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 10px 20px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -4637,7 +4637,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 10px 20px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -4668,7 +4668,7 @@ body {
    ======================================== */
 .user-profile-section {
   background: linear-gradient(135deg, rgba(106, 13, 173, 0.1), rgba(138, 43, 226, 0.1));
-  border-radius: 0.75rem;
+  border-radius: 12px;
   padding: 16px;
   border: 1px solid rgba(106, 13, 173, 0.2);
   display: flex;
@@ -4718,7 +4718,7 @@ body {
   background: linear-gradient(135deg, #ff8c00, #ffa500);
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   padding: 12px 16px;
   font-size: 14px;
   font-weight: 600;
@@ -4741,7 +4741,7 @@ body {
   background: linear-gradient(135deg, #4a90e2, #357abd);
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   padding: 12px 16px;
   font-size: 14px;
   font-weight: 600;
@@ -5099,7 +5099,7 @@ body {
 .sidebar-nav li {
   cursor: pointer;
   margin: 6px 12px;
-  border-radius: 0.75rem;
+  border-radius: 12px;
   padding: 12px 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;

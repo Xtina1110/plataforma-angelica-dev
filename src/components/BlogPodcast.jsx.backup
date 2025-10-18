@@ -8,8 +8,6 @@ import {
 } from 'lucide-react';
 import InstruccionesAngelicales from './InstruccionesAngelicales';
 import FooterLegal from './FooterLegal';
-import BlogCard from './PodcastYBlog/BlogCard';
-import BlogArticleView from './PodcastYBlog/BlogArticleView';
 
 // Context para el Blog y Podcast
 const BlogPodcastContext = createContext();
@@ -128,7 +126,6 @@ La conexión angelical diaria transforma no solo tu día, sino tu vida entera. C
     vistas: 2450,
     likes: 189,
     compartidos: 67,
-    comentarios: 24,
     destacado: true
   },
   {
@@ -181,7 +178,6 @@ Recuerda que los cristales son herramientas que amplifican tu propia capacidad d
     vistas: 1890,
     likes: 156,
     compartidos: 43,
-    comentarios: 18,
     destacado: false
   },
   {
@@ -239,7 +235,6 @@ Recuerda que tu propósito puede evolucionar a lo largo de tu vida. Los Arcánge
     vistas: 3120,
     likes: 234,
     compartidos: 89,
-    comentarios: 31,
     destacado: true
   }
 ];
@@ -681,11 +676,9 @@ const BlogSection = ({ onVolver }) => {
   // Si hay un artículo seleccionado, mostrar la vista del artículo
   if (blogPodcastState.articuloSeleccionado) {
     return (
-      <BlogArticleView 
+      <ArticuloView 
         articulo={blogPodcastState.articuloSeleccionado}
-        todosArticulos={articulosBlog}
         onVolver={() => updateBlogPodcastState({ articuloSeleccionado: null })}
-        onArticuloClick={seleccionarArticulo}
       />
     );
   }
@@ -762,7 +755,7 @@ const BlogSection = ({ onVolver }) => {
           </div>
         ) : (
           articulosFiltrados.map((articulo) => (
-            <BlogCard
+            <ArticuloCard
               key={articulo.id}
               articulo={articulo}
               esFavorito={blogPodcastState.favoritos.some(f => f.id === articulo.id)}

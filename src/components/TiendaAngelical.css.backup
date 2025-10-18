@@ -1,7 +1,7 @@
 .tienda-angelica-container {
   padding: 30px;
   background-color: #f9f9f9;
-  border-radius: 1rem;
+  border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
   max-width: 1200px;
   margin: 0 auto;
@@ -29,7 +29,7 @@
   margin-bottom: 40px;
   background-color: #ffffff;
   padding: 20px;
-  border-radius: 1rem;
+  border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -48,7 +48,7 @@
 .filtro-grupo input[type="text"] {
   padding: 10px 15px;
   border: 1px solid #ddd;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-size: 1rem;
   color: #333;
   outline: none;
@@ -68,7 +68,7 @@
 
 .producto-card {
   background-color: #ffffff;
-  border-radius: 1rem;
+  border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   display: flex;
@@ -156,7 +156,7 @@
   color: white;
   border: none;
   padding: 10px 15px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   font-size: 0.95rem;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -222,7 +222,7 @@
 .modal-content {
   background-color: #ffffff;
   padding: 40px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   max-width: 800px;
   width: 90%;
@@ -254,7 +254,7 @@
   flex-shrink: 0;
   width: 300px;
   height: 300px;
-  border-radius: 1rem;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -300,7 +300,7 @@
   color: white;
   border: none;
   padding: 12px 25px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -375,7 +375,7 @@
 .cart-modal-content {
   background-color: #ffffff;
   padding: 30px;
-  border-radius: 1.5rem;
+  border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   max-width: 500px;
   width: 90%;
@@ -419,7 +419,7 @@
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 0.5rem;
+  border-radius: 8px;
 }
 
 .cart-item-details h4 {
@@ -470,7 +470,7 @@
   color: white;
   border: none;
   padding: 15px 30px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-size: 1.1rem;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -521,7 +521,7 @@
   }
   .btn-tienda.icon-only {
     width: 100%;
-    border-radius: 0.5rem;
+    border-radius: 8px;
   }
   .modal-content {
     flex-direction: column;

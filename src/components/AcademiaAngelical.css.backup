@@ -173,7 +173,7 @@ body {
   border: none;
   color: white;
   padding: 12px 24px;
-  border-radius: 1.5rem;
+  border-radius: 25px;
   font-weight: 600;
   transition: all 0.3s ease;
   position: relative;
@@ -265,7 +265,7 @@ body {
 
 .card-angelical {
   background: white;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: 0 8px 32px rgba(156, 39, 176, 0.1);
   border: 1px solid rgba(156, 39, 176, 0.1);
   transition: all 0.3s ease;
