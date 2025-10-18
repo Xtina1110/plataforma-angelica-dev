@@ -1087,3 +1087,46 @@
   background: #c19b26;
 }
 
+
+
+/* ========================================
+   BOTÓN DE DESCARGA PDF EN TARJETAS
+   ======================================== */
+.tema-acciones {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(147, 51, 234, 0.1);
+}
+
+.btn-descargar-pdf {
+  width: 100%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem; /* MEDIUM - Standardized */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.btn-descargar-pdf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.btn-descargar-pdf:active {
+  transform: translateY(0);
+}
+
+.btn-descargar-pdf svg {
+  flex-shrink: 0;
+}
+

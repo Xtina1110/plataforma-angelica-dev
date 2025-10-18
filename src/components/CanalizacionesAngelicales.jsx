@@ -472,37 +472,7 @@ const CanalizacionesAngelicales = ({ onVolver, addToCart }) => {
         {!canalizacionesState.mostrandoMensaje ? (
           // Pantalla de selección de temas
           <div className="seleccion-temas">
-            {/* Sección de instrucciones */}
-            <InstruccionesAngelicales 
-              titulo="Canalizaciones Angelicales"
-              descripcion="Mensajes personalizados de tus ángeles guardianes para guiar tu camino espiritual"
-              colorPrimario="purple"
-              instrucciones={[
-                {
-                  icono: Heart,
-                  titulo: "Corazón Abierto",
-                  descripcion: "Prepara tu corazón para recibir los mensajes con amor y confianza."
-                },
-                {
-                  icono: Star,
-                  titulo: "Mente Receptiva",
-                  descripcion: "Permite que los mensajes fluyan sin resistencia hacia tu conciencia."
-                },
-                {
-                  icono: Sparkles,
-                  titulo: "Gratitud Sagrada",
-                  descripcion: "Agradece cada mensaje recibido como un regalo divino para tu alma."
-                }
-              ]}
-              llamadaAccion="Recibe tu mensaje"
-              onAccionClick={() => {
-                // Scroll to themes grid
-                const temasContainer = document.querySelector('.temas-container');
-                if (temasContainer) {
-                  temasContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
-            />
+            {/* Canalizaciones Grid - No instructions needed */}
 
             {/* Controles sin búsqueda temporalmente */}
             <div className="controles-principales">              
@@ -556,6 +526,7 @@ const CanalizacionesAngelicales = ({ onVolver, addToCart }) => {
                     onSeleccionar={seleccionarTema}
                     onToggleFavorito={toggleFavorito}
                     vista={canalizacionesState.vistaActual}
+                    onDescargarPDF={descargarPDF}
                   />
                 ))
               )}
@@ -609,7 +580,7 @@ const CanalizacionesAngelicales = ({ onVolver, addToCart }) => {
 };
 
 // Componente de tarjeta de tema
-const TemaCard = ({ tema, esFavorito, onSeleccionar, onToggleFavorito, vista }) => {
+const TemaCard = ({ tema, esFavorito, onSeleccionar, onToggleFavorito, vista, onDescargarPDF }) => {
   return (
     <div className={`tema-card ${vista} ${tema.premium ? 'premium' : ''}`} onClick={() => onSeleccionar(tema)}>
       <div className="tema-imagen">
@@ -665,6 +636,22 @@ const TemaCard = ({ tema, esFavorito, onSeleccionar, onToggleFavorito, vista }) 
               {tag}
             </span>
           ))}
+        </div>
+        
+        <div className="tema-acciones">
+          <button
+            className="btn-descargar-pdf"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onDescargarPDF) {
+                onDescargarPDF(tema);
+              }
+            }}
+            title="Descargar canalización en PDF"
+          >
+            <Download size={18} />
+            <span>Descargar PDF</span>
+          </button>
         </div>
       </div>
     </div>
