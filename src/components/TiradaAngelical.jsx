@@ -613,8 +613,14 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
       {/* Paso 3: Barajando */}
       {paso === 'barajando' && (
         <div className="tirada-step">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="barajando-container">
+          <div className="w-full overflow-hidden" style={{ padding: '2rem 1rem' }}>
+            <div style={{ 
+              borderRadius: '1.5rem',
+              maxWidth: '1024px',
+              margin: '0 auto',
+              overflow: 'hidden'
+            }}>
+              <div className="barajando-container">
             {/* Ángel en el lateral izquierdo */}
             <div className="angel-lateral-izquierdo">
               <img
@@ -641,7 +647,8 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                 Conectando con la energía angelical...
               </p>
             </div>
-          </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
