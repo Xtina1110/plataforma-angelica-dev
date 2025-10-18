@@ -253,14 +253,15 @@ export default function MisReservas({ user, hideHeader = false }) {
               <p className="text-gray-600 text-lg">No tienes reservas {activeTab}</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className={hideHeader ? "grid grid-cols-1 lg:grid-cols-2 gap-4" : "grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"}>
               {reservasFiltradas.map((reserva) => {
                 const sessionStatus = activeTab === 'proximas' ? getSessionStatus(reserva) : null;
                 
                 return (
                   <div
                     key={reserva.id}
-                    className="w-full border-2 border-purple-200 rounded-xl p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
+                    className="w-full border-2 border-purple-200 rounded-xl p-4 sm:p-6 hover:shadow-lg transition-all bg-gradient-to-br from-white to-purple-50"
+                    style={{ maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div className="flex items-center space-x-2">

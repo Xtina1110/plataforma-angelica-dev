@@ -1301,19 +1301,23 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         );
       case 'videollamada':
         return (
-          <div>
+          <div style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
             <div className="mis-reservas-header" style={{
               background: 'linear-gradient(135deg, #DC143C 0%, #FF1493 100%)',
               padding: '30px',
               borderRadius: '20px',
               marginBottom: '30px',
               color: 'white',
-              textAlign: 'center'
+              textAlign: 'center',
+              width: '100%',
+              boxSizing: 'border-box'
             }}>
               <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '10px' }}>Mis Consultas en Vivo</h1>
               <p style={{ fontSize: '1rem', opacity: 0.9 }}>Accede a tus videollamadas angelicales programadas</p>
             </div>
-            <MisReservas user={user} hideHeader={true} />
+            <div style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
+              <MisReservas user={user} hideHeader={true} />
+            </div>
             <FooterLegal />
           </div>
         );
