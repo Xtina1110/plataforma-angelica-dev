@@ -420,13 +420,14 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
           background: 'linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.5)), url(/lovable-uploads/774c9267-ae3b-41ab-9ae7-8e71c2f9ecba.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          padding: '2rem 0 0 0',
+          padding: '3rem 2rem',
           marginBottom: 0,
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          minHeight: '600px'
         }}>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" style={{ marginBottom: 0, paddingBottom: 0 }}>
-            <div className="bg-white/90 backdrop-blur-sm rounded-2xl pt-6 px-6 pb-8 md:pt-8 md:px-8 md:pb-10 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)', marginBottom: 0 }}>
+          <div className="mx-auto max-w-5xl" style={{ marginBottom: 0, paddingBottom: 0 }}>
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl pt-6 px-6 pb-8 md:pt-8 md:px-8 md:pb-10 shadow-lg" style={{ border: '1px solid rgba(200, 200, 255, 0.3)', marginBottom: 0, maxWidth: '900px', margin: '0 auto' }}>
               <div className="text-center mb-6">
                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
                   Preparación para tu Experiencia
