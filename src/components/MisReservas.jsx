@@ -184,8 +184,8 @@ export default function MisReservas({ user, hideHeader = false }) {
       )}
       
       {/* Contenido Principal */}
-      <div className="w-full px-4 py-8">
-        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8">
+      <div className={hideHeader ? "w-full" : "w-full px-4 py-8"}>
+        <div className={hideHeader ? "bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8" : "bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8"}>
           {/* Tabs */}
           <div className="flex justify-center mb-8 space-x-4">
             <button
