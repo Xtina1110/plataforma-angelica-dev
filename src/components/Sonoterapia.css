@@ -125,9 +125,10 @@
 }
 
 .btn-vista.activo {
-  background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
+  background: #faf5ff;
   border-color: #9333ea;
-  color: white;
+  color: #9333ea;
+  font-weight: 700;
 }
 
 /* ========================================
