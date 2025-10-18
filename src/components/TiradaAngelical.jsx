@@ -497,8 +497,14 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
       {/* Paso 2: Selección (Tipo y Tema) */}
       {paso === 'seleccion' && (
         <div className="tirada-step">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="seleccion-container">
+          <div className="w-full overflow-hidden" style={{ padding: '2rem 1rem' }}>
+            <div style={{ 
+              borderRadius: '1.5rem',
+              maxWidth: '1024px',
+              margin: '0 auto',
+              overflow: 'hidden'
+            }}>
+              <div className="seleccion-container">
             <div className="seleccion-grid">
               {/* Columna izquierda - Tipos de tirada */}
               <Card className="border-2 border-amber-400/60 shadow-lg shadow-amber-200/20">
@@ -595,6 +601,8 @@ const TiradaAngelical = ({ onVolver, user, onLogout }) => {
                 </Card>
               </div>
             )}
+            </div>
+              </div>
             </div>
           </div>
         </div>
