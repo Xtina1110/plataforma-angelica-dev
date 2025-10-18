@@ -160,7 +160,7 @@ export default function MisReservas({ user, hideHeader = false }) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50">
+    <div className={hideHeader ? "" : "min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50"}>
       {/* Header Superior */}
       {!hideHeader && (
         <div className="bg-white/80 backdrop-blur-md border-b border-purple-100 sticky top-0 z-10 shadow-sm">
