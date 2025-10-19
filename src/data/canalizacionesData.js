@@ -554,6 +554,206 @@ Lleva las manos al corazón y agradece.`
     popularidad: 92,
     rating: 5.0,
     reproducciones: 0
+  },
+  {
+    id: 'angeles-salud',
+    titulo: 'Ángeles de la Salud',
+    arcangel: 'Ángeles de la Salud',
+    categoria: 'Sanación',
+    descripcion: 'Esta canalización invoca al coro de Ángeles de la Salud, guardianes de la armonía entre cuerpo, mente y alma. Ellos no solo alivian dolencias: restauran la conciencia del equilibrio.',
+    proposito: 'Realízala cuando necesites sanar, fortalecer tu energía vital, acompañar un proceso de recuperación o simplemente reconectarte con tu cuerpo desde la gratitud.',
+    
+    // Metadatos
+    duracion: '25-30 minutos',
+    frecuenciaSonora: '528 Hz (Regeneración Celular)',
+    colorVibracional: 'verde esmeralda con destellos dorados',
+    cristalRecomendado: 'cuarzo verde, jade, malaquita o fluorita',
+    
+    // Música sugerida
+    musicaSugerida: {
+      frecuencia: '528 Hz (reparación ADN) + 639 Hz (armonía interior)',
+      instrumentos: 'cuencos tibetanos, arpa, cuerdas suaves y brisa de bosque',
+      duracionTrack: '25-30 minutos',
+      finalizacion: 'campanas suaves al cierre'
+    },
+    
+    // Imagen
+    imagen: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop',
+    color: 'from-emerald-500 to-teal-600',
+    
+    // Premium
+    premium: false,
+    precio: null,
+    comprado: true,
+    
+    // Contenido completo
+    contenido: {
+      preparacionEnergetica: {
+        titulo: '🕯️ Preparación Energética',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Espacio Sagrado',
+            descripcion: 'Busca un lugar tranquilo, preferiblemente con luz natural. Enciende una vela verde o blanca. Si tienes un cristal, colócalo sobre el corazón o frente a ti.'
+          },
+          {
+            numero: 2,
+            titulo: 'Postura',
+            descripcion: 'Siéntate con la espalda erguida, pies apoyados en el suelo, y coloca las manos sobre tu abdomen.'
+          },
+          {
+            numero: 3,
+            titulo: 'Respiración Verde Esmeralda (7 ciclos)',
+            descripcion: 'Inhala en 5 segundos imaginando que entra una bruma verde luminosa. Retén 2 segundos y siente cómo esa energía recorre tus órganos. Exhala en 7 segundos liberando toda tensión o miedo acumulado. Cada exhalación limpia y renueva.'
+          },
+          {
+            numero: 4,
+            titulo: 'Invocación',
+            descripcion: '"Amados Ángeles de la Salud, sanadores del cuerpo y del alma, llenen mi ser de equilibrio, purifiquen mis pensamientos, y armonicen cada célula con la vibración divina de la vida."'
+          },
+          {
+            numero: 5,
+            titulo: 'Silencio de apertura',
+            descripcion: 'Percibe un cambio sutil en el aire durante 1 minuto, una sensación de frescura y alivio recorriendo tus brazos. La sanación ha comenzado.'
+          }
+        ]
+      },
+      
+      visualizacionGuiada: {
+        titulo: '🌈 Visualización Guiada',
+        duracion: '5 minutos',
+        texto: `Imagina que te encuentras en un bosque de hojas esmeralda.
+El aire huele a tierra húmeda y vida nueva.
+Cada respiración es un bálsamo.
+Frente a ti hay un río transparente; su sonido es un canto de agua viva.
+
+Te acercas, y al mirar la superficie ves tu reflejo, pero no como cuerpo, sino como luz pulsante.
+De los árboles descienden figuras angélicas vestidas de verde y oro.
+Sus alas se extienden como brisas, y donde tocan, todo florece.
+
+Uno de ellos se acerca y coloca sus manos sobre tu cabeza.
+Otro sobre tu pecho.
+Sientes una corriente cálida, eléctrica, que recorre tu espina dorsal.
+Tu respiración se hace profunda, tu mente calla, el cuerpo se abre a recibir.
+
+Los ángeles murmuran:
+
+"Recuerda: tu cuerpo es un templo, no un campo de batalla."
+
+La energía comienza a reorganizarse desde la raíz hasta la coronilla.
+Tus órganos, tejidos y células vibran al unísono con una melodía divina.
+Te conviertes en un instrumento de armonía.`
+      },
+      
+      mensajeCanalizado: {
+        titulo: '👼 Mensaje Canalizado',
+        duracion: '10 minutos',
+        texto: `"Amado hijo de la Luz,
+
+somos los Ángeles de la Salud, y hoy te recordamos que cada parte de ti es sagrada.
+
+Has aprendido a cuidar tu cuerpo desde el miedo: miedo a enfermar, a envejecer, a doler.
+Pero el cuerpo no necesita temor, necesita presencia.
+
+Cada célula responde a tus pensamientos.
+Cada órgano escucha tus emociones.
+Cada latido obedece a la intención que emanas.
+
+Cuando te rechazas, tus tejidos se contraen.
+Cuando te agradeces, se expanden.
+
+Hoy queremos devolverte el poder sobre ti mismo.
+
+No somos médicos, somos memoria divina en acción.
+Te enseñamos a recordar que la salud comienza en el pensamiento que eliges sostener.
+
+El desequilibrio ocurre cuando el cuerpo grita lo que el alma calla.
+Por eso, no castigues tus síntomas: escúchalos.
+
+El dolor no es castigo, es un mensajero;
+la fatiga no es debilidad, es una llamada al descanso;
+la enfermedad no es enemiga, es un maestro temporal que te muestra dónde falta amor.
+
+Hoy derramamos sobre ti un rocío verde-dorado.
+Deja que penetre hasta el núcleo de tus células.
+
+Tu sangre se llena de luz.
+Tus pulmones inhalan confianza.
+Tu mente deja de pelear y empieza a cooperar.
+
+Entiende esto: la sanación no siempre es ausencia de síntomas,
+sino la paz de saber que estás alineado con la voluntad divina.
+
+Si tu cuerpo necesita descanso, otórgaselo.
+Si tu alma pide silencio, entrégaselo.
+
+Nosotros caminamos contigo en cada tratamiento, en cada recuperación, en cada lágrima transformada en comprensión.
+
+Hoy anclamos en ti una nueva programación celular:
+Vivir en armonía es mi medicina.
+
+Desde ahora, cada respiración tuya recordará esta verdad."`
+      },
+      
+      integracionPractica: {
+        titulo: '🌿 Integración Práctica',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Acto de Gratitud Corporal',
+            descripcion: 'Cada mañana, toca tres partes de tu cuerpo que normalmente ignoras y di: "Te amo, gracias por sostenerme."'
+          },
+          {
+            numero: 2,
+            titulo: 'Baño Verde de Luz (diario)',
+            descripcion: 'Durante la ducha o antes de dormir, imagina que cae una cascada verde brillante sobre ti. Visualiza que limpia cualquier energía estancada.'
+          },
+          {
+            numero: 3,
+            titulo: 'Escritura consciente',
+            descripcion: 'Responde en tu diario: ¿Qué emoción no expresada está pidiendo mi cuerpo que escuche? ¿Dónde necesito perdonarme para sanar?'
+          },
+          {
+            numero: 4,
+            titulo: 'Acción física concreta',
+            descripcion: 'Cuida tu cuerpo como cuidarías a un niño: con ternura, con descanso, con alimento real y con tiempo para respirar.'
+          }
+        ]
+      },
+      
+      cierreEnergetico: {
+        titulo: '🔔 Cierre Energético',
+        duracion: '4 minutos',
+        texto: `Vuelve a visualizar el bosque.
+Los Ángeles de la Salud forman un círculo de luz esmeralda a tu alrededor.
+Extienden sus alas y una lluvia de chispas verdes cae sobre ti.
+Te sientes ligero, renovado.
+
+Uno de ellos te mira y dice:
+
+"Cuida tu energía y tu energía cuidará de ti."
+
+Ellos se elevan lentamente, dejando un sendero luminoso que queda anclado en tu corazón.
+
+Inhala profundo.
+Al exhalar, di tres veces:
+"Estoy en equilibrio. Estoy en salud. Estoy en luz."`
+      }
+    },
+    
+    // Decretos y afirmaciones
+    decretoFinal: '"Mis cuerpos físico, mental, emocional y espiritual vibran en armonía perfecta. Soy salud divina en acción."',
+    
+    afirmacionDiaria: '"Mi cuerpo es el templo donde la luz divina habita."',
+    
+    // Metadatos adicionales
+    tags: ['salud', 'sanación', 'equilibrio', 'cuerpo', 'bienestar', 'armonía celular'],
+    fechaCreacion: '2024-10-19',
+    popularidad: 94,
+    rating: 5.0,
+    reproducciones: 0
   }
 ];
 
