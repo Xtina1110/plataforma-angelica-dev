@@ -1122,6 +1122,187 @@ Permite que la calma se asiente en ti.`
     popularidad: 93,
     rating: 5.0,
     reproducciones: 0
+  },
+  {
+    id: 'angeles-bondad',
+    titulo: 'Ángeles de la Bondad',
+    arcangel: 'Ángeles de la Bondad',
+    categoria: 'Bondad',
+    descripcion: 'Los Ángeles de la Bondad son los mensajeros del corazón abierto. Su energía es dorada, solar, y limpia los rastros de amargura o juicio que opacan el alma.',
+    proposito: 'Realízala para despertar la bondad activa: esa que comprende sin condicionar y ofrece sin calcular.',
+    
+    // Metadatos
+    duracion: '25-30 minutos',
+    frecuenciaSonora: '639 Hz (armonía) o 528 Hz',
+    colorVibracional: 'dorado solar',
+    cristalRecomendado: 'cuarzo citrino, ámbar o topacio dorado',
+    
+    // Música sugerida
+    musicaSugerida: {
+      frecuencia: '639 Hz (armonía) o 528 Hz (reparación)',
+      instrumentos: 'arpa, piano cristalino, cuencos tibetanos dorados',
+      duracionTrack: '25-30 minutos',
+      finalizacion: 'silencio de 1 minuto'
+    },
+    
+    // Imagen
+    imagen: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop',
+    color: 'from-yellow-300 to-orange-400',
+    
+    // Premium
+    premium: false,
+    precio: null,
+    comprado: true,
+    
+    // Contenido completo
+    contenido: {
+      preparacionEnergetica: {
+        titulo: '🕯️ Preparación Energética',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Crea un espacio luminoso',
+            descripcion: 'Enciende una vela dorada o amarilla. Si es posible, colócala cerca de una ventana para que se una con la luz natural. Ten a mano un cuarzo citrino o un girasol.'
+          },
+          {
+            numero: 2,
+            titulo: 'Respiración solar (7 ciclos)',
+            descripcion: 'Inhala por la nariz en 5 s imaginando un rayo dorado que entra por tu coronilla. Retén 3 s sintiendo el calor expandirse en el pecho. Exhala por la boca en 6 s, dejando salir irritación, cansancio o juicio. Con cada respiración, tu interior se ilumina.'
+          },
+          {
+            numero: 3,
+            titulo: 'Invocación',
+            descripcion: '"Amados Ángeles de la Bondad, portadores de la luz dorada del corazón, vengan a mí y despierten en mi alma la ternura, la comprensión y el servicio. Que mis pensamientos y actos irradien paz y compasión."'
+          },
+          {
+            numero: 4,
+            titulo: 'Silencio de apertura',
+            descripcion: 'Siente cómo la temperatura de la habitación sube ligeramente. Es la energía dorada descendiendo sobre ti.'
+          }
+        ]
+      },
+      
+      visualizacionGuiada: {
+        titulo: '🌼 Visualización Guiada',
+        duracion: '5 minutos',
+        texto: `Imagina que te encuentras en un campo bañado por el sol del amanecer.
+La brisa acaricia tu rostro y lleva el aroma de flores silvestres.
+El cielo es un manto de oro líquido.
+
+A lo lejos, ves destellos luminosos acercarse: son los Ángeles de la Bondad.
+Sus túnicas parecen hechas de luz solar.
+Cada paso que dan hace florecer la tierra bajo sus pies.
+
+Uno de ellos se detiene frente a ti y coloca su mano sobre tu pecho.
+Sientes calor, ternura y una oleada de dulzura interior.
+Él sonríe y dice sin palabras:
+
+"El bien no es algo que haces: es lo que eres cuando recuerdas tu origen."
+
+A tu alrededor, miles de pequeñas esferas doradas flotan.
+Cada una representa un acto de bondad que ya has ofrecido, incluso los que olvidaste.
+Se elevan hacia el cielo y regresan multiplicadas como lluvia de luz.`
+      },
+      
+      mensajeCanalizado: {
+        titulo: '👼 Mensaje Canalizado',
+        duracion: '≈10 minutos',
+        texto: `"Amado ser:
+
+Soy uno de los Ángeles de la Bondad, y vengo a recordarte el poder inmenso que yace en lo sencillo.
+
+Has creído que para cambiar el mundo necesitas grandes gestos,
+pero el universo se transforma con una sonrisa, una palabra suave, un silencio compasivo.
+
+Cada vez que eliges no reaccionar con enojo, la Tierra respira.
+Cada vez que bendices en lugar de criticar, una flor invisible se abre en el plano sutil.
+
+No te imaginas cuántas almas se salvan de la desesperanza gracias a un pequeño acto de tu luz.
+
+La bondad no es debilidad; es el coraje de seguir amando en un mundo que olvida hacerlo.
+
+Permítenos disolver el cansancio del alma que se ha sentido usada o incomprendida.
+Colocamos sobre ti un bálsamo de miel luminosa que repara toda dureza.
+
+Desde hoy, te pedimos tres cosas:
+
+1️⃣ Sé amable contigo.
+La bondad comienza por el propio diálogo interior.
+Habla contigo con la misma ternura que ofrecerías a un niño.
+
+2️⃣ Sé luz en lo cotidiano.
+Un saludo, un favor, una mirada de comprensión son oraciones vivas.
+
+3️⃣ Siembra el bien incluso cuando no ves frutos.
+Las semillas de amor germinan fuera del tiempo.
+
+Eres parte de un ejército silencioso de almas que sanan sin hacer ruido.
+
+Donde camines, deja rastro de paz.
+Donde hables, deja eco de esperanza.
+Donde ames, deja huellas de eternidad.
+
+Nosotros multiplicaremos cada acto tuyo,
+convirtiéndolo en redes de luz que envolverán a quienes más lo necesitan.
+
+La bondad es la medicina más alta.
+
+Sé canal de ella."`
+      },
+      
+      integracionPractica: {
+        titulo: '🌿 Integración Práctica',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Ritual del corazón dorado',
+            descripcion: 'Coloca las manos en tu pecho y repite tres veces: "Mi bondad sana el mundo." Visualiza una esfera dorada expandiéndose hasta cubrir la habitación.'
+          },
+          {
+            numero: 2,
+            titulo: 'Acto consciente diario',
+            descripcion: 'Elige un gesto bondadoso al día: una llamada, un perdón, una palabra amable. Hazlo sin esperar reconocimiento.'
+          },
+          {
+            numero: 3,
+            titulo: 'Escritura de gratitud',
+            descripcion: 'Antes de dormir, anota tres cosas buenas que hayas recibido o dado. Agradece y cierra el día con la frase: "El bien siempre regresa multiplicado."'
+          }
+        ]
+      },
+      
+      cierreEnergetico: {
+        titulo: '🔔 Cierre Energético',
+        duracion: '4 minutos',
+        texto: `Visualiza que el sol del atardecer desciende lentamente y se posa sobre tu coronilla.
+Su luz dorada penetra cada célula, llenándote de calor y serenidad.
+Los Ángeles de la Bondad forman un círculo a tu alrededor.
+
+Uno de ellos, con voz melodiosa, declara:
+
+"Donde haya un corazón dispuesto, la bondad florece."
+
+Ellos extienden sus manos y soplan hacia ti una corriente de luz dorada que entra por tu pecho y sale por tus manos.
+Ahora eres un emisor consciente de bondad.
+
+Permanece en esa sensación de expansión unos instantes.
+Respira profundo y deja que la luz se ancle en tu corazón.`
+      }
+    },
+    
+    // Decretos y afirmaciones
+    decretoFinal: '"Yo soy canal del bien. Mi presencia lleva alivio, mi palabra inspira paz, y mi luz bendice cada encuentro."',
+    
+    afirmacionDiaria: '"Elijo la bondad como fuerza y medicina de mi alma."',
+    
+    // Metadatos adicionales
+    tags: ['bondad', 'compasión', 'servicio', 'ternura', 'amor activo', 'corazón abierto'],
+    fechaCreacion: '2024-10-19',
+    popularidad: 91,
+    rating: 5.0,
+    reproducciones: 0
   }
 ];
 
