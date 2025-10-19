@@ -933,6 +933,195 @@ Respira profundo tres veces y repite:
     popularidad: 96,
     rating: 5.0,
     reproducciones: 0
+  },
+  {
+    id: 'angeles-aceptacion',
+    titulo: 'Ángeles de la Aceptación',
+    arcangel: 'Ángeles de la Aceptación',
+    categoria: 'Paz Interior',
+    descripcion: 'Los Ángeles de la Aceptación sostienen tu fe cuando ya no puedes sostenerla tú mismo. Te enseñan a soltar el control, dejar de resistir lo inevitable y encontrar paz dentro de lo que es.',
+    proposito: 'Realízala cuando necesites soltar el control, abrazar lo que no puedes cambiar y rendirte al flujo perfecto del plan divino.',
+    
+    // Metadatos
+    duracion: '25-30 minutos',
+    frecuenciaSonora: '396 Hz (liberación de miedo) o 528 Hz',
+    colorVibracional: 'lavanda, azul perla y plata',
+    cristalRecomendado: 'piedra luna, lepidolita o howlita',
+    
+    // Música sugerida
+    musicaSugerida: {
+      frecuencia: '396 Hz (liberación de miedo y culpa) o 528 Hz (reconexión)',
+      instrumentos: 'cuencos de cuarzo, piano suave, cuerdas, brisa etérea',
+      duracionTrack: '25-30 minutos',
+      finalizacion: 'fade y 90 segundos de silencio final'
+    },
+    
+    // Imagen
+    imagen: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
+    color: 'from-slate-300 to-blue-300',
+    
+    // Premium
+    premium: false,
+    precio: null,
+    comprado: true,
+    
+    // Contenido completo
+    contenido: {
+      preparacionEnergetica: {
+        titulo: '🕯️ Preparación Energética',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Crea tu espacio de entrega',
+            descripcion: 'Enciende una vela blanca o lavanda. Si tienes una piedra luna o lepidolita, colócala sobre el corazón. Permite que el lugar esté en silencio; baja las luces.'
+          },
+          {
+            numero: 2,
+            titulo: 'Respiración del soltar (7 ciclos)',
+            descripcion: 'Inhala profundo por la nariz en 4 s. Retén 3 s. Exhala lentamente por la boca en 8 s, diciendo mentalmente: "Suelto y confío." Con cada exhalación, visualiza que de tus hombros caen cargas antiguas.'
+          },
+          {
+            numero: 3,
+            titulo: 'Invocación',
+            descripcion: '"Amados Ángeles de la Aceptación, los llamo con humildad y fe. Enséñenme a abrazar lo que no puedo cambiar, a rendirme al flujo perfecto del plan divino, y a descubrir la calma que nace de confiar."'
+          },
+          {
+            numero: 4,
+            titulo: 'Silencio consciente',
+            descripcion: 'Percibe cómo el aire se torna espeso, suave, casi líquido durante 1 minuto. Una sensación de paz desciende lentamente por tu cabeza hasta tus pies.'
+          }
+        ]
+      },
+      
+      visualizacionGuiada: {
+        titulo: '🌈 Visualización Guiada',
+        duracion: '5 minutos',
+        texto: `Imagina que estás en la orilla de un lago al amanecer.
+El agua es tan clara que refleja el cielo como un espejo.
+Te sientas sobre una roca lisa.
+Cada inhalación mueve la superficie del agua en ondas suaves.
+
+Desde el horizonte, un grupo de seres de luz comienza a caminar sobre el agua.
+Sus túnicas son de tonos lavanda, azul perla y plata.
+Sus pasos no dejan huella; solo trazos de brillo.
+
+Uno de ellos se acerca y coloca sus manos sobre tu coronilla.
+Sientes un calor leve, como si el sol naciente te tocara.
+Otro ángel extiende sus alas y te envuelve por completo.
+Tu respiración se sincroniza con la del lago, con la del cielo, con la del universo.
+
+Escuchas una voz suave decirte:
+
+"Resistir duele; aceptar libera."
+
+Cada palabra se disuelve en el agua y regresa a ti como olas de alivio.
+Tu cuerpo se relaja, tu mente se aquieta.
+Te das permiso de simplemente estar.`
+      },
+      
+      mensajeCanalizado: {
+        titulo: '👼 Mensaje Canalizado',
+        duracion: '10 minutos',
+        texto: `"Amado hijo de la Luz,
+
+somos los Ángeles de la Aceptación, y venimos a recordarte que la paz no se encuentra en controlar, sino en confiar.
+
+Sabemos que te cuesta soltar,
+porque crees que si no empujas, nada sucederá.
+Pero la vida no necesita ser empujada: necesita ser respirada.
+
+El alma humana a veces olvida que eligió cada experiencia para expandirse.
+No hay error, solo evolución.
+
+Hoy queremos que sepas:
+
+🌾 Aceptar no es rendirse ante la injusticia, sino rendirse ante la sabiduría divina.
+
+🌙 Aceptar no significa conformarte, sino abrir espacio para que algo nuevo nazca.
+
+☀️ Aceptar no te quita poder, te devuelve energía.
+
+Cuando rechazas lo que es, tu energía se fragmenta.
+Cuando lo abrazas, regresa a tu centro.
+
+Nosotros te rodeamos en cada duelo, en cada espera, en cada transición.
+Somos las manos invisibles que sostienen tu espalda cuando crees que caerás.
+
+No necesitas entenderlo todo.
+La comprensión llega después de la aceptación, no antes.
+
+Di con nosotros: 'Confío en el plan que no alcanzo a ver.'
+
+Siente cómo, al decirlo, algo en tu pecho se expande.
+
+Te acompañamos en el silencio de las noches donde el alma tiembla.
+En esos momentos, no estás solo: te cubrimos con alas de plata, susurrando en tu oído espiritual:
+'Esto también pasará, y dejará belleza.'
+
+Aceptar es amar la sabiduría que aún no entiendes.
+
+Y cuando logras hacerlo, el universo te muestra que nada fue en vano.
+
+Respira, amado ser.
+
+La vida no está contra ti, está contigo."`
+      },
+      
+      integracionPractica: {
+        titulo: '🌿 Integración Práctica',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Ritual del suspiro consciente',
+            descripcion: 'Tres veces al día, haz una pausa y exhala profundamente, diciendo: "Acepto este momento tal como es." Siente el alivio físico que produce en tus hombros y pecho.'
+          },
+          {
+            numero: 2,
+            titulo: 'Escritura de entrega',
+            descripcion: 'En tu diario, escribe lo que hoy te cuesta aceptar. Luego escribe debajo: "Confío en que esto tiene propósito, aunque aún no lo comprenda." Cierra los ojos y visualiza la frase brillando hasta disolverse.'
+          },
+          {
+            numero: 3,
+            titulo: 'Acto de fe',
+            descripcion: 'Haz algo simbólico que represente soltar: dejar ir una flor en un río, borrar un archivo, donar una prenda, limpiar un espacio. Mientras lo haces, repite: "Suelto para abrir espacio a lo nuevo."'
+          }
+        ]
+      },
+      
+      cierreEnergetico: {
+        titulo: '🔔 Cierre Energético',
+        duracion: '4 minutos',
+        texto: `Visualiza que los Ángeles de la Aceptación forman un círculo de luz plateada a tu alrededor.
+De sus corazones emana un resplandor que entra en el tuyo.
+Te llenas de una paz que no depende de nada externo.
+
+Uno de ellos, de mirada luminosa, se acerca y susurra:
+
+"No necesitas entender, solo confiar.
+Lo que resistes, persiste; lo que aceptas, se transforma."
+
+Siente cómo tus hombros bajan, tu respiración se vuelve lenta,
+y una lágrima suave —de alivio, no de tristeza— se desliza.
+Esa lágrima es la señal de que el alma ha soltado.
+
+Permanece en silencio unos segundos.
+Permite que la calma se asiente en ti.`
+      }
+    },
+    
+    // Decretos y afirmaciones
+    decretoFinal: '"Acepto el presente como manifestación perfecta del amor divino. Suelto el control y confío en el flujo de la vida. Todo lo que llega me enseña; todo lo que se va me libera."',
+    
+    afirmacionDiaria: '"Yo confío. Estoy donde debo estar. Todo ocurre para mi bien mayor."',
+    
+    // Metadatos adicionales
+    tags: ['aceptación', 'rendición', 'paz interior', 'confianza', 'soltar', 'fluir'],
+    fechaCreacion: '2024-10-19',
+    popularidad: 93,
+    rating: 5.0,
+    reproducciones: 0
   }
 ];
 
