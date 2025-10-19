@@ -1303,6 +1303,195 @@ Respira profundo y deja que la luz se ancle en tu corazón.`
     popularidad: 91,
     rating: 5.0,
     reproducciones: 0
+  },
+  {
+    id: 'angeles-honestidad',
+    titulo: 'Ángeles de la Honestidad',
+    arcangel: 'Ángeles de la Honestidad',
+    categoria: 'Autenticidad',
+    descripcion: 'Los Ángeles de la Honestidad te liberan del peso de las máscaras. Traen claridad, sinceridad y pureza de intención, ayudándote a alinear palabra, pensamiento y acción.',
+    proposito: 'Realízala para restaurar tu autenticidad, liberar tu voz y vivir en coherencia con tu verdad interior.',
+    
+    // Metadatos
+    duracion: '25-30 minutos',
+    frecuenciaSonora: '741 Hz (purificación interior) o 432 Hz',
+    colorVibracional: 'azul cristalino y blanco',
+    cristalRecomendado: 'aguamarina, sodalita o lapislázuli',
+    
+    // Música sugerida
+    musicaSugerida: {
+      frecuencia: '741 Hz (purificación interior) o 432 Hz (equilibrio)',
+      instrumentos: 'cuencos cristalinos, arpa, viento suave, gotas de agua',
+      duracionTrack: '25-30 minutos',
+      finalizacion: 'silencio de 90 segundos'
+    },
+    
+    // Imagen
+    imagen: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
+    color: 'from-cyan-300 to-blue-400',
+    
+    // Premium
+    premium: false,
+    precio: null,
+    comprado: true,
+    
+    // Contenido completo
+    contenido: {
+      preparacionEnergetica: {
+        titulo: '🕯️ Preparación Energética',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Crea tu espacio de verdad',
+            descripcion: 'Enciende una vela azul o blanca. Si puedes, abre una ventana o coloca cerca una fuente o vaso de agua. Siente el aire circular: símbolo del flujo de la verdad.'
+          },
+          {
+            numero: 2,
+            titulo: 'Respiración de claridad (7 ciclos)',
+            descripcion: 'Inhala profundo en 5 s por la nariz, imaginando una luz azul entrando por tu garganta. Retén 3 s mientras esa luz disuelve bloqueos. Exhala por la boca en 6 s, dejando salir pensamientos falsos, miedo o culpa.'
+          },
+          {
+            numero: 3,
+            titulo: 'Invocación',
+            descripcion: '"Amados Ángeles de la Honestidad, custodios de la palabra y la transparencia, limpien mi voz, mis pensamientos y mis intenciones. Que la verdad me libere, me ordene y me pacifique."'
+          },
+          {
+            numero: 4,
+            titulo: 'Silencio de apertura',
+            descripcion: 'Siente una corriente de aire recorrer tu cuello y tu pecho. La energía se vuelve ligera, cristalina, casi eléctrica. Tus hombros se abren; la garganta vibra con un leve calor.'
+          }
+        ]
+      },
+      
+      visualizacionGuiada: {
+        titulo: '🌈 Visualización Guiada',
+        duracion: '5 minutos',
+        texto: `Imagina que caminas por un pasillo de cristal.
+Cada pared refleja una versión tuya: niño, joven, adulto… todos tú.
+En el centro del pasillo, un espejo resplandece con una luz blanca-azulada.
+
+Al acercarte, notas que el espejo no refleja tu cuerpo, sino tu energía: un campo de ondas azules que se mueven como el agua.
+De pronto, una figura luminosa aparece detrás del espejo: es uno de los Ángeles de la Honestidad.
+
+Con voz suave, te dice:
+
+"No temas mirarte. La verdad nunca hiere: revela."
+
+Extiende su mano, atraviesa el cristal y toca tu garganta.
+Sientes una vibración que asciende desde el pecho y limpia tu voz.
+Cada palabra no dicha, cada verdad reprimida, comienza a salir como hilos de humo gris que se disuelven en el aire.
+
+El ángel te sonríe:
+
+"Ahora puedes hablar y vivir con transparencia.
+Tu luz ya no necesita esconderse."`
+      },
+      
+      mensajeCanalizado: {
+        titulo: '👼 Mensaje Canalizado',
+        duracion: '≈10 minutos',
+        texto: `"Amado hijo de la Luz:
+
+Yo soy uno de los Ángeles de la Honestidad,
+y hoy toco tu garganta para restaurar tu autenticidad.
+
+La mentira —incluso la que dices para no herir—
+enreda tu energía y debilita tu poder creador.
+Pero la verdad, dicha con amor, libera.
+
+Has aprendido a callar para no perder afectos,
+a fingir para encajar,
+a sonreír cuando algo dolía.
+Te entiendo; el miedo a no ser aceptado te llevó a protegerte.
+Pero hoy tu alma te pide coherencia.
+
+La honestidad no es brutalidad;
+es hablar desde el corazón, sin agenda, sin culpa, sin disfraces.
+
+Nosotros te acompañamos cuando eliges la verdad aun temblando.
+En ese instante, el universo entero se reordena a tu favor,
+porque la frecuencia de la verdad atrae solo lo que vibra en luz.
+
+Ser honesto contigo es el primer paso:
+reconocer lo que sientes, lo que deseas, lo que necesitas.
+
+No reprimas tu voz: ella es tu instrumento divino.
+Cuando hablas con autenticidad, tu energía se expande y sana.
+
+Te pedimos tres cosas, amado ser:
+
+1️⃣ Escucha tu voz interior antes de hablar.
+Tu ángel te dictará la palabra justa.
+
+2️⃣ Sé valiente para admitir lo que ya no resuena.
+Soltar no es ingratitud; es respeto por la verdad del alma.
+
+3️⃣ Vive de tal forma que tus palabras no necesiten defensa.
+La coherencia es la forma más alta de protección.
+
+Hoy limpiamos tu garganta y tu mente con luz azul-cristalina.
+Respira y siente cómo todo se despeja.
+
+La verdad te pertenece: úsala para sanar, no para herir.
+Eres un canal de claridad en un mundo que confunde transparencia con debilidad.
+
+Habla, pero sobre todo, sé.
+Tu autenticidad es la mayor oración."`
+      },
+      
+      integracionPractica: {
+        titulo: '🌿 Integración Práctica',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Ritual de la voz clara',
+            descripcion: 'Coloca tus dedos sobre la garganta y di tres veces: "Mi voz es pura, mi palabra crea, mi verdad libera."'
+          },
+          {
+            numero: 2,
+            titulo: 'Ejercicio de verdad silenciosa',
+            descripcion: 'Durante el día, observa cuántas veces reprimes una verdad por miedo. Al anochecer, escribe: "¿Qué no dije hoy?" y agradece por reconocerlo.'
+          },
+          {
+            numero: 3,
+            titulo: 'Acto consciente',
+            descripcion: 'Di con amabilidad algo que has callado por temor. Hazlo con respeto, sin expectativa; solo por coherencia.'
+          }
+        ]
+      },
+      
+      cierreEnergetico: {
+        titulo: '🔔 Cierre Energético',
+        duracion: '4 minutos',
+        texto: `Visualiza un río de luz azul-plata fluyendo desde tu garganta hasta tu corazón.
+El agua cristalina lava las últimas sombras de duda.
+Los Ángeles de la Honestidad forman un círculo y soplan hacia ti una brisa pura.
+
+Uno de ellos te mira con serenidad y dice:
+
+"Donde hay verdad, hay libertad.
+Donde hay coherencia, hay paz."
+
+Respira profundo, siente el frescor en tu garganta y el alivio en tu mente.
+Tu energía vibra ahora en transparencia.
+
+Permanece unos segundos en silencio, saboreando la ligereza de ser tú sin máscaras.`
+      }
+    },
+    
+    // Decretos y afirmaciones
+    decretoFinal: '"Mi palabra es luz, mi mente es clara, mi corazón es honesto. Vivo en verdad, hablo con amor, actúo con coherencia."',
+    
+    afirmacionDiaria: '"Ser auténtico es mi libertad. Mi verdad brilla con amor y sabiduría."',
+    
+    // Metadatos adicionales
+    tags: ['honestidad', 'autenticidad', 'verdad', 'coherencia', 'transparencia', 'voz clara'],
+    fechaCreacion: '2024-10-19',
+    popularidad: 90,
+    rating: 5.0,
+    reproducciones: 0
   }
 ];
 
