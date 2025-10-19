@@ -754,6 +754,185 @@ Al exhalar, di tres veces:
     popularidad: 94,
     rating: 5.0,
     reproducciones: 0
+  },
+  {
+    id: 'angeles-transmutacion',
+    titulo: 'Ángeles de la Transmutación',
+    arcangel: 'Ángeles de la Transmutación',
+    categoria: 'Transformación',
+    descripcion: 'Los Ángeles de la Transmutación son alquimistas divinos que transforman toda energía pesada en luz pura. Trabajan con el Fuego Violeta, llama sagrada de perdón, purificación y liberación.',
+    proposito: 'Realízala para soltar memorias pasadas, limpiar la energía de tu hogar o cuerpo, y reescribir tu frecuencia personal.',
+    
+    // Metadatos
+    duracion: '25-30 minutos',
+    frecuenciaSonora: '741 Hz (purificación) o 432 Hz',
+    colorVibracional: 'violeta con destellos dorados',
+    cristalRecomendado: 'amatista, fluorita violeta o charoita',
+    
+    // Música sugerida
+    musicaSugerida: {
+      frecuencia: '741 Hz (purificación) o 432 Hz (armonización)',
+      instrumentos: 'cuencos de cuarzo, campanas etéreas, arpa ligera',
+      duracionTrack: '25 minutos',
+      finalizacion: 'silencio sostenido de 60 segundos'
+    },
+    
+    // Imagen
+    imagen: 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800&h=600&fit=crop',
+    color: 'from-violet-500 to-purple-600',
+    
+    // Premium
+    premium: false,
+    precio: null,
+    comprado: true,
+    
+    // Contenido completo
+    contenido: {
+      preparacionEnergetica: {
+        titulo: '🕯️ Preparación Energética',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Espacio sagrado',
+            descripcion: 'Apaga luces fuertes; deja solo una vela violeta o blanca. Coloca un cristal amatista o una flor morada. Si lo deseas, enciende incienso de mirra o lavanda.'
+          },
+          {
+            numero: 2,
+            titulo: 'Respiración violeta (7 ciclos)',
+            descripcion: 'Inhala por la nariz imaginando una llama violeta entrando por tu coronilla. Retén 3 s, dejando que esa luz rodee tus pensamientos. Exhala por la boca visualizando humo gris que se disuelve. Con cada ciclo, tu mente se aclara y el cuerpo se aligera.'
+          },
+          {
+            numero: 3,
+            titulo: 'Invocación',
+            descripcion: '"Amados Ángeles de la Transmutación, ministros del Fuego Violeta, vengan a mí y liberen toda energía densa. Conviértanla en luz, en sabiduría, en servicio. Que mi campo energético se purifique y mi alma recuerde su poder creador."'
+          },
+          {
+            numero: 4,
+            titulo: 'Silencio consciente',
+            descripcion: 'Percibe cómo el aire cambia temperatura durante 1 minuto. Una brisa suave recorre tu piel y una vibración cálida se asienta en el pecho. Es la presencia violeta activándose.'
+          }
+        ]
+      },
+      
+      visualizacionGuiada: {
+        titulo: '🌈 Visualización Guiada',
+        duracion: '5 minutos',
+        texto: `Imagina que te encuentras dentro de una gran esfera de cristal suspendida en el espacio.
+Alrededor, un océano infinito de luz violeta pulsa como un corazón cósmico.
+
+De pronto, siete columnas de fuego violeta se encienden formando un círculo a tu alrededor.
+Cada columna tiene un ángel que sostiene una antorcha.
+Sus rostros son serenos; sus ojos reflejan eternidad.
+
+Uno se adelanta y te dice:
+
+"Este es el templo del Fuego Violeta. Todo lo que entre aquí regresa como luz."
+
+Coloca tus manos frente al pecho y siente cómo entre ellas surge una esfera gris: representa aquello que quieres liberar.
+Mírala con amor —sin juicio— y déjala flotar hacia el fuego central.
+Cuando la esfera toca la llama, estalla en millones de chispas doradas.
+Sientes alivio, expansión, liviandad.
+
+Los ángeles comienzan a cantar. Sus voces son ondas que giran en espiral a tu alrededor.
+Esa vibración limpia cada capa de tu aura, cada memoria oculta.
+Te envuelve un perfume de lavanda y oro.
+
+El fuego no destruye: transforma.`
+      },
+      
+      mensajeCanalizado: {
+        titulo: '👼 Mensaje Canalizado',
+        duracion: '10 minutos',
+        texto: `"Amado hijo de la Luz:
+
+somos los Ángeles de la Transmutación, custodios del fuego que libera sin quemar.
+
+No hay oscuridad que no pueda volver a ser luz.
+La culpa, el enojo, la tristeza… son solo frecuencias que olvidaron su origen.
+
+Venimos a recordarte que tú también eres alquimista.
+
+Cuando eliges perdonar, transmutes.
+Cuando agradeces una prueba, transmutes.
+Cuando amas donde antes había rencor, transmutes.
+
+La transmutación no es negar el dolor: es ofrecerlo al fuego divino para que se transforme en sabiduría.
+
+Hoy colocamos en tus manos la llama violeta.
+Úsala cada vez que algo te duela.
+Visualiza el fuego recorrer tu mente, tus palabras, tus acciones.
+
+No luches contra la sombra; abrázala hasta que se disuelva.
+Porque solo lo abrazado puede elevarse.
+
+Eres un canal de purificación en tu familia, en tu linaje, en tu entorno.
+A través de ti, muchos serán liberados.
+
+Declara: 'Donde yo camino, la luz ordena, el amor limpia, la verdad restaura.'
+
+Y así será.
+
+Recuerda: la transmutación no ocurre afuera, sino adentro.
+Cada vez que eliges amor en lugar de miedo, el universo entero cambia color.
+
+Hoy sellamos tu energía con el Fuego Violeta Dorado del Perdón.
+Desde ahora, eres guardián de la llama que todo lo purifica."`
+      },
+      
+      integracionPractica: {
+        titulo: '🌿 Integración Práctica',
+        duracion: '5 minutos',
+        pasos: [
+          {
+            numero: 1,
+            titulo: 'Ritual de papel y fuego',
+            descripcion: 'Escribe en un papel las emociones, culpas o miedos que deseas liberar. Léelo con compasión y quémalo en una vela violeta o blanca (seguro y controlado). Mientras se consume, repite: "Lo entrego al fuego divino, que todo lo transforma en amor."'
+          },
+          {
+            numero: 2,
+            titulo: 'Ejercicio diario de palabra consciente',
+            descripcion: 'Cada vez que sientas ira o juicio, respira y di mentalmente: "Fuego violeta en acción." Visualiza la energía cambiando color.'
+          },
+          {
+            numero: 3,
+            titulo: 'Limpieza energética semanal',
+            descripcion: 'Coloca amatista o sal marina junto a tu cama una noche por semana. Al despertar, agradece: "Mis energías fueron purificadas."'
+          }
+        ]
+      },
+      
+      cierreEnergetico: {
+        titulo: '🔔 Cierre Energético',
+        duracion: '4 minutos',
+        texto: `Imagina que las siete columnas de fuego se funden en una sola llama violeta inmensa.
+Los Ángeles de la Transmutación extienden sus manos y envían esa llama a tu corazón.
+Sientes calor y paz.
+
+La llama se convierte en una mariposa dorada que se posa sobre tu pecho.
+Esa mariposa es tu símbolo de liberación.
+
+Los ángeles pronuncian:
+
+"Desde ahora, nada externo puede dominar tu paz.
+Eres luz consciente del poder de transformar."
+
+Respira profundo tres veces y repite:
+"Yo transmuto en luz todo lo que no es amor."`
+      }
+    },
+    
+    // Decretos y afirmaciones
+    decretoFinal: '"Invoco el Fuego Violeta para limpiar mi mente, mi cuerpo y mi alma. Todo lo denso se disuelve, todo lo viejo renace como sabiduría. Soy alquimista de mi propia energía."',
+    
+    afirmacionDiaria: '"Transformo con amor todo lo que toco."',
+    
+    // Metadatos adicionales
+    tags: ['transmutación', 'fuego violeta', 'purificación', 'alquimia', 'liberación', 'perdón'],
+    fechaCreacion: '2024-10-19',
+    popularidad: 96,
+    rating: 5.0,
+    reproducciones: 0
   }
 ];
 
