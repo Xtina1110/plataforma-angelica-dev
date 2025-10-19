@@ -29,9 +29,9 @@ export const canalizaciones = [
     color: 'from-blue-500 to-cyan-600',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -203,9 +203,9 @@ Agradece en voz alta:
     color: 'from-amber-400 to-yellow-500',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -393,9 +393,9 @@ Coloca las manos en posición de oración y agradece.`
     color: 'from-pink-400 to-rose-500',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -582,9 +582,9 @@ Lleva las manos al corazón y agradece.`
     color: 'from-emerald-500 to-teal-600',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -782,9 +782,9 @@ Al exhalar, di tres veces:
     color: 'from-violet-500 to-purple-600',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -961,9 +961,9 @@ Respira profundo tres veces y repite:
     color: 'from-slate-300 to-blue-300',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -1150,9 +1150,9 @@ Permite que la calma se asiente en ti.`
     color: 'from-yellow-300 to-orange-400',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -1331,9 +1331,9 @@ Respira profundo y deja que la luz se ancle en tu corazón.`
     color: 'from-cyan-300 to-blue-400',
     
     // Premium
-    premium: true,
-    precio: 7.99,
-    comprado: false,
+    premium: false,
+    precio: null,
+    comprado: true,
     
     // Contenido completo
     contenido: {
@@ -1492,615 +1492,7 @@ Permanece unos segundos en silencio, saboreando la ligereza de ser tú sin másc
     popularidad: 90,
     rating: 5.0,
     reproducciones: 0
-  },
-  // NUEVA CANALIZACIÓN PREMIUM #9: Ángeles de la Percepción
-
-{
-  id: 'angeles-percepcion',
-  titulo: 'Ángeles de la Percepción',
-  arcangel: 'Ángeles de la Percepción',
-  categoria: 'Visión Espiritual',
-  descripcion: 'Los Ángeles de la Percepción son los guardianes del entendimiento superior. Limpian los filtros del miedo, la culpa y el juicio, para que puedas observar el mundo tal como lo ve el Creador.',
-  descripcionCorta: 'Abre tu visión espiritual y aprende a ver con los ojos del alma.',
-  proposito: 'Realízala para abrir tu visión espiritual, confiar en tu intuición y percibir los mensajes del alma en lo cotidiano.',
-  
-  duracion: '25-30 minutos',
-  duracionMinutos: 28,
-  frecuenciaSonora: '852 Hz (activación de intuición)',
-  colorVibracional: 'índigo y dorado',
-  cristalRecomendado: 'amatista, lapislázuli o sodalita',
-  
-  musicaSugerida: {
-    frecuencia: '852 Hz (activación de intuición)',
-    instrumentos: 'sintetizador etéreo, cuencos de cuarzo, coro angelical suave',
-    duracionTrack: '25-30 minutos',
-    finalizacion: 'silencio expandido de 1 minuto'
-  },
-  
-  imagen: 'https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&h=600&fit=crop',
-  color: 'from-indigo-500 to-purple-500',
-  
-  premium: true,
-  precio: 7.99,
-  comprado: false,
-  
-  contenido: {
-    preparacionEnergetica: {
-      titulo: '🕯️ Preparación Energética',
-      duracion: '5 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Espacio de visión',
-          descripcion: 'Apaga luces fuertes y deja una vela índigo, violeta o blanca. Coloca una amatista o un lapislázuli en el entrecejo. Puedes acompañar con aroma de sándalo o incienso.'
-        },
-        {
-          numero: 2,
-          titulo: 'Respiración del ojo interno (7 ciclos)',
-          descripcion: 'Inhala por la nariz en 6 s, visualizando luz índigo que entra por el entrecejo. Retén 3 s. Exhala por la boca en 6 s, soltando pensamientos confusos o imágenes densas. Siente cómo tu mente se despeja y tu frente se ilumina.'
-        },
-        {
-          numero: 3,
-          titulo: 'Invocación',
-          descripcion: '"Amados Ángeles de la Percepción, portadores de la visión divina, abran mi mirada interior, purifiquen mis pensamientos y enséñenme a ver como ve el alma: sin juicio, sin miedo, sin separación."'
-        },
-        {
-          numero: 4,
-          titulo: 'Silencio de apertura',
-          descripcion: 'Percibe un leve zumbido en tu cabeza. Es la frecuencia del entrecejo activándose. Una sensación de paz y amplitud comienza a expandirse en tu mente.'
-        }
-      ]
-    },
-    
-    visualizacionGuiada: {
-      titulo: '🌌 Visualización Guiada',
-      duracion: '5 minutos',
-      texto: `Imagina que estás en una vasta sala de cristal, suspendida entre estrellas.
-El suelo es transparente y ves debajo corrientes de energía que fluyen como ríos de luz.
-
-En el centro, una figura luminosa te espera: un Ángel de la Percepción.
-Su rostro cambia de forma constantemente: niño, anciano, mujer, fuego, agua.
-Él representa todas las formas de ver.
-
-Extiende sus manos y toca tu frente con su dedo dorado.
-Sientes una corriente eléctrica suave, seguida de una ola de comprensión.
-
-De pronto, tu visión se expande:
-ves tus propios recuerdos flotando frente a ti,
-momentos de duda, miedo, decisiones, pero ahora envueltos en luz.
-Comprendes que nada fue error: todo fue aprendizaje.
-
-El ángel sonríe:
-
-"Cuando miras desde el alma, todo tiene sentido."
-
-La sala se llena de símbolos dorados: ojos, espirales, estrellas, flores.
-Cada uno entra en tu frente como semillas de sabiduría.`
-    },
-    
-    mensajeCanalizado: {
-      titulo: '👼 Mensaje Canalizado',
-      duracion: '≈10 minutos',
-      texto: `"Amado ser de luz,
-
-somos los Ángeles de la Percepción, y venimos a enseñarte a ver más allá de la apariencia.
-
-Tus ojos físicos ven forma, color y distancia;
-pero tu visión interior ve propósito, energía y verdad.
-
-Has confundido ver con entender,
-pero el entendimiento no nace de los ojos, sino del corazón.
-
-Hoy queremos limpiar tus lentes internos de tres velos:
-
-✨ El velo del juicio —que te hace creer que algo es bueno o malo,
-olvidando que todo tiene un rol en la expansión.
-
-✨ El velo del miedo —que distorsiona lo que ves y te hace imaginar peligros donde solo hay cambios.
-
-✨ El velo de la comparación —que te impide reconocer tu unicidad.
-
-Cuando estos velos se disuelven, la realidad se muestra tal cual es:
-una danza perfecta de energía que se organiza según la vibración del observador.
-
-Tú eres ese observador.
-
-Tu visión crea.
-Si ves caos, el caos crece.
-Si ves belleza, el universo florece.
-
-Aprende a mirar con ojos bendecidos:
-cuando contemples una persona, pregúntate '¿Qué parte divina se expresa aquí?'
-
-Cuando observes una dificultad, di: '¿Qué enseñanza me trae?'
-
-Nosotros, los Ángeles de la Percepción, trabajamos con el rayo índigo-dorado:
-un rayo que revela la verdad sin dolor.
-
-Lo que no ves aún no está perdido; simplemente espera que tu conciencia se expanda lo suficiente para reconocerlo.
-
-No temas tus visiones, tus intuiciones ni tus corazonadas:
-son los susurros de Dios dentro de ti.
-
-Hoy abrimos tu tercer ojo,
-no para ver más, sino para ver mejor,
-con comprensión, compasión y sabiduría.
-
-Desde este día, verás señales donde antes solo había rutina,
-sentirás verdad donde antes había duda,
-y reconocerás tu propia luz reflejada en todo lo que mires."`
-    },
-    
-    integracionPractica: {
-      titulo: '🌿 Integración Práctica',
-      duracion: '5 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Ritual del espejo interior',
-          descripcion: 'Frente a un espejo, mírate sin juzgar. Di tres veces: "Veo con los ojos del alma; la verdad me ilumina."'
-        },
-        {
-          numero: 2,
-          titulo: 'Ejercicio de percepción consciente',
-          descripcion: 'Durante el día, observa algo que te irrita o molesta. Respira, cierra los ojos y pregunta: "¿Qué no estoy comprendiendo aún?" Siente la respuesta venir en forma de sensación, imagen o intuición.'
-        },
-        {
-          numero: 3,
-          titulo: 'Diario de señales',
-          descripcion: 'Registra durante 7 días todas las coincidencias, visiones, o intuiciones claras. Agradece cada una: son tus ángeles enseñándote a ver.'
-        }
-      ]
-    },
-    
-    cierreEnergetico: {
-      titulo: '🔔 Cierre Energético',
-      duracion: '4 minutos',
-      texto: `Visualiza una espiral de luz índigo y dorada girando lentamente sobre tu cabeza.
-De ella desciende un rayo de comprensión que penetra tu entrecejo.
-Sientes expansión, paz y claridad.
-
-El ángel coloca su frente contra la tuya y susurra:
-
-"Verás la verdad sin miedo,
-y la aceptarás con amor."
-
-Una lágrima de luz dorada cae sobre tu rostro,
-y donde toca, deja una sensación de gratitud profunda.
-Tu visión interior está despierta.`
-    }
-  },
-  
-  decretoFinal: '"Veo con los ojos del alma. Mi mirada revela amor, comprensión y verdad. Todo lo que percibo es una oportunidad para crecer."',
-  afirmacionDiaria: '"Comprendo más allá de la forma; mi percepción está guiada por la sabiduría divina."',
-  
-  tags: ['percepción', 'visión espiritual', 'intuición', 'tercer ojo', 'comprensión', 'clarividencia'],
-  fechaCreacion: '2024-10-19',
-  popularidad: 89,
-  rating: 5.0,
-  reproducciones: 0,
-  tipo: 'completa'
-},
-
-// ==========================================
-// CANALIZACIONES GRATUITAS (5 cortas)
-// Duración: 10-15 minutos
-// ==========================================
-
-{
-  id: 'angeles-gratitud-intro',
-  titulo: 'Ángeles de la Gratitud (Introducción)',
-  arcangel: 'Ángeles de la Gratitud',
-  categoria: 'Gratitud',
-  descripcion: 'Una canalización introductoria de 12 minutos para conectar con la energía de la gratitud. Perfecta para comenzar tu día con apreciación y abundancia.',
-  descripcionCorta: 'Conecta con la energía de la gratitud en 12 minutos.',
-  proposito: 'Ideal para comenzar el día, cultivar apreciación y abrir el corazón a la abundancia.',
-  
-  duracion: '12 minutos',
-  duracionMinutos: 12,
-  frecuenciaSonora: '528 Hz',
-  colorVibracional: 'verde dorado',
-  cristalRecomendado: 'aventurina o citrino',
-  
-  imagen: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
-  color: 'from-green-300 to-yellow-300',
-  
-  premium: false,
-  precio: 0,
-  comprado: true, // Gratuitas siempre disponibles
-  
-  contenido: {
-    preparacionEnergetica: {
-      titulo: '🕯️ Preparación (2 min)',
-      duracion: '2 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Respiración de gratitud',
-          descripcion: 'Inhala profundo y piensa en algo por lo que estés agradecido. Exhala diciendo mentalmente "Gracias". Repite 5 veces.'
-        }
-      ]
-    },
-    
-    visualizacionGuiada: {
-      titulo: '🌈 Visualización (3 min)',
-      duracion: '3 minutos',
-      texto: `Imagina un jardín dorado donde cada flor representa algo bueno en tu vida.
-Camina entre ellas y toca cada una con amor.
-Los Ángeles de la Gratitud te acompañan, sonriendo.`
-    },
-    
-    mensajeCanalizado: {
-      titulo: '👼 Mensaje (5 min)',
-      duracion: '5 minutos',
-      texto: `"La gratitud es la llave maestra que abre todas las puertas.
-Cuando agradeces, el universo escucha y multiplica.
-Hoy, sé consciente de tres bendiciones: una en tu cuerpo, una en tu vida, una en tu corazón."`
-    },
-    
-    integracionPractica: {
-      titulo: '🌿 Integración (1 min)',
-      duracion: '1 minuto',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Tres gracias',
-          descripcion: 'Antes de dormir, escribe tres cosas por las que estás agradecido hoy.'
-        }
-      ]
-    },
-    
-    cierreEnergetico: {
-      titulo: '🔔 Cierre (1 min)',
-      duracion: '1 minuto',
-      texto: `Respira profundo y siente gratitud llenando tu pecho.
-Di: "Gracias, gracias, gracias."`
-    }
-  },
-  
-  decretoFinal: '"Soy gratitud en acción. Todo lo bueno fluye hacia mí."',
-  afirmacionDiaria: '"Agradezco cada bendición en mi vida."',
-  
-  tags: ['gratitud', 'abundancia', 'apreciación', 'bendiciones', 'intro'],
-  fechaCreacion: '2024-10-19',
-  popularidad: 95,
-  rating: 4.8,
-  reproducciones: 0,
-  tipo: 'intro'
-},
-
-{
-  id: 'angeles-calma-intro',
-  titulo: 'Ángeles de la Calma (Introducción)',
-  arcangel: 'Ángeles de la Calma',
-  categoria: 'Serenidad',
-  descripcion: 'Una canalización de 10 minutos para encontrar paz interior en momentos de estrés o ansiedad. Perfecta para pausas durante el día.',
-  descripcionCorta: 'Encuentra paz interior en solo 10 minutos.',
-  proposito: 'Ideal para momentos de estrés, ansiedad o cuando necesites centrarte rápidamente.',
-  
-  duracion: '10 minutos',
-  duracionMinutos: 10,
-  frecuenciaSonora: '432 Hz',
-  colorVibracional: 'azul suave',
-  cristalRecomendado: 'aguamarina o celestita',
-  
-  imagen: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop',
-  color: 'from-blue-200 to-cyan-200',
-  
-  premium: false,
-  precio: 0,
-  comprado: true,
-  
-  contenido: {
-    preparacionEnergetica: {
-      titulo: '🕯️ Preparación (2 min)',
-      duracion: '2 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Respiración 4-7-8',
-          descripcion: 'Inhala en 4, retén en 7, exhala en 8. Repite 4 veces. Esta técnica activa el sistema nervioso parasimpático.'
-        }
-      ]
-    },
-    
-    visualizacionGuiada: {
-      titulo: '🌈 Visualización (3 min)',
-      duracion: '3 minutos',
-      texto: `Estás en una playa tranquila al atardecer.
-Las olas van y vienen suavemente.
-Con cada ola que se retira, se lleva tu tensión.
-Los Ángeles de la Calma te envuelven en un manto azul de paz.`
-    },
-    
-    mensajeCanalizado: {
-      titulo: '👼 Mensaje (3 min)',
-      duracion: '3 minutos',
-      texto: `"La calma no es ausencia de tormenta, es paz en medio de ella.
-Respira. Aquí y ahora, estás a salvo.
-Tu mente puede descansar. Tu cuerpo puede soltar."`
-    },
-    
-    integracionPractica: {
-      titulo: '🌿 Integración (1 min)',
-      duracion: '1 minuto',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Ancla de calma',
-          descripcion: 'Cuando sientas estrés, toca tu corazón y di: "Yo elijo la calma."'
-        }
-      ]
-    },
-    
-    cierreEnergetico: {
-      titulo: '🔔 Cierre (1 min)',
-      duracion: '1 minuto',
-      texto: `Siente la paz anclada en tu ser.
-Llévala contigo a donde vayas.`
-    }
-  },
-  
-  decretoFinal: '"Soy calma, soy paz, soy serenidad."',
-  afirmacionDiaria: '"Elijo la calma en cada momento."',
-  
-  tags: ['calma', 'paz', 'serenidad', 'estrés', 'ansiedad', 'intro'],
-  fechaCreacion: '2024-10-19',
-  popularidad: 97,
-  rating: 4.9,
-  reproducciones: 0,
-  tipo: 'intro'
-},
-
-{
-  id: 'angeles-esperanza-intro',
-  titulo: 'Ángeles de la Esperanza (Introducción)',
-  arcangel: 'Ángeles de la Esperanza',
-  categoria: 'Esperanza',
-  descripcion: 'Una canalización de 10 minutos para renovar tu fe y esperanza en momentos difíciles. Reconecta con la luz al final del túnel.',
-  descripcionCorta: 'Renueva tu fe y esperanza en 10 minutos.',
-  proposito: 'Ideal para momentos de desesperanza, pérdida o cuando necesites recordar que todo mejorará.',
-  
-  duracion: '10 minutos',
-  duracionMinutos: 10,
-  frecuenciaSonora: '528 Hz',
-  colorVibracional: 'dorado brillante',
-  cristalRecomendado: 'citrino o ámbar',
-  
-  imagen: 'https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=800&h=600&fit=crop',
-  color: 'from-amber-300 to-orange-300',
-  
-  premium: false,
-  precio: 0,
-  comprado: true,
-  
-  contenido: {
-    preparacionEnergetica: {
-      titulo: '🕯️ Preparación (2 min)',
-      duracion: '2 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Respiración de luz',
-          descripcion: 'Inhala imaginando luz dorada entrando. Exhala soltando oscuridad. Repite 5 veces.'
-        }
-      ]
-    },
-    
-    visualizacionGuiada: {
-      titulo: '🌈 Visualización (3 min)',
-      duracion: '3 minutos',
-      texto: `Estás en un túnel oscuro, pero al fondo ves una luz dorada.
-Caminas hacia ella y con cada paso, la luz crece.
-Los Ángeles de la Esperanza te toman de la mano.
-Pronto estarás en la luz.`
-    },
-    
-    mensajeCanalizado: {
-      titulo: '👼 Mensaje (3 min)',
-      duracion: '3 minutos',
-      texto: `"La noche más oscura es justo antes del amanecer.
-No te rindas ahora. La luz viene.
-Confía en el proceso. Todo tiene su tiempo perfecto."`
-    },
-    
-    integracionPractica: {
-      titulo: '🌿 Integración (1 min)',
-      duracion: '1 minuto',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Semilla de esperanza',
-          descripcion: 'Cada mañana, di: "Hoy algo bueno sucederá."'
-        }
-      ]
-    },
-    
-    cierreEnergetico: {
-      titulo: '🔔 Cierre (1 min)',
-      duracion: '1 minuto',
-      texto: `La esperanza está sembrada en tu corazón.
-Riégala con fe cada día.`
-    }
-  },
-  
-  decretoFinal: '"La esperanza vive en mí. Todo mejorará."',
-  afirmacionDiaria: '"Confío en que lo mejor está por venir."',
-  
-  tags: ['esperanza', 'fe', 'confianza', 'luz', 'renovación', 'intro'],
-  fechaCreacion: '2024-10-19',
-  popularidad: 93,
-  rating: 4.7,
-  reproducciones: 0,
-  tipo: 'intro'
-},
-
-{
-  id: 'angeles-claridad-intro',
-  titulo: 'Ángeles de la Claridad (Introducción)',
-  arcangel: 'Ángeles de la Claridad',
-  categoria: 'Claridad Mental',
-  descripcion: 'Una canalización de 15 minutos para despejar la mente y tomar decisiones con claridad. Perfecta antes de reuniones importantes.',
-  descripcionCorta: 'Despeja tu mente y toma decisiones claras en 15 minutos.',
-  proposito: 'Ideal antes de decisiones importantes, cuando te sientes confundido o necesitas enfoque mental.',
-  
-  duracion: '15 minutos',
-  duracionMinutos: 15,
-  frecuenciaSonora: '741 Hz',
-  colorVibracional: 'blanco cristalino',
-  cristalRecomendado: 'cuarzo transparente',
-  
-  imagen: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&h=600&fit=crop',
-  color: 'from-gray-100 to-blue-100',
-  
-  premium: false,
-  precio: 0,
-  comprado: true,
-  
-  contenido: {
-    preparacionEnergetica: {
-      titulo: '🕯️ Preparación (3 min)',
-      duracion: '3 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Respiración de claridad',
-          descripcion: 'Inhala por nariz en 5s, retén 2s, exhala por boca en 7s. Visualiza niebla saliendo con cada exhalación. Repite 7 veces.'
-        }
-      ]
-    },
-    
-    visualizacionGuiada: {
-      titulo: '🌈 Visualización (4 min)',
-      duracion: '4 minutos',
-      texto: `Tu mente es un lago turbio.
-Los Ángeles de la Claridad soplan suavemente sobre el agua.
-El agua se calma, se aclara, se vuelve cristalina.
-Ahora puedes ver el fondo con perfecta claridad.`
-    },
-    
-    mensajeCanalizado: {
-      titulo: '👼 Mensaje (5 min)',
-      duracion: '5 minutos',
-      texto: `"La claridad no viene de pensar más, sino de pensar mejor.
-Despeja el ruido. Enfócate en lo esencial.
-La respuesta que buscas ya está en ti, solo necesitas silencio para escucharla."`
-    },
-    
-    integracionPractica: {
-      titulo: '🌿 Integración (2 min)',
-      duracion: '2 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Pregunta clara',
-          descripcion: 'Antes de decidir, pregunta: "¿Qué haría mi yo más sabio?" Escucha la primera respuesta.'
-        }
-      ]
-    },
-    
-    cierreEnergetico: {
-      titulo: '🔔 Cierre (1 min)',
-      duracion: '1 minuto',
-      texto: `Tu mente está clara como el cristal.
-Confía en tu claridad interior.`
-    }
-  },
-  
-  decretoFinal: '"Mi mente es clara, mis decisiones son sabias."',
-  afirmacionDiaria: '"Veo con claridad y actúo con sabiduría."',
-  
-  tags: ['claridad', 'decisiones', 'enfoque', 'mente clara', 'sabiduría', 'intro'],
-  fechaCreacion: '2024-10-19',
-  popularidad: 92,
-  rating: 4.8,
-  reproducciones: 0,
-  tipo: 'intro'
-},
-
-{
-  id: 'angeles-luz-interior-intro',
-  titulo: 'Ángeles de la Luz Interior (Introducción)',
-  arcangel: 'Ángeles de la Luz Interior',
-  categoria: 'Conexión Divina',
-  descripcion: 'Una canalización de 12 minutos para reconectar con tu esencia divina. Recuerda quién eres realmente más allá del ego.',
-  descripcionCorta: 'Reconecta con tu esencia divina en 12 minutos.',
-  proposito: 'Ideal para momentos de desconexión, baja autoestima o cuando olvidas tu verdadera naturaleza.',
-  
-  duracion: '12 minutos',
-  duracionMinutos: 12,
-  frecuenciaSonora: '963 Hz',
-  colorVibracional: 'blanco dorado',
-  cristalRecomendado: 'selenita o cuarzo blanco',
-  
-  imagen: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=800&h=600&fit=crop',
-  color: 'from-white to-yellow-100',
-  
-  premium: false,
-  precio: 0,
-  comprado: true,
-  
-  contenido: {
-    preparacionEnergetica: {
-      titulo: '🕯️ Preparación (2 min)',
-      duracion: '2 minutos',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Respiración de luz',
-          descripcion: 'Coloca mano en corazón. Inhala sintiendo luz en tu pecho. Exhala expandiendo esa luz. Repite 7 veces.'
-        }
-      ]
-    },
-    
-    visualizacionGuiada: {
-      titulo: '🌈 Visualización (3 min)',
-      duracion: '3 minutos',
-      texto: `En el centro de tu pecho hay una estrella dorada.
-Los Ángeles de la Luz Interior la activan.
-La estrella crece, brilla, se expande.
-Tú eres esa luz. Siempre lo has sido.`
-    },
-    
-    mensajeCanalizado: {
-      titulo: '👼 Mensaje (5 min)',
-      duracion: '5 minutos',
-      texto: `"No eres el cuerpo. No eres la mente. No eres tus errores.
-Eres luz divina experimentando la vida humana.
-Recuerda tu origen. Eres hijo de las estrellas.
-La luz que buscas afuera ya está dentro de ti."`
-    },
-    
-    integracionPractica: {
-      titulo: '🌿 Integración (1 min)',
-      duracion: '1 minuto',
-      pasos: [
-        {
-          numero: 1,
-          titulo: 'Afirmación matutina',
-          descripcion: 'Cada mañana, di frente al espejo: "Yo soy luz divina."'
-        }
-      ]
-    },
-    
-    cierreEnergetico: {
-      titulo: '🔔 Cierre (1 min)',
-      duracion: '1 minuto',
-      texto: `La luz interior está activada.
-Brilla desde tu corazón hacia el mundo.`
-    }
-  },
-  
-  decretoFinal: '"Yo soy luz. Yo soy amor. Yo soy divino."',
-  afirmacionDiaria: '"Mi luz interior brilla con fuerza."',
-  
-  tags: ['luz interior', 'esencia divina', 'conexión', 'autoestima', 'identidad', 'intro'],
-  fechaCreacion: '2024-10-19',
-  popularidad: 94,
-  rating: 4.9,
-  reproducciones: 0,
-  tipo: 'intro'
-}
+  }
 ];
 
 // Función para obtener todas las canalizaciones
@@ -2121,20 +1513,3 @@ export const getCanalizacionesByArcangel = (arcangel) => {
   return canalizaciones.filter(c => c.arcangel === arcangel);
 };
 
-
-// Funciones adicionales para marketplace
-export const getCanalizacionesGratuitas = () => {
-  return canalizaciones.filter(c => !c.premium || c.precio === 0);
-};
-
-export const getCanalizacionesPremium = () => {
-  return canalizaciones.filter(c => c.premium && c.precio > 0);
-};
-
-export const getCanalizacionesCompradas = () => {
-  return canalizaciones.filter(c => c.comprado);
-};
-
-export const getCanalizacionesDisponibles = () => {
-  return canalizaciones.filter(c => !c.premium || c.comprado);
-};
