@@ -3,6 +3,7 @@ import { getCanalizaciones } from '../data/canalizacionesData';
 import { generateCanalizacionPDF } from '../utils/canalizacionPDFGenerator';
 import './MarketplaceCanalizaciones.css';
 
+// Marketplace de Canalizaciones Angelicales
 const MarketplaceCanalizaciones = () => {
   const [canalizaciones] = useState(getCanalizaciones());
   const [filtro, setFiltro] = useState('todas'); // todas, gratuitas, premium
