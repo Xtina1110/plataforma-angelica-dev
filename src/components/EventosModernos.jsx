@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Calendar, Clock, MapPin, Users, Star, Square, Grid, LayoutGrid } from 'lucide-react';
 import './EventosModernos.css';
 
-const EventosModernos = ({ eventos, eventosInscritos, onEventoClick, onToggleInscripcion, searchValue, filters }) => {
+const EventosModernos = ({ eventos = [], eventosInscritos = [], onEventoClick = () => {}, onToggleInscripcion = () => {}, searchValue = '', filters = { categoria: 'todos' } }) => {
   const [layoutCols, setLayoutCols] = useState(3); // 2, 3, o 4 columnas
   const [selectedEventos, setSelectedEventos] = useState([]);
 

@@ -1551,7 +1551,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                 { id: 'mensaje', icon: <MessageSquare />, titulo: t.dailyMessage, desc: 'Recibe una canalización espiritual', disponible: true, color: '#C489FF' },
                 { id: 'eventos', icon: <Calendar />, titulo: 'Eventos Angelicales', desc: 'Ceremonias y encuentros espirituales', disponible: true, color: '#0000FF' },
                 { id: 'blog', icon: <Mic />, titulo: t.blogPodcast, desc: 'Contenido espiritual diario', disponible: true, color: '#FFCC00' },
-                { id: 'tienda', icon: <ShoppingCart />, titulo: t.store, desc: 'Cartas y recursos espirituales', disponible: false, color: '#FF6600' }
+                { id: 'tienda', icon: <ShoppingCart />, titulo: t.store, desc: 'Cartas y recursos espirituales', disponible: true, color: '#FF6600' }
               ].map(app => (
                 <div key={app.id} className="app-card-correcto">
                   {/* Header con color específico */}
