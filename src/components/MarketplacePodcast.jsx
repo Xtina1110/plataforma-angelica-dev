@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ContentWrapper from './ContentWrapper';
 import { getEpisodiosPodcast, getCategoriasPodcast, getTiposPodcast } from '../data/podcastData';
 import { Headphones, Play, Clock, Eye, Heart, X, Tag, Calendar, TrendingUp, Youtube, Search } from 'lucide-react';
 import './MarketplaceCanalizaciones.css';
@@ -81,6 +82,7 @@ const MarketplacePodcast = ({ onVolver }) => {
   };
 
   return (
+    <ContentWrapper>
     <div className="marketplace-container">
       {/* Header */}
       <div className="marketplace-header" style={{
@@ -790,6 +792,7 @@ const MarketplacePodcast = ({ onVolver }) => {
         </div>
       )}
     </div>
+    </ContentWrapper>
   );
 };
 

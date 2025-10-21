@@ -5,6 +5,7 @@ import { ArrowLeft, BookOpen, Headphones, Sparkles, Users, Clock, Star } from 'l
 import MarketplaceBlog from './MarketplaceBlog';
 import MarketplacePodcast from './MarketplacePodcast';
 import InstruccionesAngelicales from './InstruccionesAngelicales';
+import ContentWrapper from './ContentWrapper';
 
 const BlogPodcast = ({ onVolver, onNavigate }) => {
   const [paso, setPaso] = useState('instrucciones'); // 'instrucciones', 'servicios', 'blog', 'podcast'
@@ -22,6 +23,7 @@ const BlogPodcast = ({ onVolver, onNavigate }) => {
   // Página de instrucciones
   if (paso === 'instrucciones') {
     return (
+      <ContentWrapper>
       <div className="canalizaciones-sonoterapia-wrapper">
         {/* Título y descripción fuera del recuadro */}
         <div className="titulo-descripcion-section">
@@ -58,11 +60,13 @@ const BlogPodcast = ({ onVolver, onNavigate }) => {
           />
         </div>
       </div>
+      </ContentWrapper>
     );
   }
 
   // Página de selección de servicios (Blog o Podcast)
   return (
+    <ContentWrapper>
     <div className="canalizaciones-sonoterapia-seleccion">
       {/* Fondo marmolado morado */}
       <div className="seleccion-background-morado">
@@ -230,6 +234,7 @@ const BlogPodcast = ({ onVolver, onNavigate }) => {
         </div>
       </div>
     </div>
+    </ContentWrapper>
   );
 };
 

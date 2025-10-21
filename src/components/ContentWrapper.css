@@ -1,0 +1,16 @@
+/* Content Wrapper - Respeta el espacio del sidebar */
+.content-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 0;
+  }
+}
+

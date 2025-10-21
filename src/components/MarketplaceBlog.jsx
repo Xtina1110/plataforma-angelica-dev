@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ContentWrapper from './ContentWrapper';
 import { getArticulosBlog, getCategoriasBlog, filtrarArticulos } from '../data/blogData';
 import { BookOpen, Clock, Eye, Heart, Share2, X, Tag, Calendar, User, TrendingUp, Search } from 'lucide-react';
 import './MarketplaceCanalizaciones.css';
@@ -64,6 +65,7 @@ const MarketplaceBlog = ({ onVolver }) => {
   };
 
   return (
+    <ContentWrapper>
     <div className="marketplace-container">
       {/* Header */}
       <div className="marketplace-header" style={{
@@ -630,6 +632,7 @@ const MarketplaceBlog = ({ onVolver }) => {
         </div>
       )}
     </div>
+    </ContentWrapper>
   );
 };
 

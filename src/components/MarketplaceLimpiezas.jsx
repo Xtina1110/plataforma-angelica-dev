@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ContentWrapper from './ContentWrapper';
 import { getLimpiezas, getCategoriasLimpiezas, getArcangelesLimpiezas } from '../data/limpiezasData';
 import { Sparkles, Clock, DollarSign, MapPin, Shield, X, ShoppingCart } from 'lucide-react';
 import './MarketplaceCanalizaciones.css';
@@ -71,6 +72,7 @@ const MarketplaceLimpiezas = ({ onVolver, addToCart }) => {
   const arcangeles = getArcangelesLimpiezas();
 
   return (
+    <ContentWrapper>
     <div className="marketplace-container">
       {/* Header */}
       <div className="marketplace-header" style={{
@@ -528,6 +530,7 @@ const MarketplaceLimpiezas = ({ onVolver, addToCart }) => {
         </div>
       )}
     </div>
+    </ContentWrapper>
   );
 };
 

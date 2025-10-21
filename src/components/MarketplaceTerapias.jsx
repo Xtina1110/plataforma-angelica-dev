@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ContentWrapper from './ContentWrapper';
 import { getTerapias, getCategoriasTerapias, getArcangelesTerapias } from '../data/terapiasData';
 import { Heart, Clock, DollarSign, MapPin, Sparkles, X, ShoppingCart, Play } from 'lucide-react';
 import './MarketplaceCanalizaciones.css';
@@ -76,6 +77,7 @@ const MarketplaceTerapias = ({ onVolver, addToCart }) => {
   const arcangeles = getArcangelesTerapias();
 
   return (
+    <ContentWrapper>
     <div className="marketplace-container">
       {/* Header */}
       <div className="marketplace-header" style={{
@@ -533,6 +535,7 @@ const MarketplaceTerapias = ({ onVolver, addToCart }) => {
         </div>
       )}
     </div>
+    </ContentWrapper>
   );
 };
 
