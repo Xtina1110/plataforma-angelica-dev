@@ -64,7 +64,7 @@ import {
 } from './headers';
 
 // Importar componente de eventos
-import EventosModernos from './EventosModernos';
+import EventosAngelicales from './EventosAngelicales';
 import EventCarouselIndicators from './EventCarouselIndicators';
 
 import logo from '../assets/Logosinfondo.png';
@@ -1275,7 +1275,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               />
             </div>
             
-            <EventosModernos 
+            <EventosAngelicales 
               eventos={eventos} 
               eventosInscritos={eventosInscritos} 
               onEventoClick={() => {}} 
