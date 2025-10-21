@@ -55,7 +55,7 @@ export default function MainLayout({ children }) {
         onSearchClick={() => console.log('Buscar')}
         onProfileClick={() => navigate('/perfil')}
       />
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col" style={{ marginLeft: '280px' }}>
         <div className="flex-1">
           {children}
         </div>

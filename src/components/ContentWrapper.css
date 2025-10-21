@@ -5,12 +5,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  /* No margin-left aquí porque MainLayout ya maneja el layout con flex */
 }
 
 /* Responsive para móviles */
 @media (max-width: 768px) {
   .content-wrapper {
     padding: 0;
+    margin-left: 0;
   }
 }
 
