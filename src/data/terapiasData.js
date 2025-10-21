@@ -267,7 +267,7 @@ export const getCategoriasTerapias = () => {
 };
 
 // Obtener arcángeles únicos
-export const getArcangelesTerap ias = () => {
+export const getArcangelesTerapias = () => {
   const terapias = getTerapias();
   const arcangeles = [...new Set(terapias.map(t => t.arcangel))];
   return ['Todos', ...arcangeles];

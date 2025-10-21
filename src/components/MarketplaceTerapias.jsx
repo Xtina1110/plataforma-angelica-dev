@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getTerapias, getCategoriasTerapias, getArcangelesTerap ias } from '../data/terapiasData';
+import { getTerapias, getCategoriasTerapias, getArcangelesTerapias } from '../data/terapiasData';
 import { Heart, Clock, DollarSign, MapPin, Sparkles, X, ShoppingCart, Play } from 'lucide-react';
 import './MarketplaceCanalizaciones.css';
 
@@ -73,7 +73,7 @@ const MarketplaceTerapias = ({ onVolver, addToCart }) => {
 
   // Obtener categorías y arcángeles
   const categorias = getCategoriasTerapias();
-  const arcangeles = getArcangelesTerap ias();
+  const arcangeles = getArcangelesTerapias();
 
   return (
     <div className="marketplace-container">
