@@ -45,17 +45,8 @@ import AcademiaAngelical from './components/AcademiaAngelical';
 import EventosModernos from './components/EventosModernos';
 import TiendaAngelical from './components/TiendaAngelical';
 
-// Componentes PodcastYBlog
-import PodcastYBlog from './components/PodcastYBlog/PodcastYBlog';
-import PodcastYBlogDashboard from './components/PodcastYBlog/PodcastYBlogDashboard';
-import InstruccionesBlogPodcast from './components/PodcastYBlog/InstruccionesBlogPodcast';
-import SeleccionBlogPodcast from './components/PodcastYBlog/SeleccionBlogPodcast';
-import PodcastPage from './components/PodcastYBlog/PodcastPage';
-import BlogPage from './components/PodcastYBlog/BlogPage';
-import Episodios from './components/PodcastYBlog/Episodios';
-import EpisodioDetalle from './components/PodcastYBlog/EpisodioDetalle';
-import Blog from './components/PodcastYBlog/Blog';
-import BlogDetalle from './components/PodcastYBlog/BlogDetalle';
+// Componente BlogPodcast
+import BlogPodcast from './components/BlogPodcast';
 
 import './App.css';
 
@@ -162,7 +153,7 @@ function App() {
             {/* Rutas principales de aplicaciones */}
             <Route path="/apertura-angelica" element={<MainLayout><TiradaAngelical onVolver={() => window.history.back()} /></MainLayout>} />
             <Route path="/sonoterapia" element={<MainLayout><CanalizacionesSonoterapia onVolver={() => window.history.back()} /></MainLayout>} />
-            <Route path="/terapias" element={<MainLayout><TerapiasLimpiezas onVolver={() => window.history.back()} /></MainLayout>} />
+            <Route path="/terapias/*" element={<MainLayout><TerapiasLimpiezas onVolver={() => window.history.back()} /></MainLayout>} />
             <Route path="/academia" element={<MainLayout><AcademiaAngelical /></MainLayout>} />
             <Route path="/eventos" element={<MainLayout><Dashboard initialSection="eventos" /></MainLayout>} />
             <Route path="/tienda" element={<MainLayout><TiendaAngelical /></MainLayout>} />
@@ -173,12 +164,8 @@ function App() {
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/en-construccion" element={<MainLayout><EnConstruccion /></MainLayout>} />
 
-            {/* Rutas PodcastYBlog */}
-            <Route path="/blog-podcast" element={<MainLayout><InstruccionesBlogPodcast /></MainLayout>} />
-            <Route path="/blog-podcast/seleccion" element={<MainLayout><SeleccionBlogPodcast /></MainLayout>} />
-            <Route path="/blog-podcast/podcast" element={<MainLayout><PodcastPage /></MainLayout>} />
-            <Route path="/blog-podcast/blog" element={<MainLayout><BlogPage /></MainLayout>} />
-            <Route path="/podcast-blog-dashboard" element={<MainLayout><PodcastYBlogDashboard /></MainLayout>} />
+            {/* Rutas Blog & Podcast */}
+            <Route path="/blog-podcast/*" element={<MainLayout><BlogPodcast /></MainLayout>} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
