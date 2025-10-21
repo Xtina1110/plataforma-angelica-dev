@@ -624,7 +624,7 @@ const MarketplaceBlog = ({ onVolver }) => {
           padding: '60px 20px',
           color: '#6b7280'
         }}>
-          <BookOpen size={64} style={{ margin: '0 auto 20px', opacity: 0.3' }} />
+          <BookOpen size={64} style={{ margin: '0 auto 20px', opacity: 0.3 }} />
           <h3 style={{ fontSize: '1.5rem', marginBottom: '10px' }}>No se encontraron artículos</h3>
           <p>Intenta ajustar los filtros o la búsqueda para ver más opciones</p>
         </div>
