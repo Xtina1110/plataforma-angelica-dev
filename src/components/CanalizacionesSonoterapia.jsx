@@ -10,11 +10,8 @@ import MarketplaceSonoterapia from './MarketplaceSonoterapia';
 import MarketplaceCanalizaciones from './MarketplaceCanalizaciones';
 import InstruccionesAngelicales from './InstruccionesAngelicales';
 // FooterLegal removed - now handled by Dashboard
-import { useShoppingCart } from '../hooks/useShoppingCart';
-
-const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
+const CanalizacionesSonoterapia = ({ onVolver, onNavigate, addToCart }) => {
   const [paso, setPaso] = useState('instrucciones'); // 'instrucciones', 'servicios', 'sonoterapia', 'canalizaciones'
-  const { addToCart } = useShoppingCart();
 
   // Si está en sonoterapia, mostrar MarketplaceSonoterapia
   if (paso === 'sonoterapia') {

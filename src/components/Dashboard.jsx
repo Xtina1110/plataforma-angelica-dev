@@ -1173,7 +1173,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               filters={filters}
               onFilterChange={handleFilterChange}
             />
-            <CanalizacionesSonoterapia onVolver={() => setActiveSection('home')} onNavigate={setActiveSection} />
+            <CanalizacionesSonoterapia onVolver={() => setActiveSection('home')} onNavigate={setActiveSection} addToCart={addToCart} />
             <FooterLegal />
           </div>
         );
