@@ -45,10 +45,21 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
     const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
-      audio.play();
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+          })
+          .catch((error) => {
+            console.error('Error al reproducir audio:', error);
+            alert('No se pudo reproducir el audio. Por favor, intenta de nuevo.');
+            setIsPlaying(false);
+          });
+      }
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleSeek = (e) => {
@@ -168,7 +179,12 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
         </div>
 
         {/* Hidden audio element */}
-        <audio ref={audioRef} src={audioUrl} preload="metadata" />
+        <audio 
+          ref={audioRef} 
+          src={audioUrl} 
+          preload="auto"
+          crossOrigin="anonymous"
+        />
       </div>
     </div>
   );
