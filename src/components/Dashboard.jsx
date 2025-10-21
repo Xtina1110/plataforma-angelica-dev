@@ -17,7 +17,7 @@ import { AperturaAngelicalProvider } from '../contexts/AperturaAngelicalContext'
 import LanguageSelector from './LanguageSelector';
 
 import TiradaAngelical from './TiradaAngelical';
-import MarketplaceCanalizaciones from './MarketplaceCanalizaciones';
+import CanalizacionesSonoterapia from './CanalizacionesSonoterapia';
 import TerapiasLimpiezas from './TerapiasLimpiezas';
 import AcademiaAngelical from './AcademiaAngelical';
 
@@ -1173,7 +1173,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               filters={filters}
               onFilterChange={handleFilterChange}
             />
-            <MarketplaceCanalizaciones onVolver={() => setActiveSection('home')} />
+            <CanalizacionesSonoterapia onVolver={() => setActiveSection('home')} onNavigate={setActiveSection} />
             <FooterLegal />
           </div>
         );
