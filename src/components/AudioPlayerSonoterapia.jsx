@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './AudioPlayerSonoterapia.css';
+import angelicAudio from '../assets/angelic-meditation.mp3';
 
 const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
   const audioRef = useRef(null);
@@ -10,7 +11,7 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
   const [isMuted, setIsMuted] = useState(false);
 
   // Usar audio de placeholder si no existe el archivo real
-  const audioUrl = sonoterapia.audioUrl || '/audios/angelic-meditation.mp3';
+  const audioUrl = sonoterapia.audioUrl || angelicAudio;
 
   useEffect(() => {
     const audio = audioRef.current;

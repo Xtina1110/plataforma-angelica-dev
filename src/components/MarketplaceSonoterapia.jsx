@@ -38,8 +38,25 @@ const MarketplaceSonoterapia = ({ onVolver, addToCart }) => {
 
   // Función para manejar compra
   const handleCompra = (sonoterapiaId) => {
-    console.log('Comprar sonoterapia:', sonoterapiaId);
-    alert('Sistema de pagos en desarrollo. Pronto podrás comprar esta sonoterapia.');
+    const sono = sonoterapias.find(s => s.id === sonoterapiaId);
+    if (!sono) return;
+
+    if (addToCart) {
+      const cartItem = {
+        id: `sonoterapia-${sono.id}`,
+        type: 'sonoterapia',
+        name: sono.titulo,
+        price: sono.precio,
+        image: sono.imagen,
+        category: 'Sonoterapia',
+        data: sono
+      };
+      addToCart(cartItem);
+      alert(`✅ "${sono.titulo}" agregado al carrito por $${sono.precio}`);
+      handleCloseModal();
+    } else {
+      alert('Sistema de carrito no disponible.');
+    }
   };
 
   // Función para reproducir
