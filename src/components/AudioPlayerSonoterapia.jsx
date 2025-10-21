@@ -4,8 +4,11 @@ import './AudioPlayerSonoterapia.css';
 const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
   const audioRef = useRef(null);
   const audioContextRef = useRef(null);
-  const oscillatorRef = useRef(null);
-  const gainNodeRef = useRef(null);
+  const oscillatorsRef = useRef([]);
+  const gainNodesRef = useRef([]);
+  const masterGainRef = useRef(null);
+  const lfoRef = useRef(null);
+  const lfoGainRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -23,50 +26,81 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
 
   const frequency = extractFrequency(sonoterapia.titulo);
 
-  // Inicializar Web Audio API
+  // Inicializar Web Audio API con arquitectura mejorada
   const initWebAudio = () => {
     if (!audioContextRef.current) {
       audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
-      gainNodeRef.current = audioContextRef.current.createGain();
-      gainNodeRef.current.connect(audioContextRef.current.destination);
-      gainNodeRef.current.gain.value = volume;
+      
+      // Master gain node
+      masterGainRef.current = audioContextRef.current.createGain();
+      masterGainRef.current.connect(audioContextRef.current.destination);
+      masterGainRef.current.gain.value = volume;
+      
+      // LFO (Low Frequency Oscillator) para modulación de amplitud
+      lfoRef.current = audioContextRef.current.createOscillator();
+      lfoRef.current.frequency.value = 0.2; // Modulación lenta (5 segundos por ciclo)
+      lfoRef.current.type = 'sine';
+      
+      lfoGainRef.current = audioContextRef.current.createGain();
+      lfoGainRef.current.gain.value = 0.15; // Profundidad de modulación (15%)
+      
+      lfoRef.current.connect(lfoGainRef.current);
+      lfoRef.current.start();
     }
   };
 
-  // Generar tono con Web Audio API
-  const startWebAudioTone = (freq) => {
-    if (!freq) return;
+  // Generar tono rico con armónicos
+  const startWebAudioTone = (baseFreq) => {
+    if (!baseFreq) return;
     
     initWebAudio();
     
-    // Detener oscilador anterior si existe
-    if (oscillatorRef.current) {
-      try {
-        oscillatorRef.current.stop();
-      } catch (e) {
-        // Ignorar error si ya está detenido
-      }
-    }
+    // Detener osciladores anteriores si existen
+    stopWebAudioTone();
 
-    // Crear nuevo oscilador
-    oscillatorRef.current = audioContextRef.current.createOscillator();
-    oscillatorRef.current.type = 'sine'; // Onda sinusoidal pura
-    oscillatorRef.current.frequency.value = freq;
+    const ctx = audioContextRef.current;
+    const now = ctx.currentTime;
     
-    // Conectar al nodo de ganancia
-    oscillatorRef.current.connect(gainNodeRef.current);
+    // Configuración de armónicos (frecuencia fundamental + armónicos)
+    // Esto crea un sonido más rico y musical
+    const harmonics = [
+      { ratio: 1.0, gain: 0.4 },   // Fundamental
+      { ratio: 2.0, gain: 0.15 },  // Primera octava
+      { ratio: 3.0, gain: 0.10 },  // Quinta perfecta
+      { ratio: 4.0, gain: 0.08 },  // Segunda octava
+      { ratio: 5.0, gain: 0.05 },  // Tercera mayor
+    ];
+
+    harmonics.forEach((harmonic, index) => {
+      // Crear oscilador para cada armónico
+      const osc = ctx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = baseFreq * harmonic.ratio;
+      
+      // Gain node individual para cada armónico
+      const gainNode = ctx.createGain();
+      gainNode.gain.value = 0; // Empezar en silencio
+      
+      // Conectar: Oscilador -> Gain individual -> LFO Gain -> Master Gain -> Destination
+      osc.connect(gainNode);
+      gainNode.connect(masterGainRef.current);
+      
+      // Conectar LFO para modulación de amplitud (efecto de "respiración")
+      lfoGainRef.current.connect(gainNode.gain);
+      
+      // Fade in suave (3 segundos)
+      gainNode.gain.setValueAtTime(0, now);
+      gainNode.gain.linearRampToValueAtTime(harmonic.gain, now + 3);
+      
+      // Iniciar oscilador
+      osc.start(now);
+      
+      // Guardar referencias
+      oscillatorsRef.current.push(osc);
+      gainNodesRef.current.push(gainNode);
+    });
     
-    // Fade in suave
-    gainNodeRef.current.gain.setValueAtTime(0, audioContextRef.current.currentTime);
-    gainNodeRef.current.gain.linearRampToValueAtTime(
-      volume, 
-      audioContextRef.current.currentTime + 0.5
-    );
-    
-    // Iniciar oscilador
-    oscillatorRef.current.start();
-    
-    // Simular duración (usar la duración del sonoterapia o 30 minutos por defecto)
+    // Simular duración
     const totalDuration = (sonoterapia.duracionMinutos || 30) * 60;
     setDuration(totalDuration);
     
@@ -86,26 +120,40 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
 
   // Detener tono Web Audio
   const stopWebAudioTone = () => {
-    if (oscillatorRef.current) {
-      try {
-        // Fade out suave
-        if (gainNodeRef.current && audioContextRef.current) {
-          gainNodeRef.current.gain.linearRampToValueAtTime(
-            0, 
-            audioContextRef.current.currentTime + 0.3
-          );
+    const ctx = audioContextRef.current;
+    if (!ctx) return;
+    
+    const now = ctx.currentTime;
+    
+    // Fade out suave para todos los osciladores (2 segundos)
+    gainNodesRef.current.forEach(gainNode => {
+      if (gainNode) {
+        try {
+          gainNode.gain.cancelScheduledValues(now);
+          gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+          gainNode.gain.linearRampToValueAtTime(0, now + 2);
+        } catch (e) {
+          // Ignorar errores
         }
-        
-        setTimeout(() => {
-          if (oscillatorRef.current) {
-            oscillatorRef.current.stop();
-            oscillatorRef.current = null;
-          }
-        }, 300);
-      } catch (e) {
-        // Ignorar error si ya está detenido
       }
-    }
+    });
+    
+    // Detener osciladores después del fade out
+    setTimeout(() => {
+      oscillatorsRef.current.forEach(osc => {
+        if (osc) {
+          try {
+            osc.stop();
+          } catch (e) {
+            // Ignorar error si ya está detenido
+          }
+        }
+      });
+      
+      // Limpiar arrays
+      oscillatorsRef.current = [];
+      gainNodesRef.current = [];
+    }, 2100);
     
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -175,6 +223,13 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
   useEffect(() => {
     return () => {
       stopWebAudioTone();
+      if (lfoRef.current) {
+        try {
+          lfoRef.current.stop();
+        } catch (e) {
+          // Ignorar
+        }
+      }
       if (audioContextRef.current) {
         audioContextRef.current.close();
       }
@@ -255,8 +310,8 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
     setVolume(newVolume);
     setIsMuted(newVolume === 0);
     
-    if (useWebAudio && gainNodeRef.current) {
-      gainNodeRef.current.gain.value = newVolume;
+    if (useWebAudio && masterGainRef.current) {
+      masterGainRef.current.gain.value = newVolume;
     } else if (audioRef.current) {
       audioRef.current.volume = newVolume;
     }
@@ -268,14 +323,14 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
       setVolume(newVolume);
       setIsMuted(false);
       
-      if (useWebAudio && gainNodeRef.current) {
-        gainNodeRef.current.gain.value = newVolume;
+      if (useWebAudio && masterGainRef.current) {
+        masterGainRef.current.gain.value = newVolume;
       } else if (audioRef.current) {
         audioRef.current.volume = newVolume;
       }
     } else {
-      if (useWebAudio && gainNodeRef.current) {
-        gainNodeRef.current.gain.value = 0;
+      if (useWebAudio && masterGainRef.current) {
+        masterGainRef.current.gain.value = 0;
       } else if (audioRef.current) {
         audioRef.current.volume = 0;
       }
@@ -329,7 +384,7 @@ const AudioPlayerSonoterapia = ({ sonoterapia, onClose }) => {
               </span>
               {useWebAudio && frequency && (
                 <p className="audio-player-mode">
-                  <i className="fas fa-waveform-lines"></i> Generando frecuencia {frequency}Hz
+                  <i className="fas fa-waveform-lines"></i> Frecuencia armónica {frequency}Hz
                 </p>
               )}
             </div>
