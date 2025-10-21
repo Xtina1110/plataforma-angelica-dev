@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getSonoterapias, getCategoriasSonoterapia } from '../data/sonoterapiaData';
+import AudioPlayerSonoterapia from './AudioPlayerSonoterapia';
 import './MarketplaceCanalizaciones.css'; // Reutilizamos los estilos
 
 // Marketplace de Sonoterapias Angelicales
@@ -9,6 +10,7 @@ const MarketplaceSonoterapia = ({ onVolver, addToCart }) => {
   const [categoriaFiltro, setCategoriaFiltro] = useState('todas');
   const [vistaGrid, setVistaGrid] = useState(true);
   const [sonoterapiaSeleccionada, setSonoterapiaSeleccionada] = useState(null);
+  const [audioPlayerSono, setAudioPlayerSono] = useState(null);
 
   // Filtrar sonoterapias
   const sonoterapiasFiltradas = sonoterapias.filter(s => {
@@ -42,9 +44,8 @@ const MarketplaceSonoterapia = ({ onVolver, addToCart }) => {
 
   // Función para reproducir
   const handleReproducir = (sono) => {
-    console.log('Reproducir sonoterapia:', sono.titulo);
-    // TODO: Integrar reproductor de audio
-    alert(`Reproduciendo: ${sono.titulo}\n\nReproductor de audio en desarrollo.`);
+    setAudioPlayerSono(sono);
+    handleCloseModal(); // Cerrar modal de detalles
   };
 
   // Verificar si el usuario tiene acceso
@@ -536,6 +537,14 @@ const MarketplaceSonoterapia = ({ onVolver, addToCart }) => {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Audio Player */}
+      {audioPlayerSono && (
+        <AudioPlayerSonoterapia 
+          sonoterapia={audioPlayerSono}
+          onClose={() => setAudioPlayerSono(null)}
+        />
       )}
     </div>
   );
