@@ -6,7 +6,8 @@ import IconoEspacioSagrado from './IconoEspacioSagrado';
 import IconoIntencionClara from './IconoIntencionClara';
 import IconoReceptividadTotal from './IconoReceptividadTotal';
 import AppSidebar from './AppSidebar';
-import SonoterapiaCanalizacionesCombinadas from './SonoterapiaCanalizacionesCombinadas';
+import Sonoterapia from './Sonoterapia';
+import MarketplaceCanalizaciones from './MarketplaceCanalizaciones';
 import InstruccionesAngelicales from './InstruccionesAngelicales';
 // FooterLegal removed - now handled by Dashboard
 import { useShoppingCart } from '../hooks/useShoppingCart';
@@ -15,9 +16,14 @@ const CanalizacionesSonoterapia = ({ onVolver, onNavigate }) => {
   const [paso, setPaso] = useState('instrucciones'); // 'instrucciones', 'servicios', 'sonoterapia', 'canalizaciones'
   const { addToCart } = useShoppingCart();
 
-  // Si está en sonoterapia o canalizaciones, mostrar el componente combinado
-  if (paso === 'sonoterapia' || paso === 'canalizaciones') {
-    return <SonoterapiaCanalizacionesCombinadas onVolver={() => setPaso('servicios')} addToCart={addToCart} />;
+  // Si está en sonoterapia, mostrar solo Sonoterapia
+  if (paso === 'sonoterapia') {
+    return <Sonoterapia onVolver={() => setPaso('servicios')} addToCart={addToCart} />;
+  }
+
+  // Si está en canalizaciones, mostrar solo MarketplaceCanalizaciones
+  if (paso === 'canalizaciones') {
+    return <MarketplaceCanalizaciones onVolver={() => setPaso('servicios')} addToCart={addToCart} />;
   }
 
   // Página de instrucciones
