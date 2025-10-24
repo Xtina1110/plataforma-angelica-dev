@@ -26,6 +26,8 @@ import DashboardHeader from './DashboardHeader';
 import FooterLegal from './FooterLegal';
 import FilterBar from './FilterBar';
 import MensajeDelDia from './MensajeDelDia';
+import MensajeDelDiaEnhanced from './MensajeDelDiaEnhanced';
+import FloatingChatButton from './FloatingChatButton';
 import AudioButton from './AudioButton';
 import MisReservas from './MisReservas';
 import DayEventsModal from './DayEventsModal';
@@ -1248,9 +1250,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         return (
           <div>
             {renderHeader()}
-            <div className="mensaje-del-dia-container">
-              <MensajeDelDia />
-            </div>
+            <MensajeDelDiaEnhanced user={user} onLogout={onLogout} />
             <FooterLegal />
           </div>
         );
@@ -1745,6 +1745,9 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       
       {showSettings && renderSettings()}
       {showCart && renderCart()}
+      
+      {/* Chatbot Flotante */}
+      <FloatingChatButton user={user} />
     </div>
   );
 };
