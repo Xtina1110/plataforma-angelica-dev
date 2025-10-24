@@ -1,6 +1,7 @@
 /**
  * Utilidades para optimización de rendimiento
  */
+import React from 'react';
 
 /**
  * Precarga de imágenes críticas
