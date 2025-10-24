@@ -42,6 +42,12 @@ import TiradaAngelical from './components/TiradaAngelical';
 import CanalizacionesSonoterapia from './components/CanalizacionesSonoterapia';
 import TerapiasLimpiezas from './components/TerapiasLimpiezas';
 import AcademiaAngelical from './components/AcademiaAngelical';
+import CourseCatalog from './components/Academy/CourseCatalog';
+import CoursePage from './components/Academy/CoursePage';
+import LessonPlayer from './components/Academy/LessonPlayer';
+import QuizSystem from './components/Academy/QuizSystem';
+import StudentDashboard from './components/Academy/StudentDashboard';
+import TeacherDashboard from './components/Academy/TeacherDashboard';
 import EventosModernos from './components/EventosModernos';
 import TiendaAngelical from './components/TiendaAngelical';
 
@@ -154,7 +160,12 @@ function App() {
             <Route path="/apertura-angelica" element={<MainLayout><TiradaAngelical onVolver={() => window.history.back()} /></MainLayout>} />
             <Route path="/sonoterapia" element={<MainLayout><CanalizacionesSonoterapia onVolver={() => window.history.back()} /></MainLayout>} />
             <Route path="/terapias/*" element={<MainLayout><TerapiasLimpiezas onVolver={() => window.history.back()} /></MainLayout>} />
-            <Route path="/academia" element={<MainLayout><AcademiaAngelical /></MainLayout>} />
+            <Route path="/academia" element={<CourseCatalog user={user} onLogout={handleLogout} />} />
+            <Route path="/academia/course/:id" element={<CoursePage user={user} onLogout={handleLogout} />} />
+            <Route path="/academia/my-courses" element={<StudentDashboard user={user} onLogout={handleLogout} />} />
+            <Route path="/academia/teacher" element={<TeacherDashboard user={user} onLogout={handleLogout} />} />
+            <Route path="/academia/course/:courseId/lesson/:lessonId" element={<LessonPlayer user={user} />} />
+            <Route path="/academia/course/:courseId/quiz/:quizId" element={<QuizSystem user={user} />} />
             <Route path="/eventos" element={<MainLayout><Dashboard initialSection="eventos" /></MainLayout>} />
             <Route path="/tienda" element={<MainLayout><TiendaAngelical /></MainLayout>} />
 
