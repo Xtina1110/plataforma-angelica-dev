@@ -12,6 +12,7 @@ import PantallaInicio from './components/PantallaInicio';
 import Login from './components/Login';
 import LoginOptimized from './components/LoginOptimized';
 import LoginEnhanced from './components/LoginEnhanced';
+import LoginSimple from './components/LoginSimple';
 import DashboardRedirect from './components/DashboardRedirect';
 import Registro from './components/Registro';
 import RegistroMultiStep from './components/RegistroMultiStep';
@@ -131,7 +132,7 @@ function App() {
               {/* Rutas públicas sin sidebar */}
               <Route path="/" element={<PantallaCarga />} />
               <Route path="/inicio" element={<PantallaInicio />} />
-              <Route path="/login" element={<LoginEnhanced onLogin={handleLogin} />} />
+              <Route path="/login" element={<LoginSimple />} />
               <Route path="/registro" element={<RegistroMultiStep />} />
               <Route path="/registro-exitoso" element={<RegistroExitoso />} />
               <Route path="/configurar-pago" element={<ConfigurarPago />} />
