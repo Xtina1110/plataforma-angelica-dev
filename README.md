@@ -52,3 +52,4 @@ npm run dev
 - **[Changelog](CHANGELOG.md)**
 
 **⭐ Estructura GitHub completa generada para desarrollo avanzado!**
+<- Redirige a dashboard incluso si hay Deploy trigger Fri Oct 24 17:18:58 EDT 2025 -->
