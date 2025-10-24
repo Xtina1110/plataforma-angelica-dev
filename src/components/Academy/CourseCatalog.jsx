@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Search, Filter, Star, Users, Clock, BookOpen, 
   Play, TrendingUp, Award, ChevronDown, X
 } from 'lucide-react';
 import AppSidebar from '../AppSidebar';
-import { AcademiaHeader } from '../headers';
+// Header is rendered by Dashboard
 import '../Dashboard.css';
 
 const CourseCatalog = ({ user, onLogout }) => {
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -248,11 +250,7 @@ const CourseCatalog = ({ user, onLogout }) => {
           overflowY: 'auto'
         }}>
 
-        <AcademiaHeader
-          user={user}
-          onLogout={onLogout}
-          onNavigateHome={() => window.history.back()}
-        />
+        {/* Header is rendered by Dashboard */}
 
         <div className="p-6 max-w-7xl mx-auto">
           {/* Hero Section */}
@@ -387,7 +385,7 @@ const CourseCatalog = ({ user, onLogout }) => {
               <div
                 key={course.id}
                 className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer"
-                onClick={() => window.location.href = `/academy/course/${course.id}`}
+                onClick={() => navigate(`/academia/course/${course.id}`)}
               >
                 {/* Course Image */}
                 <div className="relative h-48 bg-gradient-to-br from-purple-400 to-blue-400 overflow-hidden">
