@@ -19,7 +19,7 @@ import LanguageSelector from './LanguageSelector';
 import TiradaAngelical from './TiradaAngelical';
 import CanalizacionesSonoterapia from './CanalizacionesSonoterapia';
 import TerapiasLimpiezas from './TerapiasLimpiezas';
-import AcademiaAngelical from './AcademiaAngelical';
+import CourseCatalog from './Academy/CourseCatalog';
 
 import TiendaAngelical from './TiendaAngelical';
 import DashboardHeader from './DashboardHeader';
@@ -1203,7 +1203,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               onActionClick={() => console.log('Ver cursos')}
               actionLabel="Ver Cursos"
             />
-            <AcademiaAngelical onVolver={() => setActiveSection('home')} addToCart={addToCart} />
+            <CourseCatalog user={user} onLogout={onLogout} />
             <FooterLegal />
           </div>
         );
