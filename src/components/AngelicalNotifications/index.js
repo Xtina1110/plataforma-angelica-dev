@@ -8,5 +8,7 @@ export {
   useNotifications 
 } from './NotificationSystem';
 
+export { default as AngelicalPrompt } from './AngelicalPrompt';
+
 export default NotificationProvider;
 

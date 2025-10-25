@@ -19,7 +19,7 @@ const LiveSessionRoom = ({ booking, session, onEndSession }) => {
   const [sessionTime, setSessionTime] = useState(0);
   const [canExtend, setCanExtend] = useState(true);
   const [themeConfig, setThemeConfig] = useState(null);
-  const { toast, confirm } = useNotifications();
+  const { toast, confirm, prompt } = useNotifications();
 
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
@@ -94,9 +94,28 @@ const LiveSessionRoom = ({ booking, session, onEndSession }) => {
     );
 
     if (extend) {
-      // TODO: Crear modal angelical para selección de minutos
-      const minutes = window.prompt('¿Cuántos minutos? (15 o 30)');
-      if (minutes === '15' || minutes === '30') {
+      // Prompt angelical para selección de minutos
+      const minutes = await prompt(
+        '¿Cuántos minutos deseas extender? ⏰',
+        'Selecciona la duración de la extensión de tu sesión',
+        [
+          {
+            value: '15',
+            label: '15 minutos',
+            description: 'Extensión corta',
+            price: '50'
+          },
+          {
+            value: '30',
+            label: '30 minutos',
+            description: 'Extensión completa',
+            price: '95'
+          }
+        ],
+        'buttons'
+      );
+      
+      if (minutes) {
         requestExtension(parseInt(minutes));
       }
     }

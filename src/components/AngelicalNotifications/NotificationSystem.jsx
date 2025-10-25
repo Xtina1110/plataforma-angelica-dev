@@ -15,6 +15,7 @@ import {
   Star,
   Zap
 } from 'lucide-react';
+import AngelicalPrompt from './AngelicalPrompt';
 
 // Contexto para el sistema de notificaciones
 const NotificationContext = createContext();
@@ -285,6 +286,7 @@ const AngelicalModal = ({ modal, onClose }) => {
 export const NotificationProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
   const [modal, setModal] = useState(null);
+  const [promptConfig, setPromptConfig] = useState(null);
 
   // Agregar toast
   const addToast = useCallback((options) => {
@@ -357,10 +359,31 @@ export const NotificationProvider = ({ children }) => {
     });
   };
 
+  // Prompt (selección de opciones)
+  const prompt = (title, message, options, type = 'select') => {
+    return new Promise((resolve) => {
+      setPromptConfig({
+        title,
+        message,
+        options,
+        type,
+        onConfirm: (value) => {
+          setPromptConfig(null);
+          resolve(value);
+        },
+        onCancel: () => {
+          setPromptConfig(null);
+          resolve(null);
+        }
+      });
+    });
+  };
+
   const value = {
     toast,
     alert,
     confirm,
+    prompt,
     showModal,
     closeModal,
     addToast,
@@ -388,6 +411,19 @@ export const NotificationProvider = ({ children }) => {
         <AngelicalModal
           modal={modal}
           onClose={closeModal}
+        />
+      )}
+
+      {/* Prompt Dialog */}
+      {promptConfig && (
+        <AngelicalPrompt
+          isOpen={true}
+          title={promptConfig.title}
+          message={promptConfig.message}
+          options={promptConfig.options}
+          type={promptConfig.type}
+          onConfirm={promptConfig.onConfirm}
+          onClose={promptConfig.onCancel}
         />
       )}
     </NotificationContext.Provider>
