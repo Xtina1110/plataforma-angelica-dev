@@ -27,16 +27,16 @@ const DashboardRedirect = () => {
       const onboardingCompleted = localStorage.getItem('onboardingCompleted');
       
       // También verificar en la base de datos si el usuario es nuevo
-      const { data: profile } = await supabase
-        .from('profiles')
+      const { data: userData } = await supabase
+        .from('usuarios')
         .select('created_at, onboarding_completed')
         .eq('id', user.id)
         .single();
 
       // Si es un usuario nuevo (menos de 5 minutos desde creación) y no ha completado onboarding
-      const isNewUser = profile && 
-        (new Date() - new Date(profile.created_at)) < 5 * 60 * 1000 &&
-        !profile.onboarding_completed;
+      const isNewUser = userData && 
+        (new Date() - new Date(userData.created_at)) < 5 * 60 * 1000 &&
+        !userData.onboarding_completed;
 
       if ((isNewUser || !onboardingCompleted) && onboardingCompleted !== 'true') {
         setShowOnboarding(true);
@@ -58,7 +58,7 @@ const DashboardRedirect = () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         await supabase
-          .from('profiles')
+          .from('usuarios')
           .update({ onboarding_completed: true })
           .eq('id', user.id);
       }
@@ -75,7 +75,7 @@ const DashboardRedirect = () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         await supabase
-          .from('profiles')
+          .from('usuarios')
           .update({ onboarding_completed: true })
           .eq('id', user.id);
       }

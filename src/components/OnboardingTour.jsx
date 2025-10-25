@@ -65,7 +65,7 @@ const OnboardingTour = ({ onComplete, onSkip }) => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         await supabase
-          .from('profiles')
+          .from('usuarios')
           .update({ 
             onboarding_completed: true,
             onboarding_completed_at: new Date().toISOString()
@@ -90,7 +90,7 @@ const OnboardingTour = ({ onComplete, onSkip }) => {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         await supabase
-          .from('profiles')
+          .from('usuarios')
           .update({ 
             onboarding_completed: true,
             onboarding_skipped: true,

@@ -22,6 +22,7 @@ import RegistroExitoso from './components/RegistroExitoso';
 import ConfigurarPago from './components/ConfigurarPago';
 import EmailVerified from './components/EmailVerified';
 import ResetPassword from './components/ResetPassword';
+import AuthCallback from './components/AuthCallback';
 import Dashboard from './components/Dashboard';
 // import DashboardPremium from './components/DashboardPremium';
 import DashboardAdmin from './components/DashboardAdmin';
@@ -148,6 +149,7 @@ function App() {
               <Route path="/configurar-pago" element={<ConfigurarPago />} />
               <Route path="/email-verified" element={<EmailVerified />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/auth/callback" element={<AuthCallback />} />
 
             {/* Rutas con sidebar */}
             <Route path="/dashboard-redirect" element={<DashboardRedirect />} />
