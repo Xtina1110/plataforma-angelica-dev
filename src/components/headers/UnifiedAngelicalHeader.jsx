@@ -21,7 +21,7 @@ const AppThemes = {
   apertura: {
     name: 'Apertura Angelical',
     subtitle: 'Abre tu corazón a la energía divina ✨',
-    primaryColor: '#9333ea', // Purple
+    primaryColor: '#00BCD4', // Cyan (Dashboard color)
     overlayColor: 'bg-purple-600/40',
     borderColor: 'border-purple-500',
     hoverBorderColor: 'hover:border-purple-400',
@@ -32,7 +32,7 @@ const AppThemes = {
   canalizaciones: {
     name: 'Canalizaciones Angelicales',
     subtitle: 'Conecta con mensajes divinos 💖',
-    primaryColor: '#ec4899', // Pink
+    primaryColor: '#9C27B0', // Purple (Dashboard color)
     overlayColor: 'bg-pink-600/40',
     borderColor: 'border-pink-500',
     hoverBorderColor: 'hover:border-pink-400',
@@ -43,7 +43,7 @@ const AppThemes = {
   sonoterapia: {
     name: 'Sonoterapia Angelical',
     subtitle: 'Sana con frecuencias divinas 🎵',
-    primaryColor: '#06b6d4', // Cyan
+    primaryColor: '#9C27B0', // Purple (Dashboard color)
     overlayColor: 'bg-cyan-600/40',
     borderColor: 'border-cyan-500',
     hoverBorderColor: 'hover:border-cyan-400',
@@ -53,8 +53,8 @@ const AppThemes = {
   },
   terapias: {
     name: 'Terapias y Limpiezas',
-    subtitle: 'Equilibra tu energía vital 💚',
-    primaryColor: '#10b981', // Emerald
+    subtitle: 'Equilibra tu energía vital 💖',
+    primaryColor: '#E91E63', // Pink (Dashboard color)
     overlayColor: 'bg-emerald-600/40',
     borderColor: 'border-emerald-500',
     hoverBorderColor: 'hover:border-emerald-400',
@@ -65,7 +65,7 @@ const AppThemes = {
   academia: {
     name: 'Academia Angélica',
     subtitle: 'Aprende el camino de la luz 📚',
-    primaryColor: '#f59e0b', // Amber
+    primaryColor: '#4CAF50', // Green (Dashboard color)
     overlayColor: 'bg-amber-600/40',
     borderColor: 'border-amber-500',
     hoverBorderColor: 'hover:border-amber-400',
@@ -76,7 +76,7 @@ const AppThemes = {
   tienda: {
     name: 'Tienda Angelical',
     subtitle: 'Productos espirituales bendecidos 🛍️',
-    primaryColor: '#8b5cf6', // Violet
+    primaryColor: '#FF9800', // Orange (Dashboard color)
     overlayColor: 'bg-violet-600/40',
     borderColor: 'border-violet-500',
     hoverBorderColor: 'hover:border-violet-400',
@@ -87,7 +87,7 @@ const AppThemes = {
   eventos: {
     name: 'Eventos Angelicales',
     subtitle: 'Experiencias espirituales únicas 🎉',
-    primaryColor: '#ef4444', // Red
+    primaryColor: '#3F51B5', // Indigo (Dashboard color)
     overlayColor: 'bg-red-600/40',
     borderColor: 'border-red-500',
     hoverBorderColor: 'hover:border-red-400',
@@ -98,7 +98,7 @@ const AppThemes = {
   blog: {
     name: 'Blog & Podcast',
     subtitle: 'Sabiduría angelical compartida 📖',
-    primaryColor: '#6366f1', // Indigo
+    primaryColor: '#FFC107', // Amber (Dashboard color)
     overlayColor: 'bg-indigo-600/40',
     borderColor: 'border-indigo-500',
     hoverBorderColor: 'hover:border-indigo-400',
