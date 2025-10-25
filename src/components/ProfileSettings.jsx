@@ -4,11 +4,13 @@ import {
   CreditCard, Save, Upload, Camera, Check, AlertCircle, Eye, EyeOff
 } from 'lucide-react';
 import { supabase } from '../integrations/supabase/client';
+import { useNotifications } from './AngelicalNotifications';
 
 const ProfileSettings = ({ isOpen, onClose, user }) => {
   const [activeTab, setActiveTab] = useState('profile'); // 'profile', 'security', 'notifications', 'subscription'
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+  const { toast, confirm: confirmDialog } = useNotifications();
   
   // Profile data
   const [profileData, setProfileData] = useState({
@@ -637,7 +639,7 @@ const ProfileSettings = ({ isOpen, onClose, user }) => {
                 <button 
                   onClick={() => {
                     // TODO: Open SubscriptionCheckout modal
-                    alert('Funcionalidad de checkout en desarrollo. Por favor, contacta con soporte.');
+                    toast.info('Funcionalidad de checkout en desarrollo. Por favor, contacta con soporte. 🛠️');
                   }}
                   className="w-full bg-gradient-to-r from-purple-600 to-violet-600 text-white py-3 rounded-lg font-medium hover:shadow-lg transition-all flex items-center justify-center gap-2"
                 >
@@ -647,9 +649,9 @@ const ProfileSettings = ({ isOpen, onClose, user }) => {
               ) : (
                 <div className="space-y-3">
                   <button 
-                    onClick={() => {
+                    onClick={()  => {
                       // TODO: Open customer portal
-                      alert('Portal de gestión en desarrollo. Por favor, contacta con soporte.');
+                      toast.info('Portal de gestión en desarrollo. Por favor, contacta con soporte. 🛠️');
                     }}
                     className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition-all flex items-center justify-center gap-2"
                   >
@@ -657,9 +659,10 @@ const ProfileSettings = ({ isOpen, onClose, user }) => {
                     Gestionar Suscripción
                   </button>
                   <button 
-                    onClick={() => {
-                      if (confirm('¿Estás seguro de que quieres cancelar tu suscripción?')) {
-                        alert('Funcionalidad de cancelación en desarrollo. Por favor, contacta con soporte.');
+                    onClick={async () => {
+                      const confirmed = await confirmDialog('¿Cancelar suscripción?', '¿Estás seguro de que quieres cancelar tu suscripción?');
+                      if (confirmed) {
+                        toast.info('Funcionalidad de cancelación en desarrollo. Por favor, contacta con soporte. 🛠️');
                       }
                     }}
                     className="w-full bg-red-50 text-red-600 py-3 rounded-lg font-medium hover:bg-red-100 transition-all"

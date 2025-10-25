@@ -6,6 +6,7 @@ import {
 import { Card, CardContent } from '../ui/card';
 import supabase from '../../services/supabaseClient';
 import './OnlineConsultation.css';
+import { useNotifications } from '../AngelicalNotifications';
 
 const LiveSessionRoom = ({ booking, session, onEndSession }) => {
   const [localStream, setLocalStream] = useState(null);
@@ -18,6 +19,7 @@ const LiveSessionRoom = ({ booking, session, onEndSession }) => {
   const [sessionTime, setSessionTime] = useState(0);
   const [canExtend, setCanExtend] = useState(true);
   const [themeConfig, setThemeConfig] = useState(null);
+  const { toast, confirm } = useNotifications();
 
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
@@ -83,15 +85,16 @@ const LiveSessionRoom = ({ booking, session, onEndSession }) => {
     }, 1000);
   };
 
-  const showExtensionOffer = () => {
-    const extend = window.confirm(
+  const showExtensionOffer = async () => {
+    const extend = await confirm(
+      '¿Extender sesión? ⏰',
       'Tu sesión está por terminar en 5 minutos.\n\n' +
-      '¿Deseas extender?\n' +
       '• 15 minutos adicionales: $50 USD\n' +
       '• 30 minutos adicionales: $95 USD'
     );
 
     if (extend) {
+      // TODO: Crear modal angelical para selección de minutos
       const minutes = window.prompt('¿Cuántos minutos? (15 o 30)');
       if (minutes === '15' || minutes === '30') {
         requestExtension(parseInt(minutes));
@@ -115,10 +118,10 @@ const LiveSessionRoom = ({ booking, session, onEndSession }) => {
 
       if (error) throw error;
 
-      alert(`Extensión de ${minutes} minutos solicitada. Por favor completa el pago para continuar.`);
+      toast.info(`Extensión de ${minutes} minutos solicitada. Por favor completa el pago para continuar. 💳`);
     } catch (error) {
       console.error('Error requesting extension:', error);
-      alert('Error al solicitar extensión');
+      toast.error('Error al solicitar extensión');
     }
   };
 
@@ -141,7 +144,7 @@ const LiveSessionRoom = ({ booking, session, onEndSession }) => {
       await updateSessionStatus('started_at', new Date().toISOString());
     } catch (error) {
       console.error('Error accessing media devices:', error);
-      alert('Error al acceder a cámara/micrófono. Por favor verifica los permisos.');
+      toast.error('Error al acceder a cámara/micrófono. Por favor verifica los permisos. 🎥');
     }
   };
 
@@ -189,8 +192,8 @@ const LiveSessionRoom = ({ booking, session, onEndSession }) => {
   };
 
   const endSession = async () => {
-    const confirm = window.confirm('¿Estás seguro de terminar la sesión?');
-    if (!confirm) return;
+    const confirmEnd = await confirm('¿Terminar sesión?', '¿Estás seguro de terminar la sesión?');
+    if (!confirmEnd) return;
 
     const actualDuration = Math.floor(sessionTime / 60);
 

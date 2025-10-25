@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { useAperturaAngelical } from '../contexts/AperturaAngelicalContext';
 import { Star, Trash2, Eye, Edit2, Save, X } from 'lucide-react';
 import './FavoritosTiradas.css';
+import { useNotifications } from './AngelicalNotifications';
 
 const FavoritosTiradas = ({ onClose, onVerTirada }) => {
   const { aperturaState, quitarFavorito, actualizarNotasFavorito } = useAperturaAngelical();
   const [editandoNotas, setEditandoNotas] = useState(null);
   const [notasTemp, setNotasTemp] = useState('');
+  const { confirm } = useNotifications();
   
   const guardarNotas = async (favoritoId) => {
     await actualizarNotasFavorito(favoritoId, notasTemp);
@@ -14,7 +16,8 @@ const FavoritosTiradas = ({ onClose, onVerTirada }) => {
   };
   
   const handleEliminarFavorito = async (favoritoId) => {
-    if (window.confirm('¿Estás seguro de quitar esta tirada de favoritos?')) {
+    const confirmed = await confirm('¿Quitar de favoritos?', '¿Estás seguro de quitar esta tirada de favoritos?');
+    if (confirmed) {
       await quitarFavorito(favoritoId);
     }
   };

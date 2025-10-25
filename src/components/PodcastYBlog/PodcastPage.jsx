@@ -10,6 +10,7 @@ import ThematicHeader from '../ThematicHeader';
 import FooterLegal from '../FooterLegal';
 import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 import './PodcastPage.css';
+import { useNotifications } from '../AngelicalNotifications';
 
 const PodcastPage = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const PodcastPage = () => {
   const [videoSeleccionado, setVideoSeleccionado] = useState(null);
   const [favoritos, setFavoritos] = useState([]);
   const [user, setUser] = useState(null);
+  const { toast } = useNotifications();
 
   const categorias = [
     { id: 'todos', nombre: 'Todos', icono: '✨' },
@@ -99,7 +101,7 @@ const PodcastPage = () => {
     } else {
       // Fallback: copiar al portapapeles
       navigator.clipboard.writeText(video.videoUrl);
-      alert('¡Link copiado al portapapeles!');
+      toast.success('¡Link copiado al portapapeles! 🔗');
     }
   };
 

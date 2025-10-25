@@ -3,6 +3,7 @@ import { Camera, Maximize2, RotateCcw, Volume2, Download, Share2, Sparkles, Eye,
 import './RealidadAumentada.css';
 import { cartasAngelicas } from '../data/cartasAngelicas';
 import logo from '../assets/Logosinfondo.png';
+import { useNotifications } from './AngelicalNotifications';
 
 const RealidadAumentada = () => {
   const [isARActive, setIsARActive] = useState(false);
@@ -12,6 +13,7 @@ const RealidadAumentada = () => {
   const [audioEnabled, setAudioEnabled] = useState(true);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const { toast } = useNotifications();
 
   const views = [
     { id: 'carta', name: 'Carta', icon: Eye, description: 'Vista de la carta angelical' },
@@ -32,7 +34,7 @@ const RealidadAumentada = () => {
       }
     } catch (error) {
       console.error('Error accessing camera:', error);
-      alert('No se pudo acceder a la cámara. Asegúrate de dar permisos.');
+      toast.error('No se pudo acceder a la cámara. Asegúrate de dar permisos. 🎥');
     }
     setIsLoading(false);
   };

@@ -22,6 +22,7 @@ import {
 import NotesPanel from './VideoConsulta/NotesPanel';
 import TranscriptionPanel from './VideoConsulta/TranscriptionPanel';
 import './VideoConsultaJitsiEnhanced.css';
+import { useNotifications } from './AngelicalNotifications';
 
 const VideoConsultaJitsiEnhanced = ({ 
   consultaId, 
@@ -41,6 +42,7 @@ const VideoConsultaJitsiEnhanced = ({
   const [isRecording, setIsRecording] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(true);
   const [videoEnabled, setVideoEnabled] = useState(true);
+  const { confirm } = useNotifications();
   
   // Countdown timer
   useEffect(() => {
@@ -148,8 +150,9 @@ const VideoConsultaJitsiEnhanced = ({
     });
   };
   
-  const salirConsulta = () => {
-    if (window.confirm('¿Estás seguro de que quieres salir de la consulta?')) {
+  const salirConsulta = async () => {
+    const confirmed = await confirm('¿Salir de la consulta?', '¿Estás seguro de que quieres salir de la consulta?');
+    if (confirmed) {
       if (jitsiApi) {
         jitsiApi.executeCommand('hangup');
       }

@@ -9,6 +9,7 @@ import ThematicHeader from '../ThematicHeader';
 import FooterLegal from '../FooterLegal';
 import fondoAngelico from '../../assets/FondoAngelicoDashboard.png';
 import './BlogPage.css';
+import { useNotifications } from '../AngelicalNotifications';
 
 const BlogPage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const BlogPage = () => {
   const [categoria, setCategoria] = useState('todos');
   const [favoritos, setFavoritos] = useState([]);
   const [user, setUser] = useState(null);
+  const { toast } = useNotifications();
 
   const categorias = [
     { id: 'todos', nombre: 'Todos', icono: '✨', color: '#fbbf24' },
@@ -115,7 +117,7 @@ const BlogPage = () => {
       });
     } else {
       navigator.clipboard.writeText(window.location.origin + `/blog/articulo/${articulo.id}`);
-      alert('¡Link copiado al portapapeles!');
+      toast.success('¡Link copiado al portapapeles! 🔗');
     }
   };
 

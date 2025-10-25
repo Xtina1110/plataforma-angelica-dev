@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Mic, MicOff, Download, Trash2, Languages } from 'lucide-react';
 import { supabase } from '../../supabase';
 import './TranscriptionPanel.css';
+import { useNotifications } from '../AngelicalNotifications';
 
 const TranscriptionPanel = ({ consultaId, userId, isRecording }) => {
   const [transcripts, setTranscripts] = useState([]);
   const [isTranscribing, setIsTranscribing] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('es');
   const transcriptEndRef = useRef(null);
+  const { confirm } = useNotifications();
 
   useEffect(() => {
     loadTranscripts();
@@ -118,7 +120,8 @@ const TranscriptionPanel = ({ consultaId, userId, isRecording }) => {
   };
 
   const clearTranscripts = async () => {
-    if (window.confirm('¿Estás seguro de que quieres borrar todas las transcripciones?')) {
+    const confirmed = await confirm('¿Borrar transcripciones?', '¿Estás seguro de que quieres borrar todas las transcripciones?');
+    if (confirmed) {
       try {
         const { error } = await supabase
           .from('session_transcripts')

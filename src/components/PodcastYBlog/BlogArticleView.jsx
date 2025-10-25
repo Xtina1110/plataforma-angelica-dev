@@ -8,11 +8,13 @@ import BlogSidebar from './BlogSidebar';
 import RelatedArticles from './RelatedArticles';
 import CommentsSection from './CommentsSection';
 import './BlogArticleView.css';
+import { useNotifications } from '../AngelicalNotifications';
 
 const BlogArticleView = ({ articulo, todosArticulos, onVolver, onArticuloClick }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
+  const { toast } = useNotifications();
 
   // Scroll progress tracking
   useEffect(() => {
@@ -46,7 +48,7 @@ const BlogArticleView = ({ articulo, todosArticulos, onVolver, onArticuloClick }
 
     if (platform === 'copy') {
       navigator.clipboard.writeText(url);
-      alert('¡Enlace copiado al portapapeles!');
+      toast.success('¡Enlace copiado al portapapeles! 🔗');
     } else {
       window.open(shareUrls[platform], '_blank', 'width=600,height=400');
     }

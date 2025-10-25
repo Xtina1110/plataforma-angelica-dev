@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { FileText, Save, Download, Trash2, Clock } from 'lucide-react';
 import { supabase } from '../../supabase';
 import './NotesPanel.css';
+import { useNotifications } from '../AngelicalNotifications';
 
 const NotesPanel = ({ consultaId, userId }) => {
   const [notes, setNotes] = useState('');
   const [savedNotes, setSavedNotes] = useState([]);
   const [autoSaving, setAutoSaving] = useState(false);
   const [lastSaved, setLastSaved] = useState(null);
+  const { confirm } = useNotifications();
 
   useEffect(() => {
     loadNotes();
@@ -91,8 +93,9 @@ const NotesPanel = ({ consultaId, userId }) => {
     URL.revokeObjectURL(url);
   };
 
-  const clearNotes = () => {
-    if (window.confirm('¿Estás seguro de que quieres borrar todas las notas?')) {
+  const clearNotes = async () => {
+    const confirmed = await confirm('¿Borrar todas las notas?', '¿Estás seguro de que quieres borrar todas las notas?');
+    if (confirmed) {
       setNotes('');
     }
   };
