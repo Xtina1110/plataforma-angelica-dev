@@ -54,6 +54,9 @@ import TiendaAngelical from './components/TiendaAngelical';
 // Componente BlogPodcast
 import BlogPodcast from './components/BlogPodcast';
 
+// Test 3D Experience
+import Test3DExperience from './pages/Test3DExperience';
+
 import './App.css';
 
 function App() {
@@ -177,6 +180,9 @@ function App() {
 
             {/* Rutas Blog & Podcast */}
             <Route path="/blog-podcast/*" element={<MainLayout><BlogPodcast /></MainLayout>} />
+
+            {/* Test 3D Experience */}
+            <Route path="/test-3d" element={<Test3DExperience />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
