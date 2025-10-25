@@ -21,29 +21,7 @@ const AppThemes = {
   apertura: {
     name: 'Apertura Angelical',
     subtitle: 'Abre tu corazón a la energía divina ✨',
-    primaryColor: '#00BCD4', // Cyan (Dashboard color)
-    overlayColor: 'bg-purple-600/40',
-    borderColor: 'border-purple-500',
-    hoverBorderColor: 'hover:border-purple-400',
-    buttonBg: 'bg-purple-700',
-    buttonHover: 'hover:bg-purple-600',
-    accentColor: 'bg-purple-400/30'
-  },
-  canalizaciones: {
-    name: 'Canalizaciones Angelicales',
-    subtitle: 'Conecta con mensajes divinos 💖',
-    primaryColor: '#9C27B0', // Purple (Dashboard color)
-    overlayColor: 'bg-pink-600/40',
-    borderColor: 'border-pink-500',
-    hoverBorderColor: 'hover:border-pink-400',
-    buttonBg: 'bg-pink-700',
-    buttonHover: 'hover:bg-pink-600',
-    accentColor: 'bg-pink-400/30'
-  },
-  sonoterapia: {
-    name: 'Sonoterapia Angelical',
-    subtitle: 'Sana con frecuencias divinas 🎵',
-    primaryColor: '#9C27B0', // Purple (Dashboard color)
+    primaryColor: '#00BCD4', // Cyan/Turquesa
     overlayColor: 'bg-cyan-600/40',
     borderColor: 'border-cyan-500',
     hoverBorderColor: 'hover:border-cyan-400',
@@ -51,60 +29,82 @@ const AppThemes = {
     buttonHover: 'hover:bg-cyan-600',
     accentColor: 'bg-cyan-400/30'
   },
+  canalizaciones: {
+    name: 'Canalizaciones Angelicales',
+    subtitle: 'Conecta con mensajes divinos 💖',
+    primaryColor: '#9C27B0', // Morado/Púrpura
+    overlayColor: 'bg-purple-600/40',
+    borderColor: 'border-purple-500',
+    hoverBorderColor: 'hover:border-purple-400',
+    buttonBg: 'bg-purple-700',
+    buttonHover: 'hover:bg-purple-600',
+    accentColor: 'bg-purple-400/30'
+  },
+  sonoterapia: {
+    name: 'Sonoterapia Angelical',
+    subtitle: 'Sana con frecuencias divinas 🎵',
+    primaryColor: '#9C27B0', // Morado/Púrpura
+    overlayColor: 'bg-purple-600/40',
+    borderColor: 'border-purple-500',
+    hoverBorderColor: 'hover:border-purple-400',
+    buttonBg: 'bg-purple-700',
+    buttonHover: 'hover:bg-purple-600',
+    accentColor: 'bg-purple-400/30'
+  },
   terapias: {
     name: 'Terapias y Limpiezas',
     subtitle: 'Equilibra tu energía vital 💖',
-    primaryColor: '#E91E63', // Pink (Dashboard color)
-    overlayColor: 'bg-emerald-600/40',
-    borderColor: 'border-emerald-500',
-    hoverBorderColor: 'hover:border-emerald-400',
-    buttonBg: 'bg-emerald-700',
-    buttonHover: 'hover:bg-emerald-600',
-    accentColor: 'bg-emerald-400/30'
+    primaryColor: '#E91E63', // Rosa/Fucsia (Magenta)
+    overlayColor: 'bg-pink-600/40',
+    borderColor: 'border-pink-500',
+    hoverBorderColor: 'hover:border-pink-400',
+    buttonBg: 'bg-pink-700',
+    buttonHover: 'hover:bg-pink-600',
+    accentColor: 'bg-pink-400/30'
   },
   academia: {
     name: 'Academia Angélica',
     subtitle: 'Aprende el camino de la luz 📚',
-    primaryColor: '#4CAF50', // Green (Dashboard color)
-    overlayColor: 'bg-amber-600/40',
-    borderColor: 'border-amber-500',
-    hoverBorderColor: 'hover:border-amber-400',
-    buttonBg: 'bg-amber-700',
-    buttonHover: 'hover:bg-amber-600',
-    accentColor: 'bg-amber-400/30'
+    primaryColor: '#00C853', // Verde brillante
+    overlayColor: 'bg-green-600/40',
+    borderColor: 'border-green-500',
+    hoverBorderColor: 'hover:border-green-400',
+    buttonBg: 'bg-green-700',
+    buttonHover: 'hover:bg-green-600',
+    accentColor: 'bg-green-400/30'
   },
   tienda: {
     name: 'Tienda Angelical',
     subtitle: 'Productos espirituales bendecidos 🛍️',
-    primaryColor: '#FF9800', // Orange (Dashboard color)
-    overlayColor: 'bg-violet-600/40',
-    borderColor: 'border-violet-500',
-    hoverBorderColor: 'hover:border-violet-400',
-    buttonBg: 'bg-violet-700',
-    buttonHover: 'hover:bg-violet-600',
-    accentColor: 'bg-violet-400/30'
+    primaryColor: '#FF6D00', // Naranja intenso
+    overlayColor: 'bg-orange-600/40',
+    borderColor: 'border-orange-500',
+    hoverBorderColor: 'hover:border-orange-400',
+    buttonBg: 'bg-orange-700',
+    buttonHover: 'hover:bg-orange-600',
+    accentColor: 'bg-orange-400/30'
   },
   eventos: {
     name: 'Eventos Angelicales',
     subtitle: 'Experiencias espirituales únicas 🎉',
-    primaryColor: '#3F51B5', // Indigo (Dashboard color)
-    overlayColor: 'bg-red-600/40',
-    borderColor: 'border-red-500',
-    hoverBorderColor: 'hover:border-red-400',
-    buttonBg: 'bg-red-700',
-    buttonHover: 'hover:bg-red-600',
-    accentColor: 'bg-red-400/30'
+    primaryColor: '#0D47A1', // Azul intenso/Royal blue
+    overlayColor: 'bg-blue-800/40',
+    borderColor: 'border-blue-700',
+    hoverBorderColor: 'hover:border-blue-600',
+    buttonBg: 'bg-blue-800',
+    buttonHover: 'hover:bg-blue-700',
+    accentColor: 'bg-blue-600/30'
   },
   blog: {
     name: 'Blog & Podcast',
     subtitle: 'Sabiduría angelical compartida 📖',
-    primaryColor: '#FFC107', // Amber (Dashboard color)
-    overlayColor: 'bg-indigo-600/40',
-    borderColor: 'border-indigo-500',
-    hoverBorderColor: 'hover:border-indigo-400',
-    buttonBg: 'bg-indigo-700',
-    buttonHover: 'hover:bg-indigo-600',
-    accentColor: 'bg-indigo-400/30'
+    primaryColor: '#FFC107', // Amarillo/Dorado
+    overlayColor: 'bg-yellow-600/40',
+    borderColor: 'border-yellow-500',
+    hoverBorderColor: 'hover:border-yellow-400',
+    buttonBg: 'bg-yellow-700',
+    buttonHover: 'hover:bg-yellow-600',
+    accentColor: 'bg-yellow-400/30'
   }
 };
 
