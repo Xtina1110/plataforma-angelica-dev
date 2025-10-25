@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Users, Database, AlertTriangle, Activity } from 'lucide-react';
+import { useNotifications } from './AngelicalNotifications';
 
 const DashboardAdmin = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -10,6 +11,7 @@ const DashboardAdmin = () => {
   const [auditLogs, setAuditLogs] = useState([]);
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const { toast } = useNotifications();
 
   useEffect(() => {
     checkAdminAccess();
@@ -80,15 +82,15 @@ const DashboardAdmin = () => {
       });
 
       if (error) {
-        alert('Error al asignar rol: ' + error.message);
+        toast.error('Error al asignar rol: ' + error.message);
         return;
       }
 
-      alert('Rol asignado exitosamente');
+      toast.success('Rol asignado exitosamente ✅');
       await loadAdminData(); // Reload data
     } catch (error) {
       console.error('Error assigning role:', error);
-      alert('Error al asignar rol');
+      toast.error('Error al asignar rol');
     }
   };
 

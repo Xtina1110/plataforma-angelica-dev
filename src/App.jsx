@@ -6,6 +6,7 @@ import { LanguageProvider } from './contexts/LanguageContext';
 import { AudioProvider } from './contexts/AudioContext';
 import { CartProvider } from './contexts/CartContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { NotificationProvider } from './components/AngelicalNotifications';
 
 // Componentes principales
 import PantallaCarga from './components/PantallaCarga';
@@ -133,6 +134,7 @@ function App() {
       <LanguageProvider>
         <CartProvider>
         <AudioProvider>
+        <NotificationProvider>
           <Router>
             <div className="App">
               <ScrollIndicator />
@@ -188,6 +190,7 @@ function App() {
           </Routes>
         </div>
         </Router>
+        </NotificationProvider>
       </AudioProvider>
       </CartProvider>
       </LanguageProvider>

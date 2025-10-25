@@ -9,6 +9,7 @@ import {
   Search, Filter, Grid, List, Maximize2, X, Clock, Users, Check, ShoppingBag
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useNotifications } from './AngelicalNotifications';
 
 // Context para el estado de la sonoterapia
 const SonoterapiaContext = createContext();
@@ -212,6 +213,7 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
   const [timerInterval, setTimerInterval] = useState(null);
   const [mostrarConfiguracion, setMostrarConfiguracion] = useState(false);
   const audioRef = useRef(null);
+  const { toast } = useNotifications();
 
   useAutoScrollToContent('.main-content', 2000);
 
@@ -324,16 +326,16 @@ const Sonoterapia = ({ onVolver, addToCart }) => {
         duration: audio.duracion
       };
       addToCart(cartItem);
-      alert(`${audio.titulo} ha sido agregado al carrito por $${audio.precio} USD`);
+      toast.success(`${audio.titulo} agregado al carrito por $${audio.precio} USD 🛒`);
     }
   };
 
   const handleDescargar = (audio) => {
     if (!sonoterapiaState.comprados.includes(audio.id) && audio.premium) {
-      alert('Debes comprar este audio antes de descargarlo');
+      toast.warning('Debes comprar este audio antes de descargarlo 🔒');
       return;
     }
-    alert(`Descargando: ${audio.titulo}`);
+    toast.info(`Descargando: ${audio.titulo} 📥`);
     // Aquí iría la lógica real de descarga
   };
 

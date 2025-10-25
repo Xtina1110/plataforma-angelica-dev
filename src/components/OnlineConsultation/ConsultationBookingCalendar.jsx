@@ -3,6 +3,7 @@ import { Calendar, Clock, DollarSign, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import supabase from '../../services/supabaseClient';
 import './OnlineConsultation.css';
+import { useNotifications } from '../AngelicalNotifications';
 
 const ConsultationBookingCalendar = ({ selectedTheme, selectedReader, onBookingComplete }) => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -13,6 +14,7 @@ const ConsultationBookingCalendar = ({ selectedTheme, selectedReader, onBookingC
   const [includeRecording, setIncludeRecording] = useState(false);
   const [notes, setNotes] = useState('');
   const [userTimezone, setUserTimezone] = useState('');
+  const { toast } = useNotifications();
 
   useEffect(() => {
     setUserTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -65,7 +67,7 @@ const ConsultationBookingCalendar = ({ selectedTheme, selectedReader, onBookingC
 
   const handleCreateBooking = async () => {
     if (!selectedDate || !selectedTime) {
-      alert('Por favor selecciona fecha y hora');
+      toast.warning('Por favor selecciona fecha y hora ⏰');
       return;
     }
 
@@ -76,7 +78,7 @@ const ConsultationBookingCalendar = ({ selectedTheme, selectedReader, onBookingC
 
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        alert('Debes iniciar sesión para reservar');
+        toast.warning('Debes iniciar sesión para reservar 🔐');
         return;
       }
 
@@ -102,11 +104,11 @@ const ConsultationBookingCalendar = ({ selectedTheme, selectedReader, onBookingC
 
       if (error) throw error;
 
-      alert('¡Reserva creada exitosamente! Procede al pago para confirmar.');
+      toast.success('¡Reserva creada exitosamente! Procede al pago para confirmar. ✨');
       onBookingComplete(data);
     } catch (error) {
       console.error('Error creating booking:', error);
-      alert('Error al crear la reserva: ' + error.message);
+      toast.error('Error al crear la reserva: ' + error.message);
     } finally {
       setLoading(false);
     }
