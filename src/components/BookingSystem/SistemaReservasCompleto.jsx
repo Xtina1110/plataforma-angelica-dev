@@ -12,6 +12,7 @@ import { useToast } from '../../hooks/use-toast';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useCart } from '../../contexts/CartContext';
 import AngelicalModal from '../AngelicalModal';
+import AngelicalServiceCard, { ServiceCardGrid, AppColors } from '../ServiceCard/AngelicalServiceCard';
 import StripeCheckout from '../StripeCheckout';
 import { createPaymentIntent, confirmPayment } from '../../services/paymentService';
 
@@ -458,55 +459,41 @@ const SistemaReservasCompleto = ({ mode = 'general' }) => {
 
         {/* Step 1: Tipo de Consulta */}
         {currentStep === 1 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {bookingTypes.map((type) => (
-              <button
-                key={type.id}
-                onClick={() => setSelectedType(type.id)}
-                className={`p-6 rounded-2xl border-2 transition-all transform hover:scale-105 ${
-                  selectedType === type.id
-                    ? 'border-purple-500 bg-purple-50 shadow-xl'
-                    : 'border-gray-200 hover:border-purple-300 hover:shadow-lg'
-                }`}
-              >
-                <div className="text-5xl mb-4">{type.icon}</div>
-                <h3 className="text-xl font-bold mb-2" style={{ color: type.color }}>
-                  {type.name}
-                </h3>
-                <p className="text-gray-600 text-sm">{type.description}</p>
-                {selectedType === type.id && (
-                  <div className="mt-4 flex items-center justify-center gap-2 text-purple-600 font-semibold">
-                    <Check className="w-5 h-5" />
-                    <span>Seleccionado</span>
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
+          <ServiceCardGrid columns={3}>
+            {bookingTypes.map((type) => {
+              const IconComponent = type.id === 'apertura' ? Sparkles : type.id === 'terapias' ? Heart : Wind;
+              return (
+                <AngelicalServiceCard
+                  key={type.id}
+                  icon={IconComponent}
+                  title={type.name}
+                  description={type.description}
+                  color={type.color}
+                  isSelected={selectedType === type.id}
+                  onClick={() => setSelectedType(type.id)}
+                  size="medium"
+                />
+              );
+            })}
+          </ServiceCardGrid>
         )}
 
         {/* Step 2: Duración */}
         {currentStep === 2 && (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <ServiceCardGrid columns={4}>
             {durations.map((duration) => (
-              <button
+              <AngelicalServiceCard
                 key={duration.minutes}
+                icon={Clock}
+                title={duration.label}
+                price={`$${duration.price}`}
+                color={AppColors.apertura}
+                isSelected={selectedDuration === duration.minutes}
                 onClick={() => setSelectedDuration(duration.minutes)}
-                className={`p-6 rounded-2xl border-2 transition-all transform hover:scale-105 ${
-                  selectedDuration === duration.minutes
-                    ? 'border-purple-500 bg-purple-50 shadow-xl'
-                    : 'border-gray-200 hover:border-purple-300 hover:shadow-lg'
-                }`}
-              >
-                <Clock className="w-8 h-8 mx-auto mb-3 text-purple-600" />
-                <div className="text-lg font-bold text-gray-800">{duration.label}</div>
-                <div className="text-2xl font-bold text-purple-600 mt-2">
-                  ${duration.price}
-                </div>
-                <div className="text-sm text-gray-500">USD</div>
-              </button>
+                size="small"
+              />
             ))}
-          </div>
+          </ServiceCardGrid>
         )}
 
         {/* Step 3: Fecha - Calendario Mensual */}
