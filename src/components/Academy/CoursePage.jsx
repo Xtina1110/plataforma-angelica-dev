@@ -125,7 +125,7 @@ const CoursePage = ({ user, onLogout, courseId }) => {
       }
     ],
     
-    reviews: [
+    reviewsList: [
       {
         id: 1,
         user: 'Ana García',
@@ -538,7 +538,7 @@ const CoursePage = ({ user, onLogout, courseId }) => {
                         </div>
                       </div>
 
-                      {course.reviews.map(review => (
+                      {course.reviewsList.map(review => (
                         <div key={review.id} className="border-b border-gray-200 pb-6">
                           <div className="flex items-start gap-4">
                             <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full flex items-center justify-center text-2xl flex-shrink-0">
