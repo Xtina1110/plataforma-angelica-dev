@@ -1160,6 +1160,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           </AperturaAngelicalProvider>
         );
        case 'canalizaciones': 
+        console.log('Renderizando sección canalizaciones');
         return (
           <div>
             <SonoterapiaHeader {...headerProps} />
