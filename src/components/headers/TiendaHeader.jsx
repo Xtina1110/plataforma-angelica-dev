@@ -80,9 +80,9 @@ const TiendaHeader = ({
           }}
         ></div>
         {/* Capa transparente directa sobre la imagen - Color Anaranjado */}
-        <div className="absolute inset-0" style={{ backgroundColor: '#FF8C00', opacity: 0.4 }}></div>
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #FF8C0020, #FF8C0030, #FF8C0025)' }}></div>
-        <div className="absolute inset-0" style={{ backgroundColor: '#FF8C00', opacity: 0.1 }}></div>
+        <div className="absolute inset-0" style={{ backgroundColor: '#FF6D00', opacity: 0.4 }}></div>
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #FF6D0020, #FF6D0030, #FF6D0025)' }}></div>
+        <div className="absolute inset-0" style={{ backgroundColor: '#FF6D00', opacity: 0.1 }}></div>
         
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-xl"></div>

@@ -86,12 +86,12 @@ const AperturaAngelicaHeader = ({
           }}
         ></div>
         
-        {/* Overlay azul sobre la imagen para mejor legibilidad */}
-        <div className="absolute inset-0 bg-blue-600/40"></div>
+        {/* Overlay cyan sobre la imagen para mejor legibilidad */}
+        <div className="absolute inset-0 bg-cyan-600/40"></div>
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-xl"></div>
-          <div className="absolute bottom-10 right-20 w-48 h-48 bg-blue-400/30 rounded-full blur-2xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-20 w-48 h-48 bg-cyan-400/30 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl"></div>
         </div>
         
         {/* Contenido del header */}
@@ -110,7 +110,7 @@ const AperturaAngelicaHeader = ({
             {/* Información adicional del usuario */}
             <div className="flex flex-col items-end space-y-4">
               {/* Stats del usuario */}
-              <div className="flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-4 rounded-xl border-l-4 border-blue-400">
+              <div className="flex items-center space-x-4 text-white/90 bg-white/15 backdrop-blur-sm px-6 py-4 rounded-xl border-l-4 border-cyan-400">
                 <div className="text-center">
                   <div className="text-sm opacity-80">Nivel Espiritual</div>
                   <div className="font-bold text-lg">Iluminado</div>

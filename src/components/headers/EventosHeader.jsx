@@ -93,12 +93,12 @@ const EventosHeader = ({
           }}
         ></div>
         
-        {/* Transparencia con color específico #2661F6 sobre la imagen para mejor legibilidad */}
-        <div className="absolute inset-0" style={{ backgroundColor: '#2661F650' }}></div>
+        {/* Transparencia con color específico #0D47A1 (Azul Royal) sobre la imagen para mejor legibilidad */}
+        <div className="absolute inset-0" style={{ backgroundColor: '#0D47A150' }}></div>
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-xl"></div>
-          <div className="absolute bottom-10 right-20 w-48 h-48 rounded-full blur-2xl" style={{ backgroundColor: '#2661F630' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: '#2661F620' }}></div>
+          <div className="absolute bottom-10 right-20 w-48 h-48 rounded-full blur-2xl" style={{ backgroundColor: '#0D47A130' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl" style={{ backgroundColor: '#0D47A120' }}></div>
         </div>
         
         {/* Contenido del header */}
