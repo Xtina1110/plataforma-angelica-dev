@@ -1143,6 +1143,8 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         return <MensajeHeader {...headerProps} />;
       case 'eventos':
         return <EventosHeader {...headerProps} />;
+      case 'blog':
+        return <BlogHeader {...headerProps} />;
       default:
         return null;
     }
@@ -1206,12 +1208,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       case 'blog':
         return (
           <div>
-            <BlogHeader 
-              user={user}
-              onNavigateHome={() => setActiveSection('home')}
-              onLogout={onLogout}
-              onCartClick={() => setShowCart(true)}
-            />
+            {renderHeader()}
             <div className="blog-podcast-content">
               <div className="filter-buttons-dashboard">
                 <button 
