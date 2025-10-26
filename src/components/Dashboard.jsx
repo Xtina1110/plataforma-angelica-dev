@@ -1132,7 +1132,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       case 'tirada':
         return <AperturaAngelicaHeader {...headerProps} />;
       case 'canalizaciones':
-        return null; // Header eliminado
+        return <SonoterapiaHeader {...headerProps} />;
       case 'terapias':
         return <TerapiasHeader {...headerProps} />;
       case 'academia':
@@ -1165,7 +1165,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         console.log('Renderizando sección canalizaciones');
         return (
           <div>
-            <SonoterapiaHeader {...headerProps} />
+            {renderHeader()}
             <FilterBar
               type="canalizaciones"
               filters={filters}
