@@ -28,14 +28,14 @@ const BlogHeader = ({
       if (user) {
         try {
           const { data: profileData, error: profileError } = await supabase
-            .from('usuarios')
-            .select('nombre, email')
+            .from('profiles')
+            .select('first_name, email')
             .eq('id', user.id)
             .maybeSingle();
 
           if (profileData && !profileError) {
             setUserProfile({
-              nombre: profileData.nombre,
+              first_name: profileData.first_name,
               email: profileData.email
             });
           }
