@@ -1162,14 +1162,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
        case 'canalizaciones': 
         return (
           <div>
-            <SonoterapiaHeader 
-              onBack={() => setActiveSection('home')}
-              cartItems={cartItems}
-              cartTotal={cartTotal}
-              onCartClick={() => setShowCart(true)}
-              onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
-              actionLabel="Nueva Sesión"
-            />
+            <SonoterapiaHeader {...headerProps} />
             <FilterBar
               type="canalizaciones"
               filters={filters}

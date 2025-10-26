@@ -49,14 +49,32 @@ const TiendaHeader = ({
   }, [user]);
 
   const getUserName = () => {
-    if (userProfile?.nombre) return userProfile.nombre;
-    if (user?.user_metadata?.nombre || user?.user_metadata?.name) {
-      return user.user_metadata.nombre || user.user_metadata.name;
+    // Prioridad 1: Nombre desde la base de datos
+    if (userProfile?.first_name) {
+      return userProfile.first_name;
     }
+    
+    // Prioridad 2: Datos del user_metadata de Supabase Auth
+    if (user?.user_metadata?.first_name) {
+      return user.user_metadata.first_name;
+    }
+
+    if (user?.user_metadata?.name) {
+      return user.user_metadata.name;
+    }
+
+    if (user?.user_metadata?.full_name) {
+      return user.user_metadata.full_name;
+    }
+    
+    // Prioridad 3: Extraer nombre del email
     if (user?.email) {
       const emailName = user.email.split('@')[0];
-      return emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[^a-zA-Z]/g, '');
+      const formattedName = emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[^a-zA-Z]/g, '');
+      return formattedName;
     }
+    
+    // Fallback final
     return 'Usuario';
   };
 
