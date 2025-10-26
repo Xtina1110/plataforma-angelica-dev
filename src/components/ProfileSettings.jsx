@@ -207,7 +207,7 @@ const ProfileSettings = ({ isOpen, onClose, user }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[300] flex items-center justify-center animate-fade-in">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center animate-fade-in">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"

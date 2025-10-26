@@ -1121,7 +1121,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       cartCount: cartItems.length,
       user: user,
       onCartClick: () => setShowCart(true),
-      onProfileClick: () => setShowSettings(true),
+      onProfileClick: () => setProfileSettingsOpen(true),
       onLogout: async () => { await onLogout(); navigate('/inicio'); },
       onNavigateHome: () => setActiveSection('home'),
       audioActive: isPlaying,
@@ -1680,7 +1680,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         
         <div className="sidebar-footer">
           <div className="user-info">
-            <div className="user-avatar" onClick={() => setShowSettings(true)}>
+            <div className="user-avatar" onClick={() => setProfileSettingsOpen(true)}>
               <User size={20} />
             </div>
             {!sidebarCollapsed && (
@@ -1743,7 +1743,6 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         {renderSection()}
       </main>
       
-      {showSettings && renderSettings()}
       {showCart && renderCart()}
       
       {/* Chatbot Flotante */}
