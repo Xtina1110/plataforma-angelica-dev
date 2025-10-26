@@ -4,7 +4,7 @@ import {
   MessageCircle, Sparkles, Heart, Star, Calendar,
   ArrowLeft, MessageSquare
 } from 'lucide-react';
-import { MensajeHeader } from './headers';
+// MensajeHeader removed - now handled by Dashboard
 import AngelicChatbot from './AngelicChatbot';
 import './Dashboard.css';
 
@@ -84,11 +84,7 @@ const MensajeDelDiaEnhanced = ({ user, onLogout }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50">
-      <MensajeHeader
-        user={user}
-        onLogout={onLogout}
-        onNavigateHome={() => navigate('/dashboard')}
-      />
+      {/* MensajeHeader removed - now rendered by Dashboard */}
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Tabs */}

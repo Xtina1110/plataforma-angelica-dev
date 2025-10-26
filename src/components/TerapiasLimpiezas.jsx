@@ -10,7 +10,7 @@ import MarketplaceTerapias from './MarketplaceTerapias';
 import MarketplaceLimpiezas from './MarketplaceLimpiezas';
 import InstruccionesAngelicales from './InstruccionesAngelicales';
 import ContentWrapper from './ContentWrapper';
-import { TerapiasHeader } from './headers';
+// TerapiasHeader removed - now handled by Dashboard
 
 const TerapiasLimpiezas = ({ onVolver, onNavigate, addToCart }) => {
   const [paso, setPaso] = useState('instrucciones'); // 'instrucciones', 'servicios', 'terapias', 'limpiezas'
@@ -29,7 +29,6 @@ const TerapiasLimpiezas = ({ onVolver, onNavigate, addToCart }) => {
   if (paso === 'instrucciones') {
     return (
       <ContentWrapper>
-      <TerapiasHeader onNavigateHome={() => window.history.back()} />
       <div className="canalizaciones-sonoterapia-wrapper">
         {/* Título y descripción fuera del recuadro */}
         <div className="titulo-descripcion-section">
@@ -73,7 +72,6 @@ const TerapiasLimpiezas = ({ onVolver, onNavigate, addToCart }) => {
   // Página de selección de servicios (Terapias o Limpiezas)
   return (
     <ContentWrapper>
-    <TerapiasHeader onNavigateHome={() => window.history.back()} />
     <div className="canalizaciones-sonoterapia-seleccion">
       {/* Fondo marmolado morado */}
       <div className="seleccion-background-morado">
