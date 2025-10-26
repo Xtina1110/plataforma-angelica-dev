@@ -133,7 +133,7 @@ const SonoterapiaHeader = ({
               {/* Navegación integrada */}
               <div className="flex items-center space-x-3">
                 {/* Idioma */}
-                <LanguageSelector inline variant="header" />
+                <LanguageSelector inline variant="header" colorClasses="flex items-center space-x-2 bg-purple-900 hover:bg-purple-800 border-2 border-purple-700 hover:border-purple-600 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105" />
                 
                 {/* Carrito */}
                 <button 

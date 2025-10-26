@@ -122,7 +122,7 @@ const BlogHeader = ({
               {/* Navegación integrada */}
               <div className="flex items-center space-x-3">
                 {/* Idioma */}
-                <LanguageSelector inline variant="header" />
+                <LanguageSelector inline variant="header" colorClasses="flex items-center space-x-2 bg-yellow-800 hover:bg-yellow-700 border-2 border-yellow-600 hover:border-yellow-500 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105" />
                 
                 {/* Carrito */}
                 <button 

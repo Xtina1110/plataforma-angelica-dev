@@ -133,7 +133,7 @@ const EventosHeader = ({
               {/* Navegación integrada */}
               <div className="flex items-center space-x-3">
                 {/* Idioma */}
-                <LanguageSelector inline variant="header" />
+                <LanguageSelector inline variant="header" colorClasses="flex items-center space-x-2 bg-blue-900 hover:bg-blue-800 border-2 border-blue-700 hover:border-blue-600 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105" />
                 
                 {/* Carrito */}
                 <button 

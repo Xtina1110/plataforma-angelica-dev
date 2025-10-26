@@ -125,12 +125,12 @@ const AperturaAngelicaHeader = ({
               {/* Navegación integrada */}
               <div className="flex items-center space-x-3">
                 {/* Idioma */}
-                <LanguageSelector inline variant="header" />
+                <LanguageSelector inline variant="header" colorClasses="flex items-center space-x-2 bg-cyan-700 hover:bg-cyan-600 border-2 border-cyan-500 hover:border-cyan-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105" />
                 
                 {/* Carrito */}
                 <button 
                   onClick={onCartClick}
-                  className="relative flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
+                  className="relative flex items-center space-x-2 bg-cyan-700 hover:bg-cyan-600 border-2 border-cyan-500 hover:border-cyan-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Carrito de compras"
                 >
                   <ShoppingCart size={18} />
@@ -144,7 +144,7 @@ const AperturaAngelicaHeader = ({
                 {/* Gestión de Usuario */}
                 <button 
                   onClick={onProfileClick}
-                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
+                  className="flex items-center space-x-2 bg-cyan-700 hover:bg-cyan-600 border-2 border-cyan-500 hover:border-cyan-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Gestión de usuario"
                 >
                   <User size={18} />
@@ -154,7 +154,7 @@ const AperturaAngelicaHeader = ({
                 {/* Logout */}
                 <button 
                   onClick={onLogout}
-                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
+                  className="flex items-center space-x-2 bg-cyan-700 hover:bg-cyan-600 border-2 border-cyan-500 hover:border-cyan-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                   aria-label="Cerrar sesión"
                 >
                   <LogOut size={18} />
@@ -165,7 +165,7 @@ const AperturaAngelicaHeader = ({
               <div className="flex items-center space-x-3">
                 <button 
                   onClick={handleToggleAudio}
-                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
+                  className="flex items-center space-x-2 bg-cyan-700 hover:bg-cyan-600 border-2 border-cyan-500 hover:border-cyan-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                 >
                   {audioReproduciendo ? <VolumeX size={18} /> : <Volume2 size={18} />}
                   <span className="text-sm font-semibold">{audioReproduciendo ? 'Silenciar' : 'Audio'}</span>
@@ -173,7 +173,7 @@ const AperturaAngelicaHeader = ({
                 
                 <button 
                   onClick={onNavigateHome}
-                  className="flex items-center space-x-2 bg-purple-700 hover:bg-purple-600 border-2 border-purple-500 hover:border-purple-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
+                  className="flex items-center space-x-2 bg-cyan-700 hover:bg-cyan-600 border-2 border-cyan-500 hover:border-cyan-400 text-white px-5 py-3 rounded-xl transition-all duration-300 font-semibold shadow-xl hover:shadow-2xl hover:scale-105"
                 >
                   <ArrowLeft size={18} />
                   <span className="text-sm font-semibold">Volver</span>
