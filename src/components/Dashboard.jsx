@@ -1163,14 +1163,11 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         console.log('Renderizando sección canalizaciones');
         return (
           <div>
-            <SonoterapiaHeader {...headerProps} />
-            <FilterBar
-              type="canalizaciones"
-              filters={filters}
-              onFilterChange={handleFilterChange}
-            />
+            <div style={{padding: '20px', background: 'white'}}>
+              <h1>Test: Sección Canalizaciones</h1>
+              <button onClick={() => setActiveSection('home')}>Volver al Home</button>
+            </div>
             <CanalizacionesSonoterapia onVolver={() => setActiveSection('home')} onNavigate={setActiveSection} addToCart={addToCart} />
-            <FooterLegal />
           </div>
         );
        case 'terapias': 
