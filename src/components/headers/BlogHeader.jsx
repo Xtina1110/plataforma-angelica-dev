@@ -17,78 +17,64 @@ const BlogHeader = ({
   audioActive = false,
   onToggleAudio
 }) => {
-  const [userProfile, setUserProfile] = useState(null);
-  
+  const [userName, setUserName] = useState('Usuario');
   const [audioReproduciendo, setAudioReproduciendo] = useState(audioActive);
   const { toast } = useToast();
 
-  // Cargar datos del usuario desde Supabase
+  // Cargar y determinar el nombre del usuario
   useEffect(() => {
-    const loadUserProfile = async () => {
-      if (user) {
-        try {
-          const { data: profileData, error: profileError } = await supabase
-            .from('profiles')
-            .select('first_name, email')
-            .eq('id', user.id)
-            .maybeSingle();
-
-          if (profileData && !profileError) {
-            setUserProfile({
-              first_name: profileData.first_name,
-              email: profileData.email
-            });
-          }
-        } catch (error) {
-          console.error('[BlogHeader] Error cargando perfil:', error);
-        }
+    const determineUserName = async () => {
+      if (!user) {
+        setUserName('Usuario');
+        return;
       }
+
+      // Intentar cargar desde la base de datos
+      try {
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('first_name')
+          .eq('id', user.id)
+          .maybeSingle();
+
+        if (profileData?.first_name) {
+          setUserName(profileData.first_name);
+          return;
+        }
+      } catch (error) {
+        console.error('Error loading profile:', error);
+      }
+
+      // Fallback a user_metadata
+      if (user.user_metadata?.first_name) {
+        setUserName(user.user_metadata.first_name);
+        return;
+      }
+
+      if (user.user_metadata?.name) {
+        setUserName(user.user_metadata.name);
+        return;
+      }
+
+      if (user.user_metadata?.full_name) {
+        setUserName(user.user_metadata.full_name);
+        return;
+      }
+
+      // Fallback a email formateado (igual que Dashboard)
+      if (user.email) {
+        const emailName = user.email.split('@')[0];
+        const formattedName = emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[^a-zA-Z]/g, '');
+        setUserName(formattedName);
+        return;
+      }
+
+      // Último fallback
+      setUserName('Usuario');
     };
 
-    loadUserProfile();
+    determineUserName();
   }, [user]);
-
-  const getUserName = () => {
-    // Debug: Log user object
-    console.log('[BlogHeader getUserName] user:', user);
-    console.log('[BlogHeader getUserName] user.email:', user?.email);
-    console.log('[BlogHeader getUserName] userProfile:', userProfile);
-    
-    // Prioridad 1: Nombre desde la base de datos (userProfile)
-    if (userProfile?.first_name) {
-      console.log('[BlogHeader] Returning first_name from profile:', userProfile.first_name);
-      return userProfile.first_name;
-    }
-    
-    // Prioridad 2: Datos del user_metadata de Supabase Auth
-    if (user?.user_metadata?.first_name) {
-      console.log('[BlogHeader] Returning first_name from metadata:', user.user_metadata.first_name);
-      return user.user_metadata.first_name;
-    }
-
-    if (user?.user_metadata?.name) {
-      console.log('[BlogHeader] Returning name from metadata:', user.user_metadata.name);
-      return user.user_metadata.name;
-    }
-
-    if (user?.user_metadata?.full_name) {
-      console.log('[BlogHeader] Returning full_name from metadata:', user.user_metadata.full_name);
-      return user.user_metadata.full_name;
-    }
-    
-    // Prioridad 3: Extraer nombre del email (igual que Dashboard)
-    if (user?.email) {
-      const emailName = user.email.split('@')[0];
-      const formattedName = emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[^a-zA-Z]/g, '');
-      console.log('[BlogHeader] Returning formatted email name:', formattedName, 'from email:', user.email);
-      return formattedName;
-    }
-    
-    // Fallback final
-    console.log('[BlogHeader] Returning fallback: Usuario');
-    return 'Usuario';
-  };
-
 
   const handleToggleAudio = () => {
     setAudioReproduciendo(!audioReproduciendo);
@@ -174,7 +160,7 @@ const BlogHeader = ({
                   aria-label="Gestión de usuario"
                 >
                   <User size={18} />
-                  <span className="text-sm font-semibold">{getUserName()}</span>
+                  <span className="text-sm font-semibold">{userName}</span>
                 </button>
 
                 {/* Logout */}
@@ -220,3 +206,4 @@ const BlogHeader = ({
 };
 
 export default BlogHeader;
+
