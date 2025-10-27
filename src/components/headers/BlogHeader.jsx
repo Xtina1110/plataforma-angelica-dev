@@ -27,21 +27,17 @@ const BlogHeader = ({
     const loadUserProfile = async () => {
       if (user) {
         try {
-          console.log('[BlogHeader] Loading profile for user:', user.id, user.email);
           const { data: profileData, error: profileError } = await supabase
             .from('profiles')
             .select('first_name, email')
             .eq('id', user.id)
             .maybeSingle();
 
-          console.log('[BlogHeader] Profile data:', profileData, 'Error:', profileError);
-
           if (profileData && !profileError) {
             setUserProfile({
               first_name: profileData.first_name,
               email: profileData.email
             });
-            console.log('[BlogHeader] Profile set:', profileData.first_name);
           }
         } catch (error) {
           console.error('[BlogHeader] Error cargando perfil:', error);
@@ -53,40 +49,43 @@ const BlogHeader = ({
   }, [user]);
 
   const getUserName = () => {
-    console.log('[BlogHeader] getUserName called. userProfile:', userProfile, 'user:', user);
+    // Debug: Log user object
+    console.log('[BlogHeader getUserName] user:', user);
+    console.log('[BlogHeader getUserName] user.email:', user?.email);
+    console.log('[BlogHeader getUserName] userProfile:', userProfile);
     
-    // Prioridad 1: Nombre desde la base de datos
+    // Prioridad 1: Nombre desde la base de datos (userProfile)
     if (userProfile?.first_name) {
-      console.log('[BlogHeader] Using first_name from profile:', userProfile.first_name);
+      console.log('[BlogHeader] Returning first_name from profile:', userProfile.first_name);
       return userProfile.first_name;
     }
     
     // Prioridad 2: Datos del user_metadata de Supabase Auth
     if (user?.user_metadata?.first_name) {
-      console.log('[BlogHeader] Using first_name from user_metadata:', user.user_metadata.first_name);
+      console.log('[BlogHeader] Returning first_name from metadata:', user.user_metadata.first_name);
       return user.user_metadata.first_name;
     }
 
     if (user?.user_metadata?.name) {
-      console.log('[BlogHeader] Using name from user_metadata:', user.user_metadata.name);
+      console.log('[BlogHeader] Returning name from metadata:', user.user_metadata.name);
       return user.user_metadata.name;
     }
 
     if (user?.user_metadata?.full_name) {
-      console.log('[BlogHeader] Using full_name from user_metadata:', user.user_metadata.full_name);
+      console.log('[BlogHeader] Returning full_name from metadata:', user.user_metadata.full_name);
       return user.user_metadata.full_name;
     }
     
-    // Prioridad 3: Extraer nombre del email
+    // Prioridad 3: Extraer nombre del email (igual que Dashboard)
     if (user?.email) {
       const emailName = user.email.split('@')[0];
       const formattedName = emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[^a-zA-Z]/g, '');
-      console.log('[BlogHeader] Using formatted email name:', formattedName);
+      console.log('[BlogHeader] Returning formatted email name:', formattedName, 'from email:', user.email);
       return formattedName;
     }
     
     // Fallback final
-    console.log('[BlogHeader] Using fallback: Usuario');
+    console.log('[BlogHeader] Returning fallback: Usuario');
     return 'Usuario';
   };
 
