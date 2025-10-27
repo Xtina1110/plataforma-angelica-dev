@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+// Force rebuild - v2.0
 import { Search, ShoppingCart, User, LogOut, Settings, Globe, Mic, Volume2, VolumeX, ArrowLeft } from 'lucide-react';
 import { supabase } from '../../integrations/supabase/client';
 import { useToast } from '../../hooks/use-toast';
