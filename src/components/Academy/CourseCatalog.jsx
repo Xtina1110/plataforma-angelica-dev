@@ -236,16 +236,15 @@ const CourseCatalog = ({ user, onLogout }) => {
   };
 
   return (
-    <div className="dashboard-container">
-      <main className="main-content"
-        style={{
-          backgroundImage: 'url(/FondoMarmoleado02.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed',
-          minHeight: '100vh',
-          overflowY: 'auto'
-        }}>
+    <div className="w-full p-6"
+      style={{
+        backgroundImage: 'url(/FondoMarmoleado02.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        minHeight: '100vh',
+        overflowY: 'auto'
+      }}>
 
         {/* Header is rendered by Dashboard */}
 
@@ -517,7 +516,6 @@ const CourseCatalog = ({ user, onLogout }) => {
             </div>
           )}
         </div>
-      </main>
     </div>
   );
 };
