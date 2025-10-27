@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CanalizacionesSonoterapia.css';
 import './Dashboard.css';
 import { ArrowLeft, BookOpen, Headphones, Sparkles, Users, Clock, Star } from 'lucide-react';
@@ -7,9 +7,20 @@ import MarketplacePodcast from './MarketplacePodcast';
 import InstruccionesAngelicales from './InstruccionesAngelicales';
 import ContentWrapper from './ContentWrapper';
 import { BlogHeader } from './headers';
+import { supabase } from '../integrations/supabase/client';
 
 const BlogPodcast = ({ onVolver, onNavigate }) => {
   const [paso, setPaso] = useState('instrucciones'); // 'instrucciones', 'servicios', 'blog', 'podcast'
+  const [user, setUser] = useState(null);
+
+  // Cargar usuario de Supabase
+  useEffect(() => {
+    const loadUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    loadUser();
+  }, []);
 
   // Si está en blog, mostrar MarketplaceBlog
   if (paso === 'blog') {
@@ -25,7 +36,7 @@ const BlogPodcast = ({ onVolver, onNavigate }) => {
   if (paso === 'instrucciones') {
     return (
       <ContentWrapper>
-      <BlogHeader onNavigateHome={() => window.history.back()} />
+      <BlogHeader user={user} onNavigateHome={() => window.history.back()} />
       <div className="canalizaciones-sonoterapia-wrapper">
         {/* Título y descripción fuera del recuadro */}
         <div className="titulo-descripcion-section">
