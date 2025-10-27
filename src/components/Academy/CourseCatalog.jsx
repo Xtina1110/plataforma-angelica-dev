@@ -4,7 +4,6 @@ import {
   Search, Filter, Star, Users, Clock, BookOpen, 
   Play, TrendingUp, Award, ChevronDown, X
 } from 'lucide-react';
-import AppSidebar from '../AppSidebar';
 // Header is rendered by Dashboard
 import '../Dashboard.css';
 
@@ -238,8 +237,6 @@ const CourseCatalog = ({ user, onLogout }) => {
 
   return (
     <div className="dashboard-container">
-      <AppSidebar />
-
       <main className="main-content"
         style={{
           backgroundImage: 'url(/FondoMarmoleado02.png)',
