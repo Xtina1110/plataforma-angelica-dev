@@ -65,6 +65,7 @@
     "react-chartjs-2": "^5.3.0",
     "react-day-picker": "^9.8.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-hook-form": "^7.60.0",
     "react-hot-toast": "^2.6.0",
     "react-resizable-panels": "^3.0.3",
@@ -77,5 +78,8 @@
     "tone": "^15.1.22",
     "vaul": "^1.1.2",
     "vite": "^5.2.0"
+  },
+  "devDependencies": {
+    "vite-plugin-sitemap": "^0.8.2"
   }
 }
