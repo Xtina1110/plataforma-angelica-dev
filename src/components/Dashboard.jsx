@@ -1312,18 +1312,8 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               </div>
 
               {/* Tarjetas métricas con datos reales */}
-              <div className="bloque-metricas relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4">
-                {loadingUserData ? (
-                  <>
-                    {[...Array(6)].map((_, i) => (
-                      <div key={i} className="metrica-card animate-pulse">
-                        <div className="w-12 h-12 bg-gray-300 rounded-full"></div>
-                        <span className="text-gray-400">Cargando...</span>
-                        <strong className="text-gray-400">--</strong>
-                      </div>
-                    ))}
-                  </>
-                ) : (
+              {!loadingUserData && (
+                <div className="bloque-metricas relative z-10 grid grid-cols-2 md:grid-cols-3 gap-4">
                   <>
                     <div className="metrica-card">
                       <img src={iconNivel} alt="Nivel" />
@@ -1356,8 +1346,8 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                       <strong>{userData?.courses_completed || 0}</strong>
                     </div>
                   </>
-                )}
-              </div>
+                </div>
+              )}
             </div>
 
             {/* Gráficos de Progreso */}
