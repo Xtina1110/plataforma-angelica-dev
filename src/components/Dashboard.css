@@ -5140,3 +5140,190 @@ body {
   font-weight: 700;
 }
 
+
+
+/* ========================================
+   COMPACT HOVER STYLES FOR EVENT CARDS
+   ======================================== */
+.hover-content-compact {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.hover-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.hover-info-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: white;
+}
+
+.hover-info-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.hover-description-compact {
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.hover-actions-compact {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hover-precio-compact {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+}
+
+.hover-btn-compact {
+  flex: 1;
+  min-width: 80px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, #6a0dad 0%, #8a2be2 100%);
+  color: white;
+}
+
+.hover-btn-compact:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 13, 173, 0.4);
+}
+
+.hover-btn-compact:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.hover-btn-compact.inscrito {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.hover-btn-compact.details {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.hover-btn-compact.details:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+
+
+/* ========================================
+   DYNAMIC CAROUSEL INDICATORS
+   ======================================== */
+.carousel-indicators-dynamic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  padding: 12px 0;
+}
+
+.indicator-dot-dynamic {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(106, 13, 173, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.indicator-dot-dynamic:hover {
+  background: rgba(106, 13, 173, 0.5);
+  transform: scale(1.1);
+}
+
+.indicator-dot-dynamic.active {
+  width: 32px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #6a0dad 0%, #8a2be2 100%);
+  box-shadow: 0 2px 8px rgba(106, 13, 173, 0.4);
+}
+
+
+
+/* ========================================
+   INDIVIDUAL SIDEBAR BUTTON COLORS
+   ======================================== */
+
+/* Carrito de Compra - Naranja */
+.cart-button-orange {
+  background: rgba(249, 115, 22, 0.5) !important;
+}
+
+.cart-button-orange::before {
+  background: rgba(249, 115, 22, 0.15) !important;
+}
+
+.cart-button-orange:hover {
+  background: rgba(249, 115, 22, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Notificaciones - Azul */
+.notifications-button-blue {
+  background: rgba(59, 130, 246, 0.5) !important;
+}
+
+.notifications-button-blue::before {
+  background: rgba(59, 130, 246, 0.15) !important;
+}
+
+.notifications-button-blue:hover {
+  background: rgba(59, 130, 246, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Buscar - Verde Azulado (Teal) */
+.search-button-teal {
+  background: rgba(20, 184, 166, 0.5) !important;
+}
+
+.search-button-teal::before {
+  background: rgba(20, 184, 166, 0.15) !important;
+}
+
+.search-button-teal:hover {
+  background: rgba(20, 184, 166, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+

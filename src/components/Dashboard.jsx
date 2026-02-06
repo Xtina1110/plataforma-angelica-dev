@@ -13,28 +13,24 @@ import { useRef } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAudio } from '../contexts/AudioContext';
 import { useIsMobile } from '../hooks/use-mobile';
-import { AperturaAngelicalProvider } from '../contexts/AperturaAngelicalContext';
 import LanguageSelector from './LanguageSelector';
 
 import TiradaAngelical from './TiradaAngelical';
 import CanalizacionesSonoterapia from './CanalizacionesSonoterapia';
 import TerapiasLimpiezas from './TerapiasLimpiezas';
-import CourseCatalog from './Academy/CourseCatalog';
+import AcademiaAngelical from './AcademiaAngelical';
 
 import TiendaAngelical from './TiendaAngelical';
 import DashboardHeader from './DashboardHeader';
 import FooterLegal from './FooterLegal';
 import FilterBar from './FilterBar';
 import MensajeDelDia from './MensajeDelDia';
-import MensajeDelDiaEnhanced from './MensajeDelDiaEnhanced';
-import FloatingChatButton from './FloatingChatButton';
 import AudioButton from './AudioButton';
-import MisReservas from './MisReservas';
-import DayEventsModal from './DayEventsModal';
 
 // Importar componentes premium
 import GlobalSearchModal from './GlobalSearchModal';
 import EventCalendar from './EventCalendar';
+import EventCarouselIndicators from './EventCarouselIndicators';
 import ProgressCharts from './ProgressCharts';
 import NotificationsCenter from './NotificationsCenter';
 import AchievementsModal from './AchievementsModal';
@@ -66,8 +62,7 @@ import {
 } from './headers';
 
 // Importar componente de eventos
-import EventosAngelicales from './EventosAngelicales';
-import EventCarouselIndicators from './EventCarouselIndicators';
+import EventosModernos from './EventosModernos';
 
 import logo from '../assets/Logosinfondo.png';
 import fondoMarmoleado from '../assets/Fondomarmoleado.jpg';
@@ -81,7 +76,6 @@ import iconCursos from '../assets/IconoCursos.png';
 
 import './Dashboard.css';
 import './EventosModernos.css';
-import './Dashboard-sidebar-colors.css';
 
 const Dashboard = ({ user, onLogout, initialSection }) => {
   const navigate = useNavigate();
@@ -92,8 +86,6 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const [selectedDayEvents, setSelectedDayEvents] = useState(null);
-  const [showDayEventsModal, setShowDayEventsModal] = useState(false);
   
   // Estados específicos para blog
   const [blogFilter, setBlogFilter] = useState('todos');
@@ -144,10 +136,6 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   const plugin = useRef(
     Autoplay({ delay: 5000, stopOnInteraction: false })
   );
-  
-  // Ref para el carrusel de eventos
-  const eventCarouselRef = useRef(null);
-  const [eventCarouselApi, setEventCarouselApi] = useState(null);
 
   // Estados para los filtros de cada aplicación
   const [filters, setFilters] = useState({});
@@ -427,7 +415,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 1,
       titulo: "Meditación Grupal con Arcángeles",
-      fecha: "2026-01-14",
+      fecha: "2025-01-15",
       hora: "19:00",
       duracion: "90 min",
       modalidad: "Presencial",
@@ -444,7 +432,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 2,
       titulo: "Taller de Cartas Angelicales",
-      fecha: "2026-01-17",
+      fecha: "2025-01-18",
       hora: "16:30",
       duracion: "3 horas",
       modalidad: "Online",
@@ -461,7 +449,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 3,
       titulo: "Sanación con Frecuencias Angelicales",
-      fecha: "2026-01-22",
+      fecha: "2025-01-22",
       hora: "20:00",
       duracion: "60 min",
       modalidad: "Online",
@@ -477,7 +465,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 4,
       titulo: "Círculo de Canalización Angelical",
-      fecha: "2026-01-25",
+      fecha: "2025-01-25",
       hora: "18:00",
       duracion: "2 horas",
       modalidad: "Presencial",
@@ -494,7 +482,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 5,
       titulo: "Retiro Espiritual de Fin de Semana",
-      fecha: "2026-01-28",
+      fecha: "2025-01-28",
       hora: "09:00",
       duracion: "2 días",
       modalidad: "Presencial",
@@ -511,7 +499,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 6,
       titulo: "Masterclass: Comunicación Angelical",
-      fecha: "2026-02-02",
+      fecha: "2025-02-02",
       hora: "19:30",
       duracion: "2.5 horas",
       modalidad: "Online",
@@ -528,7 +516,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     {
       id: 7,
       titulo: "Sesión de Sanación Grupal",
-      fecha: "2026-02-05",
+      fecha: "2025-02-05",
       hora: "20:30",
       duracion: "90 min",
       modalidad: "Online",
@@ -581,14 +569,17 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
   // Función para manejar la navegación
   const handleMenuNavigation = (sectionId) => {
     if (sectionId === 'blog') {
-      navigate('/blog-podcast');
+      navigate('/podcast-blog');
       return;
     }
     if (sectionId === 'reservas') {
       navigate('/reservas');
       return;
     }
-    // videollamada ahora muestra MisReservas dentro del dashboard
+    if (sectionId === 'videollamada') {
+      navigate('/consulta-online');
+      return;
+    }
     setActiveSection(sectionId);
   };
 
@@ -839,55 +830,26 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         }}></div>
       </div>
       
-      {/* Calendario de eventos del mes */}
-      <div className="mb-6">
+      {/* Calendario mensual con días de eventos marcados */}
+      <div style={{ marginBottom: '40px', maxWidth: '900px', margin: '0 auto 40px' }}>
         <EventCalendar 
           events={eventos}
           onDateSelect={(date) => {
-            // Buscar eventos en esa fecha
-            const eventosDelDia = eventos.filter(e => {
-              const eventDate = new Date(e.fecha);
-              return eventDate.toDateString() === date.toDateString();
-            });
-            
-            if (eventosDelDia.length > 0) {
-              setSelectedDayEvents({ date, events: eventosDelDia });
-              setShowDayEventsModal(true);
-            }
-            
-            // También hacer scroll al primer evento
-            const eventoIndex = eventos.findIndex(e => {
-              const eventDate = new Date(e.fecha);
-              return eventDate.toDateString() === date.toDateString();
-            });
-            
-            if (eventoIndex !== -1 && eventCarouselRef.current) {
-              // Scroll al evento correspondiente
-              const carouselContent = eventCarouselRef.current.querySelector('.eventos-content');
-              if (carouselContent) {
-                const slideWidth = eventCarouselRef.current.offsetWidth;
-                carouselContent.scrollTo({
-                  left: slideWidth * eventoIndex,
-                  behavior: 'smooth'
-                });
-              }
+            setSelectedEventDate(date);
+            // Scroll to the carousel
+            const carousel = document.querySelector('.eventos-carousel-horizontal');
+            if (carousel) {
+              carousel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
           }}
+          selectedDate={selectedEventDate}
         />
       </div>
       
       {/* Carrusel horizontal de eventos con navegación manual */}
-      <div ref={eventCarouselRef} className="eventos-carousel-horizontal">
+      <div className="eventos-carousel-horizontal">
         <Carousel 
           className="carousel-eventos-manual"
-          setApi={setEventCarouselApi}
-          plugins={[
-            Autoplay({
-              delay: 5000,
-              stopOnInteraction: true,
-              stopOnMouseEnter: true,
-            })
-          ]}
           opts={{
             align: "start",
             loop: true,
@@ -931,73 +893,65 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                         {estaInscrito ? 'INSCRITO' : 'DISPONIBLE'}
                       </div>
                       
-                      {/* Título y descripción breve superpuestos */}
+                      {/* Título superpuesto */}
                       <div className="evento-titulo-superpuesto">
                         <h3>{evento.titulo}</h3>
-                        <p className="evento-descripcion-breve">{evento.descripcion}</p>
                       </div>
 
-                      {/* Hover información completa */}
+                      {/* Hover información compacta */}
                       <div className="evento-hover-info">
-                        <div className="hover-content">
-                          <div className="hover-time">
-                            <Clock size={16} />
-                            <span>{evento.hora} - {evento.duracion}</span>
-                          </div>
-                          <div className="hover-location">
-                            <MapPin size={16} />
-                            <span>{evento.ubicacion}</span>
-                          </div>
-                          <p className="hover-description">{evento.descripcion}</p>
-                          <div className="hover-instructor">
-                            <User size={16} />
-                            <span>{evento.instructor}</span>
-                          </div>
-                            <div className="hover-footer-stacked">
-                              <div className="hover-precio-linea">
-                                <span className="hover-precio">Precio: {evento.precio}</span>
-                              </div>
-                              <div className="hover-boton-linea">
-                                {eventosInscritos.includes(evento.id) ? (
-                                  <button 
-                                    className="hover-btn-inscribir"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      toggleInscripcion(evento.id);
-                                    }}
-                                    style={{ background: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)' }}
-                                  >
-                                    ✓ Inscrito - Cancelar
-                                  </button>
-                                ) : (
-                                  <button 
-                                    className="hover-btn-inscribir"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      if (evento.inscritos < evento.cupos) {
-                                        toggleInscripcion(evento.id);
-                                      }
-                                    }}
-                                    disabled={evento.inscritos >= evento.cupos}
-                                    style={evento.inscritos >= evento.cupos ? { 
-                                      background: '#ccc', 
-                                      cursor: 'not-allowed' 
-                                    } : {}}
-                                  >
-                                    {evento.inscritos >= evento.cupos ? 'Evento Completo' : 'Inscribirse Ahora'}
-                                  </button>
-                                )}
-                                <button 
-                                  className="hover-btn-detalle"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setEventoSeleccionado(evento);
-                                  }}
-                                >
-                                  Ver detalles
-                                </button>
-                              </div>
+                        <div className="hover-content-compact">
+                          <div className="hover-info-grid">
+                            <div className="hover-info-item">
+                              <Clock size={14} />
+                              <span className="hover-info-text">{evento.hora}</span>
                             </div>
+                            <div className="hover-info-item">
+                              <MapPin size={14} />
+                              <span className="hover-info-text">{evento.modalidad}</span>
+                            </div>
+                            <div className="hover-info-item">
+                              <User size={14} />
+                              <span className="hover-info-text">{evento.instructor}</span>
+                            </div>
+                          </div>
+                          <p className="hover-description-compact">{evento.descripcion.substring(0, 80)}...</p>
+                          <div className="hover-actions-compact">
+                            <span className="hover-precio-compact">{evento.precio}</span>
+                            {eventosInscritos.includes(evento.id) ? (
+                              <button 
+                                className="hover-btn-compact inscrito"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleInscripcion(evento.id);
+                                }}
+                              >
+                                ✓ Inscrito
+                              </button>
+                            ) : (
+                              <button 
+                                className="hover-btn-compact"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (evento.inscritos < evento.cupos) {
+                                    toggleInscripcion(evento.id);
+                                  }
+                                }}
+                                disabled={evento.inscritos >= evento.cupos}
+                              >
+                                {evento.inscritos >= evento.cupos ? 'Completo' : 'Inscribirse'}
+                              </button>
+                            )}
+                            <button 
+                              className="hover-btn-compact details"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setEventoSeleccionado(evento);
+                              }}
+                            >
+                              Detalles
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1016,15 +970,12 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           </CarouselNext>
         </Carousel>
         
+        {/* Indicadores dinámicos de puntos */}
+        <EventCarouselIndicators 
+          totalEvents={eventos.length}
+          eventsPerSlide={1}
+        />
       </div>
-      
-      {/* Indicadores dinámicos con auto-scroll */}
-      <EventCarouselIndicators 
-        totalSlides={eventos.length}
-        carouselApi={eventCarouselApi}
-        autoScrollInterval={5000}
-        enableAutoScroll={true}
-      />
       
       {/* Espacio adicional antes del botón "Ver todos" */}
       <div style={{ height: '40px' }}></div>
@@ -1121,7 +1072,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       cartCount: cartItems.length,
       user: user,
       onCartClick: () => setShowCart(true),
-      onProfileClick: () => setProfileSettingsOpen(true),
+      onProfileClick: () => setShowSettings(true),
       onLogout: async () => { await onLogout(); navigate('/inicio'); },
       onNavigateHome: () => setActiveSection('home'),
       audioActive: isPlaying,
@@ -1132,7 +1083,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
       case 'tirada':
         return <AperturaAngelicaHeader {...headerProps} />;
       case 'canalizaciones':
-        return <SonoterapiaHeader {...headerProps} />;
+        return null; // Header eliminado
       case 'terapias':
         return <TerapiasHeader {...headerProps} />;
       case 'academia':
@@ -1143,8 +1094,6 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         return <MensajeHeader {...headerProps} />;
       case 'eventos':
         return <EventosHeader {...headerProps} />;
-      case 'blog':
-        return <BlogHeader {...headerProps} />;
       default:
         return null;
     }
@@ -1154,25 +1103,28 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
     switch (activeSection) {
        case 'tirada': 
         return (
-          <AperturaAngelicalProvider>
-            <div>
-              {renderHeader()}
-              <TiradaAngelical onVolver={() => setActiveSection('home')} />
-            </div>
-          </AperturaAngelicalProvider>
-        );
-       case 'canalizaciones': 
-        console.log('Renderizando sección canalizaciones');
-        return (
           <div>
             {renderHeader()}
+            <TiradaAngelical onVolver={() => setActiveSection('home')} />
+          </div>
+        );
+       case 'canalizaciones': 
+        return (
+          <div>
+            <SonoterapiaHeader 
+              onBack={() => setActiveSection('home')}
+              cartItems={cartItems}
+              cartTotal={cartTotal}
+              onCartClick={() => setShowCart(true)}
+              onToggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)}
+              actionLabel="Nueva Sesión"
+            />
             <FilterBar
               type="canalizaciones"
               filters={filters}
               onFilterChange={handleFilterChange}
             />
-            <CanalizacionesSonoterapia onVolver={() => setActiveSection('home')} onNavigate={setActiveSection} addToCart={addToCart} />
-            <FooterLegal />
+            <CanalizacionesSonoterapia onVolver={() => setActiveSection('home')} addToCart={addToCart} />
           </div>
         );
        case 'terapias': 
@@ -1187,7 +1139,6 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               actionLabel="Iniciar Terapia"
             />
             <TerapiasLimpiezas onVolver={() => setActiveSection('home')} addToCart={addToCart} />
-            <FooterLegal />
           </div>
         );
        case 'academia': 
@@ -1201,14 +1152,18 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               onActionClick={() => console.log('Ver cursos')}
               actionLabel="Ver Cursos"
             />
-            <CourseCatalog user={user} onLogout={onLogout} />
-            <FooterLegal />
+            <AcademiaAngelical onVolver={() => setActiveSection('home')} addToCart={addToCart} />
           </div>
         );
       case 'blog':
         return (
           <div>
-            {renderHeader()}
+            <BlogHeader 
+              user={user}
+              onNavigateHome={() => setActiveSection('home')}
+              onLogout={onLogout}
+              onCartClick={() => setShowCart(true)}
+            />
             <div className="blog-podcast-content">
               <div className="filter-buttons-dashboard">
                 <button 
@@ -1234,15 +1189,15 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                 {renderBlogContent()}
               </div>
             </div>
-            <FooterLegal />
           </div>
         );
       case 'mensaje':
         return (
           <div>
             {renderHeader()}
-            <MensajeDelDiaEnhanced user={user} onLogout={onLogout} />
-            <FooterLegal />
+            <div className="mensaje-del-dia-container">
+              <MensajeDelDia />
+            </div>
           </div>
         );
       case 'eventos':
@@ -1266,13 +1221,12 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               />
             </div>
             
-            <EventosAngelicales 
+            <EventosModernos 
               eventos={eventos} 
               eventosInscritos={eventosInscritos} 
               onEventoClick={() => {}} 
               onToggleInscripcion={() => {}}
             />
-            <FooterLegal />
           </div>
         );
       case 'tienda':
@@ -1287,29 +1241,6 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
               actionLabel="Ver Productos"
             />
             <TiendaAngelical onVolver={() => setActiveSection('home')} addToCart={addToCart} />
-            <FooterLegal />
-          </div>
-        );
-      case 'videollamada':
-        return (
-          <div style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
-            <div className="mis-reservas-header" style={{
-              background: 'linear-gradient(135deg, #DC143C 0%, #FF1493 100%)',
-              padding: '30px',
-              borderRadius: '20px',
-              marginBottom: '30px',
-              color: 'white',
-              textAlign: 'center',
-              width: '100%',
-              boxSizing: 'border-box'
-            }}>
-              <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '10px' }}>Mis Consultas en Vivo</h1>
-              <p style={{ fontSize: '1rem', opacity: 0.9 }}>Accede a tus videollamadas angelicales programadas</p>
-            </div>
-            <div style={{ width: '100%', maxWidth: '100%', boxSizing: 'border-box', overflow: 'hidden' }}>
-              <MisReservas user={user} hideHeader={true} />
-            </div>
-            <FooterLegal />
           </div>
         );
       default:
@@ -1542,7 +1473,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
                 { id: 'mensaje', icon: <MessageSquare />, titulo: t.dailyMessage, desc: 'Recibe una canalización espiritual', disponible: true, color: '#C489FF' },
                 { id: 'eventos', icon: <Calendar />, titulo: 'Eventos Angelicales', desc: 'Ceremonias y encuentros espirituales', disponible: true, color: '#0000FF' },
                 { id: 'blog', icon: <Mic />, titulo: t.blogPodcast, desc: 'Contenido espiritual diario', disponible: true, color: '#FFCC00' },
-                { id: 'tienda', icon: <ShoppingCart />, titulo: t.store, desc: 'Cartas y recursos espirituales', disponible: true, color: '#FF6600' }
+                { id: 'tienda', icon: <ShoppingCart />, titulo: t.store, desc: 'Cartas y recursos espirituales', disponible: false, color: '#FF6600' }
               ].map(app => (
                 <div key={app.id} className="app-card-correcto">
                   {/* Header con color específico */}
@@ -1600,21 +1531,6 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         userId={user?.id}
       />
 
-      {showDayEventsModal && selectedDayEvents && (
-        <DayEventsModal
-          date={selectedDayEvents.date}
-          events={selectedDayEvents.events}
-          onClose={() => {
-            setShowDayEventsModal(false);
-            setSelectedDayEvents(null);
-          }}
-          onEventClick={(evento) => {
-            setEventoSeleccionado(evento);
-            setShowDayEventsModal(false);
-          }}
-        />
-      )}
-
       <NotificationsCenter
         isOpen={notificationsOpen}
         onClose={() => setNotificationsOpen(false)}
@@ -1671,7 +1587,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         
         <div className="sidebar-footer">
           <div className="user-info">
-            <div className="user-avatar" onClick={() => setProfileSettingsOpen(true)}>
+            <div className="user-avatar" onClick={() => setShowSettings(true)}>
               <User size={20} />
             </div>
             {!sidebarCollapsed && (
@@ -1704,7 +1620,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón de notificaciones */}
           <div className="notifications-button-container">
-            <button onClick={() => setNotificationsOpen(true)} className="cart-button cart-button-blue">
+            <button onClick={() => setNotificationsOpen(true)} className="cart-button notifications-button-blue">
               <Bell size={16} />
               {!sidebarCollapsed && <span>Notificaciones</span>}
               {unreadNotifications > 0 && (
@@ -1715,7 +1631,7 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
           
           {/* Botón de búsqueda */}
           <div className="search-button-container">
-            <button onClick={() => setSearchOpen(true)} className="cart-button cart-button-teal" title="Buscar (Ctrl+K)">
+            <button onClick={() => setSearchOpen(true)} className="cart-button search-button-teal" title="Buscar (Ctrl+K)">
               <Search size={16} />
               {!sidebarCollapsed && <span>Buscar</span>}
             </button>
@@ -1734,10 +1650,8 @@ const Dashboard = ({ user, onLogout, initialSection }) => {
         {renderSection()}
       </main>
       
+      {showSettings && renderSettings()}
       {showCart && renderCart()}
-      
-      {/* Chatbot Flotante */}
-      <FloatingChatButton user={user} />
     </div>
   );
 };

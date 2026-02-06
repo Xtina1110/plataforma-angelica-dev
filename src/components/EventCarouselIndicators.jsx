@@ -1,93 +1,55 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useCarousel } from './ui/carousel';
 
-const EventCarouselIndicators = ({ 
-  totalSlides, 
-  carouselApi,
-  autoScrollInterval = 5000,
-  enableAutoScroll = true 
-}) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [autoScrollEnabled, setAutoScrollEnabled] = useState(enableAutoScroll);
+const EventCarouselIndicators = ({ totalEvents, eventsPerSlide = 1 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalSlides = Math.ceil(totalEvents / eventsPerSlide);
 
-  // Sincronizar con el carrusel cuando cambia de slide
-  const onSelect = useCallback(() => {
-    if (!carouselApi) return;
-    setCurrentSlide(carouselApi.selectedScrollSnap());
-  }, [carouselApi]);
-
+  // This component should be rendered inside a Carousel context
+  // We'll use a simpler approach with CSS and event listeners
+  
   useEffect(() => {
-    if (!carouselApi) return;
+    // Listen for carousel scroll events
+    const carouselContent = document.querySelector('.eventos-content');
+    
+    if (carouselContent) {
+      const handleScroll = () => {
+        const scrollLeft = carouselContent.scrollLeft;
+        const slideWidth = carouselContent.scrollWidth / totalSlides;
+        const newIndex = Math.round(scrollLeft / slideWidth);
+        setCurrentIndex(newIndex);
+      };
 
-    onSelect();
-    carouselApi.on('select', onSelect);
-    carouselApi.on('reInit', onSelect);
-
-    return () => {
-      carouselApi.off('select', onSelect);
-      carouselApi.off('reInit', onSelect);
-    };
-  }, [carouselApi, onSelect]);
-
-  // Auto-scroll
-  useEffect(() => {
-    if (!carouselApi || !autoScrollEnabled) return;
-
-    const interval = setInterval(() => {
-      if (carouselApi.canScrollNext()) {
-        carouselApi.scrollNext();
-      } else {
-        carouselApi.scrollTo(0);
+      carouselContent.addEventListener('scroll', handleScroll);
+      
+      // Also listen for button clicks
+      const prevBtn = document.querySelector('.carousel-prev-eventos');
+      const nextBtn = document.querySelector('.carousel-next-eventos');
+      
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          setTimeout(handleScroll, 100);
+        });
       }
-    }, autoScrollInterval);
+      
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          setTimeout(handleScroll, 100);
+        });
+      }
 
-    return () => clearInterval(interval);
-  }, [carouselApi, autoScrollEnabled, autoScrollInterval, currentSlide]);
-
-  // Pausar auto-scroll al interactuar
-  useEffect(() => {
-    if (!carouselApi) return;
-
-    const handlePointerDown = () => {
-      setAutoScrollEnabled(false);
-      // Reactivar después de 10 segundos
-      setTimeout(() => {
-        setAutoScrollEnabled(true);
-      }, 10000);
-    };
-
-    carouselApi.on('pointerDown', handlePointerDown);
-
-    return () => {
-      carouselApi.off('pointerDown', handlePointerDown);
-    };
-  }, [carouselApi]);
-
-  const handleIndicatorClick = (index) => {
-    if (!carouselApi) return;
-    carouselApi.scrollTo(index);
-    setAutoScrollEnabled(false);
-    setTimeout(() => {
-      setAutoScrollEnabled(true);
-    }, 10000);
-  };
-
-  if (totalSlides <= 1) return null;
+      return () => {
+        carouselContent.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [totalSlides]);
 
   return (
-    <div className="flex justify-center items-center gap-2 mt-4">
+    <div className="carousel-indicators-dynamic">
       {Array.from({ length: totalSlides }).map((_, index) => (
-        <button
+        <div
           key={index}
-          onClick={() => handleIndicatorClick(index)}
-          className={`
-            transition-all duration-300 ease-in-out
-            ${currentSlide === index 
-              ? 'w-8 h-3 bg-gradient-to-r from-purple-600 to-purple-400 rounded-full shadow-lg' 
-              : 'w-3 h-3 bg-gray-300 hover:bg-purple-300 rounded-full'
-            }
-          `}
-          aria-label={`Ir al evento ${index + 1}`}
-          aria-current={currentSlide === index}
+          className={`indicator-dot-dynamic ${index === currentIndex ? 'active' : ''}`}
         />
       ))}
     </div>

@@ -16,51 +16,77 @@ const DashboardRedirect = () => {
   const checkOnboardingStatus = async () => {
     try {
       // Verificar si el usuario está autenticado
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
       
-      if (!user) {
+      if (userError || !user) {
+        console.error('Error getting user or no user found:', userError);
         navigate('/login');
         return;
       }
 
-      // Verificar si ya completó el onboarding
+      console.log('User authenticated:', user.email);
+
+      // Verificar si ya completó el onboarding en localStorage
       const onboardingCompleted = localStorage.getItem('onboardingCompleted');
       
-      // También verificar en la base de datos si el usuario es nuevo
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('created_at, onboarding_completed')
-        .eq('id', user.id)
-        .single();
+      // Intentar verificar en la base de datos (con manejo de errores)
+      let isNewUser = false;
+      try {
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('created_at, onboarding_completed')
+          .eq('id', user.id)
+          .single();
 
-      // Si es un usuario nuevo (menos de 5 minutos desde creación) y no ha completado onboarding
-      const isNewUser = profile && 
-        (new Date() - new Date(profile.created_at)) < 5 * 60 * 1000 &&
-        !profile.onboarding_completed;
+        if (!profileError && profile) {
+          // Si es un usuario nuevo (menos de 5 minutos desde creación) y no ha completado onboarding
+          isNewUser = profile && 
+            (new Date() - new Date(profile.created_at)) < 5 * 60 * 1000 &&
+            !profile.onboarding_completed;
+        } else {
+          console.log('Profiles table not found or error:', profileError?.message);
+          // Si no existe la tabla profiles, usar solo localStorage
+          isNewUser = !onboardingCompleted;
+        }
+      } catch (dbError) {
+        console.log('Database error (expected if profiles table does not exist):', dbError);
+        // Si hay error con la BD, usar solo localStorage
+        isNewUser = !onboardingCompleted;
+      }
 
+      // Mostrar onboarding solo si es usuario nuevo y no lo ha completado
       if ((isNewUser || !onboardingCompleted) && onboardingCompleted !== 'true') {
+        console.log('Showing onboarding for new user');
         setShowOnboarding(true);
         setLoading(false);
       } else {
         // Redirigir directamente al dashboard
+        console.log('Redirecting to dashboard');
         navigate('/dashboard');
       }
     } catch (error) {
       console.error('Error checking onboarding status:', error);
-      // En caso de error, redirigir al dashboard
+      // En caso de error, redirigir al dashboard de todas formas
       navigate('/dashboard');
     }
   };
 
   const handleOnboardingComplete = async () => {
     try {
-      // Marcar onboarding como completado en la base de datos
+      // Marcar onboarding como completado en localStorage
+      localStorage.setItem('onboardingCompleted', 'true');
+      
+      // Intentar marcar en la base de datos si existe la tabla
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        await supabase
-          .from('profiles')
-          .update({ onboarding_completed: true })
-          .eq('id', user.id);
+        try {
+          await supabase
+            .from('profiles')
+            .update({ onboarding_completed: true })
+            .eq('id', user.id);
+        } catch (dbError) {
+          console.log('Could not update profiles table (may not exist):', dbError);
+        }
       }
     } catch (error) {
       console.error('Error updating onboarding status:', error);
@@ -71,13 +97,20 @@ const DashboardRedirect = () => {
 
   const handleOnboardingSkip = async () => {
     try {
-      // Marcar onboarding como completado aunque lo haya saltado
+      // Marcar onboarding como completado en localStorage aunque lo haya saltado
+      localStorage.setItem('onboardingCompleted', 'true');
+      
+      // Intentar marcar en la base de datos si existe la tabla
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        await supabase
-          .from('profiles')
-          .update({ onboarding_completed: true })
-          .eq('id', user.id);
+        try {
+          await supabase
+            .from('profiles')
+            .update({ onboarding_completed: true })
+            .eq('id', user.id);
+        } catch (dbError) {
+          console.log('Could not update profiles table (may not exist):', dbError);
+        }
       }
     } catch (error) {
       console.error('Error updating onboarding status:', error);
