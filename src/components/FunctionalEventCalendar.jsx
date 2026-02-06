@@ -3,6 +3,7 @@ import { supabase } from '../integrations/supabase/client';
 import { ChevronLeft, ChevronRight, Calendar, Clock, MapPin, Users, ShoppingCart, Check } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import './FunctionalEventCalendar.css';
+import './EventFlipCard.css';
 
 const MONTHS = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -224,70 +225,90 @@ const FunctionalEventCalendar = ({ onAddToCart }) => {
             {filteredEvents.map(event => (
               <div 
                 key={event.id} 
-                className={`event-card ${selectedEvent?.id === event.id ? 'expanded' : ''}`}
+                className={`event-flip-container ${selectedEvent?.id === event.id ? 'flipped' : ''}`}
                 onClick={() => handleEventClick(event)}
               >
-                {event.imagen && (
-                  <div className="event-image">
-                    <img src={event.imagen} alt={event.titulo} />
-                    {event.precio > 0 && (
-                      <div className="event-price-badge">
-                        {event.precio}€
-                      </div>
-                    )}
-                  </div>
-                )}
+                <div className="event-flip-card">
+                  {/* FRENTE: Imagen + Fecha + Precio */}
+                  <div className="event-card-front">
+                    {event.imagen && (
+                      <div className="event-image-full">
+                        <img src={event.imagen_url || event.imagen} alt={event.titulo} />
+                        
+                        {/* Badge de fecha */}
+                        <div className="event-date-badge">
+                          <div className="date-day">{new Date(event.fecha).getDate()}</div>
+                          <div className="date-month">
+                            {new Date(event.fecha).toLocaleDateString('es-ES', { month: 'short' }).toUpperCase()}
+                          </div>
+                        </div>
 
-                <div className="event-content">
-                  <h4 className="event-title">{event.titulo}</h4>
-
-                  <div className="event-meta">
-                    <div className="meta-item">
-                      <Clock size={16} />
-                      <span>{event.hora || '19:00'} - {event.duracion || '90 min'}</span>
-                    </div>
-                    <div className="meta-item">
-                      <MapPin size={16} />
-                      <span>{event.ubicacion || 'Centro Angelical Madrid'}</span>
-                    </div>
-                    {event.instructor && (
-                      <div className="meta-item">
-                        <Users size={16} />
-                        <span>{event.instructor}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <p className={`event-description ${selectedEvent?.id === event.id ? 'expanded' : ''}`}>
-                    {event.descripcion || 'Sesión de meditación guiada para conectar con la energía de los arcángeles'}
-                  </p>
-
-                  <div className="event-actions">
-                    {event.precio > 0 ? (
-                      <button 
-                        className={`add-to-cart-btn ${addedToCart.has(event.id) ? 'added' : ''}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleAddToCart(event);
-                        }}
-                      >
-                        {addedToCart.has(event.id) ? (
-                          <>
-                            <Check size={18} />
-                            Añadido
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingCart size={18} />
-                            Añadir al Carrito
-                          </>
+                        {/* Badge de precio */}
+                        {event.precio > 0 && (
+                          <div className="event-price-badge">
+                            ${event.precio}
+                          </div>
                         )}
-                      </button>
-                    ) : (
-                      <button className="inscribe-btn">
-                        Inscribirse Gratis
-                      </button>
+                      </div>
                     )}
+                    <div className="event-front-title">
+                      <h4>{event.titulo}</h4>
+                      <span className="click-hint">Click para ver detalles</span>
+                    </div>
+                  </div>
+
+                  {/* REVERSO: Información completa */}
+                  <div className="event-card-back">
+                    <h4 className="event-title-back">{event.titulo}</h4>
+
+                    <div className="event-meta-back">
+                      <div className="meta-item">
+                        <Clock size={16} />
+                        <span>{event.hora || '19:00'} - {event.duracion || '90 min'}</span>
+                      </div>
+                      <div className="meta-item">
+                        <MapPin size={16} />
+                        <span>{event.es_online ? `Online - ${event.plataforma || 'Zoom'}` : (event.ubicacion || 'Centro Angelical Madrid')}</span>
+                      </div>
+                      {event.facilitador && (
+                        <div className="meta-item">
+                          <Users size={16} />
+                          <span>{event.facilitador}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="event-description-back">
+                      {event.descripcion || 'Sesión de meditación guiada para conectar con la energía de los arcángeles'}
+                    </p>
+
+                    <div className="event-actions-back">
+                      {event.precio > 0 ? (
+                        <button 
+                          className={`add-to-cart-btn ${addedToCart.has(event.id) ? 'added' : ''}`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddToCart(event);
+                          }}
+                        >
+                          {addedToCart.has(event.id) ? (
+                            <>
+                              <Check size={18} />
+                              Añadido
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingCart size={18} />
+                              Añadir al Carrito
+                            </>
+                          )}
+                        </button>
+                      ) : (
+                        <button className="inscribe-btn">
+                          Inscribirse Gratis
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
