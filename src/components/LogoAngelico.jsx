@@ -7,7 +7,7 @@ const LogoAngelico = () => {
       <img 
         src={logo} 
         alt="Logo Juan Carlos Ávila - Elangeólogo" 
-        className="w-28 md:w-36 lg:w-44 xl:w-52"
+        className="h-16 sm:h-20 w-auto"
         onError={(e) => {
           console.log('Error loading logo:', e);
           e.target.style.display = 'none';

@@ -1,9 +1,7 @@
-import angelicMeditationMusic from '../assets/angelic-meditation.mp3';
-
 export const angelicMusicConfig = {
   home: {
-    name: 'Angelic Meditation',
-    url: angelicMeditationMusic,
+    name: 'Ethereal Relaxation',
+    url: 'https://files.manuscdn.com/1739382527-meditation.mp3',
     description: 'Música de meditación angelical atmosférica y relajante, perfecta para conexión espiritual',
     frequency: '528Hz',
     volume: 0.22,

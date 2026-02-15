@@ -8,6 +8,7 @@ import AudioButton from './AudioButton';
 import SkipButton from './SkipButton';
 import UserStatsDisplay from './UserStatsDisplay';
 import FooterLegal from './FooterLegal';
+import AngelAI from './AngelAI';
 import loadingMessagesService from '../services/loadingMessagesService';
 import ambientMusicService from '../services/ambientMusicService';
 import userStatsService from '../services/userStatsService';
@@ -344,7 +345,7 @@ const PantallaCarga = () => {
       {/* Contenido central - completamente responsive */}
       <div className="z-10 text-center px-4 sm:px-6 lg:px-8 w-full max-w-4xl mx-auto">
         <h1
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-wide drop-shadow-md animate-fade-in"
+          className="mt-12 sm:mt-0 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 tracking-wide drop-shadow-md animate-fade-in"
           style={{
             fontFamily: "'Playfair Display', serif",
             color: '#6a0dad'
@@ -442,6 +443,9 @@ const PantallaCarga = () => {
       <div className="absolute bottom-0 left-0 right-0 z-30">
         <FooterLegal />
       </div>
+
+      {/* Angel AI Chatbot */}
+      <AngelAI />
 
       <style jsx>{`
         @keyframes float {
